@@ -1,8 +1,10 @@
-package Dominio.Model;
+package lojadebrinquedo.Dominio.Model;
 
 import java.util.Date;
+import lojadebrinquedo.Dominio.Util.IPropertiesValidator;
+import lojadebrinquedo.Dominio.Util.PropertiesValidator;
 
-public class UserModel {    
+public class UserModel implements IPropertiesValidator<UserModel> {
 
     public UserModel() {
 
@@ -17,7 +19,7 @@ public class UserModel {
     public int getId() {
         return this.Id;
     }
-    
+
     private String Nome;
 
     public void setNome(String _nome) {
@@ -136,6 +138,54 @@ public class UserModel {
 
     public int getUsuDel() {
         return this.UsuDel;
+    }
+
+    @Override
+    public void validObject(UserModel objeto) throws PropertiesValidator {
+
+        if (!validString(this.Nome)) 
+            throw new PropertiesValidator("Por favor preencher o nome");
+        
+        if (!validString(this.CPF)) 
+            throw new PropertiesValidator("Por favor preencher o CPF");
+        
+        if (!validString(this.Email)) 
+            throw new PropertiesValidator("Por favor preencher o Email");
+        
+        if (!validString(this.Password)) 
+            throw new PropertiesValidator("Por favor preencher o Password");
+        
+        if (!validString(this.Sexo)) 
+            throw new PropertiesValidator("Por favor preencher o Sexo");
+        
+        if (!validDate(this.DtNasc)) 
+            throw new PropertiesValidator("Por favor preencher a Data de Nascimento");
+    }
+
+    @Override
+    public boolean validString(String value) throws PropertiesValidator {
+        
+        if (value.isBlank() || value.isEmpty()) 
+            return false;
+        
+        return true;
+    }
+
+    @Override
+    public boolean validDate(Date value) throws PropertiesValidator {
+        if (value == null || value.toString().isBlank() || value.toString().isEmpty()) 
+            return false;
+        return true;
+    }
+
+    @Override
+    public boolean validInt(int value) throws PropertiesValidator {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean validDouble(double value) throws PropertiesValidator {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
