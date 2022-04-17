@@ -1,8 +1,8 @@
-package lojadebrinquedo.Dominio.Model;
+package Dominio.Model;
 
 import java.util.Date;
-import lojadebrinquedo.Dominio.Util.IPropertiesValidator;
-import lojadebrinquedo.Dominio.Util.PropertiesValidator;
+import Dominio.Util.IPropertiesValidator;
+import Dominio.Util.PropertiesValidator;
 
 public class UserModel implements IPropertiesValidator<UserModel> {
 

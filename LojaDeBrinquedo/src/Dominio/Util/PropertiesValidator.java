@@ -1,4 +1,4 @@
-package lojadebrinquedo.Dominio.Util;
+package Dominio.Util;
 
 public class PropertiesValidator extends Exception {
     
