@@ -27,120 +27,171 @@ public class Usuario extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
+        jpnBg = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        txtNome = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtDtNascimento = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
+        txtPass = new javax.swing.JPasswordField();
+        rbMasc = new javax.swing.JRadioButton();
+        rbFem = new javax.swing.JRadioButton();
+        btnSalvar = new javax.swing.JButton();
+        lblControle = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        cbxPerfil = new javax.swing.JComboBox<>();
+        ckbExcluir = new javax.swing.JCheckBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(994, 623));
 
-        jPanel1.setBackground(new java.awt.Color(79, 109, 234));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpnBg.setBackground(new java.awt.Color(79, 109, 234));
+        jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable1.setBackground(new java.awt.Color(64, 87, 184));
+        jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Gustavo", "gustavo@happy.com.br", "000.000.000-00", "Adm"},
+                {"Erick", "erick@happy.com.br", "000.000.000-00", "Caixa"},
+                {"Fernando", "fernando@happy.com.br", "000.000.000-00", "Gerente Vendas"}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "E-mail", "CPF", "Perfil"
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(64, 87, 184));
+        jTable1.setSelectionForeground(new java.awt.Color(79, 109, 234));
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 900, 240));
+        jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 900, 240));
 
-        jTextField2.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setText("Administrador");
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 210, -1));
+        txtNome.setBackground(new java.awt.Color(79, 109, 234));
+        txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtNome.setForeground(new java.awt.Color(255, 255, 255));
+        txtNome.setText("Administrador");
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
 
-        jTextField3.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setText("administrador@email.com");
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 210, -1));
+        txtEmail.setBackground(new java.awt.Color(79, 109, 234));
+        txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
+        txtEmail.setText("administrador@email.com");
+        txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, -1));
 
-        jTextField5.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField5.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setText("01/01/1999");
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 210, -1));
+        txtDtNascimento.setBackground(new java.awt.Color(79, 109, 234));
+        txtDtNascimento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtDtNascimento.setForeground(new java.awt.Color(255, 255, 255));
+        txtDtNascimento.setText("01/01/1999");
+        txtDtNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtDtNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
 
-        jTextField6.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField6.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setText("000.000.000-00");
-        jTextField6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 210, -1));
+        txtCpf.setBackground(new java.awt.Color(79, 109, 234));
+        txtCpf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCpf.setForeground(new java.awt.Color(255, 255, 255));
+        txtCpf.setText("000.000.000-00");
+        txtCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
 
-        jPasswordField1.setBackground(new java.awt.Color(79, 109, 234));
-        jPasswordField1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setText("P@ssw0rd");
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 210, -1));
+        txtPass.setBackground(new java.awt.Color(79, 109, 234));
+        txtPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtPass.setForeground(new java.awt.Color(255, 255, 255));
+        txtPass.setText("P@ssw0rd");
+        txtPass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
 
-        jComboBox1.setBackground(new java.awt.Color(79, 109, 234));
-        jComboBox1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 210, 50));
+        rbMasc.setBackground(new java.awt.Color(79, 109, 234));
+        rbMasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        rbMasc.setForeground(new java.awt.Color(255, 255, 255));
+        rbMasc.setText("Masculino");
+        jpnBg.add(rbMasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, -1, -1));
 
-        jRadioButton1.setBackground(new java.awt.Color(79, 109, 234));
-        jRadioButton1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Masculino");
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
+        rbFem.setBackground(new java.awt.Color(79, 109, 234));
+        rbFem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        rbFem.setForeground(new java.awt.Color(255, 255, 255));
+        rbFem.setText("Feminino");
+        jpnBg.add(rbFem, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
 
-        jRadioButton2.setBackground(new java.awt.Color(79, 109, 234));
-        jRadioButton2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Feminino");
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
+        btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
+        btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("Salvar");
+        btnSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSalvar.setContentAreaFilled(false);
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalvar.setOpaque(true);
+        jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 170, 50));
 
-        jButton1.setBackground(new java.awt.Color(79, 109, 234));
-        jButton1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Salvar");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 170, 50));
+        lblControle.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblControle.setForeground(new java.awt.Color(255, 255, 255));
+        lblControle.setText("Controle de usuários");
+        jpnBg.add(lblControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Controle de usuários");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/user.png"))); // NOI18N
+        jpnBg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 50, 40));
+
+        cbxPerfil.setBackground(new java.awt.Color(79, 109, 234));
+        cbxPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        cbxPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik", 1, 14))); // NOI18N
+        cbxPerfil.setOpaque(false);
+        cbxPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxPerfilActionPerformed(evt);
+            }
+        });
+        jpnBg.add(cbxPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, 50));
+
+        ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
+        ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        ckbExcluir.setText("Excluir");
+        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
+
+        jTable2.setBackground(new java.awt.Color(64, 87, 184));
+        jTable2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        jTable2.setForeground(new java.awt.Color(255, 255, 255));
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Bola de futebol", "10", "69,90", "Nike", "Nike", "5"},
+                {"Boneca", "5", "120,00", "Barbie", "Happy", "0"},
+                {"Nerf", "2", "50,00", "Nerf", "Disneylandia", "2"}
+            },
+            new String [] {
+                "Nome", "Qtd", "Valor", "Marca", "Fornecedor", "Desconto"
+            }
+        ));
+        jTable2.setGridColor(new java.awt.Color(64, 87, 184));
+        jTable2.setSelectionForeground(new java.awt.Color(64, 87, 184));
+        jTable2.setShowGrid(true);
+        jScrollPane2.setViewportView(jTable2);
+
+        jpnBg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 900, 150));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbxPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxPerfilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,19 +229,23 @@ public class Usuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbxPerfil;
+    private javax.swing.JCheckBox ckbExcluir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JPanel jpnBg;
+    private javax.swing.JLabel lblControle;
+    private javax.swing.JRadioButton rbFem;
+    private javax.swing.JRadioButton rbMasc;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtDtNascimento;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }
