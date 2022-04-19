@@ -130,13 +130,13 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
         return this.PorcentDesc;
     }
 
-    private String FotoProduto;
+    private image FotoProduto;
 
-    public void setFotoProduto(String _fotoProduto) {
+    public void setFotoProduto(image _fotoProduto) {
         this.FotoProduto = _fotoProduto;
     }
 
-    public String getFotoProduto() {
+    public image getFotoProduto() {
         return this.FotoProduto;
     }
 
