@@ -201,7 +201,45 @@ public class FornecedorModel implements IPropertiesValidator<FornecedorModel> {
 
     @Override
     public void validObject(FornecedorModel objeto) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!validString(this.ContatoResposavel)) {
+            throw new PropertiesValidator("Por favor preencher o Responsável");
+        }
+        if (!validString(this.Cnpj)) {
+            throw new PropertiesValidator("Por favor preencher o CNPJ");
+        }
+        if (!validString(this.Nome)) {
+            throw new PropertiesValidator("Por favor preencher o Nome da empresa");
+        }
+        if (!validString(this.NomeFantasia)) {
+            throw new PropertiesValidator("Por favor preencher o Nome Fantasia da empresa");
+        }
+        if (!validString(this.CEP)) {
+            throw new PropertiesValidator("Por favor preencher o CEP da empresa");
+        }
+        if (!validString(this.Celular)) {
+            throw new PropertiesValidator("Por favor preencher o Celular da empresa");
+        }
+        if (!validString(this.Email)) {
+            throw new PropertiesValidator("Por favor preencher o Email da empresa");
+        }
+        if (!validString(this.Endereco)) {
+            throw new PropertiesValidator("Por favor preencher o Endereco da empresa");
+        }
+        if (!validString(this.Estado)) {
+            throw new PropertiesValidator("Por favor preencher o Estado da empresa");
+        }
+        if (!validString(this.Municipio)) {
+            throw new PropertiesValidator("Por favor preencher o Municipio da empresa");
+        }
+        if (!validString(this.Telefone)) {
+            throw new PropertiesValidator("Por favor preencher o Telefone da empresa");
+        }
+        if (!validDate(this.DtCad)) {
+            throw new PropertiesValidator("Por favor preencher a Data de cadrasto da empresa (TI)");
+        }
+        if (!validInt(this.UsuInclus)) {
+            throw new PropertiesValidator("Por favor preencher o usuário de inclusão da empresa (TI)");
+        }
     }
 
     @Override
@@ -224,12 +262,18 @@ public class FornecedorModel implements IPropertiesValidator<FornecedorModel> {
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
 }

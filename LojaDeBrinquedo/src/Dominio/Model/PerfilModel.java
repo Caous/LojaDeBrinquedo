@@ -28,7 +28,7 @@ public class PerfilModel implements IPropertiesValidator<PerfilModel> {
     public String getPerfil() {
         return this.Perfil;
     }
-    
+
     private String DescPerfil;
 
     public void setDescPerfil(String _DescPerfil) {
@@ -39,9 +39,60 @@ public class PerfilModel implements IPropertiesValidator<PerfilModel> {
         return this.DescPerfil;
     }
 
+    private Date DtCad;
+
+    public void setDtCad(Date _DtCad) {
+        this.DtCad = _DtCad;
+    }
+
+    public Date getDtCad() {
+        return this.DtCad;
+    }
+
+    private Date DtDel;
+
+    public void setDtDel(Date _DtDel) {
+        this.DtDel = _DtDel;
+    }
+
+    public Date getDtDel() {
+        return this.DtDel;
+    }
+
+    private int UsuInclus;
+
+    public void setUsuInclus(int _UsuInclus) {
+        this.UsuInclus = _UsuInclus;
+    }
+
+    public int getUsuInclus() {
+        return this.UsuInclus;
+    }
+
+    private int UsuDel;
+
+    public void setUsuDel(int _UsuDel) {
+        this.UsuDel = _UsuDel;
+    }
+
+    public int getUsuDel() {
+        return this.UsuDel;
+    }
+
     @Override
     public void validObject(PerfilModel objeto) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         if (validString(this.Perfil)) {
+            throw new PropertiesValidator("Por favor preencher o nome do perfil");
+        }
+        if (validString(this.DescPerfil)) {
+            throw new PropertiesValidator("Por favor preencher a descrição do perfil");
+        }
+        if (!validDate(this.DtCad)) {
+            throw new PropertiesValidator("Por favor preencher a Data de cadrasto do menu(TI)");
+        }
+        if (!validInt(this.UsuInclus)) {
+            throw new PropertiesValidator("Por favor preencher o usuário de inclusão do menu (TI)");
+        }
     }
 
     @Override
@@ -64,11 +115,17 @@ public class PerfilModel implements IPropertiesValidator<PerfilModel> {
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 }

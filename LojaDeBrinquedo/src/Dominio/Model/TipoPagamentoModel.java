@@ -5,8 +5,10 @@ import Dominio.Util.PropertiesValidator;
 import java.util.Date;
 
 public class TipoPagamentoModel implements IPropertiesValidator<TipoPagamentoModel> {
-    public TipoPagamentoModel(){}
-    
+
+    public TipoPagamentoModel() {
+    }
+
     private int Id;
 
     public void setId(int _id) {
@@ -16,7 +18,7 @@ public class TipoPagamentoModel implements IPropertiesValidator<TipoPagamentoMod
     public int getId() {
         return this.Id;
     }
-    
+
     private String DescPagamento;
 
     public void setDescPagamento(String _DescPagamento) {
@@ -26,7 +28,6 @@ public class TipoPagamentoModel implements IPropertiesValidator<TipoPagamentoMod
     public String getDescPagamento() {
         return this.DescPagamento;
     }
-
 
     private Date DtCad;
 
@@ -70,7 +71,15 @@ public class TipoPagamentoModel implements IPropertiesValidator<TipoPagamentoMod
 
     @Override
     public void validObject(TipoPagamentoModel objeto) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (validString(this.DescPagamento)) {
+            throw new PropertiesValidator("Por favor preencher a descrição do pagamento");
+        }
+        if (!validDate(this.DtCad)) {
+            throw new PropertiesValidator("Por favor preencher a Data de cadrasto do pagamento (TI)");
+        }
+        if (!validInt(this.UsuInclus)) {
+            throw new PropertiesValidator("Por favor preencher o usuário de inclusão do pagamento (TI)");
+        }
     }
 
     @Override
@@ -93,11 +102,17 @@ public class TipoPagamentoModel implements IPropertiesValidator<TipoPagamentoMod
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 }

@@ -80,7 +80,18 @@ public class TipoAcessoModel implements IPropertiesValidator<TipoAcessoModel> {
 
     @Override
     public void validObject(TipoAcessoModel objeto) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!validInt(this.IdMenu)) {
+            throw new PropertiesValidator("Por favor selecionar o menu");
+        }
+        if (!validInt(this.IdPerfil)) {
+            throw new PropertiesValidator("Por favor selecionar o perfil");
+        }
+        if (!validDate(this.DtCad)) {
+            throw new PropertiesValidator("Por favor preencher a Data de cadrasto do pagamento (TI)");
+        }
+        if (!validInt(this.UsuInclus)) {
+            throw new PropertiesValidator("Por favor preencher o usuário de inclusão do pagamento (TI)");
+        }
     }
 
     @Override
@@ -103,11 +114,17 @@ public class TipoAcessoModel implements IPropertiesValidator<TipoAcessoModel> {
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 }

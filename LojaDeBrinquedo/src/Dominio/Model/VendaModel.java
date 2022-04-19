@@ -2,6 +2,8 @@ package Dominio.Model;
 
 import Dominio.Util.IPropertiesValidator;
 import Dominio.Util.PropertiesValidator;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class VendaModel implements IPropertiesValidator<VendaModel> {
@@ -18,14 +20,19 @@ public class VendaModel implements IPropertiesValidator<VendaModel> {
         return this.Id;
     }
 
-    private int IdProd;
+    private List<ProdutoModel> produtos;
 
-    public void setIdProd(int _IdProd) {
-        this.IdProd = _IdProd;
+    public void setIdProd(ProdutoModel _produto) {
+        if (produtos == null) {
+            produtos = new ArrayList<ProdutoModel>();
+            produtos.add(_produto);
+        } else {
+            produtos.add(_produto);
+        }
     }
 
-    public int getIdProd() {
-        return this.IdProd;
+    public List<ProdutoModel> getIdProd() {
+        return this.produtos;
     }
 
     private int IdUsuVend;
@@ -46,16 +53,6 @@ public class VendaModel implements IPropertiesValidator<VendaModel> {
 
     public int getIdCli() {
         return this.IdCli;
-    }
-
-    private int Qtde;
-
-    public void setQtde(int _Qtde) {
-        this.Qtde = _Qtde;
-    }
-
-    public int getQtde() {
-        return this.Qtde;
     }
 
     private double ValorPrd;
@@ -140,7 +137,24 @@ public class VendaModel implements IPropertiesValidator<VendaModel> {
 
     @Override
     public void validObject(VendaModel objeto) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!validInt(this.IdCli)) {
+            throw new PropertiesValidator("Por favor preencher o cliente");
+        }
+        if (!validInt(this.produtos.size())) {
+            throw new PropertiesValidator("Por favor preencher o produto");
+        }
+        if (!validInt(this.IdUsuVend)) {
+            throw new PropertiesValidator("Por favor preencher o usuário da venda (TI)");
+        }
+        if (!validInt(this.TipoPagamento)) {
+            throw new PropertiesValidator("Por favor preencher o tipo pagamento");
+        }
+        if (!validDate(this.DtCad)) {
+            throw new PropertiesValidator("Por favor preencher a Data de cadrasto da empresa (TI)");
+        }
+        if (!validInt(this.UsuInclus)) {
+            throw new PropertiesValidator("Por favor preencher o usuário de inclusão da empresa (TI)");
+        }
     }
 
     @Override
@@ -163,11 +177,17 @@ public class VendaModel implements IPropertiesValidator<VendaModel> {
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 }

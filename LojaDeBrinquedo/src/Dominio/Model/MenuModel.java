@@ -37,10 +37,61 @@ public class MenuModel implements IPropertiesValidator<MenuModel> {
     public String getDescMenu() {
         return this.DescMenu;
     }
+    
+    private Date DtCad;
+
+    public void setDtCad(Date _DtCad) {
+        this.DtCad = _DtCad;
+    }
+
+    public Date getDtCad() {
+        return this.DtCad;
+    }
+
+    private Date DtDel;
+
+    public void setDtDel(Date _DtDel) {
+        this.DtDel = _DtDel;
+    }
+
+    public Date getDtDel() {
+        return this.DtDel;
+    }
+
+    private int UsuInclus;
+
+    public void setUsuInclus(int _UsuInclus) {
+        this.UsuInclus = _UsuInclus;
+    }
+
+    public int getUsuInclus() {
+        return this.UsuInclus;
+    }
+
+    private int UsuDel;
+
+    public void setUsuDel(int _UsuDel) {
+        this.UsuDel = _UsuDel;
+    }
+
+    public int getUsuDel() {
+        return this.UsuDel;
+    }
 
     @Override
     public void validObject(MenuModel objeto) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (validString(this.Menu)) {
+            throw new PropertiesValidator("Por favor preencher o nome do menu");
+        }
+        if (validString(this.DescMenu)) {
+            throw new PropertiesValidator("Por favor preencher a descrição do menu");
+        }
+        if (!validDate(this.DtCad)) {
+            throw new PropertiesValidator("Por favor preencher a Data de cadrasto do menu(TI)");
+        }
+        if (!validInt(this.UsuInclus)) {
+            throw new PropertiesValidator("Por favor preencher o usuário de inclusão do menu (TI)");
+        }
     }
 
     @Override
@@ -63,11 +114,17 @@ public class MenuModel implements IPropertiesValidator<MenuModel> {
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 }

@@ -19,6 +19,16 @@ public class ClienteModel implements IPropertiesValidator<ClienteModel> {
         return this.Id;
     }
 
+    private int TipoCliente;
+
+    public void setTipoCliente(int _TipoCliente) {
+        this.TipoCliente = _TipoCliente;
+    }
+
+    public int getTipoCliente() {
+        return this.TipoCliente;
+    }
+
     private String Nome;
 
     public void setNome(String _nome) {
@@ -128,7 +138,7 @@ public class ClienteModel implements IPropertiesValidator<ClienteModel> {
     public int getIM() {
         return this.IM;
     }
-    
+
     private int EM;
 
     public void setEM(int _EM) {
@@ -221,7 +231,93 @@ public class ClienteModel implements IPropertiesValidator<ClienteModel> {
 
     @Override
     public void validObject(ClienteModel objeto) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        if (this.TipoCliente == 1) {
+
+            if (!validString(this.ContatoResposavel)) {
+                throw new PropertiesValidator("Por favor preencher o Responsável");
+            }
+            if (!validString(this.CpfCnpj)) {
+                throw new PropertiesValidator("Por favor preencher o CNPJ");
+            }
+            if (!validString(this.Nome)) {
+                throw new PropertiesValidator("Por favor preencher o Nome da empresa");
+            }
+            if (!validString(this.NomeFantasia)) {
+                throw new PropertiesValidator("Por favor preencher o Nome Fantasia da empresa");
+            }
+            if (!validString(this.CEP)) {
+                throw new PropertiesValidator("Por favor preencher o CEP da empresa");
+            }
+            if (!validString(this.Celular)) {
+                throw new PropertiesValidator("Por favor preencher o Celular da empresa");
+            }
+            if (!validString(this.Email)) {
+                throw new PropertiesValidator("Por favor preencher o Email da empresa");
+            }
+            if (!validString(this.Endereco)) {
+                throw new PropertiesValidator("Por favor preencher o Endereco da empresa");
+            }
+            if (!validString(this.Estado)) {
+                throw new PropertiesValidator("Por favor preencher o Estado da empresa");
+            }
+            if (!validString(this.Municipio)) {
+                throw new PropertiesValidator("Por favor preencher o Municipio da empresa");
+            }
+            if (!validString(this.Telefone)) {
+                throw new PropertiesValidator("Por favor preencher o Telefone da empresa");
+            }
+            if (!validDate(this.DtCad)) {
+                throw new PropertiesValidator("Por favor preencher a Data de cadrasto da empresa (TI)");
+            }
+            if (!validInt(this.UsuInclus)) {
+                throw new PropertiesValidator("Por favor preencher o usuário de inclusão da empresa (TI)");
+            }
+
+        } else {
+
+            if (!validString(this.Nome)) {
+                throw new PropertiesValidator("Por favor preencher o Nome do cliente");
+            }
+            if (!validString(this.CEP)) {
+                throw new PropertiesValidator("Por favor preencher o CEP do cliente");
+            }
+            if (!validString(this.Celular)) {
+                throw new PropertiesValidator("Por favor preencher o Celular do cliente");
+            }
+            if (!validString(this.CpfCnpj)) {
+                throw new PropertiesValidator("Por favor preencher o Cpf do cliente");
+            }
+            if (!validString(this.Email)) {
+                throw new PropertiesValidator("Por favor preencher o Email do cliente");
+            }
+            if (!validString(this.Endereco)) {
+                throw new PropertiesValidator("Por favor preencher o Endereco do cliente");
+            }
+            if (!validString(this.Estado)) {
+                throw new PropertiesValidator("Por favor preencher o Estado do cliente");
+            }
+            if (!validString(this.Municipio)) {
+                throw new PropertiesValidator("Por favor preencher o Municipio do cliente");
+            }
+            if (!validString(this.Sexo)) {
+                throw new PropertiesValidator("Por favor preencher o Sexo do cliente");
+            }
+            if (!validString(this.Telefone)) {
+                throw new PropertiesValidator("Por favor preencher o Telefone do cliente");
+            }
+            if (!validDate(this.DtCad)) {
+                throw new PropertiesValidator("Por favor preencher a Data de cadastro do cliente (TI)");
+            }
+            if (!validDate(this.DtNasc)) {
+                throw new PropertiesValidator("Por favor preencher a Data de nascimento do cliente (TI)");
+            }
+            if (!validInt(this.UsuInclus)) {
+                throw new PropertiesValidator("Por favor preencher o usuário de inclusão do cliente (TI)");
+            }
+
+        }
+
     }
 
     @Override
@@ -244,11 +340,17 @@ public class ClienteModel implements IPropertiesValidator<ClienteModel> {
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 }

@@ -138,7 +138,7 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
     public String getFoto() {
         return this.Foto;
     }
-    
+
     private Date DtCad;
 
     public void setDtCad(Date _DtCad) {
@@ -181,7 +181,30 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
 
     @Override
     public void validObject(ProdutoModel objeto) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!validString(this.NomeProduto)) {
+            throw new PropertiesValidator("Por favor preencher o nome do Produto");
+        }
+        if (!validString(this.Categoria)) {
+            throw new PropertiesValidator("Por favor preencher o Categoria do Produto");
+        }
+        if (!validString(this.DescricaoProduto)) {
+            throw new PropertiesValidator("Por favor preencher o Descrição do Produto");
+        }
+        if (!validString(this.Marca)) {
+            throw new PropertiesValidator("Por favor preencher o Marca do Produto");
+        }
+        if (!validInt(this.IdFornecedor)) {
+            throw new PropertiesValidator("Por favor preencher o fornecedor");
+        }
+        if (!validInt(this.Qtd)) {
+            throw new PropertiesValidator("Por favor preencher a quantidade de produto");
+        }
+        if (!validDate(this.DtCad)) {
+            throw new PropertiesValidator("Por favor preencher a Data de cadrasto da empresa (TI)");
+        }
+        if (!validInt(this.UsuInclus)) {
+            throw new PropertiesValidator("Por favor preencher o usuário de inclusão da empresa (TI)");
+        }
     }
 
     @Override
@@ -204,11 +227,17 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (value >= 0) {
+            return true;
+        }
+        return false;
     }
 }
