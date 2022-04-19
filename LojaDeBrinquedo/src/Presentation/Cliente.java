@@ -28,26 +28,29 @@ public class Cliente extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jpnBg = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scpCliente = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        lblCtrlCliente = new javax.swing.JLabel();
+        rbtEmpresa = new javax.swing.JRadioButton();
         txtNome = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        txtNomeFan = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtContResp = new javax.swing.JTextField();
+        txtIM = new javax.swing.JTextField();
+        txtIE = new javax.swing.JTextField();
+        txtTel = new javax.swing.JTextField();
+        txtCel = new javax.swing.JTextField();
+        txtDtNasc = new javax.swing.JTextField();
+        rbtMasc = new javax.swing.JRadioButton();
+        rbtFem = new javax.swing.JRadioButton();
+        txtEndereco = new javax.swing.JTextField();
+        txtCEP = new javax.swing.JTextField();
+        txtEstado = new javax.swing.JTextField();
+        txtMunicipio = new javax.swing.JTextField();
+        btnSalvar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnProcurar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,9 +68,26 @@ public class Cliente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scpCliente.setViewportView(jTable1);
 
-        jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 900, 240));
+        jpnBg.add(scpCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 900, 240));
+
+        lblCtrlCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblCtrlCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lblCtrlCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/cliente.png"))); // NOI18N
+        lblCtrlCliente.setText("Controle de clientes");
+        jpnBg.add(lblCtrlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 190, 50));
+
+        rbtEmpresa.setBackground(new java.awt.Color(79, 109, 234));
+        rbtEmpresa.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        rbtEmpresa.setForeground(new java.awt.Color(255, 255, 255));
+        rbtEmpresa.setText("Empresa");
+        rbtEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtEmpresaActionPerformed(evt);
+            }
+        });
+        jpnBg.add(rbtEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
         txtNome.setBackground(new java.awt.Color(79, 109, 234));
         txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -76,119 +96,127 @@ public class Cliente extends javax.swing.JFrame {
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
 
-        jTextField3.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setText("Senac Santo Maro");
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, -1));
+        txtNomeFan.setBackground(new java.awt.Color(79, 109, 234));
+        txtNomeFan.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtNomeFan.setForeground(new java.awt.Color(255, 255, 255));
+        txtNomeFan.setText("Senac Santo Maro");
+        txtNomeFan.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtNomeFan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, -1));
 
-        jTextField5.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField5.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setText("01/01/1999");
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cont. Responsável", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
+        txtEmail.setBackground(new java.awt.Color(79, 109, 234));
+        txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
+        txtEmail.setText("senacsp@senacsp.edu.br");
+        txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
 
-        jTextField6.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField6.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setText("000.000.000-00");
-        jTextField6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 210, -1));
+        txtContResp.setBackground(new java.awt.Color(79, 109, 234));
+        txtContResp.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtContResp.setForeground(new java.awt.Color(255, 255, 255));
+        txtContResp.setText("(##) #####-####");
+        txtContResp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cont. Responsável", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtContResp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
 
-        jPasswordField1.setBackground(new java.awt.Color(79, 109, 234));
-        jPasswordField1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setText("P@ssw0rd");
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
+        txtIM.setBackground(new java.awt.Color(79, 109, 234));
+        txtIM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtIM.setForeground(new java.awt.Color(255, 255, 255));
+        txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtIM, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
 
-        jRadioButton1.setBackground(new java.awt.Color(79, 109, 234));
-        jRadioButton1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Empresa");
-        jpnBg.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        txtIE.setBackground(new java.awt.Color(79, 109, 234));
+        txtIE.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtIE.setForeground(new java.awt.Color(255, 255, 255));
+        txtIE.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtIE, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 210, -1));
 
-        jRadioButton2.setBackground(new java.awt.Color(79, 109, 234));
-        jRadioButton2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Feminino");
-        jpnBg.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
+        txtTel.setBackground(new java.awt.Color(79, 109, 234));
+        txtTel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtTel.setForeground(new java.awt.Color(255, 255, 255));
+        txtTel.setText("(##) ####-####");
+        txtTel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 210, -1));
 
-        jButton1.setBackground(new java.awt.Color(79, 109, 234));
-        jButton1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Salvar");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jpnBg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 170, 50));
+        txtCel.setBackground(new java.awt.Color(79, 109, 234));
+        txtCel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCel.setForeground(new java.awt.Color(255, 255, 255));
+        txtCel.setText("(##) #####-####");
+        txtCel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 130, 210, -1));
 
-        jLabel1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Controle de clientes");
-        jpnBg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        txtDtNasc.setBackground(new java.awt.Color(79, 109, 234));
+        txtDtNasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtDtNasc.setForeground(new java.awt.Color(255, 255, 255));
+        txtDtNasc.setText("00/00/0000");
+        txtDtNasc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtDtNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, -1));
 
-        jTextField7.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField7.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField7.setText("000.000.000-00");
-        jTextField7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 210, -1));
+        rbtMasc.setBackground(new java.awt.Color(79, 109, 234));
+        rbtMasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        rbtMasc.setForeground(new java.awt.Color(255, 255, 255));
+        rbtMasc.setText("Masculino");
+        jpnBg.add(rbtMasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField8.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField8.setText("000.000.000-00");
-        jTextField8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 210, -1));
+        rbtFem.setBackground(new java.awt.Color(79, 109, 234));
+        rbtFem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        rbtFem.setForeground(new java.awt.Color(255, 255, 255));
+        rbtFem.setText("Feminino");
+        jpnBg.add(rbtFem, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
 
-        jTextField9.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField9.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField9.setText("000.000.000-00");
-        jTextField9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 210, -1));
+        txtEndereco.setBackground(new java.awt.Color(79, 109, 234));
+        txtEndereco.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEndereco.setForeground(new java.awt.Color(255, 255, 255));
+        txtEndereco.setText("Av. Eng. Eusébio Stevaux");
+        txtEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 210, -1));
 
-        jTextField10.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField10.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField10.setText("000.000.000-00");
-        jTextField10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
+        txtCEP.setBackground(new java.awt.Color(79, 109, 234));
+        txtCEP.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCEP.setForeground(new java.awt.Color(255, 255, 255));
+        txtCEP.setText("00000-000");
+        txtCEP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 210, -1));
 
-        jTextField11.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField11.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField11.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField11.setText("000.000.000-00");
-        jTextField11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, -1));
+        txtEstado.setBackground(new java.awt.Color(79, 109, 234));
+        txtEstado.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEstado.setForeground(new java.awt.Color(255, 255, 255));
+        txtEstado.setText("São Paulo");
+        txtEstado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 210, -1));
 
-        jTextField12.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField12.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField12.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField12.setText("000.000.000-00");
-        jTextField12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 210, -1));
+        txtMunicipio.setBackground(new java.awt.Color(79, 109, 234));
+        txtMunicipio.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtMunicipio.setForeground(new java.awt.Color(255, 255, 255));
+        txtMunicipio.setText("São Paulo");
+        txtMunicipio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtMunicipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 210, -1));
 
-        jTextField13.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField13.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField13.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField13.setText("000.000.000-00");
-        jTextField13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 210, -1));
+        btnSalvar.setBackground(new java.awt.Color(79, 109, 234));
+        btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(79, 109, 234));
+        btnSalvar.setText("Salvar");
+        btnSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 170, 50));
 
-        jTextField14.setBackground(new java.awt.Color(79, 109, 234));
-        jTextField14.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTextField14.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField14.setText("000.000.000-00");
-        jTextField14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 210, -1));
+        btnEditar.setBackground(new java.awt.Color(79, 109, 234));
+        btnEditar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(79, 109, 234));
+        btnEditar.setText("Editar");
+        btnEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpnBg.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 170, 50));
 
-        jRadioButton3.setBackground(new java.awt.Color(79, 109, 234));
-        jRadioButton3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Masculino");
-        jpnBg.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
+        btnExcluir.setBackground(new java.awt.Color(79, 109, 234));
+        btnExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(79, 109, 234));
+        btnExcluir.setText("Excluir");
+        btnExcluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpnBg.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 170, 50));
+
+        btnProcurar.setBackground(new java.awt.Color(79, 109, 234));
+        btnProcurar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnProcurar.setForeground(new java.awt.Color(79, 109, 234));
+        btnProcurar.setText("Procurar");
+        btnProcurar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpnBg.add(btnProcurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 170, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,6 +231,10 @@ public class Cliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rbtEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtEmpresaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtEmpresaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,27 +273,30 @@ public class Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnProcurar;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel jpnBg;
+    private javax.swing.JLabel lblCtrlCliente;
+    private javax.swing.JRadioButton rbtEmpresa;
+    private javax.swing.JRadioButton rbtFem;
+    private javax.swing.JRadioButton rbtMasc;
+    private javax.swing.JScrollPane scpCliente;
+    private javax.swing.JTextField txtCEP;
+    private javax.swing.JTextField txtCel;
+    private javax.swing.JTextField txtContResp;
+    private javax.swing.JTextField txtDtNasc;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtEstado;
+    private javax.swing.JTextField txtIE;
+    private javax.swing.JTextField txtIM;
+    private javax.swing.JTextField txtMunicipio;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNomeFan;
+    private javax.swing.JTextField txtTel;
     // End of variables declaration//GEN-END:variables
 }
