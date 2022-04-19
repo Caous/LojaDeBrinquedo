@@ -84,14 +84,14 @@ public class Principal extends javax.swing.JFrame {
         label2.setText("Usuário");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/user.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/user.png"))); // NOI18N
 
         jPanel4.setBackground(new java.awt.Color(79, 109, 234));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/home.png"))); // NOI18N
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/home.png"))); // NOI18N
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 30));
 
         jLabel12.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,8 +103,8 @@ public class Principal extends javax.swing.JFrame {
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/compras.png"))); // NOI18N
-        jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/compras.png"))); // NOI18N
+        jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 30));
 
         jLabel5.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,7 +116,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/cliente.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/cliente.png"))); // NOI18N
         jPanel8.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -129,7 +129,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/produtos.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/produtos.png"))); // NOI18N
         jPanel9.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -142,7 +142,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/fornecedor.png"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/fornecedor.png"))); // NOI18N
         jPanel10.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -155,7 +155,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/relatorio.png"))); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/relatorio.png"))); // NOI18N
         jPanel11.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -168,7 +168,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/configuracoes.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/configuracoes.png"))); // NOI18N
         jPanel12.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N

@@ -192,7 +192,7 @@
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Presentation/user.png"/>
+                  <Image iconType="3" name="/Assets/Img/user.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -211,12 +211,12 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Presentation/home.png"/>
+                      <Image iconType="3" name="/Assets/Img/home.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="20" y="10" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="20" y="10" width="30" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -254,12 +254,12 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Presentation/compras.png"/>
+                      <Image iconType="3" name="/Assets/Img/compras.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="20" y="10" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="20" y="10" width="30" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -297,7 +297,7 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Presentation/cliente.png"/>
+                      <Image iconType="3" name="/Assets/Img/cliente.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -340,7 +340,7 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Presentation/produtos.png"/>
+                      <Image iconType="3" name="/Assets/Img/produtos.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -383,7 +383,7 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Presentation/fornecedor.png"/>
+                      <Image iconType="3" name="/Assets/Img/fornecedor.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -426,7 +426,7 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Presentation/relatorio.png"/>
+                      <Image iconType="3" name="/Assets/Img/relatorio.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -469,7 +469,7 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Presentation/configuracoes.png"/>
+                      <Image iconType="3" name="/Assets/Img/configuracoes.png"/>
                     </Property>
                   </Properties>
                   <Constraints>

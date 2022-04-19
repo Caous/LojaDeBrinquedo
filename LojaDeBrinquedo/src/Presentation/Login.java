@@ -26,6 +26,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jpnBg = new javax.swing.JPanel();
         lblSistema = new javax.swing.JLabel();
         lblUsuPass = new javax.swing.JLabel();
@@ -36,7 +37,10 @@ public class Login extends javax.swing.JFrame {
         txtPass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
+        jLabel2.setText("jLabel2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         jpnBg.setBackground(new java.awt.Color(79, 109, 234));
 
@@ -68,14 +72,14 @@ public class Login extends javax.swing.JFrame {
         txtPass.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/aviao.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/aviao.png"))); // NOI18N
 
         javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
         jpnBg.setLayout(jpnBgLayout);
         jpnBgLayout.setHorizontalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnBgLayout.createSequentialGroup()
-                .addGap(0, 144, Short.MAX_VALUE)
+                .addGap(0, 141, Short.MAX_VALUE)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnBgLayout.createSequentialGroup()
                         .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +107,7 @@ public class Login extends javax.swing.JFrame {
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnBgLayout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(lblSistema)
@@ -174,6 +178,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jpnBg;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblSistema;
