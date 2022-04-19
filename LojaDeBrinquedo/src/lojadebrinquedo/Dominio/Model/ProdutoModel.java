@@ -120,13 +120,13 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
         return this.Validade;
     }
 
-    private int PorcentDesc;
+    private double PorcentDesc;
 
-    public void setPorcentDesc(int _porcentDesc) {
+    public void setPorcentDesc(double _porcentDesc) {
         this.PorcentDesc = _porcentDesc;
     }
 
-    public int getPorcentDesc() {
+    public double getPorcentDesc() {
         return this.PorcentDesc;
     }
 
