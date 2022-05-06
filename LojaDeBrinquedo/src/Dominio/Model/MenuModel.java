@@ -79,7 +79,7 @@ public class MenuModel implements IPropertiesValidator<MenuModel> {
     }
 
     @Override
-    public void validObject(MenuModel objeto) throws PropertiesValidator {
+    public void validObject() throws PropertiesValidator {
         if (validString(this.Menu)) {
             throw new PropertiesValidator("Por favor preencher o nome do menu");
         }

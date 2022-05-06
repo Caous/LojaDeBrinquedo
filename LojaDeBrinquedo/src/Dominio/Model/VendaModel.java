@@ -136,7 +136,7 @@ public class VendaModel implements IPropertiesValidator<VendaModel> {
     }
 
     @Override
-    public void validObject(VendaModel objeto) throws PropertiesValidator {
+    public void validObject() throws PropertiesValidator {
         if (!validInt(this.IdCli)) {
             throw new PropertiesValidator("Por favor preencher o cliente");
         }

@@ -80,7 +80,7 @@ public class PerfilModel implements IPropertiesValidator<PerfilModel> {
     }
 
     @Override
-    public void validObject(PerfilModel objeto) throws PropertiesValidator {
+    public void validObject() throws PropertiesValidator {
          if (validString(this.Perfil)) {
             throw new PropertiesValidator("Por favor preencher o nome do perfil");
         }

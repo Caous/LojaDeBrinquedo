@@ -79,7 +79,7 @@ public class TipoAcessoModel implements IPropertiesValidator<TipoAcessoModel> {
     }
 
     @Override
-    public void validObject(TipoAcessoModel objeto) throws PropertiesValidator {
+    public void validObject() throws PropertiesValidator {
         if (!validInt(this.IdMenu)) {
             throw new PropertiesValidator("Por favor selecionar o menu");
         }

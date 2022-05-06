@@ -141,7 +141,7 @@ public class UserModel implements IPropertiesValidator<UserModel> {
     }
 
     @Override
-    public void validObject(UserModel objeto) throws PropertiesValidator {
+    public void validObject() throws PropertiesValidator {
 
         if (!validString(this.Nome)) 
             throw new PropertiesValidator("Por favor preencher o nome");

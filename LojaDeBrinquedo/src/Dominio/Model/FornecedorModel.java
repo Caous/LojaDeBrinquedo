@@ -200,7 +200,7 @@ public class FornecedorModel implements IPropertiesValidator<FornecedorModel> {
     }
 
     @Override
-    public void validObject(FornecedorModel objeto) throws PropertiesValidator {
+    public void validObject() throws PropertiesValidator {
         if (!validString(this.ContatoResposavel)) {
             throw new PropertiesValidator("Por favor preencher o Responsável");
         }

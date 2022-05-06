@@ -70,7 +70,7 @@ public class TipoPagamentoModel implements IPropertiesValidator<TipoPagamentoMod
     }
 
     @Override
-    public void validObject(TipoPagamentoModel objeto) throws PropertiesValidator {
+    public void validObject() throws PropertiesValidator {
         if (validString(this.DescPagamento)) {
             throw new PropertiesValidator("Por favor preencher a descrição do pagamento");
         }

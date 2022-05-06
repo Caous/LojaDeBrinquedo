@@ -180,7 +180,7 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
     }
 
     @Override
-    public void validObject(ProdutoModel objeto) throws PropertiesValidator {
+    public void validObject() throws PropertiesValidator {
         if (!validString(this.NomeProduto)) {
             throw new PropertiesValidator("Por favor preencher o nome do Produto");
         }

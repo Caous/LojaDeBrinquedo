@@ -4,6 +4,8 @@
  */
 package Presentation;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Gustavo Nascimento
@@ -15,6 +17,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
     }
 
     /**
@@ -69,7 +72,6 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
-        setUndecorated(true);
 
         jpnBg.setBackground(new java.awt.Color(79, 109, 234));
 

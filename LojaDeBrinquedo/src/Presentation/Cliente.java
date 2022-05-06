@@ -4,6 +4,16 @@
  */
 package Presentation;
 
+import Dominio.Util.PropertiesValidator;
+import Presentation.Controller.ClienteController;
+import Presentation.Dto.ClienteDto;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gustavo Nascimento
@@ -34,7 +44,7 @@ public class Cliente extends javax.swing.JFrame {
         txtNomeFan = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtContResp = new javax.swing.JTextField();
-        txtIM = new javax.swing.JTextField();
+        txtCPFCNPJ = new javax.swing.JTextField();
         txtIE = new javax.swing.JTextField();
         txtTel = new javax.swing.JTextField();
         txtCel = new javax.swing.JTextField();
@@ -45,12 +55,12 @@ public class Cliente extends javax.swing.JFrame {
         txtCEP = new javax.swing.JTextField();
         txtEstado = new javax.swing.JTextField();
         txtMunicipio = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
-        btnSalvar1 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        ckbExcluir = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txtIM1 = new javax.swing.JTextField();
+        txtIM = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,36 +87,32 @@ public class Cliente extends javax.swing.JFrame {
         txtNome.setBackground(new java.awt.Color(79, 109, 234));
         txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNome.setForeground(new java.awt.Color(255, 255, 255));
-        txtNome.setText("Senac");
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 210, -1));
 
         txtNomeFan.setBackground(new java.awt.Color(79, 109, 234));
         txtNomeFan.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNomeFan.setForeground(new java.awt.Color(255, 255, 255));
-        txtNomeFan.setText("Senac Santo Maro");
         txtNomeFan.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtNomeFan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 210, -1));
 
         txtEmail.setBackground(new java.awt.Color(79, 109, 234));
         txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
-        txtEmail.setText("senacsp@senacsp.edu.br");
         txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 210, -1));
 
         txtContResp.setBackground(new java.awt.Color(79, 109, 234));
         txtContResp.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtContResp.setForeground(new java.awt.Color(255, 255, 255));
-        txtContResp.setText("(##) #####-####");
         txtContResp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cont. Responsável", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtContResp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, 210, -1));
 
-        txtIM.setBackground(new java.awt.Color(79, 109, 234));
-        txtIM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtIM.setForeground(new java.awt.Color(255, 255, 255));
-        txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtIM, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 210, -1));
+        txtCPFCNPJ.setBackground(new java.awt.Color(79, 109, 234));
+        txtCPFCNPJ.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCPFCNPJ.setForeground(new java.awt.Color(255, 255, 255));
+        txtCPFCNPJ.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtCPFCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 210, -1));
 
         txtIE.setBackground(new java.awt.Color(79, 109, 234));
         txtIE.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -117,21 +123,18 @@ public class Cliente extends javax.swing.JFrame {
         txtTel.setBackground(new java.awt.Color(79, 109, 234));
         txtTel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtTel.setForeground(new java.awt.Color(255, 255, 255));
-        txtTel.setText("(##) ####-####");
         txtTel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 210, -1));
 
         txtCel.setBackground(new java.awt.Color(79, 109, 234));
         txtCel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCel.setForeground(new java.awt.Color(255, 255, 255));
-        txtCel.setText("(##) #####-####");
         txtCel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 210, -1));
 
         txtDtNasc.setBackground(new java.awt.Color(79, 109, 234));
         txtDtNasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtDtNasc.setForeground(new java.awt.Color(255, 255, 255));
-        txtDtNasc.setText("00/00/0000");
         txtDtNasc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtDtNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 210, -1));
 
@@ -150,56 +153,62 @@ public class Cliente extends javax.swing.JFrame {
         txtEndereco.setBackground(new java.awt.Color(79, 109, 234));
         txtEndereco.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEndereco.setForeground(new java.awt.Color(255, 255, 255));
-        txtEndereco.setText("Av. Eng. Eusébio Stevaux");
         txtEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 210, -1));
 
         txtCEP.setBackground(new java.awt.Color(79, 109, 234));
         txtCEP.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCEP.setForeground(new java.awt.Color(255, 255, 255));
-        txtCEP.setText("00000-000");
         txtCEP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 210, -1));
 
         txtEstado.setBackground(new java.awt.Color(79, 109, 234));
         txtEstado.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEstado.setForeground(new java.awt.Color(255, 255, 255));
-        txtEstado.setText("São Paulo");
         txtEstado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 210, -1));
 
         txtMunicipio.setBackground(new java.awt.Color(79, 109, 234));
         txtMunicipio.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtMunicipio.setForeground(new java.awt.Color(255, 255, 255));
-        txtMunicipio.setText("São Paulo");
         txtMunicipio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jpnBg.add(txtMunicipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, 210, -1));
 
-        btnSalvar.setBackground(new java.awt.Color(51, 153, 0));
+        btnPesquisar.setBackground(new java.awt.Color(51, 153, 0));
+        btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisar.setText("Procurar");
+        btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPesquisar.setContentAreaFilled(false);
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPesquisar.setOpaque(true);
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+        jpnBg.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 170, 50));
+
+        btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
         btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar.setText("Procurar");
+        btnSalvar.setText("Salvar");
         btnSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSalvar.setContentAreaFilled(false);
         btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvar.setOpaque(true);
-        jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 170, 50));
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+        jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, 50));
 
-        btnSalvar1.setBackground(new java.awt.Color(64, 87, 184));
-        btnSalvar1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnSalvar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar1.setText("Salvar");
-        btnSalvar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvar1.setContentAreaFilled(false);
-        btnSalvar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvar1.setOpaque(true);
-        jpnBg.add(btnSalvar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, 50));
-
-        jCheckBox1.setBackground(new java.awt.Color(79, 109, 234));
-        jCheckBox1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Excluir");
-        jpnBg.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, -1, -1));
+        ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
+        ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        ckbExcluir.setText("Excluir");
+        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, -1, -1));
 
         jTable1.setBackground(new java.awt.Color(64, 87, 184));
         jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -221,11 +230,11 @@ public class Cliente extends javax.swing.JFrame {
 
         jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 900, 160));
 
-        txtIM1.setBackground(new java.awt.Color(79, 109, 234));
-        txtIM1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtIM1.setForeground(new java.awt.Color(255, 255, 255));
-        txtIM1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtIM1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 210, -1));
+        txtIM.setBackground(new java.awt.Color(79, 109, 234));
+        txtIM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtIM.setForeground(new java.awt.Color(255, 255, 255));
+        txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtIM, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 210, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,6 +253,89 @@ public class Cliente extends javax.swing.JFrame {
     private void rbtEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtEmpresaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtEmpresaActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        ClienteController cliController = new ClienteController();
+
+        ClienteDto cliente = new ClienteDto();
+
+        try {
+            if (ckbExcluir.isValid()) {
+                
+            } else {
+                if (cliente.validString(txtNome.getText())) {
+                    cliente.setNome(txtNome.getText());
+                }
+                if (cliente.validString(txtNomeFan.getText())) {
+                    cliente.setNomeFantasia(txtNomeFan.getText());
+                }
+                if (cliente.validString(txtEmail.getText())) {
+                    cliente.setEmail(txtEmail.getText());
+                }
+                if (cliente.validString(txtContResp.getText())) {
+                    cliente.setContatoResposavel(txtContResp.getText());
+                }
+                if (cliente.validString(txtCPFCNPJ.getText())) {
+                    cliente.setCpfCnpj(txtCPFCNPJ.getText());
+                }
+                if (cliente.validString(txtIE.getText())) {
+                    cliente.setEM(txtIE.getText());
+                }
+                if (cliente.validString(txtIM.getText())) {
+                    cliente.setIM(txtIM.getText());
+                }
+                if (cliente.validString(txtIM.getText())) {
+                    cliente.setIM(txtIM.getText());
+                }
+                if (cliente.validString(txtTel.getText())) {
+                    cliente.setTelefone(txtTel.getText());
+                }
+                if (cliente.validString(txtCel.getText())) {
+                    cliente.setCelular(txtCel.getText());
+                }
+                if (rbtFem.isValid()) {
+                    cliente.setSexo("Feminino");
+                }
+                if (rbtMasc.isValid()) {
+                    cliente.setSexo("Masculino");
+                }
+                if (cliente.validString(txtEndereco.getText())) {
+                    cliente.setEndereco(txtEndereco.getText());
+                }
+                if (cliente.validString(txtCEP.getText())) {
+                    cliente.setCEP(txtCEP.getText());
+                }
+                if (cliente.validString(txtEstado.getText())) {
+                    cliente.setEstado(txtEstado.getText());
+                }
+                if (cliente.validString(txtMunicipio.getText())) {
+                    cliente.setMunicipio(txtMunicipio.getText());
+                }
+                if (cliente.validString(txtDtNasc.getText())) {
+                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+                    cliente.setDtNasc(formatter1.parse(txtDtNasc.getText()));
+                }
+                if (rbtEmpresa.isValid()) {
+                    cliente.setTipoCliente(1);
+                }
+                cliController.Salvar(cliente);
+            }
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        } catch (ParseException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+
+        ClienteController cliController = new ClienteController();
+
+        List<ClienteDto> clientes = cliController.RetornaLista();
+
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,10 +374,10 @@ public class Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnSalvar1;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox ckbExcluir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpnBg;
@@ -294,6 +386,7 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtFem;
     private javax.swing.JRadioButton rbtMasc;
     private javax.swing.JTextField txtCEP;
+    private javax.swing.JTextField txtCPFCNPJ;
     private javax.swing.JTextField txtCel;
     private javax.swing.JTextField txtContResp;
     private javax.swing.JTextField txtDtNasc;
@@ -302,7 +395,6 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtIE;
     private javax.swing.JTextField txtIM;
-    private javax.swing.JTextField txtIM1;
     private javax.swing.JTextField txtMunicipio;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNomeFan;

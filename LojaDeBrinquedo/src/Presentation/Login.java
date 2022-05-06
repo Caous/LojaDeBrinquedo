@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Presentation;
 
-/**
- *
- * @author Gustavo Nascimento
- */
+import Dominio.Util.PropertiesValidator;
+import Presentation.Controller.LoginController;
+import Presentation.Dto.LoginDto;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -15,6 +15,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
     }
 
     /**
@@ -56,9 +57,16 @@ public class Login extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Rubik Light", 1, 12)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogin.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         lblUsu.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblUsu.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsu.setText("Usuário");
 
         lblPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -66,9 +74,11 @@ public class Login extends javax.swing.JFrame {
         lblPass.setText("Senha");
 
         txtUsuario.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPass.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -100,8 +110,8 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jpnBgLayout.createSequentialGroup()
                 .addGap(186, 186, 186)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(lblSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnBgLayout.setVerticalGroup(
@@ -139,6 +149,33 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        LoginDto login = new LoginDto();
+        LoginController loginController = new LoginController();
+
+        try {
+
+            if (login.validString(txtUsuario.getText())) {
+                login.setUser(txtUsuario.getText());
+            }
+
+            if (login.validString(txtPass.getPassword().toString())) {
+                login.setPass(txtPass.getPassword().toString());
+            }
+
+            login.validObject();
+            
+            if (loginController.validLogin(login)) {
+                Principal principal = new Principal();
+                principal.setVisible(true);
+                this.dispose();
+            }
+
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex.toString(), "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
