@@ -10,4 +10,15 @@ package Presentation.Controller;
  */
 public class VendasController {
     
+    public VendasController(){}
+    
+    
+    public void CadastraVendas(){}
+    
+    public void PesquisarCliente(){}
+    
+    public void PesquisarProduto(){}
+    
+    
+    
 }

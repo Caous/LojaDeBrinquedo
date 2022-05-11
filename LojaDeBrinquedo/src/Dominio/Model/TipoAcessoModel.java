@@ -30,7 +30,7 @@ public class TipoAcessoModel implements IPropertiesValidator<TipoAcessoModel> {
     
     private int IdMenu;
 
-    public void setPerfil(int _IdMenu) {
+    public void setIdMenu(int _IdMenu) {
         this.IdMenu = _IdMenu;
     }
 
