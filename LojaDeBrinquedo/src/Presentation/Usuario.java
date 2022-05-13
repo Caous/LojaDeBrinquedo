@@ -40,7 +40,7 @@ public class Usuario extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jpnBg = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUsuarios = new javax.swing.JTable();
         txtNome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtDtNascimento = new javax.swing.JTextField();
@@ -63,10 +63,10 @@ public class Usuario extends javax.swing.JFrame {
         jpnBg.setBackground(new java.awt.Color(79, 109, 234));
         jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(64, 87, 184));
-        jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setBackground(new java.awt.Color(64, 87, 184));
+        tblUsuarios.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Gustavo", "gustavo@happy.com.br", "000.000.000-00", "Adm"},
                 {"Erick", "erick@happy.com.br", "000.000.000-00", "Caixa"},
@@ -76,10 +76,10 @@ public class Usuario extends javax.swing.JFrame {
                 "Nome", "E-mail", "CPF", "Perfil"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(64, 87, 184));
-        jTable1.setSelectionForeground(new java.awt.Color(79, 109, 234));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblUsuarios.setGridColor(new java.awt.Color(64, 87, 184));
+        tblUsuarios.setSelectionForeground(new java.awt.Color(79, 109, 234));
+        tblUsuarios.setShowGrid(true);
+        jScrollPane1.setViewportView(tblUsuarios);
 
         jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 900, 240));
 
@@ -338,12 +338,12 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JPanel jpnBg;
     private javax.swing.JLabel lblControle;
     private javax.swing.JRadioButton rbFem;
     private javax.swing.JRadioButton rbMasc;
+    private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtDtNascimento;
     private javax.swing.JTextField txtEmail;

@@ -77,7 +77,7 @@
                                   <Component id="jScrollPane1" alignment="0" min="-2" pref="1009" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      <Component id="btnSalvar1" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <Component id="btnInserirProdutos" min="-2" pref="170" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnPesquisar" min="-2" pref="170" max="-2" attributes="0"/>
                                   </Group>
@@ -140,7 +140,7 @@
                       <EmptySpace pref="201" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnPesquisar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="btnSalvar1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnInserirProdutos" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="150" max="-2" attributes="0"/>
@@ -339,7 +339,7 @@
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnSalvar1">
+            <Component class="javax.swing.JButton" name="btnInserirProdutos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b8" green="57" red="40" type="rgb"/>
@@ -350,7 +350,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="text" type="java.lang.String" value="Inserir"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                     <BevelBorder/>
@@ -358,6 +358,9 @@
                 </Property>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInserirProdutosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCategoria">
               <Properties>
@@ -508,7 +511,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="btnSalvar2" max="32767" attributes="0"/>
+                                          <Component id="btnCliente" max="32767" attributes="0"/>
                                           <Component id="txtEndereco" pref="210" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -578,7 +581,7 @@
                           <Component id="txtMunicipio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="btnSalvar2" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnCliente" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace pref="73" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -976,7 +979,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnSalvar2">
+            <Component class="javax.swing.JButton" name="btnCliente">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b8" green="57" red="40" type="rgb"/>
@@ -987,7 +990,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="text" type="java.lang.String" value="Continuar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                     <BevelBorder/>
@@ -999,6 +1002,9 @@
                 </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClienteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtEmail">
               <Properties>

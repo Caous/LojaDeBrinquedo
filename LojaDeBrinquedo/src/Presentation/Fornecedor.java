@@ -31,8 +31,8 @@ public class Fornecedor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnSalvar1 = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
+        btnProcurar = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -80,25 +80,30 @@ public class Fornecedor extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 900, 160));
 
-        btnSalvar1.setBackground(new java.awt.Color(64, 87, 184));
-        btnSalvar1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnSalvar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar1.setText("Salvar");
-        btnSalvar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvar1.setContentAreaFilled(false);
-        btnSalvar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvar1.setOpaque(true);
-        jPanel1.add(btnSalvar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, 50));
-
-        btnSalvar.setBackground(new java.awt.Color(51, 153, 0));
+        btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
         btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar.setText("Procurar");
+        btnSalvar.setText("Salvar");
         btnSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSalvar.setContentAreaFilled(false);
         btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvar.setOpaque(true);
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 170, 50));
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, 50));
+
+        btnProcurar.setBackground(new java.awt.Color(51, 153, 0));
+        btnProcurar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnProcurar.setForeground(new java.awt.Color(255, 255, 255));
+        btnProcurar.setText("Procurar");
+        btnProcurar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnProcurar.setContentAreaFilled(false);
+        btnProcurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnProcurar.setOpaque(true);
+        jPanel1.add(btnProcurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 170, 50));
 
         jCheckBox1.setBackground(new java.awt.Color(79, 109, 234));
         jCheckBox1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -218,6 +223,10 @@ public class Fornecedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,8 +266,8 @@ public class Fornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnProcurar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnSalvar1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;

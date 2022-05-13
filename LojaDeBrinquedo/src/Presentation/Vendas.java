@@ -4,6 +4,10 @@
  */
 package Presentation;
 
+import Dominio.Model.ProdutoModel;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Gustavo Nascimento
@@ -13,6 +17,7 @@ public class Vendas extends javax.swing.JFrame {
     /**
      * Creates new form Usuario
      */
+    private List<ProdutoModel> produtos = new ArrayList<ProdutoModel>();
     public Vendas() {
         initComponents();
     }
@@ -38,7 +43,7 @@ public class Vendas extends javax.swing.JFrame {
         imgProdutos = new javax.swing.JLabel();
         lblProdutos = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
-        btnSalvar1 = new javax.swing.JButton();
+        btnInserirProdutos = new javax.swing.JButton();
         txtCategoria = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
         txtFornecedor1 = new javax.swing.JTextField();
@@ -64,7 +69,7 @@ public class Vendas extends javax.swing.JFrame {
         ckbSim = new javax.swing.JCheckBox();
         ckbNao = new javax.swing.JCheckBox();
         txtNome1 = new javax.swing.JTextField();
-        btnSalvar2 = new javax.swing.JButton();
+        btnCliente = new javax.swing.JButton();
         txtEmail = new javax.swing.JTextField();
         btnSalvar3 = new javax.swing.JButton();
         jpnPagamento = new javax.swing.JPanel();
@@ -154,12 +159,17 @@ public class Vendas extends javax.swing.JFrame {
         btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnPesquisar.setContentAreaFilled(false);
 
-        btnSalvar1.setBackground(new java.awt.Color(64, 87, 184));
-        btnSalvar1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnSalvar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar1.setText("Salvar");
-        btnSalvar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvar1.setContentAreaFilled(false);
+        btnInserirProdutos.setBackground(new java.awt.Color(64, 87, 184));
+        btnInserirProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnInserirProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        btnInserirProdutos.setText("Inserir");
+        btnInserirProdutos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnInserirProdutos.setContentAreaFilled(false);
+        btnInserirProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirProdutosActionPerformed(evt);
+            }
+        });
 
         txtCategoria.setBackground(new java.awt.Color(79, 109, 234));
         txtCategoria.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -191,7 +201,7 @@ public class Vendas extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1009, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpnProdutoLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnInserirProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jpnProdutoLayout.createSequentialGroup()
@@ -239,7 +249,7 @@ public class Vendas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                 .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInserirProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -362,14 +372,19 @@ public class Vendas extends javax.swing.JFrame {
         txtNome1.setText("Senac");
         txtNome1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        btnSalvar2.setBackground(new java.awt.Color(64, 87, 184));
-        btnSalvar2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnSalvar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar2.setText("Salvar");
-        btnSalvar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvar2.setContentAreaFilled(false);
-        btnSalvar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvar2.setOpaque(true);
+        btnCliente.setBackground(new java.awt.Color(64, 87, 184));
+        btnCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnCliente.setText("Continuar");
+        btnCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCliente.setContentAreaFilled(false);
+        btnCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCliente.setOpaque(true);
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
 
         txtEmail.setBackground(new java.awt.Color(79, 109, 234));
         txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -444,7 +459,7 @@ public class Vendas extends javax.swing.JFrame {
                             .addGroup(jpnClienteLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnSalvar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -497,7 +512,7 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(btnSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -814,6 +829,14 @@ public class Vendas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInserirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirProdutosActionPerformed
+        
+    }//GEN-LAST:event_btnInserirProdutosActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -854,10 +877,10 @@ public class Vendas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnFinalizar;
+    private javax.swing.JButton btnInserirProdutos;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton btnSalvar1;
-    private javax.swing.JButton btnSalvar2;
     private javax.swing.JButton btnSalvar3;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ckbNao;

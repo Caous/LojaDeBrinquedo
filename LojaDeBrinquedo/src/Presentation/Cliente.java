@@ -261,64 +261,66 @@ public class Cliente extends javax.swing.JFrame {
         ClienteDto cliente = new ClienteDto();
 
         try {
+            if (cliente.validString(txtNome.getText())) {
+                cliente.setNome(txtNome.getText());
+            }
+            if (cliente.validString(txtNomeFan.getText())) {
+                cliente.setNomeFantasia(txtNomeFan.getText());
+            }
+            if (cliente.validString(txtEmail.getText())) {
+                cliente.setEmail(txtEmail.getText());
+            }
+            if (cliente.validString(txtContResp.getText())) {
+                cliente.setContatoResposavel(txtContResp.getText());
+            }
+            if (cliente.validString(txtCPFCNPJ.getText())) {
+                cliente.setCpfCnpj(txtCPFCNPJ.getText());
+            }
+            if (cliente.validString(txtIE.getText())) {
+                cliente.setEM(txtIE.getText());
+            }
+            if (cliente.validString(txtIM.getText())) {
+                cliente.setIM(txtIM.getText());
+            }
+            if (cliente.validString(txtIM.getText())) {
+                cliente.setIM(txtIM.getText());
+            }
+            if (cliente.validString(txtTel.getText())) {
+                cliente.setTelefone(txtTel.getText());
+            }
+            if (cliente.validString(txtCel.getText())) {
+                cliente.setCelular(txtCel.getText());
+            }
+            if (rbtFem.isValid()) {
+                cliente.setSexo("Feminino");
+            }
+            if (rbtMasc.isValid()) {
+                cliente.setSexo("Masculino");
+            }
+            if (cliente.validString(txtEndereco.getText())) {
+                cliente.setEndereco(txtEndereco.getText());
+            }
+            if (cliente.validString(txtCEP.getText())) {
+                cliente.setCEP(txtCEP.getText());
+            }
+            if (cliente.validString(txtEstado.getText())) {
+                cliente.setEstado(txtEstado.getText());
+            }
+            if (cliente.validString(txtMunicipio.getText())) {
+                cliente.setMunicipio(txtMunicipio.getText());
+            }
+            if (cliente.validString(txtDtNasc.getText())) {
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+                cliente.setDtNasc(formatter1.parse(txtDtNasc.getText()));
+            }
+            if (rbtEmpresa.isValid()) {
+                cliente.setTipoCliente(1);
+            }
+
             if (ckbExcluir.isValid()) {
-                
+                cliController.Excluir(cliente);
+
             } else {
-                if (cliente.validString(txtNome.getText())) {
-                    cliente.setNome(txtNome.getText());
-                }
-                if (cliente.validString(txtNomeFan.getText())) {
-                    cliente.setNomeFantasia(txtNomeFan.getText());
-                }
-                if (cliente.validString(txtEmail.getText())) {
-                    cliente.setEmail(txtEmail.getText());
-                }
-                if (cliente.validString(txtContResp.getText())) {
-                    cliente.setContatoResposavel(txtContResp.getText());
-                }
-                if (cliente.validString(txtCPFCNPJ.getText())) {
-                    cliente.setCpfCnpj(txtCPFCNPJ.getText());
-                }
-                if (cliente.validString(txtIE.getText())) {
-                    cliente.setEM(txtIE.getText());
-                }
-                if (cliente.validString(txtIM.getText())) {
-                    cliente.setIM(txtIM.getText());
-                }
-                if (cliente.validString(txtIM.getText())) {
-                    cliente.setIM(txtIM.getText());
-                }
-                if (cliente.validString(txtTel.getText())) {
-                    cliente.setTelefone(txtTel.getText());
-                }
-                if (cliente.validString(txtCel.getText())) {
-                    cliente.setCelular(txtCel.getText());
-                }
-                if (rbtFem.isValid()) {
-                    cliente.setSexo("Feminino");
-                }
-                if (rbtMasc.isValid()) {
-                    cliente.setSexo("Masculino");
-                }
-                if (cliente.validString(txtEndereco.getText())) {
-                    cliente.setEndereco(txtEndereco.getText());
-                }
-                if (cliente.validString(txtCEP.getText())) {
-                    cliente.setCEP(txtCEP.getText());
-                }
-                if (cliente.validString(txtEstado.getText())) {
-                    cliente.setEstado(txtEstado.getText());
-                }
-                if (cliente.validString(txtMunicipio.getText())) {
-                    cliente.setMunicipio(txtMunicipio.getText());
-                }
-                if (cliente.validString(txtDtNasc.getText())) {
-                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                    cliente.setDtNasc(formatter1.parse(txtDtNasc.getText()));
-                }
-                if (rbtEmpresa.isValid()) {
-                    cliente.setTipoCliente(1);
-                }
                 cliController.Salvar(cliente);
             }
         } catch (PropertiesValidator ex) {

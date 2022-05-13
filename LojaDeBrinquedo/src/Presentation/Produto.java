@@ -4,6 +4,13 @@
  */
 package Presentation;
 
+import Dominio.Util.PropertiesValidator;
+import Presentation.Controller.ProdutoController;
+import Presentation.Dto.ProdutoDto;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Gustavo Nascimento
@@ -46,8 +53,8 @@ public class Produto extends javax.swing.JFrame {
         txtQtd = new javax.swing.JTextField();
         txtDesconto = new javax.swing.JTextField();
         imgProduto = new javax.swing.JLabel();
-        txtFornecedor1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        txtFornecedor = new javax.swing.JTextField();
+        ckbExcluir = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +108,11 @@ public class Produto extends javax.swing.JFrame {
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSalvar.setContentAreaFilled(false);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
         jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 170, 40));
 
         lblProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -180,18 +192,18 @@ public class Produto extends javax.swing.JFrame {
         imgProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/produtos.png"))); // NOI18N
         jpnBg.add(imgProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        txtFornecedor1.setBackground(new java.awt.Color(79, 109, 234));
-        txtFornecedor1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtFornecedor1.setForeground(new java.awt.Color(255, 255, 255));
-        txtFornecedor1.setText("Nike");
-        txtFornecedor1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtFornecedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
+        txtFornecedor.setBackground(new java.awt.Color(79, 109, 234));
+        txtFornecedor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtFornecedor.setForeground(new java.awt.Color(255, 255, 255));
+        txtFornecedor.setText("Nike");
+        txtFornecedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jpnBg.add(txtFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
 
-        jCheckBox1.setBackground(new java.awt.Color(79, 109, 234));
-        jCheckBox1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Excluir");
-        jpnBg.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, -1));
+        ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
+        ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        ckbExcluir.setText("Excluir");
+        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,6 +218,53 @@ public class Produto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        ProdutoController prodController = new ProdutoController();
+
+        ProdutoDto prod = new ProdutoDto();
+
+        try {
+            if (prod.validString(txtNome.getText())) {
+                prod.setNomeProduto(txtNome.getText());
+            }
+            if (prod.validString(txtCategoria.getText())) {
+                prod.setCategoria(txtCategoria.getText());
+            }
+            if (prod.validString(txtMarca.getText())) {
+                prod.setMarca(txtMarca.getText());
+            }
+            if (prod.validString(txtFornecedor.getText())) {
+                prod.setIdFornecedor(Integer.parseInt(txtFornecedor.getText()));
+            }
+            if (prod.validString(txtQtd.getText())) {
+                prod.setQtd(Integer.parseInt(txtQtd.getText()));
+            }
+            if (prod.validString(txtValor.getText())) {
+                prod.setValor(Integer.parseInt(txtValor.getText()));
+            }
+            if (prod.validString(txtAvaliacao.getText())) {
+                prod.setAvaliacao(Integer.parseInt(txtAvaliacao.getText()));
+            }
+            if (prod.validString(txtValidade.getText())) {
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+
+                //prod.setComentario(formatter1.parse(txtValidade.getText()));
+            }
+            if (prod.validString(txtDesconto.getText())) {
+                prod.setPorcentagemDesc(Double.parseDouble(txtDesconto.getText()));
+            }
+
+            if (ckbExcluir.isValid()) {
+                prodController.Excluir(prod);
+            } else {
+                prodController.Salvar(prod);
+            }
+        } catch (PropertiesValidator ex) {
+            Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,8 +305,8 @@ public class Produto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox ckbExcluir;
     private javax.swing.JLabel imgProduto;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
@@ -257,7 +316,7 @@ public class Produto extends javax.swing.JFrame {
     private javax.swing.JTextField txtAvaliacao;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtDesconto;
-    private javax.swing.JTextField txtFornecedor1;
+    private javax.swing.JTextField txtFornecedor;
     private javax.swing.JTextField txtFot;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNome;
