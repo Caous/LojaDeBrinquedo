@@ -6,3 +6,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/ProjetoTeste/LojaDeBrinquedoTeste/target/
+/ProjetoTeste/LojaDeBrinquedo/target/
+/LojaDeBrinquedo/target/
