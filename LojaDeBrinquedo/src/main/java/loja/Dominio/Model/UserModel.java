@@ -62,7 +62,7 @@ public class UserModel implements IPropertiesValidator<UserModel> {
 
     private String Email;
 
-    public void setId(String _Email) {
+    public void setEmail(String _Email) {
         this.Email = _Email;
     }
 
