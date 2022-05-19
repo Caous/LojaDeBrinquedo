@@ -21,5 +21,7 @@ public interface CrudService<T> {
     T findId(int id);
 
     boolean update(T entity);
+    
+    boolean finishValidity(T entity);
 
 }

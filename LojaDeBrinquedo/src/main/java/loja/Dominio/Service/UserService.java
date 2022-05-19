@@ -72,7 +72,7 @@ public class UserService implements CrudService<UserModel> {
         try {
 
             String sql = "INSERT INTO tb_usuario (id_perfil, nome, cpf, dt_nasc, email, pass, sexo, est_civil, usu_inclusao, dt_inclusao)"
-                    + " values (?,?,?,?,?,?,?,?,?,?,)";
+                    + " values (?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
@@ -154,7 +154,7 @@ public class UserService implements CrudService<UserModel> {
         try {
 
             String sql = "update tb_usuario set id_perfil = ?, nome = ?, cpf = ?, dt_nasc = ?, email = ?, pass = ?, sexo = ?, est_civil = ?, usu_inclusao = ?, dt_inclusao = ?, usu_exclusao = ?, dt_exclusao = ? "
-                    + "  where id_usuario = ?";
+                    + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
@@ -174,6 +174,33 @@ public class UserService implements CrudService<UserModel> {
             java.sql.Date dtExclu = new java.sql.Date(entity.getDtDel().getTime());
             ps.setDate(12, dtExclu);
             ps.setInt(13, entity.getId());
+
+            ps.execute();
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            String guts = ex.toString();
+            System.out.println(ex);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean finishValidity(UserModel entity) {
+         try {
+
+            String sql = "update tb_usuario set usu_exclusao = ?, dt_exclusao = ? "
+                    + "  where id = ?";
+
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+
+            ps.setInt(1, entity.getUsuDel());
+            java.sql.Date dtExclu = new java.sql.Date(entity.getDtDel().getTime());
+            ps.setDate(2, dtExclu);
+            ps.setInt(3, entity.getId());
 
             ps.execute();
 

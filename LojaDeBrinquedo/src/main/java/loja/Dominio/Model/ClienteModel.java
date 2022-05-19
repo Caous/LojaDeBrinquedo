@@ -129,23 +129,23 @@ public class ClienteModel implements IPropertiesValidator<ClienteModel> {
         return this.ContatoResposavel;
     }
 
-    private int IM;
+    private String IM;
 
-    public void setIM(int _IM) {
+    public void setIM(String _IM) {
         this.IM = _IM;
     }
 
-    public int getIM() {
+    public String getIM() {
         return this.IM;
     }
 
-    private int EM;
+    private String EM;
 
-    public void setEM(int _EM) {
+    public void setEM(String _EM) {
         this.EM = _EM;
     }
 
-    public int getEM() {
+    public String getEM() {
         return this.EM;
     }
 
