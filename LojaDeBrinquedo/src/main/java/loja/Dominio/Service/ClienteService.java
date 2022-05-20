@@ -21,7 +21,7 @@ import loja.Infrastructure.DB.BDContext;
  * @author Gustavo Nascimento
  */
 public class ClienteService implements CrudService<ClienteModel> {
-
+    
     private Connection conn;
 
     public ClienteService() throws ClassNotFoundException, SQLException {
@@ -83,35 +83,34 @@ public class ClienteService implements CrudService<ClienteModel> {
 
         try {
 
-            String sql = "INSERT INTO tb_cliente (id, tipo_pessoa, nome, nome_fantasia, cpfcpnj, endereco, cep, estado, municipio, telefone, celular, email, cont_resp, est_civil, IM, EM, dt_nasc, sexo, usu_inclusao, dt_inclusao)"
-                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tb_cliente (tipo_pessoa, nome, nome_fantasia, cpfcpnj, endereco, cep, estado, municipio, telefone, celular, email, cont_resp, est_civil, IM, EM, dt_nasc, sexo, usu_inclusao, dt_inclusao)"
+                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            ps.setInt(1, entity.getId());
-            ps.setInt(2, entity.getTipoCliente());
-            ps.setString(3, entity.getNome());
+            ps.setInt(1, entity.getTipoCliente());
+            ps.setString(2, entity.getNome());
 
-            ps.setString(4, entity.getNomeFantasia());
-            ps.setString(5, entity.getCpfCnpj());
-            ps.setString(6, entity.getEndereco());
-            ps.setString(7, entity.getCEP());
-            ps.setString(8, entity.getEstado());
-            ps.setString(9, entity.getMunicipio());
+            ps.setString(3, entity.getNomeFantasia());
+            ps.setString(4, entity.getCpfCnpj());
+            ps.setString(5, entity.getEndereco());
+            ps.setString(6, entity.getCEP());
+            ps.setString(7, entity.getEstado());
+            ps.setString(8, entity.getMunicipio());
 
-            ps.setString(10, entity.getTelefone());
-            ps.setString(11, entity.getCelular());
-            ps.setString(12, entity.getEmail());
-            ps.setString(13, entity.getContatoResposavel());
-            ps.setInt(14, entity.getEstadoCivil());
-            ps.setString(15, entity.getIM());
-            ps.setString(16, entity.getEM());
+            ps.setString(9, entity.getTelefone());
+            ps.setString(10, entity.getCelular());
+            ps.setString(11, entity.getEmail());
+            ps.setString(12, entity.getContatoResposavel());
+            ps.setInt(13, entity.getEstadoCivil());
+            ps.setString(14, entity.getIM());
+            ps.setString(15, entity.getEM());
             java.sql.Date dtNasc = new java.sql.Date(entity.getDtNasc().getTime());
-            ps.setDate(17, dtNasc);
-            ps.setString(18, entity.getSexo());
-            ps.setInt(19, entity.getUsuInclus());
+            ps.setDate(16, dtNasc);
+            ps.setString(17, entity.getSexo());
+            ps.setInt(18, entity.getUsuInclus());
             java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
-            ps.setDate(20, dtCad);
+            ps.setDate(19, dtCad);
 
             ps.execute();
 

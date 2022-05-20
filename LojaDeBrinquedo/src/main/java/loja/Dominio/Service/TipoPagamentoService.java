@@ -30,6 +30,7 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
 
     @Override
     public List<TipoPagamentoModel> findAll() {
+
         List<TipoPagamentoModel> pagamentos = new ArrayList<TipoPagamentoModel>();
 
         try {
@@ -56,34 +57,134 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
             }
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoPagamentoService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pagamentos;
     }
 
     @Override
     public TipoPagamentoModel save(TipoPagamentoModel entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        try {
+
+            String sql = "INSERT INTO tb_pagamento ( descricao, usu_inclusao, dt_inclusao)"
+                    + " values (?,?,?)";
+
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+
+            ps.setString(1, entity.getDescPagamento());
+            ps.setInt(2, entity.getUsuInclus());
+            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
+            ps.setDate(3, dtCad);
+
+            ps.execute();
+
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TipoPagamentoService.class.getName()).log(Level.SEVERE, null, ex);
+            String guts = ex.toString();
+            System.out.println(ex);
+
+        }
+        return entity;
+
     }
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "DELETE FROM tb_pagamento WHERE id = " + id;
+
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TipoPagamentoService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public TipoPagamentoModel findId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        TipoPagamentoModel pagamento = new TipoPagamentoModel();
+        try {
+            String sql = "SELECT * from tb_pagamento where ID = " + id;
+            PreparedStatement ps = this.conn.prepareStatement(sql,
+                    ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.first()) {
+
+                pagamento.setId(rs.getInt("id"));
+                pagamento.setDescPagamento(rs.getString("descricao"));
+                pagamento.setDtCad(rs.getDate("dt_inclusao"));
+                pagamento.setDtDel(rs.getDate("dt_exclusao"));
+                pagamento.setUsuDel(rs.getInt("usu_exclusao"));
+                pagamento.setUsuInclus(rs.getInt("usu_inclusao"));
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pagamento;
     }
 
     @Override
     public boolean update(TipoPagamentoModel entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         try {
+
+            String sql = "update tb_cliente set tb_pagamento descricao = ? usu_inclusao = ? dt_inclusao = ?"
+                    + "  where id = ?";
+
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+
+            ps.setString(1, entity.getDescPagamento());
+            ps.setInt(2, entity.getUsuInclus());
+             java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
+            ps.setDate(3, dtCad);
+            ps.setInt(4, entity.getId());
+
+            
+            ps.execute();
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
+            String guts = ex.toString();
+            System.out.println(ex);
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean finishValidity(TipoPagamentoModel entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+
+            String sql = "update tb_cliente set tb_pagamento usu_exclusao = ? dt_exclusao = ? "
+                    + "  where id = ?";
+
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+
+            ps.setInt(1, entity.getUsuDel());
+            java.sql.Date dtDel = new java.sql.Date(entity.getDtDel().getTime());            
+            ps.setDate(2, dtDel);             
+            ps.setInt(3, entity.getId());
+
+            
+            ps.execute();
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
+            String guts = ex.toString();
+            System.out.println(ex);
+            return false;
+        }
+        return true;
     }
 
 }
