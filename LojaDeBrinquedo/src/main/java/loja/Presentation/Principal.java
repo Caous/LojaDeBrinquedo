@@ -89,6 +89,11 @@ public class Principal extends javax.swing.JFrame {
         imgUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/user.png"))); // NOI18N
 
         jpnHome.setBackground(new java.awt.Color(79, 109, 234));
+        jpnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpnHomeMouseClicked(evt);
+            }
+        });
         jpnHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -426,6 +431,10 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jpnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnHomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpnHomeMouseClicked
 
     /**
      * @param args the command line arguments

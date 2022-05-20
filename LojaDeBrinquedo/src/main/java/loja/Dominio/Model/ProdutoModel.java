@@ -111,7 +111,7 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
 
     private Date DtValidade;
 
-    public void setComentario(Date _DtValidade) {
+    public void setDtValidade(Date _DtValidade) {
         this.DtValidade = _DtValidade;
     }
 
