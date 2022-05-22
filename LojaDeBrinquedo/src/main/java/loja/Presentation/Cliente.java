@@ -65,6 +65,7 @@ public class Cliente extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnBg.setBackground(new java.awt.Color(79, 109, 234));
+        jpnBg.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         rbtEmpresa.setBackground(new java.awt.Color(79, 109, 234));
         rbtEmpresa.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -306,7 +307,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 625));
+        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
