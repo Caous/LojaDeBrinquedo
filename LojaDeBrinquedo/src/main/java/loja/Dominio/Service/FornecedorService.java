@@ -26,7 +26,7 @@ public class FornecedorService implements CrudService<FornecedorModel> {
     }
 
     @Override
-    public List<FornecedorModel> findAll() {
+    public List<FornecedorModel> findAll(FornecedorModel entity) {
 
         List<FornecedorModel> fornecedores = new ArrayList<FornecedorModel>();
 
@@ -83,9 +83,8 @@ public class FornecedorService implements CrudService<FornecedorModel> {
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            Date date = new Date();
-            String data = date.toInstant().toString().substring(0, 10);
-            ps.setDate(1, data);
+            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
+            ps.setDate(1, dtCad);
             ps.setString(2, entity.getNome());
 
             ps.setString(3, entity.getNomeFantasia());
@@ -99,14 +98,13 @@ public class FornecedorService implements CrudService<FornecedorModel> {
             ps.setString(10, entity.getCelular());
             ps.setString(11, entity.getEmail());
             ps.setString(12, entity.getContatoResposavel());
-            ps.setDate(13, entity.getDtNasc());
-            ps.setString(14, entity.getIM());
-            ps.setString(15, entity.getEM());
             java.sql.Date dtNasc = new java.sql.Date(entity.getDtNasc().getTime());
+            ps.setDate(13, dtNasc);
+            ps.setInt(14, entity.getIM());
+            ps.setInt(15, entity.getEM());            
             ps.setDate(16, dtNasc);
-            ps.setString(17, entity.getSexo());
+            //ps.setInt(17, entity.getse());
             ps.setInt(18, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
             ps.setDate(19, dtCad);
 
             ps.execute();
@@ -184,7 +182,6 @@ public class FornecedorService implements CrudService<FornecedorModel> {
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-           
             ps.setString(1, entity.getNome());
             ps.setString(2, entity.getNomeFantasia());
             ps.setString(3, entity.getCnpj());
@@ -195,8 +192,9 @@ public class FornecedorService implements CrudService<FornecedorModel> {
             ps.setString(8, entity.getTelefone());
             ps.setString(9, entity.getCelular());
             ps.setString(10, entity.getEmail());
-            ps.setString(11, entity.getContatoResposavel());
-            ps.setDate(12, entity.getDtNasc());
+            ps.setString(11, entity.getContatoResposavel());            
+            java.sql.Date dtNasc = new java.sql.Date(entity.getDtNasc().getTime());
+            ps.setDate(12, dtNasc);
             ps.setInt(13, entity.getIM());
             ps.setInt(14, entity.getEM());
             ps.setInt(15, entity.getUsuInclus());

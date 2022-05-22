@@ -29,7 +29,7 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
     Connection conn;
 
     @Override
-    public List<TipoPagamentoModel> findAll() {
+    public List<TipoPagamentoModel> findAll(TipoPagamentoModel entity) {
 
         List<TipoPagamentoModel> pagamentos = new ArrayList<TipoPagamentoModel>();
 

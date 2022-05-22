@@ -4,9 +4,9 @@
  */
 package loja.Presentation.Controller;
 
-import loja.Presentation.Dto.ProdutoDto;
 import java.util.ArrayList;
 import java.util.List;
+import loja.Dominio.Model.ProdutoModel;
 
 /**
  *
@@ -16,29 +16,29 @@ public class ProdutoController {
      public ProdutoController() {
     }
 
-    public ProdutoController(ProdutoDto produto) {
+    public ProdutoController(ProdutoModel produto) {
         this._produto = produto;
     }    
     
-    ProdutoDto _produto;
+    ProdutoModel _produto;
 
-    public static void Excluir(ProdutoDto produto) {
+    public static void Excluir(ProdutoModel produto) {
 
     }
 
-    public static ProdutoDto Pesquisar(ProdutoDto produto) {
-        ProdutoDto produtos = new ProdutoDto();
+    public static ProdutoModel Pesquisar(ProdutoModel produto) {
+        ProdutoModel produtos = new ProdutoModel();
         return produtos;
     }
 
-    public static List<ProdutoDto> RetornaLista() {
+    public static List<ProdutoModel> RetornaLista() {
 
-        List<ProdutoDto> produtos = new ArrayList<ProdutoDto>();
+        List<ProdutoModel> produtos = new ArrayList<ProdutoModel>();
 
         return produtos;
     }
 
-    public static void Salvar(ProdutoDto produto) {
+    public static void Salvar(ProdutoModel produto) {
 
     }
 }

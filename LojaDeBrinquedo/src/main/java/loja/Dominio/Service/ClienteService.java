@@ -21,7 +21,7 @@ import loja.Infrastructure.DB.BDContext;
  * @author Gustavo Nascimento
  */
 public class ClienteService implements CrudService<ClienteModel> {
-    
+
     private Connection conn;
 
     public ClienteService() throws ClassNotFoundException, SQLException {
@@ -29,15 +29,52 @@ public class ClienteService implements CrudService<ClienteModel> {
     }
 
     @Override
-    public List<ClienteModel> findAll() {
+    public List<ClienteModel> findAll(ClienteModel entity) {
 
         List<ClienteModel> clientes = new ArrayList<ClienteModel>();
 
         try {
 
             String sql = "SELECT * FROM tb_cliente";
+            String complemento = "";
+            if (entity != null) {
 
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+                if (entity.getCpfCnpj() != null && entity.getCpfCnpj() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " cpfcpnj = '" + entity.getCpfCnpj() + "'";
+                }
+                if (entity.getEmail() != null && entity.getEmail() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " email = '" + entity.getEmail() + "'";
+                }
+                if (entity.getNome() != null && entity.getNome() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " nome = '" + entity.getNome() + "'";
+                }
+                if (entity.getNomeFantasia() != null && entity.getNomeFantasia() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " nome_fantasia = " + entity.getNomeFantasia();
+                }
+
+            }
+
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
@@ -189,7 +226,6 @@ public class ClienteService implements CrudService<ClienteModel> {
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-
             ps.setInt(1, entity.getTipoCliente());
             ps.setString(2, entity.getNome());
 
@@ -217,7 +253,7 @@ public class ClienteService implements CrudService<ClienteModel> {
             java.sql.Date dtExclu = new java.sql.Date(entity.getDtDel().getTime());
             ps.setDate(21, dtExclu);
             ps.setInt(22, entity.getId());
-            
+
             ps.execute();
 
             ps.close();
@@ -240,12 +276,11 @@ public class ClienteService implements CrudService<ClienteModel> {
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-          
             ps.setInt(1, entity.getUsuDel());
             java.sql.Date dtExclu = new java.sql.Date(entity.getDtDel().getTime());
             ps.setDate(2, dtExclu);
             ps.setInt(3, entity.getId());
-            
+
             ps.execute();
 
             ps.close();

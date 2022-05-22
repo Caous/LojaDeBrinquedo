@@ -29,7 +29,7 @@ public class PerfilService implements CrudService<PerfilModel> {
     }
 
     @Override
-    public List<PerfilModel> findAll() {
+    public List<PerfilModel> findAll(PerfilModel entity) {
         
         List<PerfilModel> perfis = new ArrayList<PerfilModel>();
 

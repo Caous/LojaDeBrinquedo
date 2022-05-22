@@ -30,7 +30,7 @@ public class TipoAcessoService implements CrudService<TipoAcessoModel> {
     }
 
     @Override
-    public List<TipoAcessoModel> findAll() {
+    public List<TipoAcessoModel> findAll(TipoAcessoModel entity) {
         List<TipoAcessoModel> acessos = new ArrayList<TipoAcessoModel>();
 
         try {

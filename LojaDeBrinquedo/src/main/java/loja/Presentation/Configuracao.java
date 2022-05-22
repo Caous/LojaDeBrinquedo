@@ -2,19 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Presentation;
+package loja.Presentation;
 
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.AcessoController;
 import loja.Presentation.Controller.MenuController;
 import loja.Presentation.Controller.PerfilController;
 import loja.Presentation.Controller.TipoPagamentoController;
-import loja.Presentation.Dto.AcessoDto;
-import loja.Presentation.Dto.MenuDto;
-import loja.Presentation.Dto.PerfilDto;
-import loja.Presentation.Dto.TipoPagamentoDto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import loja.Dominio.Model.MenuModel;
+import loja.Dominio.Model.PerfilModel;
+import loja.Dominio.Model.TipoAcessoModel;
+import loja.Dominio.Model.TipoPagamentoModel;
 
 /**
  *
@@ -43,7 +43,6 @@ public class Configuracao extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         txtPerfil = new javax.swing.JTextField();
-        imgPagamento1 = new javax.swing.JLabel();
         lblPagamento1 = new javax.swing.JLabel();
         btnCancelar1 = new javax.swing.JButton();
         btnSalvarPerfil = new javax.swing.JButton();
@@ -52,7 +51,6 @@ public class Configuracao extends javax.swing.JFrame {
         btnPesquisarPerfil = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jpnMenu = new javax.swing.JPanel();
-        imgPagamento3 = new javax.swing.JLabel();
         lblPagamento2 = new javax.swing.JLabel();
         txtMenu = new javax.swing.JTextField();
         btnCancelar3 = new javax.swing.JButton();
@@ -66,7 +64,6 @@ public class Configuracao extends javax.swing.JFrame {
         jpnTipoAcesso = new javax.swing.JPanel();
         lblPagamento = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        imgPagamento2 = new javax.swing.JLabel();
         txtNomeConf2 = new javax.swing.JTextField();
         btnSalvarAcesso = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -76,7 +73,6 @@ public class Configuracao extends javax.swing.JFrame {
         jCheckBox3 = new javax.swing.JCheckBox();
         btnPesquisarAcesso = new javax.swing.JButton();
         jpnPagamento = new javax.swing.JPanel();
-        imgPagamento4 = new javax.swing.JLabel();
         lblPagamento3 = new javax.swing.JLabel();
         btnCancelar4 = new javax.swing.JButton();
         btnSalvarPagamento = new javax.swing.JButton();
@@ -88,6 +84,7 @@ public class Configuracao extends javax.swing.JFrame {
         btnPesquisarPagamento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblPane.setBackground(new java.awt.Color(79, 109, 234));
 
@@ -116,9 +113,6 @@ public class Configuracao extends javax.swing.JFrame {
         txtPerfil.setForeground(new java.awt.Color(255, 255, 255));
         txtPerfil.setText("ADM");
         txtPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        imgPagamento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgPagamento1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/perfil.png"))); // NOI18N
 
         lblPagamento1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblPagamento1.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,8 +189,7 @@ public class Configuracao extends javax.swing.JFrame {
                                 .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jpnPerfilLayout.createSequentialGroup()
-                                        .addComponent(imgPagamento1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(12, 12, 12)
                                         .addComponent(lblPagamento1)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,11 +203,9 @@ public class Configuracao extends javax.swing.JFrame {
             jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnPerfilLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(imgPagamento1)
-                    .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPagamento1)
-                        .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPagamento1)
+                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnPerfilLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -236,9 +227,6 @@ public class Configuracao extends javax.swing.JFrame {
         tblPane.addTab("Perfil", jpnPerfil);
 
         jpnMenu.setBackground(new java.awt.Color(79, 109, 234));
-
-        imgPagamento3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgPagamento3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/menu.png"))); // NOI18N
 
         lblPagamento2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblPagamento2.setForeground(new java.awt.Color(255, 255, 255));
@@ -346,23 +334,19 @@ public class Configuracao extends javax.swing.JFrame {
                                 .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtDescricaoMenu, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnMenuLayout.createSequentialGroup()
-                                        .addComponent(imgPagamento3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(12, 12, 12)
                                         .addComponent(lblPagamento2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jpnMenuLayout.setVerticalGroup(
             jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnMenuLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblPagamento2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imgPagamento3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblPagamento2)
                 .addGap(26, 26, 26)
                 .addComponent(btnCancelar3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox4))
@@ -393,9 +377,6 @@ public class Configuracao extends javax.swing.JFrame {
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.setOpaque(true);
-
-        imgPagamento2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgPagamento2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/acesos.png"))); // NOI18N
 
         txtNomeConf2.setBackground(new java.awt.Color(79, 109, 234));
         txtNomeConf2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -481,8 +462,7 @@ public class Configuracao extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(jCheckBox3))
                         .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
-                            .addComponent(imgPagamento2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGap(12, 12, 12)
                             .addComponent(lblPagamento))
                         .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
                             .addComponent(btnSalvarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -503,9 +483,7 @@ public class Configuracao extends javax.swing.JFrame {
                 .addGroup(jpnTipoAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
-                        .addGroup(jpnTipoAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPagamento)
-                            .addComponent(imgPagamento2))
+                        .addComponent(lblPagamento)
                         .addGap(32, 32, 32)))
                 .addGroup(jpnTipoAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
@@ -528,9 +506,6 @@ public class Configuracao extends javax.swing.JFrame {
         tblPane.addTab("Acesso", jpnTipoAcesso);
 
         jpnPagamento.setBackground(new java.awt.Color(79, 109, 234));
-
-        imgPagamento4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgPagamento4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/compras.png"))); // NOI18N
 
         lblPagamento3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblPagamento3.setForeground(new java.awt.Color(255, 255, 255));
@@ -627,8 +602,7 @@ public class Configuracao extends javax.swing.JFrame {
                             .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtDescricaoPagamento, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnPagamentoLayout.createSequentialGroup()
-                                    .addComponent(imgPagamento4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGap(12, 12, 12)
                                     .addComponent(lblPagamento3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE))
                             .addComponent(jCheckBox2))
@@ -638,12 +612,10 @@ public class Configuracao extends javax.swing.JFrame {
             jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnPagamentoLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblPagamento3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imgPagamento4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblPagamento3)
                 .addGap(26, 26, 26)
                 .addComponent(btnCancelar4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(jCheckBox2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtDescricaoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -658,18 +630,7 @@ public class Configuracao extends javax.swing.JFrame {
 
         tblPane.addTab("Tipo Pagamento", new javax.swing.ImageIcon(getClass().getResource("/Presentation/produtos.png")), jpnPagamento); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tblPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tblPane)
-        );
+        getContentPane().add(tblPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1202, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -684,7 +645,7 @@ public class Configuracao extends javax.swing.JFrame {
 
     private void btnSalvarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPerfilActionPerformed
         try {
-            PerfilDto perfil = new PerfilDto();
+            PerfilModel perfil = new PerfilModel();
 
             if (perfil.validString(txtPerfil.getText())) {
                 perfil.setPerfile(txtPerfil.getText());
@@ -705,7 +666,7 @@ public class Configuracao extends javax.swing.JFrame {
     private void btnPesquisarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPerfilActionPerformed
 
         try {
-            PerfilDto perfil = new PerfilDto();
+            PerfilModel perfil = new PerfilModel();
 
             if (perfil.validString(txtPerfil.getText())) {
                 perfil.setPerfile(txtPerfil.getText());
@@ -726,7 +687,7 @@ public class Configuracao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarPerfilActionPerformed
 
     private void btnPesquisarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarMenuActionPerformed
-        MenuDto menu = new MenuDto();
+        MenuModel menu = new MenuModel();
 
         MenuController menuController = new MenuController();
 
@@ -734,14 +695,14 @@ public class Configuracao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarMenuActionPerformed
 
     private void btnPesquisarAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarAcessoActionPerformed
-        AcessoDto acesso = new AcessoDto();
+        TipoAcessoModel acesso = new TipoAcessoModel();
 
         AcessoController acessoController = new AcessoController();
         acessoController.Pesquisar(acesso);
     }//GEN-LAST:event_btnPesquisarAcessoActionPerformed
 
     private void btnPesquisarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPagamentoActionPerformed
-        TipoPagamentoDto tipoPagamento = new TipoPagamentoDto();
+        TipoPagamentoModel tipoPagamento = new TipoPagamentoModel();
 
         TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
 
@@ -749,7 +710,7 @@ public class Configuracao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarPagamentoActionPerformed
 
     private void btnSalvarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarMenuActionPerformed
-        MenuDto menu = new MenuDto();
+        MenuModel menu = new MenuModel();
 
         try {
             if (menu.validString(txtMenu.getText())) {
@@ -769,7 +730,7 @@ public class Configuracao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarMenuActionPerformed
 
     private void btnSalvarAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAcessoActionPerformed
-        AcessoDto acesso = new AcessoDto();
+        TipoAcessoModel acesso = new TipoAcessoModel();
         try {
             if (acesso.validInt(Integer.getInteger(txtPerfil.getText()))) {
                 acesso.setIdPerfil(Integer.getInteger(txtMenu.getText()));
@@ -792,7 +753,7 @@ public class Configuracao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarAcessoActionPerformed
 
     private void btnSalvarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPagamentoActionPerformed
-        TipoPagamentoDto tipoPagamento = new TipoPagamentoDto();
+        TipoPagamentoModel tipoPagamento = new TipoPagamentoModel();
 
 //        if (tipoPagamento.validString(txtDescricaoPagamento)) {
 //            tipoPagamento.setDescPagamento(txtDescricaoPagamento);
@@ -852,10 +813,6 @@ public class Configuracao extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvarMenu;
     private javax.swing.JButton btnSalvarPagamento;
     private javax.swing.JButton btnSalvarPerfil;
-    private javax.swing.JLabel imgPagamento1;
-    private javax.swing.JLabel imgPagamento2;
-    private javax.swing.JLabel imgPagamento3;
-    private javax.swing.JLabel imgPagamento4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;

@@ -2,9 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Presentation;
+package loja.Presentation;
 
 import javax.swing.JFrame;
+import loja.Dominio.Util.PropertiesValidator;
+import loja.Presentation.Controller.LoginController;
+import javax.swing.JOptionPane;
+import loja.Dominio.Model.UserModel;
 
 /**
  *
@@ -17,7 +21,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -33,28 +37,22 @@ public class Principal extends javax.swing.JFrame {
         jpnMenus = new javax.swing.JPanel();
         lblBemVindo = new java.awt.Label();
         lblUsuario = new java.awt.Label();
-        imgUser = new javax.swing.JLabel();
         jpnHome = new javax.swing.JPanel();
-        imgHome = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
         jpnVenda = new javax.swing.JPanel();
-        imgCompras = new javax.swing.JLabel();
         lblVenda = new javax.swing.JLabel();
         jpnClientes = new javax.swing.JPanel();
-        imgClientes = new javax.swing.JLabel();
         lblClientes = new javax.swing.JLabel();
         jpnProdutos = new javax.swing.JPanel();
-        imgProdutos = new javax.swing.JLabel();
         lblProdutos = new javax.swing.JLabel();
         jpnFornecedor = new javax.swing.JPanel();
-        imgFornecedor = new javax.swing.JLabel();
         lblFornecedor = new javax.swing.JLabel();
         jpnRelatorio = new javax.swing.JPanel();
-        imgRelatorio = new javax.swing.JLabel();
         lblRelatorio = new javax.swing.JLabel();
         jpnConfiguracoes = new javax.swing.JPanel();
-        imgConfiguracao = new javax.swing.JLabel();
         lblConfiguracao = new javax.swing.JLabel();
+        jpnUsuario = new javax.swing.JPanel();
+        lblUsu = new javax.swing.JLabel();
         jpnProdVendido = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -72,6 +70,12 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnBg.setBackground(new java.awt.Color(79, 109, 234));
 
@@ -85,9 +89,6 @@ public class Principal extends javax.swing.JFrame {
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuario.setText("Usuário");
 
-        imgUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/user.png"))); // NOI18N
-
         jpnHome.setBackground(new java.awt.Color(79, 109, 234));
         jpnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -96,10 +97,6 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/home.png"))); // NOI18N
-        jpnHome.add(imgHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 30));
-
         lblHome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblHome.setForeground(new java.awt.Color(255, 255, 255));
         lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -107,11 +104,13 @@ public class Principal extends javax.swing.JFrame {
         jpnHome.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jpnVenda.setBackground(new java.awt.Color(64, 87, 184));
+        jpnVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpnVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpnVendaMouseClicked(evt);
+            }
+        });
         jpnVenda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imgCompras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/compras.png"))); // NOI18N
-        jpnVenda.add(imgCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 30));
 
         lblVenda.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblVenda.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,11 +119,13 @@ public class Principal extends javax.swing.JFrame {
         jpnVenda.add(lblVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jpnClientes.setBackground(new java.awt.Color(64, 87, 184));
+        jpnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpnClientesMouseClicked(evt);
+            }
+        });
         jpnClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imgClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/cliente.png"))); // NOI18N
-        jpnClientes.add(imgClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         lblClientes.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblClientes.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,11 +134,13 @@ public class Principal extends javax.swing.JFrame {
         jpnClientes.add(lblClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jpnProdutos.setBackground(new java.awt.Color(64, 87, 184));
+        jpnProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpnProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpnProdutosMouseClicked(evt);
+            }
+        });
         jpnProdutos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imgProdutos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/produtos.png"))); // NOI18N
-        jpnProdutos.add(imgProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         lblProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblProdutos.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,11 +149,13 @@ public class Principal extends javax.swing.JFrame {
         jpnProdutos.add(lblProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jpnFornecedor.setBackground(new java.awt.Color(64, 87, 184));
+        jpnFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpnFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpnFornecedorMouseClicked(evt);
+            }
+        });
         jpnFornecedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imgFornecedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/fornecedor.png"))); // NOI18N
-        jpnFornecedor.add(imgFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         lblFornecedor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblFornecedor.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,11 +164,13 @@ public class Principal extends javax.swing.JFrame {
         jpnFornecedor.add(lblFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jpnRelatorio.setBackground(new java.awt.Color(64, 87, 184));
+        jpnRelatorio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpnRelatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpnRelatorioMouseClicked(evt);
+            }
+        });
         jpnRelatorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imgRelatorio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/relatorio.png"))); // NOI18N
-        jpnRelatorio.add(imgRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         lblRelatorio.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblRelatorio.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,17 +179,34 @@ public class Principal extends javax.swing.JFrame {
         jpnRelatorio.add(lblRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jpnConfiguracoes.setBackground(new java.awt.Color(64, 87, 184));
+        jpnConfiguracoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpnConfiguracoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpnConfiguracoesMouseClicked(evt);
+            }
+        });
         jpnConfiguracoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imgConfiguracao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgConfiguracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/configuracoes.png"))); // NOI18N
-        jpnConfiguracoes.add(imgConfiguracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         lblConfiguracao.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblConfiguracao.setForeground(new java.awt.Color(255, 255, 255));
         lblConfiguracao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblConfiguracao.setText("Configurações");
         jpnConfiguracoes.add(lblConfiguracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+
+        jpnUsuario.setBackground(new java.awt.Color(64, 87, 184));
+        jpnUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpnUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpnUsuarioMouseClicked(evt);
+            }
+        });
+        jpnUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblUsu.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblUsu.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsu.setText("Usuario");
+        jpnUsuario.add(lblUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         javax.swing.GroupLayout jpnMenusLayout = new javax.swing.GroupLayout(jpnMenus);
         jpnMenus.setLayout(jpnMenusLayout);
@@ -194,30 +218,26 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imgUser)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jpnVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpnMenusLayout.createSequentialGroup()
-                .addGroup(jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnConfiguracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(jpnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(jpnFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(jpnRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(jpnConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(jpnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jpnMenusLayout.setVerticalGroup(
             jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnMenusLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imgUser)
-                    .addGroup(jpnMenusLayout.createSequentialGroup()
-                        .addComponent(lblBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(lblBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jpnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -229,9 +249,11 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jpnFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jpnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnConfiguracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(87, 87, 87))
         );
 
         jpnProdVendido.setBackground(new java.awt.Color(64, 87, 184));
@@ -415,26 +437,61 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnHomeMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jpnHomeMouseClicked
+
+    private void jpnVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnVendaMouseClicked
+        Vendas venda = new Vendas();
+        venda.setVisible(true);
+
+    }//GEN-LAST:event_jpnVendaMouseClicked
+
+    private void jpnUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnUsuarioMouseClicked
+        Usuario usu = new Usuario();
+        
+        usu.setVisible(true);
+    }//GEN-LAST:event_jpnUsuarioMouseClicked
+
+    private void jpnRelatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnRelatorioMouseClicked
+        Relatorio rel = new Relatorio();
+        
+        rel.setVisible(true);
+    }//GEN-LAST:event_jpnRelatorioMouseClicked
+
+    private void jpnFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnFornecedorMouseClicked
+        Fornecedor fornece = new Fornecedor();
+        
+        fornece.setVisible(true);
+    }//GEN-LAST:event_jpnFornecedorMouseClicked
+
+    private void jpnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnProdutosMouseClicked
+        Produto prod = new Produto();
+        
+        prod.setVisible(true);
+    }//GEN-LAST:event_jpnProdutosMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
+
+    private void jpnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnClientesMouseClicked
+        Cliente cli = new Cliente();
+        cli.setVisible(true);
+    }//GEN-LAST:event_jpnClientesMouseClicked
+
+    private void jpnConfiguracoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnConfiguracoesMouseClicked
+        Configuracao conf = new Configuracao();
+        conf.setVisible(true);
+    }//GEN-LAST:event_jpnConfiguracoesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -465,6 +522,7 @@ public class Principal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Principal().setVisible(true);
             }
@@ -472,14 +530,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel imgClientes;
-    private javax.swing.JLabel imgCompras;
-    private javax.swing.JLabel imgConfiguracao;
-    private javax.swing.JLabel imgFornecedor;
-    private javax.swing.JLabel imgHome;
-    private javax.swing.JLabel imgProdutos;
-    private javax.swing.JLabel imgRelatorio;
-    private javax.swing.JLabel imgUser;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -499,6 +549,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jpnProdutos;
     private javax.swing.JPanel jpnRelatorio;
     private javax.swing.JPanel jpnTotalVendas;
+    private javax.swing.JPanel jpnUsuario;
     private javax.swing.JPanel jpnVenda;
     private java.awt.Label lblBemVindo;
     private javax.swing.JLabel lblClientes;
@@ -508,6 +559,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblProdutos;
     private javax.swing.JLabel lblRelatorio;
+    private javax.swing.JLabel lblUsu;
     private java.awt.Label lblUsuario;
     private javax.swing.JLabel lblVenda;
     private javax.swing.JTextField txtFiltroDataFim;

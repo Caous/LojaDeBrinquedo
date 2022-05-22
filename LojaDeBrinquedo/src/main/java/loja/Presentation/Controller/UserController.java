@@ -1,41 +1,41 @@
 package loja.Presentation.Controller;
 
-import loja.Presentation.Dto.UserDto;
 import java.util.ArrayList;
 import java.util.List;
+import loja.Dominio.Model.UserModel;
 
 public class UserController {
 
     public UserController() {
     }
 
-    public UserController(UserDto userDto) {
-        this._userDto = userDto;
+    public UserController(UserModel userDto) {
+        this._user = userDto;
     }
 
-    UserDto _userDto;
+    UserModel _user;
 
-    public static void Excluir(UserDto userDto) {
+    public static void Excluir(UserModel userDto) {
 
     }
 
-    public static UserDto Pesquisar(UserDto userDto) {
-        UserDto user = new UserDto();
+    public static UserModel Pesquisar(UserModel userDto) {
+        UserModel user = new UserModel();
         return user;
     }
 
-    public static List<UserDto> RetornaLista() {
+    public static List<UserModel> RetornaLista() {
 
-        List<UserDto> users = new ArrayList<UserDto>();
+        List<UserModel> users = new ArrayList<UserModel>();
 
         return users;
     }
 
-    public static void Salvar(UserDto userDto) {
+    public static void Salvar(UserModel userDto) {
 
     }
 
-    public static boolean UsuarioExite(UserDto userDto) {
+    public static boolean UsuarioExite(UserModel userDto) {
         if (userDto == null) {
             return true;
         }

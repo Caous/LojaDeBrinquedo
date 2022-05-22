@@ -4,9 +4,9 @@
  */
 package loja.Presentation.Controller;
 
-import loja.Presentation.Dto.PerfilDto;
 import java.util.ArrayList;
 import java.util.List;
+import loja.Dominio.Model.PerfilModel;
 
 /**
  *
@@ -17,29 +17,29 @@ public class PerfilController {
     public PerfilController() {
     }
 
-    public PerfilController(PerfilDto perfil) {
+    public PerfilController(PerfilModel perfil) {
         this._perfil = perfil;
     }    
     
-    PerfilDto _perfil;
+    PerfilModel _perfil;
 
-    public static void Excluir(PerfilDto perfil) {
+    public static void Excluir(PerfilModel perfil) {
 
     }
 
-    public static PerfilDto Pesquisar(PerfilDto perfil) {
-        PerfilDto user = new PerfilDto();
+    public static PerfilModel Pesquisar(PerfilModel perfil) {
+        PerfilModel user = new PerfilModel();
         return user;
     }
 
-    public static List<PerfilDto> RetornaLista() {
+    public static List<PerfilModel> RetornaLista() {
 
-        List<PerfilDto> perfils = new ArrayList<PerfilDto>();
+        List<PerfilModel> perfils = new ArrayList<PerfilModel>();
 
         return perfils;
     }
 
-    public static void Salvar(PerfilDto perfil) {
+    public static void Salvar(PerfilModel perfil) {
 
     }
 

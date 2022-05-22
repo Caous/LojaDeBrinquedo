@@ -4,9 +4,9 @@
  */
 package loja.Presentation.Controller;
 
-import loja.Presentation.Dto.FornecedorDto;
 import java.util.ArrayList;
 import java.util.List;
+import loja.Dominio.Model.FornecedorModel;
 
 /**
  *
@@ -17,28 +17,28 @@ public class FornecedorController {
     public FornecedorController() {
     }
 
-    public FornecedorController(FornecedorDto fornecedor) {
+    public FornecedorController(FornecedorModel fornecedor) {
         this._fornecedor = fornecedor;
     }
-    private FornecedorDto _fornecedor;
+    private FornecedorModel _fornecedor;
     
-    public static void Excluir(FornecedorDto produto) {
+    public static void Excluir(FornecedorModel produto) {
 
     }
 
-    public static FornecedorDto Pesquisar(FornecedorDto fornecedor) {
-        FornecedorDto fornecedores = new FornecedorDto();
+    public static FornecedorModel Pesquisar(FornecedorModel fornecedor) {
+        FornecedorModel fornecedores = new FornecedorModel();
         return fornecedores;
     }
 
-    public static List<FornecedorDto> RetornaLista() {
+    public static List<FornecedorModel> RetornaLista() {
 
-        List<FornecedorDto> fornecedores = new ArrayList<FornecedorDto>();
+        List<FornecedorModel> fornecedores = new ArrayList<FornecedorModel>();
 
         return fornecedores;
     }
 
-    public static void Salvar(FornecedorDto fornecedor) {
+    public static void Salvar(FornecedorModel fornecedor) {
 
     }
 }

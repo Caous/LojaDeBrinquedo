@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Presentation;
+package loja.Presentation;
 
 import loja.Dominio.Model.ProdutoModel;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Vendas extends javax.swing.JFrame {
     private List<ProdutoModel> produtos = new ArrayList<ProdutoModel>();
     public Vendas() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -40,7 +42,6 @@ public class Vendas extends javax.swing.JFrame {
         txtNomeProduto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        imgProdutos = new javax.swing.JLabel();
         lblProdutos = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
         btnInserirProdutos = new javax.swing.JButton();
@@ -49,7 +50,6 @@ public class Vendas extends javax.swing.JFrame {
         txtFornecedor1 = new javax.swing.JTextField();
         jpnCliente = new javax.swing.JPanel();
         lblCliente = new javax.swing.JLabel();
-        imgCliente = new javax.swing.JLabel();
         rbtEmpresa = new javax.swing.JRadioButton();
         txtCPF = new javax.swing.JTextField();
         txtNomeFantasia = new javax.swing.JTextField();
@@ -81,7 +81,6 @@ public class Vendas extends javax.swing.JFrame {
         txtCepConf = new javax.swing.JTextField();
         txtEstadoConf = new javax.swing.JTextField();
         txtMuni = new javax.swing.JTextField();
-        imgPagamento = new javax.swing.JLabel();
         lblPagamento = new javax.swing.JLabel();
         jpnProdVendido = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -99,6 +98,7 @@ public class Vendas extends javax.swing.JFrame {
         txtEmail1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblPane.setBackground(new java.awt.Color(79, 109, 234));
 
@@ -145,8 +145,6 @@ public class Vendas extends javax.swing.JFrame {
         jTable1.setSelectionForeground(new java.awt.Color(64, 87, 184));
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
-
-        imgProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/produtos.png"))); // NOI18N
 
         lblProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblProdutos.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,8 +214,7 @@ public class Vendas extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(txtFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpnProdutoLayout.createSequentialGroup()
-                                .addComponent(imgProdutos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(12, 12, 12)
                                 .addComponent(lblProdutos))
                             .addGroup(jpnProdutoLayout.createSequentialGroup()
                                 .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,9 +228,7 @@ public class Vendas extends javax.swing.JFrame {
             jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnProdutoLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(imgProdutos)
-                    .addComponent(lblProdutos))
+                .addComponent(lblProdutos)
                 .addGap(18, 18, 18)
                 .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +241,7 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInserirProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -262,8 +257,6 @@ public class Vendas extends javax.swing.JFrame {
         lblCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblCliente.setForeground(new java.awt.Color(255, 255, 255));
         lblCliente.setText("Controle de clientes");
-
-        imgCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/cliente.png"))); // NOI18N
 
         rbtEmpresa.setBackground(new java.awt.Color(79, 109, 234));
         rbtEmpresa.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -417,7 +410,6 @@ public class Vendas extends javax.swing.JFrame {
                             .addComponent(lblPossuiCad)
                             .addComponent(rbtEmpresa)
                             .addGroup(jpnClienteLayout.createSequentialGroup()
-                                .addComponent(imgCliente)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblCliente))
                             .addGroup(jpnClienteLayout.createSequentialGroup()
@@ -469,9 +461,7 @@ public class Vendas extends javax.swing.JFrame {
             jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnClienteLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(imgCliente)
-                    .addComponent(lblCliente))
+                .addComponent(lblCliente)
                 .addGap(27, 27, 27)
                 .addComponent(lblPossuiCad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -513,7 +503,7 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         tblPane.addTab("Cliente", jpnCliente);
@@ -573,9 +563,6 @@ public class Vendas extends javax.swing.JFrame {
         txtMuni.setForeground(new java.awt.Color(255, 255, 255));
         txtMuni.setText("000.000.000-00");
         txtMuni.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        imgPagamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgPagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/compras.png"))); // NOI18N
 
         lblPagamento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblPagamento.setForeground(new java.awt.Color(255, 255, 255));
@@ -767,8 +754,7 @@ public class Vendas extends javax.swing.JFrame {
                                         .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                        .addComponent(imgPagamento)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(12, 12, 12)
                                         .addComponent(lblPagamento)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -780,12 +766,10 @@ public class Vendas extends javax.swing.JFrame {
             jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnPagamentoLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(imgPagamento)
-                    .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPagamento)
-                        .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPagamento)
+                    .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCPFConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -813,17 +797,7 @@ public class Vendas extends javax.swing.JFrame {
 
         tblPane.addTab("Pagamento", jpnPagamento);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tblPane)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tblPane)
-        );
-
+        getContentPane().add(tblPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         tblPane.getAccessibleContext().setAccessibleName("Produtos\n");
 
         pack();
@@ -885,9 +859,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ckbNao;
     private javax.swing.JCheckBox ckbSim;
-    private javax.swing.JLabel imgCliente;
-    private javax.swing.JLabel imgPagamento;
-    private javax.swing.JLabel imgProdutos;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

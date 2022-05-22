@@ -2,14 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Presentation;
+package loja.Presentation;
 
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.ProdutoController;
-import loja.Presentation.Dto.ProdutoDto;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import loja.Dominio.Model.ProdutoModel;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Produto extends javax.swing.JFrame {
      */
     public Produto() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -52,14 +54,13 @@ public class Produto extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         txtQtd = new javax.swing.JTextField();
         txtDesconto = new javax.swing.JTextField();
-        imgProduto = new javax.swing.JLabel();
         txtFornecedor = new javax.swing.JTextField();
         ckbExcluir = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnBg.setBackground(new java.awt.Color(79, 109, 234));
-        jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setBackground(new java.awt.Color(64, 87, 184));
         jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -79,28 +80,23 @@ public class Produto extends javax.swing.JFrame {
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
-        jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 900, 150));
-
         txtNome.setBackground(new java.awt.Color(79, 109, 234));
         txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNome.setForeground(new java.awt.Color(255, 255, 255));
         txtNome.setText("Bola");
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
 
         txtCategoria.setBackground(new java.awt.Color(79, 109, 234));
         txtCategoria.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCategoria.setForeground(new java.awt.Color(255, 255, 255));
         txtCategoria.setText("Futebol");
         txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, -1));
 
         txtMarca.setBackground(new java.awt.Color(79, 109, 234));
         txtMarca.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtMarca.setForeground(new java.awt.Color(255, 255, 255));
         txtMarca.setText("Nike");
         txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
 
         btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
         btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -113,40 +109,34 @@ public class Produto extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 170, 40));
 
         lblProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblProduto.setForeground(new java.awt.Color(255, 255, 255));
         lblProduto.setText("Controle de Produtos");
-        jpnBg.add(lblProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         txtFot.setBackground(new java.awt.Color(79, 109, 234));
         txtFot.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtFot.setForeground(new java.awt.Color(255, 255, 255));
         txtFot.setText("N/A");
         txtFot.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Foto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtFot, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 210, -1));
 
         txtValidade.setBackground(new java.awt.Color(79, 109, 234));
         txtValidade.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtValidade.setForeground(new java.awt.Color(255, 255, 255));
         txtValidade.setText("N/A");
         txtValidade.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Validade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtValidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 130, 210, -1));
 
         txtValor.setBackground(new java.awt.Color(79, 109, 234));
         txtValor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtValor.setForeground(new java.awt.Color(255, 255, 255));
         txtValor.setText("69,90");
         txtValor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "R$", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 210, -1));
 
         txtAvaliacao.setBackground(new java.awt.Color(79, 109, 234));
         txtAvaliacao.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtAvaliacao.setForeground(new java.awt.Color(255, 255, 255));
         txtAvaliacao.setText("5");
         txtAvaliacao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avaliação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtAvaliacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 210, -1));
 
         txtaComentario.setBackground(new java.awt.Color(79, 109, 234));
         txtaComentario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Comentário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -160,8 +150,6 @@ public class Produto extends javax.swing.JFrame {
         jTextArea1.setText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
         txtaComentario.setViewportView(jTextArea1);
 
-        jpnBg.add(txtaComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 400, 150));
-
         txtaDescrição.setBackground(new java.awt.Color(79, 109, 234));
         txtaDescrição.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -173,48 +161,111 @@ public class Produto extends javax.swing.JFrame {
         jTextArea2.setText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
         txtaDescrição.setViewportView(jTextArea2);
 
-        jpnBg.add(txtaDescrição, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 400, 150));
-
         txtQtd.setBackground(new java.awt.Color(79, 109, 234));
         txtQtd.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtQtd.setForeground(new java.awt.Color(255, 255, 255));
         txtQtd.setText("10");
         txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
 
         txtDesconto.setBackground(new java.awt.Color(79, 109, 234));
         txtDesconto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtDesconto.setForeground(new java.awt.Color(255, 255, 255));
         txtDesconto.setText("5");
         txtDesconto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Porcentagem %", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 210, -1));
-
-        imgProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/produtos.png"))); // NOI18N
-        jpnBg.add(imgProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         txtFornecedor.setBackground(new java.awt.Color(79, 109, 234));
         txtFornecedor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         txtFornecedor.setText("Nike");
         txtFornecedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
 
         ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
         ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
         ckbExcluir.setText("Excluir");
-        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
+        jpnBg.setLayout(jpnBgLayout);
+        jpnBgLayout.setHorizontalGroup(
+            jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnBgLayout.createSequentialGroup()
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(lblProduto))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtFot, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(ckbExcluir))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(txtaDescrição, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtaComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+        jpnBgLayout.setVerticalGroup(
+            jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnBgLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblProduto)
+                .addGap(22, 22, 22)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(ckbExcluir)))
+                .addGap(26, 26, 26)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtaDescrição, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtaComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 625));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,7 +274,7 @@ public class Produto extends javax.swing.JFrame {
 
         ProdutoController prodController = new ProdutoController();
 
-        ProdutoDto prod = new ProdutoDto();
+        ProdutoModel prod = new ProdutoModel();
 
         try {
             if (prod.validString(txtNome.getText())) {
@@ -306,7 +357,6 @@ public class Produto extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ckbExcluir;
-    private javax.swing.JLabel imgProduto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;

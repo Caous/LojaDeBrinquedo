@@ -65,6 +65,16 @@ public class VendaModel implements IPropertiesValidator<VendaModel> {
         return this.ValorPrd;
     }
 
+    private int QtdePrd;
+
+    public void setQtdePrd(int _QtdePrd) {
+        this.QtdePrd = _QtdePrd;
+    }
+
+    public int getQtdePrd() {
+        return this.QtdePrd;
+    }
+
     private Date DtVenda;
 
     public void setDtVenda(Date _DtVenda) {
@@ -75,6 +85,26 @@ public class VendaModel implements IPropertiesValidator<VendaModel> {
         return this.DtVenda;
     }
 
+    private int PctDesconto;
+
+    public void setPctDesconto(int _PctDesconto) {
+        this.PctDesconto = _PctDesconto;
+    }
+
+    public int getPctDesconto() {
+        return this.PctDesconto;
+    }
+    
+     private int ValorDesconto;
+
+    public void setValorDesconto(int _ValorDesconto) {
+        this.ValorDesconto = _ValorDesconto;
+    }
+
+    public int getValorDesconto() {
+        return this.ValorDesconto;
+    }
+    
     private double ValorTotal;
 
     public void setValorTotal(int _ValorTotal) {

@@ -30,7 +30,7 @@ public class ProdutoService implements CrudService<ProdutoModel> {
     }
 
     @Override
-    public List<ProdutoModel> findAll() {
+    public List<ProdutoModel> findAll(ProdutoModel entity) {
         List<ProdutoModel> produtos = new ArrayList<ProdutoModel>();
 
         try {

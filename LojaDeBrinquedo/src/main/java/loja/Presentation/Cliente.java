@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Presentation;
+package loja.Presentation;
 
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.ClienteController;
-import loja.Presentation.Dto.ClienteDto;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import loja.Dominio.Model.ClienteModel;
 
 /**
  *
@@ -38,7 +37,6 @@ public class Cliente extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jpnBg = new javax.swing.JPanel();
-        lblCtrlCliente = new javax.swing.JLabel();
         rbtEmpresa = new javax.swing.JRadioButton();
         txtNome = new javax.swing.JTextField();
         txtNomeFan = new javax.swing.JTextField();
@@ -61,17 +59,12 @@ public class Cliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         txtIM = new javax.swing.JTextField();
+        lblCtrlCliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnBg.setBackground(new java.awt.Color(79, 109, 234));
-        jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblCtrlCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblCtrlCliente.setForeground(new java.awt.Color(255, 255, 255));
-        lblCtrlCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/cliente.png"))); // NOI18N
-        lblCtrlCliente.setText("Controle de clientes");
-        jpnBg.add(lblCtrlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 190, 50));
 
         rbtEmpresa.setBackground(new java.awt.Color(79, 109, 234));
         rbtEmpresa.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -82,97 +75,81 @@ public class Cliente extends javax.swing.JFrame {
                 rbtEmpresaActionPerformed(evt);
             }
         });
-        jpnBg.add(rbtEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         txtNome.setBackground(new java.awt.Color(79, 109, 234));
         txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNome.setForeground(new java.awt.Color(255, 255, 255));
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 210, -1));
 
         txtNomeFan.setBackground(new java.awt.Color(79, 109, 234));
         txtNomeFan.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNomeFan.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeFan.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtNomeFan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 210, -1));
 
         txtEmail.setBackground(new java.awt.Color(79, 109, 234));
         txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 210, -1));
 
         txtContResp.setBackground(new java.awt.Color(79, 109, 234));
         txtContResp.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtContResp.setForeground(new java.awt.Color(255, 255, 255));
         txtContResp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cont. Responsável", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtContResp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, 210, -1));
 
         txtCPFCNPJ.setBackground(new java.awt.Color(79, 109, 234));
         txtCPFCNPJ.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCPFCNPJ.setForeground(new java.awt.Color(255, 255, 255));
         txtCPFCNPJ.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtCPFCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 210, -1));
 
         txtIE.setBackground(new java.awt.Color(79, 109, 234));
         txtIE.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtIE.setForeground(new java.awt.Color(255, 255, 255));
         txtIE.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtIE, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 210, -1));
 
         txtTel.setBackground(new java.awt.Color(79, 109, 234));
         txtTel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtTel.setForeground(new java.awt.Color(255, 255, 255));
         txtTel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 210, -1));
 
         txtCel.setBackground(new java.awt.Color(79, 109, 234));
         txtCel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCel.setForeground(new java.awt.Color(255, 255, 255));
         txtCel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 210, -1));
 
         txtDtNasc.setBackground(new java.awt.Color(79, 109, 234));
         txtDtNasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtDtNasc.setForeground(new java.awt.Color(255, 255, 255));
         txtDtNasc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtDtNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 210, -1));
 
         rbtMasc.setBackground(new java.awt.Color(79, 109, 234));
         rbtMasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtMasc.setForeground(new java.awt.Color(255, 255, 255));
         rbtMasc.setText("Masculino");
-        jpnBg.add(rbtMasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
 
         rbtFem.setBackground(new java.awt.Color(79, 109, 234));
         rbtFem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtFem.setForeground(new java.awt.Color(255, 255, 255));
         rbtFem.setText("Feminino");
-        jpnBg.add(rbtFem, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, -1, -1));
 
         txtEndereco.setBackground(new java.awt.Color(79, 109, 234));
         txtEndereco.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEndereco.setForeground(new java.awt.Color(255, 255, 255));
         txtEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 210, -1));
 
         txtCEP.setBackground(new java.awt.Color(79, 109, 234));
         txtCEP.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCEP.setForeground(new java.awt.Color(255, 255, 255));
         txtCEP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 210, -1));
 
         txtEstado.setBackground(new java.awt.Color(79, 109, 234));
         txtEstado.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEstado.setForeground(new java.awt.Color(255, 255, 255));
         txtEstado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 210, -1));
 
         txtMunicipio.setBackground(new java.awt.Color(79, 109, 234));
         txtMunicipio.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtMunicipio.setForeground(new java.awt.Color(255, 255, 255));
         txtMunicipio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtMunicipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, 210, -1));
 
         btnPesquisar.setBackground(new java.awt.Color(51, 153, 0));
         btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -187,7 +164,6 @@ public class Cliente extends javax.swing.JFrame {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        jpnBg.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 170, 50));
 
         btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
         btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -202,13 +178,11 @@ public class Cliente extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, 50));
 
         ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
         ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
         ckbExcluir.setText("Excluir");
-        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, -1, -1));
 
         jTable1.setBackground(new java.awt.Color(64, 87, 184));
         jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -228,24 +202,111 @@ public class Cliente extends javax.swing.JFrame {
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
-        jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 900, 160));
-
         txtIM.setBackground(new java.awt.Color(79, 109, 234));
         txtIM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtIM.setForeground(new java.awt.Color(255, 255, 255));
         txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        jpnBg.add(txtIM, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 210, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+        lblCtrlCliente.setText("Controle de Clientes");
+
+        javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
+        jpnBg.setLayout(jpnBgLayout);
+        jpnBgLayout.setHorizontalGroup(
+            jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnBgLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCtrlCliente)
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(rbtEmpresa)
+                        .addGap(715, 715, 715)
+                        .addComponent(ckbExcluir))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtNomeFan, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtContResp, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(txtCPFCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtIE, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(txtCel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtDtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(rbtMasc)
+                        .addGap(7, 7, 7)
+                        .addComponent(rbtFem))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+        jpnBgLayout.setVerticalGroup(
+            jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnBgLayout.createSequentialGroup()
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(lblCtrlCliente)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbtEmpresa))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(ckbExcluir)))
+                .addGap(23, 23, 23)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeFan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContResp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCPFCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtMasc)
+                            .addComponent(rbtFem))))
+                .addGap(6, 6, 6)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 625));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -258,7 +319,7 @@ public class Cliente extends javax.swing.JFrame {
 
         ClienteController cliController = new ClienteController();
 
-        ClienteDto cliente = new ClienteDto();
+        ClienteModel cliente = new ClienteModel();
 
         try {
             if (cliente.validString(txtNome.getText())) {
@@ -335,7 +396,7 @@ public class Cliente extends javax.swing.JFrame {
 
         ClienteController cliController = new ClienteController();
 
-        List<ClienteDto> clientes = cliController.RetornaLista();
+        //List<ClienteModel> clientes = cliController.RetornaLista();
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
 

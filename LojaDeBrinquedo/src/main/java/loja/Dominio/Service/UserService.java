@@ -31,11 +31,50 @@ public class UserService implements CrudService<UserModel> {
     }
 
     @Override
-    public List<UserModel> findAll() {
+    public List<UserModel> findAll(UserModel entity) {
         List<UserModel> users = new ArrayList<UserModel>();
         try {
+
             String sql = "SELECT * FROM tb_usuario";
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+            String complemento = "";
+            if (entity != null) {
+
+                if (entity.getCPF() != null && entity.getCPF() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " cpf = '" + entity.getCPF() + "'";
+                }
+                if (entity.getEmail() != null && entity.getEmail() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " email = '" + entity.getEmail() + "'";
+                }
+                if (entity.getPassword() != null && entity.getPassword() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " pass = '" + entity.getPassword() + "'";
+                }
+                if (entity.getIdPerfil() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " id_perfil = " + entity.getIdPerfil();
+                }
+
+            }
+
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
@@ -190,7 +229,7 @@ public class UserService implements CrudService<UserModel> {
 
     @Override
     public boolean finishValidity(UserModel entity) {
-         try {
+        try {
 
             String sql = "update tb_usuario set usu_exclusao = ?, dt_exclusao = ? "
                     + "  where id = ?";

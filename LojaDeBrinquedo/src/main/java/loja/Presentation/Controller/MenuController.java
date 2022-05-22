@@ -4,9 +4,9 @@
  */
 package loja.Presentation.Controller;
 
-import loja.Presentation.Dto.MenuDto;
 import java.util.ArrayList;
 import java.util.List;
+import loja.Dominio.Model.MenuModel;
 
 /**
  *
@@ -16,29 +16,29 @@ public class MenuController {
      public MenuController() {
     }
 
-    public MenuController(MenuDto menu) {
+    public MenuController(MenuModel menu) {
         this._menu = menu;
     }    
     
-    MenuDto _menu;
+    MenuModel _menu;
 
-    public static void Excluir(MenuDto perfil) {
+    public static void Excluir(MenuModel perfil) {
 
     }
 
-    public static MenuDto Pesquisar(MenuDto perfil) {
-        MenuDto menu = new MenuDto();
+    public static MenuModel Pesquisar(MenuModel perfil) {
+        MenuModel menu = new MenuModel();
         return menu;
     }
 
-    public static List<MenuDto> RetornaLista() {
+    public static List<MenuModel> RetornaLista() {
 
-        List<MenuDto> menus = new ArrayList<MenuDto>();
+        List<MenuModel> menus = new ArrayList<MenuModel>();
 
         return menus;
     }
 
-    public static void Salvar(MenuDto perfil) {
+    public static void Salvar(MenuModel perfil) {
 
     }
 }

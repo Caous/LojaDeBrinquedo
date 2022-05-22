@@ -4,9 +4,9 @@
  */
 package loja.Presentation.Controller;
 
-import loja.Presentation.Dto.TipoPagamentoDto;
 import java.util.ArrayList;
 import java.util.List;
+import loja.Dominio.Model.TipoPagamentoModel;
 
 /**
  *
@@ -16,29 +16,29 @@ public class TipoPagamentoController {
      public TipoPagamentoController() {
     }
 
-    public TipoPagamentoController(TipoPagamentoDto tipoPagamento) {
+    public TipoPagamentoController(TipoPagamentoModel tipoPagamento) {
         this._tipoPagamento = tipoPagamento;
     }    
     
-    TipoPagamentoDto _tipoPagamento;
+    TipoPagamentoModel _tipoPagamento;
 
-    public static void Excluir(TipoPagamentoDto perfil) {
+    public static void Excluir(TipoPagamentoModel perfil) {
 
     }
 
-    public static TipoPagamentoDto Pesquisar(TipoPagamentoDto perfil) {
-        TipoPagamentoDto pagamento = new TipoPagamentoDto();
+    public static TipoPagamentoModel Pesquisar(TipoPagamentoModel perfil) {
+        TipoPagamentoModel pagamento = new TipoPagamentoModel();
         return pagamento;
     }
 
-    public static List<TipoPagamentoDto> RetornaLista() {
+    public static List<TipoPagamentoModel> RetornaLista() {
 
-        List<TipoPagamentoDto> pagamentos = new ArrayList<TipoPagamentoDto>();
+        List<TipoPagamentoModel> pagamentos = new ArrayList<TipoPagamentoModel>();
 
         return pagamentos;
     }
 
-    public static void Salvar(TipoPagamentoDto perfil) {
+    public static void Salvar(TipoPagamentoModel perfil) {
 
     }
 }

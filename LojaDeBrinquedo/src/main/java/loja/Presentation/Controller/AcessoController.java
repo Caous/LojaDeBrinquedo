@@ -4,9 +4,9 @@
  */
 package loja.Presentation.Controller;
 
-import loja.Presentation.Dto.AcessoDto;
 import java.util.ArrayList;
 import java.util.List;
+import loja.Dominio.Model.TipoAcessoModel;
 
 /**
  *
@@ -16,29 +16,29 @@ public class AcessoController {
      public AcessoController() {
     }
 
-    public AcessoController(AcessoDto acesso) {
+    public AcessoController(TipoAcessoModel acesso) {
         this._acesso = acesso;
     }    
     
-    AcessoDto _acesso;
+    TipoAcessoModel _acesso;
 
-    public static void Excluir(AcessoDto perfil) {
+    public static void Excluir(TipoAcessoModel perfil) {
 
     }
 
-    public static AcessoDto Pesquisar(AcessoDto perfil) {
-        AcessoDto acesso = new AcessoDto();
+    public static TipoAcessoModel Pesquisar(TipoAcessoModel perfil) {
+        TipoAcessoModel acesso = new TipoAcessoModel();
         return acesso;
     }
 
-    public static List<AcessoDto> RetornaLista() {
+    public static List<TipoAcessoModel> RetornaLista() {
 
-        List<AcessoDto> acessos = new ArrayList<AcessoDto>();
+        List<TipoAcessoModel> acessos = new ArrayList<TipoAcessoModel>();
 
         return acessos;
     }
 
-    public static void Salvar(AcessoDto perfil) {
+    public static void Salvar(TipoAcessoModel perfil) {
 
     }
 }

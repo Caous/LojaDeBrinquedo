@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Presentation;
+package loja.Presentation;
+
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,6 +17,7 @@ public class Relatorio extends javax.swing.JFrame {
      */
     public Relatorio() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -33,7 +36,6 @@ public class Relatorio extends javax.swing.JFrame {
         txtNomeProduto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        imgProdutos = new javax.swing.JLabel();
         lblProdutos = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
         txtCategoria = new javax.swing.JTextField();
@@ -86,8 +88,6 @@ public class Relatorio extends javax.swing.JFrame {
         jTable1.setSelectionForeground(new java.awt.Color(64, 87, 184));
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
-
-        imgProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/relatorio.png"))); // NOI18N
 
         lblProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblProdutos.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,8 +143,7 @@ public class Relatorio extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(txtFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpnProdutoLayout.createSequentialGroup()
-                                .addComponent(imgProdutos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(12, 12, 12)
                                 .addComponent(lblProdutos))
                             .addGroup(jpnProdutoLayout.createSequentialGroup()
                                 .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,9 +163,7 @@ public class Relatorio extends javax.swing.JFrame {
             jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnProdutoLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(imgProdutos)
-                    .addComponent(lblProdutos))
+                .addComponent(lblProdutos)
                 .addGap(18, 18, 18)
                 .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,7 +179,7 @@ public class Relatorio extends javax.swing.JFrame {
                     .addComponent(txtPorcentagem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -243,7 +240,6 @@ public class Relatorio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JLabel imgProdutos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpnProduto;

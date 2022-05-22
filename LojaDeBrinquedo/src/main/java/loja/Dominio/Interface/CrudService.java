@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface CrudService<T> {
 
-    List<T> findAll();
+    List<T> findAll(T entity);
 
     T save(T entity);
 

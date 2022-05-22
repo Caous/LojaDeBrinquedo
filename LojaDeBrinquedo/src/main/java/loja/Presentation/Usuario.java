@@ -2,17 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Presentation;
+package loja.Presentation;
 
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.UserController;
-import loja.Presentation.Dto.UserDto;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import loja.Dominio.Model.UserModel;
 
 /**
  *
@@ -50,7 +50,6 @@ public class Usuario extends javax.swing.JFrame {
         rbFem = new javax.swing.JRadioButton();
         btnPesquisar = new javax.swing.JButton();
         lblControle = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         cbxPerfil = new javax.swing.JComboBox<>();
         ckbExcluir = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -145,10 +144,6 @@ public class Usuario extends javax.swing.JFrame {
         lblControle.setText("Controle de usuários");
         jpnBg.add(lblControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Img/user.png"))); // NOI18N
-        jpnBg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 50, 40));
-
         cbxPerfil.setBackground(new java.awt.Color(79, 109, 234));
         cbxPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         cbxPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -222,7 +217,7 @@ public class Usuario extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
-        UserDto user = new UserDto();
+        UserModel user = new UserModel();
         UserController userControll = new UserController();
 
         try {
@@ -265,7 +260,7 @@ public class Usuario extends javax.swing.JFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         UserController userControll = new UserController();
-        UserDto user = new UserDto();
+        UserModel user = new UserModel();
 
         try {
             if (user.validString(txtNome.getText())) {
@@ -335,7 +330,6 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxPerfil;
     private javax.swing.JCheckBox ckbExcluir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;

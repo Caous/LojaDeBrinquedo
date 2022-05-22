@@ -25,7 +25,7 @@ public class MenuService implements CrudService<MenuModel> {
         this.conn = BDContext.obterConexao();
     }
 
-    public List<MenuModel> findAll() {
+    public List<MenuModel> findAll(MenuModel entity) {
 
         List<MenuModel> menus = new ArrayList<MenuModel>();
 
