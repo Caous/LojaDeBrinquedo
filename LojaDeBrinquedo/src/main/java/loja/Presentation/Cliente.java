@@ -8,10 +8,14 @@ import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.ClienteController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import loja.Dominio.Model.ClienteModel;
+import loja.Dominio.Util.eAcaoTela;
 
 /**
  *
@@ -24,7 +28,12 @@ public class Cliente extends javax.swing.JFrame {
      */
     public Cliente() {
         initComponents();
+        LoadTable();
+        acaoTela = eAcaoTela.ABRIR.getValor();
     }
+
+    private int acaoTela;
+    private ClienteModel cli;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +52,7 @@ public class Cliente extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         txtContResp = new javax.swing.JTextField();
         txtCPFCNPJ = new javax.swing.JTextField();
-        txtIE = new javax.swing.JTextField();
+        txtEM = new javax.swing.JTextField();
         txtTel = new javax.swing.JTextField();
         txtCel = new javax.swing.JTextField();
         txtDtNasc = new javax.swing.JTextField();
@@ -57,9 +66,10 @@ public class Cliente extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         ckbExcluir = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblClientes = new javax.swing.JTable();
         txtIM = new javax.swing.JTextField();
         lblCtrlCliente = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -102,10 +112,10 @@ public class Cliente extends javax.swing.JFrame {
         txtCPFCNPJ.setForeground(new java.awt.Color(255, 255, 255));
         txtCPFCNPJ.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        txtIE.setBackground(new java.awt.Color(79, 109, 234));
-        txtIE.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtIE.setForeground(new java.awt.Color(255, 255, 255));
-        txtIE.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtEM.setBackground(new java.awt.Color(79, 109, 234));
+        txtEM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEM.setForeground(new java.awt.Color(255, 255, 255));
+        txtEM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtTel.setBackground(new java.awt.Color(79, 109, 234));
         txtTel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -184,31 +194,57 @@ public class Cliente extends javax.swing.JFrame {
         ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
         ckbExcluir.setText("Excluir");
+        ckbExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ckbExcluirMouseClicked(evt);
+            }
+        });
 
-        jTable1.setBackground(new java.awt.Color(64, 87, 184));
-        jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblClientes.setBackground(new java.awt.Color(64, 87, 184));
+        tblClientes.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblClientes.setForeground(new java.awt.Color(255, 255, 255));
+        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Gustavo", "gustavo@happy.com.br", "000.000.000-00", "Dan"},
-                {"Erick", "erick@happy.com.br", "000.000.000-00", "Vitor"},
-                {"Fernando", "fernando@happy.com.br", "000.000.000-00", "N/A"}
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nome", "E-mail", "CPF/CNPJ", "Cont. Resp."
+
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(64, 87, 184));
-        jTable1.setSelectionForeground(new java.awt.Color(79, 109, 234));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblClientes.setGridColor(new java.awt.Color(64, 87, 184));
+        tblClientes.setSelectionForeground(new java.awt.Color(79, 109, 234));
+        tblClientes.setShowGrid(true);
+        tblClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblClientes);
 
         txtIM.setBackground(new java.awt.Color(79, 109, 234));
         txtIM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtIM.setForeground(new java.awt.Color(255, 255, 255));
         txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        lblCtrlCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblCtrlCliente.setForeground(new java.awt.Color(255, 255, 255));
         lblCtrlCliente.setText("Controle de Clientes");
+
+        btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
+        btnCancelar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancelar.setContentAreaFilled(false);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCancelar.setOpaque(true);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
         jpnBg.setLayout(jpnBgLayout);
@@ -235,7 +271,7 @@ public class Cliente extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(txtIE, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEM, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpnBgLayout.createSequentialGroup()
@@ -257,7 +293,9 @@ public class Cliente extends javax.swing.JFrame {
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jpnBgLayout.setVerticalGroup(
@@ -282,7 +320,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCPFCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,12 +340,14 @@ public class Cliente extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
+        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 760));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -318,45 +358,139 @@ public class Cliente extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+
         ClienteController cliController = new ClienteController();
 
+        ClienteModel cliente = new ClienteModel();
+
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            cliente = cli;
+        }
+
+        PreencherCliente(cli);
+
+        switch (eAcaoTela.EDITAR.getValor()) {
+            case 1:
+                cliController.save(cliente);
+                break;
+            case 2:
+                cliController.save(cliente);
+                break;
+            case 5:
+                cliController.update(cliente);
+                break;
+            case 6:
+                cliController.delete(cliente);
+                break;
+        }
+
+        LimparCampos();
+        LoadTable();
+
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void PreencherCliente(ClienteModel cli) {
+
+        try {
+            if (cli.validString(txtNome.getText())) {
+                cli.setNome(txtNome.getText());
+            }
+
+            if (cli.validString(txtEmail.getText())) {
+                cli.setEmail(txtEmail.getText());
+            }
+
+            if (cli.validString(txtCPFCNPJ.getText())) {
+                cli.setCpfCnpj(txtCPFCNPJ.getText());
+            }
+
+            if (cli.validString(txtTel.getText())) {
+                cli.setTelefone(txtTel.getText());
+            }
+            if (cli.validString(txtCel.getText())) {
+                cli.setCelular(txtCel.getText());
+            }
+            if (rbtFem.isSelected()) {
+                cli.setSexo("Feminino");
+            }
+            if (rbtMasc.isSelected()) {
+                cli.setSexo("Masculino");
+            }
+            if (cli.validString(txtEndereco.getText())) {
+                cli.setEndereco(txtEndereco.getText());
+            }
+            if (cli.validString(txtCEP.getText())) {
+                cli.setCEP(txtCEP.getText());
+            }
+            if (cli.validString(txtEstado.getText())) {
+                cli.setEstado(txtEstado.getText());
+            }
+            if (cli.validString(txtMunicipio.getText())) {
+                cli.setMunicipio(txtMunicipio.getText());
+            }
+            if (cli.validString(txtDtNasc.getText())) {
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+                cli.setDtNasc(formatter1.parse(txtDtNasc.getText().replace("/", "-")));
+            }
+            if (rbtEmpresa.isSelected()) {
+                cli.setTipoCliente(1);
+
+                if (cli.validString(txtNomeFan.getText())) {
+                    cli.setNomeFantasia(txtNomeFan.getText());
+                }
+
+                if (cli.validString(txtEM.getText())) {
+                    cli.setEM(txtEM.getText());
+                }
+                if (cli.validString(txtIM.getText())) {
+                    cli.setIM(txtIM.getText());
+                }
+                if (cli.validString(txtContResp.getText())) {
+                    cli.setContatoResposavel(txtContResp.getText());
+                }
+            }
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        } catch (ParseException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+
+        ClienteController cliController = new ClienteController();
         ClienteModel cliente = new ClienteModel();
 
         try {
             if (cliente.validString(txtNome.getText())) {
                 cliente.setNome(txtNome.getText());
             }
-            if (cliente.validString(txtNomeFan.getText())) {
-                cliente.setNomeFantasia(txtNomeFan.getText());
-            }
+
             if (cliente.validString(txtEmail.getText())) {
                 cliente.setEmail(txtEmail.getText());
             }
-            if (cliente.validString(txtContResp.getText())) {
-                cliente.setContatoResposavel(txtContResp.getText());
-            }
+
             if (cliente.validString(txtCPFCNPJ.getText())) {
                 cliente.setCpfCnpj(txtCPFCNPJ.getText());
             }
-            if (cliente.validString(txtIE.getText())) {
-                cliente.setEM(txtIE.getText());
-            }
-            if (cliente.validString(txtIM.getText())) {
-                cliente.setIM(txtIM.getText());
-            }
-            if (cliente.validString(txtIM.getText())) {
-                cliente.setIM(txtIM.getText());
-            }
+
             if (cliente.validString(txtTel.getText())) {
                 cliente.setTelefone(txtTel.getText());
             }
             if (cliente.validString(txtCel.getText())) {
                 cliente.setCelular(txtCel.getText());
             }
-            if (rbtFem.isValid()) {
+            if (rbtFem.isSelected()) {
                 cliente.setSexo("Feminino");
             }
-            if (rbtMasc.isValid()) {
+            if (rbtMasc.isSelected()) {
                 cliente.setSexo("Masculino");
             }
             if (cliente.validString(txtEndereco.getText())) {
@@ -373,33 +507,175 @@ public class Cliente extends javax.swing.JFrame {
             }
             if (cliente.validString(txtDtNasc.getText())) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                cliente.setDtNasc(formatter1.parse(txtDtNasc.getText()));
+                cliente.setDtNasc(formatter1.parse(txtDtNasc.getText().replace("/", "-")));
             }
-            if (rbtEmpresa.isValid()) {
+            if (rbtEmpresa.isSelected()) {
                 cliente.setTipoCliente(1);
+
+                if (cliente.validString(txtNomeFan.getText())) {
+                    cliente.setNomeFantasia(txtNomeFan.getText());
+                }
+
+                if (cliente.validString(txtEM.getText())) {
+                    cliente.setEM(txtEM.getText());
+                }
+                if (cliente.validString(txtIM.getText())) {
+                    cliente.setIM(txtIM.getText());
+                }
+                if (cliente.validString(txtContResp.getText())) {
+                    cliente.setContatoResposavel(txtContResp.getText());
+                }
             }
 
-            if (ckbExcluir.isValid()) {
-                cliController.Excluir(cliente);
-
-            } else {
-                cliController.Salvar(cliente);
-            }
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         } catch (ParseException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_btnSalvarActionPerformed
+        List<ClienteModel> clientes = cliController.findAll(cliente);
+        LoadTableFilter(clientes);
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+    private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
+        if (tblClientes.getSelectedRow() >= 0) {
+            //HabilitarFormulario();
+
+            acaoTela = eAcaoTela.EDITAR.getValor();
+
+            int id = Integer.parseInt(tblClientes.getModel().getValueAt(tblClientes.getSelectedRow(), 0).toString());
+
+            CarregarCampos(id);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
+        }
+    }//GEN-LAST:event_tblClientesMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        LimparCampos();
+        acaoTela = eAcaoTela.VISUALIZAR.getValor();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void ckbExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbExcluirMouseClicked
+        if (ckbExcluir.isSelected()) {
+            acaoTela = eAcaoTela.EXCLUIR.getValor();
+        } else {
+            acaoTela = eAcaoTela.EDITAR.getValor();
+        }
+    }//GEN-LAST:event_ckbExcluirMouseClicked
+
+    private void LimparCampos() {
+        txtNome.setText("");
+        txtNomeFan.setText("");
+        txtEmail.setText("");
+        txtContResp.setText("");
+        txtCPFCNPJ.setText("");
+        txtIM.setText("");
+        txtEM.setText("");
+        txtTel.setText("");
+        txtDtNasc.setText("");
+        txtEndereco.setText("");
+        txtCEP.setText("");
+        txtEstado.setText("");
+        txtMunicipio.setText("");
+
+        cli = null;
+    }
+
+    public void LoadTable() {
+
+        ClienteController cliController = new ClienteController();
+        ClienteModel cliFiltro = new ClienteModel();
+        List<ClienteModel> clientes = cliController.findAll(cliFiltro);
+
+        DefaultTableModel tmClientes = new DefaultTableModel();
+        tmClientes.addColumn("ID");
+        tmClientes.addColumn("Nome");
+        tmClientes.addColumn("Nome Fantasia");
+        tmClientes.addColumn("Empresa");
+        tmClientes.addColumn("Cpf/Cnjp");
+        tmClientes.addColumn("E-mail");
+        tmClientes.addColumn("Celular");
+        tmClientes.addColumn("Endereço");
+        tmClientes.addColumn("Ativo");
+
+        tblClientes.setModel(tmClientes);
+
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(250);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(50);
+
+        tmClientes.setRowCount(0);
+
+        for (ClienteModel cli : clientes) {
+            tmClientes.addRow(new String[]{String.valueOf(cli.getId()),
+                cli.getNome(), cli.getNomeFantasia(), String.valueOf(cli.getTipoCliente()), cli.getCpfCnpj(), cli.getEmail(), cli.getCelular(), cli.getEndereco(), "Ativo"});
+        }
+
+    }
+
+    public void LoadTableFilter(List<ClienteModel> clientes) {
+
+        DefaultTableModel tmClientes = new DefaultTableModel();
+        tmClientes.addColumn("ID");
+        tmClientes.addColumn("Nome");
+        tmClientes.addColumn("Nome Fantasia");
+        tmClientes.addColumn("Empresa");
+        tmClientes.addColumn("Cpf/Cnjp");
+        tmClientes.addColumn("E-mail");
+        tmClientes.addColumn("Celular");
+        tmClientes.addColumn("Endereço");
+        tmClientes.addColumn("Ativo");
+
+        tblClientes.setModel(tmClientes);
+
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(250);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(50);
+
+        tmClientes.setRowCount(0);
+
+        for (ClienteModel cli : clientes) {
+            tmClientes.addRow(new String[]{String.valueOf(cli.getId()),
+                cli.getNome(), cli.getNomeFantasia(), String.valueOf(cli.getTipoCliente()), cli.getCpfCnpj(), cli.getEmail(), cli.getCelular(), cli.getEndereco(), "Ativo"});
+        }
+
+    }
+
+    public void CarregarCampos(int id) {
 
         ClienteController cliController = new ClienteController();
 
-        //List<ClienteModel> clientes = cliController.RetornaLista();
+        cli = cliController.findId(id);
 
-    }//GEN-LAST:event_btnPesquisarActionPerformed
+        txtNome.setText(cli.getNome());
+        txtNomeFan.setText(cli.getNomeFantasia());
+        txtEmail.setText(cli.getEmail());
+        txtContResp.setText(cli.getContatoResposavel());
+        txtCPFCNPJ.setText(cli.getCpfCnpj());
+        txtIM.setText(cli.getIM());
+        txtEM.setText(cli.getEM());
+        txtTel.setText(cli.getTelefone());
+        txtDtNasc.setText(cli.getDtNasc().toString());
+        txtEndereco.setText(cli.getEndereco());
+        txtCEP.setText(cli.getCEP());
+        txtEstado.setText(cli.getEstado());
+        txtMunicipio.setText(cli.getMunicipio());
+
+    }
 
     /**
      * @param args the command line arguments
@@ -438,26 +714,27 @@ public class Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ckbExcluir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpnBg;
     private javax.swing.JLabel lblCtrlCliente;
     private javax.swing.JRadioButton rbtEmpresa;
     private javax.swing.JRadioButton rbtFem;
     private javax.swing.JRadioButton rbtMasc;
+    private javax.swing.JTable tblClientes;
     private javax.swing.JTextField txtCEP;
     private javax.swing.JTextField txtCPFCNPJ;
     private javax.swing.JTextField txtCel;
     private javax.swing.JTextField txtContResp;
     private javax.swing.JTextField txtDtNasc;
+    private javax.swing.JTextField txtEM;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtEstado;
-    private javax.swing.JTextField txtIE;
     private javax.swing.JTextField txtIM;
     private javax.swing.JTextField txtMunicipio;
     private javax.swing.JTextField txtNome;

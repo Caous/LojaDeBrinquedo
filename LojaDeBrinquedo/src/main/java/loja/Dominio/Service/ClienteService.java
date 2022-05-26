@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -120,21 +122,19 @@ public class ClienteService implements CrudService<ClienteModel> {
 
         try {
 
-            String sql = "INSERT INTO tb_cliente (tipo_pessoa, nome, nome_fantasia, cpfcpnj, endereco, cep, estado, municipio, telefone, celular, email, cont_resp, est_civil, IM, EM, dt_nasc, sexo, usu_inclusao, dt_inclusao)"
-                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tb_cliente (tipo_pessoa, nome, nome_fantasia, cpfcpnj, endereco, cep, estado, municipio, telefone, celular, email, cont_resp, est_civil, IM, EM, dt_nasc, sexo, usu_inclusao)"
+                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
             ps.setInt(1, entity.getTipoCliente());
             ps.setString(2, entity.getNome());
-
             ps.setString(3, entity.getNomeFantasia());
             ps.setString(4, entity.getCpfCnpj());
             ps.setString(5, entity.getEndereco());
             ps.setString(6, entity.getCEP());
             ps.setString(7, entity.getEstado());
             ps.setString(8, entity.getMunicipio());
-
             ps.setString(9, entity.getTelefone());
             ps.setString(10, entity.getCelular());
             ps.setString(11, entity.getEmail());
@@ -146,9 +146,10 @@ public class ClienteService implements CrudService<ClienteModel> {
             ps.setDate(16, dtNasc);
             ps.setString(17, entity.getSexo());
             ps.setInt(18, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
-            ps.setDate(19, dtCad);
 
+            //Date dt = new Date();  
+            //java.sql.Date dtCad = new java.sql.Date(dt.getTime());
+            //ps.setDate(19, dtCad);
             ps.execute();
 
             ps.close();
@@ -221,7 +222,7 @@ public class ClienteService implements CrudService<ClienteModel> {
     public boolean update(ClienteModel entity) {
         try {
 
-            String sql = "update tb_cliente set tb_cliente tipo_pessoa = ?, nome = ?, nome_fantasia = ?, cpfcpnj = ?, endereco = ?, cep = ?, estado = ?, municipio = ?, telefone = ?, celular = ?, email = ?, cont_resp = ?, est_civil = ?, IM = ?, EM = ?, dt_nasc = ?, sexo = ?, usu_inclusao = ?, dt_inclusao = ?, usu_exclusao = ?, dt_exclusao = ?  "
+            String sql = "update tb_cliente set tipo_pessoa = ?, nome = ?, nome_fantasia = ?, cpfcpnj = ?, endereco = ?, cep = ?, estado = ?, municipio = ?, telefone = ?, celular = ?, email = ?, cont_resp = ?, est_civil = ?, IM = ?, EM = ?, dt_nasc = ?, sexo = ? "
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
@@ -235,7 +236,6 @@ public class ClienteService implements CrudService<ClienteModel> {
             ps.setString(6, entity.getCEP());
             ps.setString(7, entity.getEstado());
             ps.setString(8, entity.getMunicipio());
-
             ps.setString(9, entity.getTelefone());
             ps.setString(10, entity.getCelular());
             ps.setString(11, entity.getEmail());
@@ -246,13 +246,7 @@ public class ClienteService implements CrudService<ClienteModel> {
             java.sql.Date dtNasc = new java.sql.Date(entity.getDtNasc().getTime());
             ps.setDate(16, dtNasc);
             ps.setString(17, entity.getSexo());
-            ps.setInt(18, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
-            ps.setDate(19, dtCad);
-            ps.setInt(20, entity.getUsuDel());
-            java.sql.Date dtExclu = new java.sql.Date(entity.getDtDel().getTime());
-            ps.setDate(21, dtExclu);
-            ps.setInt(22, entity.getId());
+            ps.setInt(18, entity.getId());
 
             ps.execute();
 
