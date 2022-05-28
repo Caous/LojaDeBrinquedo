@@ -1,6 +1,7 @@
 package loja.Dominio.Model;
 
 import java.util.Date;
+import loja.Dominio.Service.UserService;
 import loja.Dominio.Util.IPropertiesValidator;
 import loja.Dominio.Util.PropertiesValidator;
 
@@ -187,5 +188,6 @@ public class UserModel implements IPropertiesValidator<UserModel> {
     public boolean validDouble(double value) throws PropertiesValidator {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
 }

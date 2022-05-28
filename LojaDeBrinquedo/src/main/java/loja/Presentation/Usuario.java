@@ -8,11 +8,15 @@ import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.UserController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import loja.Dominio.Model.ClienteModel;
 import loja.Dominio.Model.UserModel;
+import loja.Dominio.Util.eAcaoTela;
 
 /**
  *
@@ -25,8 +29,12 @@ public class Usuario extends javax.swing.JFrame {
      */
     public Usuario() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        LoadTable();
+        acaoTela = eAcaoTela.ABRIR.getValor();
     }
+    
+    private int acaoTela;
+    private UserModel userm;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,12 +75,12 @@ public class Usuario extends javax.swing.JFrame {
         tblUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Gustavo", "gustavo@happy.com.br", "000.000.000-00", "Adm"},
-                {"Erick", "erick@happy.com.br", "000.000.000-00", "Caixa"},
-                {"Fernando", "fernando@happy.com.br", "000.000.000-00", "Gerente Vendas"}
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nome", "E-mail", "CPF", "Perfil"
+
             }
         ));
         tblUsuarios.setGridColor(new java.awt.Color(64, 87, 184));
@@ -217,8 +225,42 @@ public class Usuario extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
         UserModel user = new UserModel();
         UserController userControll = new UserController();
+        
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            user = userm;
+        }
+
+        try {
+            PreencherCliente(userm);
+        } catch (ParseException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        switch (eAcaoTela.EDITAR.getValor()) {
+            case 1:
+                userControll.save(user);
+                break;
+            case 2:
+                userControll.save(user);
+                break;
+            case 5:
+                userControll.update(user);
+                break;
+            case 6:
+                userControll.delete(user);
+                break;
+        }
+
+        LimparCampos();
+        LoadTable();
 
         try {
             if (user.validString(txtNome.getText())) {
@@ -239,14 +281,14 @@ public class Usuario extends javax.swing.JFrame {
 
             if (user.validString(txtDtNascimento.getText())) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                user.setDtNasc(formatter1.parse(txtDtNascimento.getText()));
+                user.setDtNasc(formatter1.parse(txtDtNascimento.getText().replace("/","-")));
             }
 
             if (ckbExcluir.isValid()) {
-                userControll.Excluir(user);
+                userControll.delete(user);
             } else {
                 if (!userControll.UsuarioExite(user)) {
-                    userControll.Salvar(user);
+                    userControll.save(user);
 
                 }
             }
@@ -280,13 +322,16 @@ public class Usuario extends javax.swing.JFrame {
                 user.setDtNasc(formatter1.parse(txtDtNascimento.getText()));
             }
 
-            user = userControll.Pesquisar(user);
+            //user = userControll.Pesquisar(user);
 
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         } catch (ParseException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        List<UserModel> users = UserController.findAll(user);
+        LoadTableFilter(users);
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**
@@ -344,4 +389,105 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
+
+    private void LoadTableFilter(List<UserModel> users) {
+        
+        DefaultTableModel tmUsers = new DefaultTableModel();
+        tmUsers.addColumn("ID");
+        tmUsers.addColumn("Nome");
+        tmUsers.addColumn("E-mail");
+        tmUsers.addColumn("CPF");
+        
+        tblUsuarios.setModel(tmUsers);
+ 
+        tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblUsuarios.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblUsuarios.getColumnModel().getColumn(1).setPreferredWidth(50);
+        
+        tmUsers.setRowCount(0);
+        
+        for (UserModel user : users) {
+            tmUsers.addRow(new String[]{String.valueOf(user.getId()),
+                user.getNome(), user.getCPF(), user.getEmail(), "Ativo"});
+        }
+        
+        
+    }
+
+    private void LoadTable() {
+        
+        UserController usersController = new UserController();
+        UserModel userFiltro = new UserModel();
+        List<UserModel> users = UserController.findAll(userFiltro);
+        
+        DefaultTableModel tmUser = new DefaultTableModel();
+        tmUser.addColumn("ID");
+        tmUser.addColumn("Nome");
+        tmUser.addColumn("E-mail");
+        tmUser.addColumn("CPF");
+        
+        tblUsuarios.setModel(tmUser);
+        
+        tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblUsuarios.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblUsuarios.getColumnModel().getColumn(1).setPreferredWidth(50);
+        
+        tmUser.setRowCount(0);
+        
+        for (UserModel userm : users){
+            tmUser.addRow(new String[] {String.valueOf(userm.getId()),
+            userm.getNome(),userm.getEmail(),userm.getCPF()});
+        }
+       
+    }
+
+    private void PreencherCliente(UserModel userm) throws ParseException {
+        
+        try {
+            
+            if (userm.validString(txtNome.getText())){
+                userm.setNome(txtNome.getText());
+            }
+            
+            if (userm.validString(txtEmail.getText())){
+                userm.setEmail(txtEmail.getText());
+            }
+            
+            if (userm.validString(txtPass.getPassword().toString())){
+                userm.setPassword(txtPass.getPassword().toString());
+            }
+            
+            if (userm.validString(txtDtNascimento.getText())) {
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+                userm.setDtNasc(formatter1.parse(txtDtNascimento.getText().replace("/", "-")));
+            }
+            
+            if (userm.validString(txtCpf.getText())){
+                userm.setEmail(txtCpf.getText());
+            }
+            
+            if (rbFem.isSelected()) {
+                userm.setSexo("Feminino");
+            }
+            if (rbMasc.isSelected()) {
+                userm.setSexo("Masculino");
+            }            
+            
+            
+                
+                } catch (PropertiesValidator ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void LimparCampos() {
+        txtNome.setText("");
+        txtEmail.setText("");
+        txtPass.setText("");
+        txtDtNascimento.setText("");
+        txtCpf.setText("");
+        
+    }
 }

@@ -4,6 +4,7 @@
  */
 package loja.Presentation;
 
+import java.text.ParseException;
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.ProdutoController;
 import java.text.SimpleDateFormat;
@@ -11,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import loja.Dominio.Model.ProdutoModel;
+import loja.Dominio.Util.eAcaoTela;
 
 /**
  *
@@ -23,8 +25,11 @@ public class Produto extends javax.swing.JFrame {
      */
     public Produto() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        acaoTela = eAcaoTela.ABRIR.getValor();
     }
+    
+    private int acaoTela;
+    private ProdutoModel prodm;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -272,9 +277,45 @@ public class Produto extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor(); 
+        
+        
         ProdutoController prodController = new ProdutoController();
 
         ProdutoModel prod = new ProdutoModel();
+        
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            prod = prodm;
+        }
+        
+            try {
+                PreencherProduto(prodm);
+            } catch (ParseException ex) {
+                Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        
+        switch (eAcaoTela.EDITAR.getValor()) {
+            case 1:
+                ProdutoController.save(prod);
+                break;
+            case 2:
+                ProdutoController.save(prod);
+                break;
+            case 5:
+                ProdutoController.update(prod);
+                break;
+            case 6:
+                ProdutoController.delete(prod);
+                break;
+        }
+        
+        LimparCampos();
+        LoadTable();
 
         try {
             if (prod.validString(txtNome.getText())) {
@@ -308,15 +349,84 @@ public class Produto extends javax.swing.JFrame {
             }
 
             if (ckbExcluir.isValid()) {
-                prodController.Excluir(prod);
+                prodController.delete(prod);
             } else {
-                prodController.Salvar(prod);
+                prodController.save(prod);
             }
         } catch (PropertiesValidator ex) {
             Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+}
+    
+    private void PreencherProduto(ProdutoModel prodm) throws ParseException {
+        
+        try {
+            if(prodm.validString(txtNome.getText())){
+               prodm.setNomeProduto(txtNome.getText());
+            }
+            
+            if(prodm.validString(txtCategoria.getText())){
+               prodm.setCategoria(txtCategoria.getText());
+            }
+            
+            if(prodm.validString(txtMarca.getText())){
+               prodm.setMarca(txtMarca.getText());
+            }
+            
+            /*if(prodm.validString(txtFornecedor.getText())){
+               prodm.(txtFornecedor.getText());
+            }*/
+            
+            if(prodm.validInt(Integer.parseInt(txtQtd.getText()))){
+               prodm.setQtd(Integer.parseInt(txtQtd.getText()));
+            }
+            
+            if(prodm.validInt(Integer.parseInt(txtValor.getText()))){
+               prodm.setValor(Integer.parseInt(txtValor.getText()));
+            }
+            
+            if(prodm.validInt(Integer.parseInt(txtAvaliacao.getText()))){
+               prodm.setAvaliacao(Integer.parseInt(txtAvaliacao.getText()));
+            }
+            
+            if(prodm.validString(txtValidade.getText())){
+               SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+               prodm.setDtValidade(formatter1.parse(txtValidade.getText().replace("/", "-")));
+            }
+            
+            if(prodm.validInt(Integer.parseInt(txtDesconto.getText()))){
+               prodm.setPorcentagemDesc(Integer.parseInt(txtDesconto.getText()));
+            }
+            
+            if(prodm.validString(txtFot.getText())){
+               prodm.setFoto(txtFot.getText());
+            }
+            
+            if(prodm.validString(jTextArea1.getText())){
+               prodm.setComentario(jTextArea1.getText());
+            }
+            
+            if(prodm.validString(jTextArea2.getText())){
+               prodm.setDescricaoProduto(jTextArea2.getText());
+            }
+            
+        } catch (PropertiesValidator ex) {
+            Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    private void LimparCampos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void LoadTable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+        
+        
     /**
      * @param args the command line arguments
      */
@@ -376,4 +486,6 @@ public class Produto extends javax.swing.JFrame {
     private javax.swing.JScrollPane txtaComentario;
     private javax.swing.JScrollPane txtaDescrição;
     // End of variables declaration//GEN-END:variables
+
+
 }
