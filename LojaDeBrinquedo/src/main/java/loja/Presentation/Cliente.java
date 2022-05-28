@@ -9,12 +9,14 @@ import loja.Presentation.Controller.ClienteController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import loja.Dominio.Model.ClienteModel;
+import loja.Dominio.Model.UserModel;
 import loja.Dominio.Util.eAcaoTela;
 
 /**
@@ -30,8 +32,13 @@ public class Cliente extends javax.swing.JFrame {
         initComponents();
         LoadTable();
         acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
     }
 
+    public Cliente(UserModel user) {
+        this.usuSystem = user;
+    }
+    private UserModel usuSystem;
     private int acaoTela;
     private ClienteModel cli;
 
@@ -162,28 +169,26 @@ public class Cliente extends javax.swing.JFrame {
         txtMunicipio.setForeground(new java.awt.Color(255, 255, 255));
         txtMunicipio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        btnPesquisar.setBackground(new java.awt.Color(51, 153, 0));
+        btnPesquisar.setBackground(new java.awt.Color(51, 102, 255));
         btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Procurar");
-        btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPesquisar.setContentAreaFilled(false);
-        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPesquisar.setOpaque(true);
+        btnPesquisar.setBorder(null);
+        btnPesquisar.setBorderPainted(false);
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
             }
         });
 
-        btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
+        btnSalvar.setBackground(new java.awt.Color(61, 189, 61));
         btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
-        btnSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvar.setContentAreaFilled(false);
-        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvar.setOpaque(true);
+        btnSalvar.setBorder(null);
+        btnSalvar.setBorderPainted(false);
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -232,14 +237,13 @@ public class Cliente extends javax.swing.JFrame {
         lblCtrlCliente.setForeground(new java.awt.Color(255, 255, 255));
         lblCtrlCliente.setText("Controle de Clientes");
 
-        btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
+        btnCancelar.setBackground(new java.awt.Color(255, 153, 0));
         btnCancelar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
-        btnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCancelar.setOpaque(true);
+        btnCancelar.setBorder(null);
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -253,6 +257,12 @@ public class Cliente extends javax.swing.JFrame {
             .addGroup(jpnBgLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblCtrlCliente)
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addComponent(rbtEmpresa)
@@ -282,6 +292,7 @@ public class Cliente extends javax.swing.JFrame {
                         .addComponent(rbtMasc)
                         .addGap(7, 7, 7)
                         .addComponent(rbtFem))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
@@ -289,14 +300,8 @@ public class Cliente extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,8 +346,8 @@ public class Cliente extends javax.swing.JFrame {
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -356,104 +361,68 @@ public class Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtEmpresaActionPerformed
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+    private ClienteModel PreencherCliente(ClienteModel cliente) {
 
-        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
-            acaoTela = eAcaoTela.SALVAR.getValor();
+        if (cliente == null) {
+            cliente = new ClienteModel();
         }
-        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
-            acaoTela = eAcaoTela.SALVAR.getValor();
-        }
-
-        ClienteController cliController = new ClienteController();
-
-        ClienteModel cliente = new ClienteModel();
-
-        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
-            cliente = cli;
-        }
-
-        PreencherCliente(cli);
-
-        switch (eAcaoTela.EDITAR.getValor()) {
-            case 1:
-                cliController.save(cliente);
-                break;
-            case 2:
-                cliController.save(cliente);
-                break;
-            case 5:
-                cliController.update(cliente);
-                break;
-            case 6:
-                cliController.delete(cliente);
-                break;
-        }
-
-        LimparCampos();
-        LoadTable();
-
-
-    }//GEN-LAST:event_btnSalvarActionPerformed
-
-    private void PreencherCliente(ClienteModel cli) {
 
         try {
-            if (cli.validString(txtNome.getText())) {
-                cli.setNome(txtNome.getText());
+            if (cliente.validString(txtNome.getText())) {
+                cliente.setNome(txtNome.getText());
             }
 
-            if (cli.validString(txtEmail.getText())) {
-                cli.setEmail(txtEmail.getText());
+            if (cliente.validString(txtEmail.getText())) {
+                cliente.setEmail(txtEmail.getText());
             }
 
-            if (cli.validString(txtCPFCNPJ.getText())) {
-                cli.setCpfCnpj(txtCPFCNPJ.getText());
+            if (cliente.validString(txtCPFCNPJ.getText())) {
+                cliente.setCpfCnpj(txtCPFCNPJ.getText());
             }
 
-            if (cli.validString(txtTel.getText())) {
-                cli.setTelefone(txtTel.getText());
+            if (cliente.validString(txtTel.getText())) {
+                cliente.setTelefone(txtTel.getText());
             }
-            if (cli.validString(txtCel.getText())) {
-                cli.setCelular(txtCel.getText());
+            if (cliente.validString(txtCel.getText())) {
+                cliente.setCelular(txtCel.getText());
             }
             if (rbtFem.isSelected()) {
-                cli.setSexo("Feminino");
+                cliente.setSexo("Feminino");
             }
             if (rbtMasc.isSelected()) {
-                cli.setSexo("Masculino");
+                cliente.setSexo("Masculino");
             }
-            if (cli.validString(txtEndereco.getText())) {
-                cli.setEndereco(txtEndereco.getText());
+            if (cliente.validString(txtEndereco.getText())) {
+                cliente.setEndereco(txtEndereco.getText());
             }
-            if (cli.validString(txtCEP.getText())) {
-                cli.setCEP(txtCEP.getText());
+            if (cliente.validString(txtCEP.getText())) {
+                cliente.setCEP(txtCEP.getText());
             }
-            if (cli.validString(txtEstado.getText())) {
-                cli.setEstado(txtEstado.getText());
+            if (cliente.validString(txtEstado.getText())) {
+                cliente.setEstado(txtEstado.getText());
             }
-            if (cli.validString(txtMunicipio.getText())) {
-                cli.setMunicipio(txtMunicipio.getText());
+            if (cliente.validString(txtMunicipio.getText())) {
+                cliente.setMunicipio(txtMunicipio.getText());
             }
-            if (cli.validString(txtDtNasc.getText())) {
+            if (cliente.validString(txtDtNasc.getText())) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                cli.setDtNasc(formatter1.parse(txtDtNasc.getText().replace("/", "-")));
+                cliente.setDtNasc(formatter1.parse(txtDtNasc.getText().replace("/", "-")));
             }
             if (rbtEmpresa.isSelected()) {
-                cli.setTipoCliente(1);
+                cliente.setTipoCliente(1);
 
-                if (cli.validString(txtNomeFan.getText())) {
-                    cli.setNomeFantasia(txtNomeFan.getText());
+                if (cliente.validString(txtNomeFan.getText())) {
+                    cliente.setNomeFantasia(txtNomeFan.getText());
                 }
 
-                if (cli.validString(txtEM.getText())) {
-                    cli.setEM(txtEM.getText());
+                if (cliente.validString(txtEM.getText())) {
+                    cliente.setEM(txtEM.getText());
                 }
-                if (cli.validString(txtIM.getText())) {
-                    cli.setIM(txtIM.getText());
+                if (cliente.validString(txtIM.getText())) {
+                    cliente.setIM(txtIM.getText());
                 }
-                if (cli.validString(txtContResp.getText())) {
-                    cli.setContatoResposavel(txtContResp.getText());
+                if (cliente.validString(txtContResp.getText())) {
+                    cliente.setContatoResposavel(txtContResp.getText());
                 }
             }
         } catch (PropertiesValidator ex) {
@@ -461,9 +430,41 @@ public class Cliente extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        return cliente;
     }
 
+    private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
+        if (tblClientes.getSelectedRow() >= 0) {
+
+            acaoTela = eAcaoTela.EDITAR.getValor();
+            GerenciarBotoes();
+            int id = Integer.parseInt(tblClientes.getModel().getValueAt(tblClientes.getSelectedRow(), 0).toString());
+
+            CarregarCampos(id);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
+        }
+    }//GEN-LAST:event_tblClientesMouseClicked
+
+    private void ckbExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbExcluirMouseClicked
+        if (ckbExcluir.isSelected()) {
+            acaoTela = eAcaoTela.EXCLUIR.getValor();
+        } else {
+            acaoTela = eAcaoTela.EDITAR.getValor();
+        }
+    }//GEN-LAST:event_ckbExcluirMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        LimparCampos();
+        acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+
+        GerenciarBotoes();
 
         ClienteController cliController = new ClienteController();
         ClienteModel cliente = new ClienteModel();
@@ -537,33 +538,57 @@ public class Cliente extends javax.swing.JFrame {
         LoadTableFilter(clientes);
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
-        if (tblClientes.getSelectedRow() >= 0) {
-            //HabilitarFormulario();
-
-            acaoTela = eAcaoTela.EDITAR.getValor();
-
-            int id = Integer.parseInt(tblClientes.getModel().getValueAt(tblClientes.getSelectedRow(), 0).toString());
-
-            CarregarCampos(id);
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        GerenciarBotoes();
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
         }
-    }//GEN-LAST:event_tblClientesMouseClicked
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        ClienteController cliController = new ClienteController();
+
+        ClienteModel cliente = new ClienteModel();
+
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            cliente = cli;
+        }
+
+        cliente = PreencherCliente(cliente);
+
+        boolean result = false;
+
+        switch (acaoTela) {
+            case 1:
+                result = cliController.save(cliente);
+                break;
+            case 5:
+                result = cliController.update(cliente);
+                break;
+            case 6:
+                Date dt = new Date();
+                
+                cliente.setDtDel(dt);
+                
+                if (this.usuSystem == null) {
+                    cliente.setUsuDel(1);
+                } else {
+                    cliente.setUsuInclus(this.usuSystem.getId());
+                }
+                
+                result = cliController.finishValidity(cliente);
+                break;
+        }
+
+        if (result) {
+
+        }
+
         LimparCampos();
-        acaoTela = eAcaoTela.VISUALIZAR.getValor();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+        LoadTable();
 
-    private void ckbExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbExcluirMouseClicked
-        if (ckbExcluir.isSelected()) {
-            acaoTela = eAcaoTela.EXCLUIR.getValor();
-        } else {
-            acaoTela = eAcaoTela.EDITAR.getValor();
-        }
-    }//GEN-LAST:event_ckbExcluirMouseClicked
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void LimparCampos() {
         txtNome.setText("");
@@ -651,6 +676,36 @@ public class Cliente extends javax.swing.JFrame {
         for (ClienteModel cli : clientes) {
             tmClientes.addRow(new String[]{String.valueOf(cli.getId()),
                 cli.getNome(), cli.getNomeFantasia(), String.valueOf(cli.getTipoCliente()), cli.getCpfCnpj(), cli.getEmail(), cli.getCelular(), cli.getEndereco(), "Ativo"});
+        }
+
+    }
+
+    private void GerenciarBotoes() {
+        switch (acaoTela) {
+            case 1:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 2:
+                btnSalvar.setEnabled(true);
+                btnPesquisar.setEnabled(true);
+                break;
+            case 3:
+                btnPesquisar.setEnabled(true);
+                btnSalvar.setEnabled(false);
+                break;
+            case 4:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(false);
+                break;
+            case 5:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 6:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
         }
 
     }

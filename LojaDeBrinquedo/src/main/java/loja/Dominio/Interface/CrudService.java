@@ -14,7 +14,7 @@ public interface CrudService<T> {
 
     List<T> findAll(T entity);
 
-    T save(T entity);
+    boolean save(T entity);
 
     void delete(int id);
 

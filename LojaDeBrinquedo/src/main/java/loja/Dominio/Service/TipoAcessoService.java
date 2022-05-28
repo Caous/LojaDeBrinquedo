@@ -64,7 +64,7 @@ public class TipoAcessoService implements CrudService<TipoAcessoModel> {
     }
 
     @Override
-    public TipoAcessoModel save(TipoAcessoModel entity) {
+    public boolean save(TipoAcessoModel entity) {
 
         try {
 
@@ -86,9 +86,9 @@ public class TipoAcessoService implements CrudService<TipoAcessoModel> {
             Logger.getLogger(TipoAcessoService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-        return entity;
+        return true;
     }
 
     @Override
@@ -164,16 +164,16 @@ public class TipoAcessoService implements CrudService<TipoAcessoModel> {
 
     @Override
     public boolean finishValidity(TipoAcessoModel entity) {
-         try {
+        try {
 
             String sql = "update tb_acesso set usu_exclusao = ?, dt_exclusao = ?"
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            ps.setInt(1, entity.getUsuDel());            
+            ps.setInt(1, entity.getUsuDel());
             java.sql.Date dtDel = new java.sql.Date(entity.getDtDel().getTime());
-            ps.setDate(2,dtDel);
+            ps.setDate(2, dtDel);
             ps.setInt(3, entity.getId());
 
             ps.execute();

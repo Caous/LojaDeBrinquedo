@@ -60,16 +60,16 @@ public class ClienteController {
         return clientes;
     }
 
-    public static void save(ClienteModel cliModel) {
+    public static boolean save(ClienteModel cliModel) {
         try {
             ClienteService cli = new ClienteService();
-            cli.save(cliModel);
+            return cli.save(cliModel);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return false;
     }
 
     public static boolean UsuarioExite(ClienteModel userDto) {
@@ -83,6 +83,21 @@ public class ClienteController {
         try {
             ClienteService cli = new ClienteService();
             cli.update(user);
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
+    public static boolean finishValidity(ClienteModel cli) {
+        try {
+            ClienteService cliserive = new ClienteService();
+            cliserive.finishValidity(cli);
+            return true;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

@@ -73,7 +73,7 @@ public class ProdutoService implements CrudService<ProdutoModel> {
     }
 
     @Override
-    public ProdutoModel save(ProdutoModel entity) {
+    public boolean save(ProdutoModel entity) {
 
         try {
 
@@ -105,9 +105,9 @@ public class ProdutoService implements CrudService<ProdutoModel> {
             Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-        return entity;
+        return true;
     }
 
     @Override
@@ -206,14 +206,14 @@ public class ProdutoService implements CrudService<ProdutoModel> {
 
     @Override
     public boolean finishValidity(ProdutoModel entity) {
-         try {
+        try {
 
             String sql = "update tb_produto set tb_produto usu_exclusao = ?, dt_exclusao = ?"
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            ps.setInt(1, entity.getUsuDel());           
+            ps.setInt(1, entity.getUsuDel());
             java.sql.Date dtDel = new java.sql.Date(entity.getDtDel().getTime());
             ps.setDate(2, dtDel);
             ps.setInt(3, entity.getId());

@@ -30,7 +30,7 @@ public class PerfilService implements CrudService<PerfilModel> {
 
     @Override
     public List<PerfilModel> findAll(PerfilModel entity) {
-        
+
         List<PerfilModel> perfis = new ArrayList<PerfilModel>();
 
         try {
@@ -64,8 +64,8 @@ public class PerfilService implements CrudService<PerfilModel> {
     }
 
     @Override
-    public PerfilModel save(PerfilModel entity) {
-        
+    public boolean save(PerfilModel entity) {
+
         try {
 
             String sql = "INSERT INTO tb_perfil (nome, descricao, usu_inclusao, dt_inclusao)"
@@ -86,9 +86,9 @@ public class PerfilService implements CrudService<PerfilModel> {
             Logger.getLogger(PerfilService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-        return entity;
+        return true;
     }
 
     @Override
@@ -137,19 +137,19 @@ public class PerfilService implements CrudService<PerfilModel> {
 
     @Override
     public boolean update(PerfilModel entity) {
-         try {
+        try {
 
             String sql = "update tb_perfil set nome = ?, descricao = ?, usu_inclusao = ?, dt_inclusao = ?"
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-             ps.setString(1, entity.getPerfil());
+            ps.setString(1, entity.getPerfil());
             ps.setString(2, entity.getDescPerfil());
             ps.setInt(3, entity.getUsuInclus());
             java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
             ps.setDate(4, dtCad);
-            
+
             ps.execute();
 
             ps.close();
@@ -165,7 +165,7 @@ public class PerfilService implements CrudService<PerfilModel> {
 
     @Override
     public boolean finishValidity(PerfilModel entity) {
-         try {
+        try {
 
             String sql = "update tb_perfil set usu_exclusao = ?, dt_exclusao = ?"
                     + "  where id = ?";
@@ -174,9 +174,9 @@ public class PerfilService implements CrudService<PerfilModel> {
 
             ps.setInt(1, entity.getUsuDel());
             java.sql.Date dtExclu = new java.sql.Date(entity.getDtCad().getTime());
-            ps.setDate(2, dtExclu);            
+            ps.setDate(2, dtExclu);
             ps.setInt(3, entity.getId());
-            
+
             ps.execute();
 
             ps.close();

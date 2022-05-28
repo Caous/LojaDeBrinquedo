@@ -35,19 +35,6 @@ public class Vendas extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         tblPane = new javax.swing.JTabbedPane();
-        jpnProduto = new javax.swing.JPanel();
-        txtValorProduto = new javax.swing.JTextField();
-        txtPorcentagem = new javax.swing.JTextField();
-        txtQtd = new javax.swing.JTextField();
-        txtNomeProduto = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        lblProdutos = new javax.swing.JLabel();
-        btnPesquisar = new javax.swing.JButton();
-        btnInserirProdutos = new javax.swing.JButton();
-        txtCategoria = new javax.swing.JTextField();
-        txtMarca = new javax.swing.JTextField();
-        txtFornecedor1 = new javax.swing.JTextField();
         jpnCliente = new javax.swing.JPanel();
         lblCliente = new javax.swing.JLabel();
         rbtEmpresa = new javax.swing.JRadioButton();
@@ -72,6 +59,19 @@ public class Vendas extends javax.swing.JFrame {
         btnCliente = new javax.swing.JButton();
         txtEmail = new javax.swing.JTextField();
         btnSalvar3 = new javax.swing.JButton();
+        jpnProduto = new javax.swing.JPanel();
+        txtValorProduto = new javax.swing.JTextField();
+        txtPorcentagem = new javax.swing.JTextField();
+        txtQtd = new javax.swing.JTextField();
+        txtNomeProduto = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        lblProdutos = new javax.swing.JLabel();
+        btnPesquisar = new javax.swing.JButton();
+        btnInserirProdutos = new javax.swing.JButton();
+        txtCategoria = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
+        txtFornecedor1 = new javax.swing.JTextField();
         jpnPagamento = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -100,299 +100,123 @@ public class Vendas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tblPane.setBackground(new java.awt.Color(79, 109, 234));
+        tblPane.setBackground(new java.awt.Color(0, 0, 102));
+        tblPane.setForeground(new java.awt.Color(255, 255, 255));
+        tblPane.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
 
-        jpnProduto.setBackground(new java.awt.Color(79, 109, 234));
+        jpnCliente.setBackground(new java.awt.Color(241, 247, 249));
 
-        txtValorProduto.setBackground(new java.awt.Color(79, 109, 234));
-        txtValorProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtValorProduto.setForeground(new java.awt.Color(255, 255, 255));
-        txtValorProduto.setText("00,00");
-        txtValorProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "R$", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txtPorcentagem.setBackground(new java.awt.Color(79, 109, 234));
-        txtPorcentagem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtPorcentagem.setForeground(new java.awt.Color(255, 255, 255));
-        txtPorcentagem.setText("5");
-        txtPorcentagem.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Porcentagem", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txtQtd.setBackground(new java.awt.Color(79, 109, 234));
-        txtQtd.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtQtd.setForeground(new java.awt.Color(255, 255, 255));
-        txtQtd.setText("0");
-        txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txtNomeProduto.setBackground(new java.awt.Color(79, 109, 234));
-        txtNomeProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNomeProduto.setForeground(new java.awt.Color(255, 255, 255));
-        txtNomeProduto.setText("Administrador");
-        txtNomeProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        jTable1.setBackground(new java.awt.Color(64, 87, 184));
-        jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Bola de futebol", "10", "69,90", "Nike", "Nike", "5"},
-                {"Boneca", "5", "120,00", "Barbie", "Happy", "0"},
-                {"Nerf", "2", "50,00", "Nerf", "Disneylandia", "2"}
-            },
-            new String [] {
-                "Nome", "Qtd", "Valor", "Marca", "Fornecedor", "Desconto"
-            }
-        ));
-        jTable1.setGridColor(new java.awt.Color(64, 87, 184));
-        jTable1.setSelectionForeground(new java.awt.Color(64, 87, 184));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
-
-        lblProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblProdutos.setForeground(new java.awt.Color(255, 255, 255));
-        lblProdutos.setText("Produtos");
-
-        btnPesquisar.setBackground(new java.awt.Color(64, 87, 184));
-        btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
-        btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPesquisar.setContentAreaFilled(false);
-
-        btnInserirProdutos.setBackground(new java.awt.Color(64, 87, 184));
-        btnInserirProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnInserirProdutos.setForeground(new java.awt.Color(255, 255, 255));
-        btnInserirProdutos.setText("Inserir");
-        btnInserirProdutos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnInserirProdutos.setContentAreaFilled(false);
-        btnInserirProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInserirProdutosActionPerformed(evt);
-            }
-        });
-
-        txtCategoria.setBackground(new java.awt.Color(79, 109, 234));
-        txtCategoria.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        txtCategoria.setText("Futebol");
-        txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txtMarca.setBackground(new java.awt.Color(79, 109, 234));
-        txtMarca.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtMarca.setForeground(new java.awt.Color(255, 255, 255));
-        txtMarca.setText("Nike");
-        txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txtFornecedor1.setBackground(new java.awt.Color(79, 109, 234));
-        txtFornecedor1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtFornecedor1.setForeground(new java.awt.Color(255, 255, 255));
-        txtFornecedor1.setText("Nike");
-        txtFornecedor1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        javax.swing.GroupLayout jpnProdutoLayout = new javax.swing.GroupLayout(jpnProduto);
-        jpnProduto.setLayout(jpnProdutoLayout);
-        jpnProdutoLayout.setHorizontalGroup(
-            jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnProdutoLayout.createSequentialGroup()
-                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnProdutoLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1009, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jpnProdutoLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(btnInserirProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jpnProdutoLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpnProdutoLayout.createSequentialGroup()
-                                .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpnProdutoLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(lblProdutos))
-                            .addGroup(jpnProdutoLayout.createSequentialGroup()
-                                .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(107, Short.MAX_VALUE))
-        );
-        jpnProdutoLayout.setVerticalGroup(
-            jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnProdutoLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lblProdutos)
-                .addGap(18, 18, 18)
-                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInserirProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
-
-        tblPane.addTab("Produtos", new javax.swing.ImageIcon(getClass().getResource("/Presentation/produtos.png")), jpnProduto); // NOI18N
-
-        jpnCliente.setBackground(new java.awt.Color(79, 109, 234));
-
-        lblCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lblCliente.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblCliente.setText("Controle de clientes");
 
-        rbtEmpresa.setBackground(new java.awt.Color(79, 109, 234));
+        rbtEmpresa.setBackground(new java.awt.Color(241, 247, 249));
         rbtEmpresa.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        rbtEmpresa.setForeground(new java.awt.Color(255, 255, 255));
         rbtEmpresa.setText("Empresa");
 
-        txtCPF.setBackground(new java.awt.Color(79, 109, 234));
-        txtCPF.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCPF.setForeground(new java.awt.Color(255, 255, 255));
+        txtCPF.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         txtCPF.setText("000.000.00-00");
-        txtCPF.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255)), "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtCPF.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255)), "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
 
-        txtNomeFantasia.setBackground(new java.awt.Color(79, 109, 234));
         txtNomeFantasia.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNomeFantasia.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeFantasia.setText("Senac Santo Maro");
-        txtNomeFantasia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtNomeFantasia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtContResp.setBackground(new java.awt.Color(79, 109, 234));
-        txtContResp.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtContResp.setForeground(new java.awt.Color(255, 255, 255));
-        txtContResp.setText("01/01/1999");
-        txtContResp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cont. Responsável", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtContResp.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
+        txtContResp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cont. Responsável", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtCel.setBackground(new java.awt.Color(79, 109, 234));
         txtCel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCel.setForeground(new java.awt.Color(255, 255, 255));
         txtCel.setText("000.000.000-00");
-        txtCel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtCel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtTelefone.setBackground(new java.awt.Color(79, 109, 234));
-        txtTelefone.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtTelefone.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
         txtTelefone.setForeground(new java.awt.Color(255, 255, 255));
         txtTelefone.setText("000.000.000-00");
-        txtTelefone.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtTelefone.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtIE.setBackground(new java.awt.Color(79, 109, 234));
         txtIE.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtIE.setForeground(new java.awt.Color(255, 255, 255));
         txtIE.setText("000.000.000-00");
         txtIE.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        txtIM.setBackground(new java.awt.Color(79, 109, 234));
         txtIM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtIM.setForeground(new java.awt.Color(255, 255, 255));
         txtIM.setText("000.000.000-00");
-        txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtDtNascimento.setBackground(new java.awt.Color(79, 109, 234));
         txtDtNascimento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtDtNascimento.setForeground(new java.awt.Color(255, 255, 255));
         txtDtNascimento.setText("000.000.000-00");
-        txtDtNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtDtNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        rbtMasculino.setBackground(new java.awt.Color(79, 109, 234));
-        rbtMasculino.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        rbtMasculino.setForeground(new java.awt.Color(255, 255, 255));
+        rbtMasculino.setBackground(new java.awt.Color(241, 247, 249));
+        rbtMasculino.setFont(new java.awt.Font("Rubik Light", 3, 14)); // NOI18N
         rbtMasculino.setText("Masculino");
 
-        rbtFeminino.setBackground(new java.awt.Color(79, 109, 234));
+        rbtFeminino.setBackground(new java.awt.Color(241, 247, 249));
         rbtFeminino.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        rbtFeminino.setForeground(new java.awt.Color(255, 255, 255));
         rbtFeminino.setText("Feminino");
 
-        txtCEP.setBackground(new java.awt.Color(79, 109, 234));
         txtCEP.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCEP.setForeground(new java.awt.Color(255, 255, 255));
         txtCEP.setText("000.000.000-00");
-        txtCEP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtCEP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtEndereco.setBackground(new java.awt.Color(79, 109, 234));
         txtEndereco.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEndereco.setForeground(new java.awt.Color(255, 255, 255));
         txtEndereco.setText("000.000.000-00");
-        txtEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtEstado.setBackground(new java.awt.Color(79, 109, 234));
         txtEstado.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEstado.setForeground(new java.awt.Color(255, 255, 255));
         txtEstado.setText("000.000.000-00");
-        txtEstado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtEstado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtMunicipio.setBackground(new java.awt.Color(79, 109, 234));
         txtMunicipio.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtMunicipio.setForeground(new java.awt.Color(255, 255, 255));
         txtMunicipio.setText("000.000.000-00");
-        txtMunicipio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtMunicipio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        lblPossuiCad.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblPossuiCad.setForeground(new java.awt.Color(255, 255, 255));
-        lblPossuiCad.setText("Posuí Cadastro");
+        lblPossuiCad.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        lblPossuiCad.setText("Posuí Cadastro ?");
 
-        ckbSim.setBackground(new java.awt.Color(79, 109, 234));
-        ckbSim.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        ckbSim.setForeground(new java.awt.Color(255, 255, 255));
+        ckbSim.setBackground(new java.awt.Color(241, 247, 249));
+        ckbSim.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
+        ckbSim.setForeground(new java.awt.Color(0, 255, 0));
         ckbSim.setText("Sim");
 
-        ckbNao.setBackground(new java.awt.Color(79, 109, 234));
-        ckbNao.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        ckbNao.setForeground(new java.awt.Color(255, 255, 255));
+        ckbNao.setBackground(new java.awt.Color(241, 247, 249));
+        ckbNao.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
+        ckbNao.setForeground(new java.awt.Color(204, 0, 0));
         ckbNao.setText("Não");
 
-        txtNome1.setBackground(new java.awt.Color(79, 109, 234));
         txtNome1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNome1.setForeground(new java.awt.Color(255, 255, 255));
-        txtNome1.setText("Senac");
-        txtNome1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtNome1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        btnCliente.setBackground(new java.awt.Color(64, 87, 184));
-        btnCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCliente.setBackground(new java.awt.Color(51, 204, 0));
+        btnCliente.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         btnCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnCliente.setText("Continuar");
         btnCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCliente.setContentAreaFilled(false);
         btnCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCliente.setOpaque(true);
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClienteActionPerformed(evt);
             }
         });
 
-        txtEmail.setBackground(new java.awt.Color(79, 109, 234));
         txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setText("administrador@email.com");
-        txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        btnSalvar3.setBackground(new java.awt.Color(51, 153, 0));
-        btnSalvar3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvar3.setBackground(new java.awt.Color(51, 102, 255));
+        btnSalvar3.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnSalvar3.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar3.setText("Pesquisar");
         btnSalvar3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvar3.setContentAreaFilled(false);
         btnSalvar3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvar3.setOpaque(true);
 
         javax.swing.GroupLayout jpnClienteLayout = new javax.swing.GroupLayout(jpnCliente);
         jpnCliente.setLayout(jpnClienteLayout);
@@ -409,9 +233,6 @@ public class Vendas extends javax.swing.JFrame {
                                 .addComponent(ckbNao))
                             .addComponent(lblPossuiCad)
                             .addComponent(rbtEmpresa)
-                            .addGroup(jpnClienteLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCliente))
                             .addGroup(jpnClienteLayout.createSequentialGroup()
                                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -432,37 +253,43 @@ public class Vendas extends javax.swing.JFrame {
                                 .addComponent(txtNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtContResp, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(234, 234, 234)
                                 .addComponent(txtCel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpnClienteLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpnClienteLayout.createSequentialGroup()
                                 .addComponent(txtDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbtMasculino)
-                                .addGap(119, 119, 119)
                                 .addGroup(jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbtFeminino)
                                     .addGroup(jpnClienteLayout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
+                                        .addGap(236, 236, 236)
                                         .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jpnClienteLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(238, Short.MAX_VALUE))
+                                        .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpnClienteLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbtFeminino)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbtMasculino))
+                                    .addGroup(jpnClienteLayout.createSequentialGroup()
+                                        .addGap(234, 234, 234)
+                                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jpnClienteLayout.createSequentialGroup()
+                        .addGap(372, 372, 372)
+                        .addComponent(lblCliente))
+                    .addGroup(jpnClienteLayout.createSequentialGroup()
+                        .addGap(353, 353, 353)
+                        .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         jpnClienteLayout.setVerticalGroup(
             jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnClienteLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(23, 23, 23)
                 .addComponent(lblCliente)
-                .addGap(27, 27, 27)
+                .addGap(28, 28, 28)
                 .addComponent(lblPossuiCad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -492,8 +319,8 @@ public class Vendas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rbtMasculino)
-                        .addComponent(rbtFeminino))
+                        .addComponent(rbtFeminino)
+                        .addComponent(rbtMasculino))
                     .addComponent(txtDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jpnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -501,18 +328,145 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         tblPane.addTab("Cliente", jpnCliente);
 
-        jpnPagamento.setBackground(new java.awt.Color(79, 109, 234));
+        jpnProduto.setBackground(new java.awt.Color(241, 247, 249));
 
-        jTable2.setBackground(new java.awt.Color(64, 87, 184));
+        txtValorProduto.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        txtValorProduto.setForeground(new java.awt.Color(255, 255, 255));
+        txtValorProduto.setText("00,00");
+        txtValorProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "R$", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        txtPorcentagem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtPorcentagem.setForeground(new java.awt.Color(255, 255, 255));
+        txtPorcentagem.setText("5");
+        txtPorcentagem.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Porcentagem", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        txtQtd.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        txtQtd.setForeground(new java.awt.Color(255, 255, 255));
+        txtQtd.setText("0");
+        txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        txtNomeProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtNomeProduto.setForeground(new java.awt.Color(255, 255, 255));
+        txtNomeProduto.setText("Administrador");
+        txtNomeProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        jTable1.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Bola de futebol", "10", "69,90", "Nike", "Nike", "5"},
+                {"Boneca", "5", "120,00", "Barbie", "Happy", "0"},
+                {"Nerf", "2", "50,00", "Nerf", "Disneylandia", "2"}
+            },
+            new String [] {
+                "Nome", "Qtd", "Valor", "Marca", "Fornecedor", "Desconto"
+            }
+        ));
+        jTable1.setGridColor(new java.awt.Color(64, 87, 184));
+        jTable1.setSelectionForeground(new java.awt.Color(64, 87, 184));
+        jTable1.setShowGrid(true);
+        jScrollPane1.setViewportView(jTable1);
+
+        lblProdutos.setFont(new java.awt.Font("Arial", 2, 24)); // NOI18N
+        lblProdutos.setText("Produtos");
+
+        btnPesquisar.setBackground(new java.awt.Color(0, 102, 255));
+        btnPesquisar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnInserirProdutos.setBackground(new java.awt.Color(102, 204, 0));
+        btnInserirProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnInserirProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        btnInserirProdutos.setText("Inserir");
+        btnInserirProdutos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnInserirProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirProdutosActionPerformed(evt);
+            }
+        });
+
+        txtCategoria.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
+
+        txtMarca.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        txtFornecedor1.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        txtFornecedor1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        javax.swing.GroupLayout jpnProdutoLayout = new javax.swing.GroupLayout(jpnProduto);
+        jpnProduto.setLayout(jpnProdutoLayout);
+        jpnProdutoLayout.setHorizontalGroup(
+            jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnProdutoLayout.createSequentialGroup()
+                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnProdutoLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpnProdutoLayout.createSequentialGroup()
+                                .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpnProdutoLayout.createSequentialGroup()
+                                .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpnProdutoLayout.createSequentialGroup()
+                                .addGap(282, 282, 282)
+                                .addComponent(lblProdutos))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpnProdutoLayout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(btnInserirProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(488, Short.MAX_VALUE))
+        );
+        jpnProdutoLayout.setVerticalGroup(
+            jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnProdutoLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(lblProdutos)
+                .addGap(27, 27, 27)
+                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(txtFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInserirProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+
+        tblPane.addTab("Produtos", new javax.swing.ImageIcon(getClass().getResource("/Presentation/produtos.png")), jpnProduto); // NOI18N
+
+        jpnPagamento.setBackground(new java.awt.Color(241, 247, 249));
+
         jTable2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTable2.setForeground(new java.awt.Color(255, 255, 255));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Bola de futebol", "10", "69,90", "Nike", "Nike", "5"},
@@ -528,52 +482,42 @@ public class Vendas extends javax.swing.JFrame {
         jTable2.setShowGrid(true);
         jScrollPane2.setViewportView(jTable2);
 
-        txtCPFConf.setBackground(new java.awt.Color(79, 109, 234));
-        txtCPFConf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCPFConf.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         txtCPFConf.setForeground(new java.awt.Color(255, 255, 255));
         txtCPFConf.setText("000.000.00-00");
-        txtCPFConf.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255)), "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtCPFConf.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255)), "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtNomeConf.setBackground(new java.awt.Color(79, 109, 234));
         txtNomeConf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNomeConf.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeConf.setText("Senac");
-        txtNomeConf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtNomeConf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtEndConf.setBackground(new java.awt.Color(79, 109, 234));
-        txtEndConf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEndConf.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
         txtEndConf.setForeground(new java.awt.Color(255, 255, 255));
         txtEndConf.setText("000.000.000-00");
-        txtEndConf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtEndConf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtCepConf.setBackground(new java.awt.Color(79, 109, 234));
         txtCepConf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCepConf.setForeground(new java.awt.Color(255, 255, 255));
         txtCepConf.setText("000.000.000-00");
         txtCepConf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        txtEstadoConf.setBackground(new java.awt.Color(79, 109, 234));
-        txtEstadoConf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEstadoConf.setForeground(new java.awt.Color(255, 255, 255));
+        txtEstadoConf.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
         txtEstadoConf.setText("000.000.000-00");
-        txtEstadoConf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtEstadoConf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtMuni.setBackground(new java.awt.Color(79, 109, 234));
-        txtMuni.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtMuni.setForeground(new java.awt.Color(255, 255, 255));
+        txtMuni.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
         txtMuni.setText("000.000.000-00");
-        txtMuni.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtMuni.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        lblPagamento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblPagamento.setForeground(new java.awt.Color(255, 255, 255));
+        lblPagamento.setFont(new java.awt.Font("Rubik Light", 1, 24)); // NOI18N
         lblPagamento.setText("Pagamento");
 
-        jpnProdVendido.setBackground(new java.awt.Color(64, 87, 184));
+        jpnProdVendido.setBackground(new java.awt.Color(255, 255, 255));
         jpnProdVendido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpnProdVendido.setPreferredSize(new java.awt.Dimension(269, 102));
 
         jLabel8.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Produtos Vendidos");
 
         jLabel9.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
@@ -584,66 +528,61 @@ public class Vendas extends javax.swing.JFrame {
         jpnProdVendido.setLayout(jpnProdVendidoLayout);
         jpnProdVendidoLayout.setHorizontalGroup(
             jpnProdVendidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnProdVendidoLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnProdVendidoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(77, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(72, 72, 72))
+            .addGroup(jpnProdVendidoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jpnProdVendidoLayout.setVerticalGroup(
             jpnProdVendidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnProdVendidoLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jpnTotalVendas.setBackground(new java.awt.Color(64, 87, 184));
+        jpnTotalVendas.setBackground(new java.awt.Color(255, 255, 255));
         jpnTotalVendas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpnTotalVendas.setPreferredSize(new java.awt.Dimension(269, 102));
 
-        jLabel10.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Rubik Light", 3, 14)); // NOI18N
         jLabel10.setText("Total de Vendas");
 
-        jLabel11.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Rubik Light", 2, 18)); // NOI18N
         jLabel11.setText("R$ 0");
 
         javax.swing.GroupLayout jpnTotalVendasLayout = new javax.swing.GroupLayout(jpnTotalVendas);
         jpnTotalVendas.setLayout(jpnTotalVendasLayout);
         jpnTotalVendasLayout.setHorizontalGroup(
             jpnTotalVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTotalVendasLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTotalVendasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(50, 50, 50))
+            .addGroup(jpnTotalVendasLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel10)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jpnTotalVendasLayout.setVerticalGroup(
             jpnTotalVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnTotalVendasLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jpnDescontos.setBackground(new java.awt.Color(64, 87, 184));
+        jpnDescontos.setBackground(new java.awt.Color(255, 255, 255));
         jpnDescontos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpnDescontos.setPreferredSize(new java.awt.Dimension(269, 102));
 
         jLabel12.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Descontos Aplicados");
 
         jLabel13.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
@@ -655,33 +594,28 @@ public class Vendas extends javax.swing.JFrame {
         jpnDescontosLayout.setHorizontalGroup(
             jpnDescontosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnDescontosLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDescontosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addGap(62, 62, 62))
+            .addGroup(jpnDescontosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jpnDescontosLayout.setVerticalGroup(
             jpnDescontosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnDescontosLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        txtDesconto.setBackground(new java.awt.Color(79, 109, 234));
-        txtDesconto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtDesconto.setForeground(new java.awt.Color(255, 255, 255));
+        txtDesconto.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
         txtDesconto.setText("2");
-        txtDesconto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Desconto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtDesconto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Desconto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtTipopagamento.setBackground(new java.awt.Color(79, 109, 234));
-        txtTipopagamento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtTipopagamento.setForeground(new java.awt.Color(255, 255, 255));
+        txtTipopagamento.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
         txtTipopagamento.setText("Cartão de crédito");
         txtTipopagamento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo Pagamento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -690,87 +624,72 @@ public class Vendas extends javax.swing.JFrame {
         btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizar.setText("Finalizar Compra");
         btnFinalizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnFinalizar.setContentAreaFilled(false);
         btnFinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnFinalizar.setOpaque(true);
 
         btnCancelar.setBackground(new java.awt.Color(255, 51, 0));
         btnCancelar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCancelar.setContentAreaFilled(false);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCancelar.setOpaque(true);
 
-        txtEmail1.setBackground(new java.awt.Color(79, 109, 234));
         txtEmail1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEmail1.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail1.setText("administrador@email.com");
-        txtEmail1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtEmail1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
         javax.swing.GroupLayout jpnPagamentoLayout = new javax.swing.GroupLayout(jpnPagamento);
         jpnPagamento.setLayout(jpnPagamentoLayout);
         jpnPagamentoLayout.setHorizontalGroup(
             jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1009, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addContainerGap()
                         .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                        .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtTipopagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                        .addComponent(txtEndConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                                .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                                .addComponent(txtEstadoConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtMuni, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtCepConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(0, 194, Short.MAX_VALUE))
+                                .addComponent(txtNomeConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCPFConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                        .addComponent(txtNomeConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCPFConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(lblPagamento)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(7, 7, 7)))
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTipopagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
+                        .addGap(329, 329, 329)
+                        .addComponent(lblPagamento))
+                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(txtCepConf, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEndConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEstadoConf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMuni, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jpnPagamentoLayout.setVerticalGroup(
             jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPagamento)
-                    .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(16, 16, 16)
+                .addComponent(lblPagamento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCPFConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNomeConf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -785,31 +704,37 @@ public class Vendas extends javax.swing.JFrame {
                 .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTipopagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(28, 28, 28)
+                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpnTotalVendas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpnProdVendido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpnDescontos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         tblPane.addTab("Pagamento", jpnPagamento);
 
-        getContentPane().add(tblPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        tblPane.getAccessibleContext().setAccessibleName("Produtos\n");
+        getContentPane().add(tblPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInserirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirProdutosActionPerformed
-        
-    }//GEN-LAST:event_btnInserirProdutosActionPerformed
-
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClienteActionPerformed
+
+    private void btnInserirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirProdutosActionPerformed
+
+    }//GEN-LAST:event_btnInserirProdutosActionPerformed
 
     /**
      * @param args the command line arguments

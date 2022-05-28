@@ -74,7 +74,7 @@ public class FornecedorService implements CrudService<FornecedorModel> {
     }
 
     @Override
-    public FornecedorModel save(FornecedorModel entity) {
+    public boolean save(FornecedorModel entity) {
 
         try {
 
@@ -114,9 +114,9 @@ public class FornecedorService implements CrudService<FornecedorModel> {
             Logger.getLogger(FornecedorService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-        return entity;
+        return true;
     }
 
     @Override

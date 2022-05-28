@@ -118,7 +118,7 @@ public class ClienteService implements CrudService<ClienteModel> {
     }
 
     @Override
-    public ClienteModel save(ClienteModel entity) {
+    public boolean save(ClienteModel entity) {
 
         try {
 
@@ -157,9 +157,9 @@ public class ClienteService implements CrudService<ClienteModel> {
             Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-        return entity;
+        return true;
     }
 
     @Override

@@ -63,7 +63,7 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
     }
 
     @Override
-    public TipoPagamentoModel save(TipoPagamentoModel entity) {
+    public boolean save(TipoPagamentoModel entity) {
 
         try {
 
@@ -84,10 +84,9 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
             Logger.getLogger(TipoPagamentoService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-        return entity;
-
+        return true;
     }
 
     @Override
@@ -132,7 +131,7 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
 
     @Override
     public boolean update(TipoPagamentoModel entity) {
-         try {
+        try {
 
             String sql = "update tb_cliente set tb_pagamento descricao = ? usu_inclusao = ? dt_inclusao = ?"
                     + "  where id = ?";
@@ -141,11 +140,10 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
 
             ps.setString(1, entity.getDescPagamento());
             ps.setInt(2, entity.getUsuInclus());
-             java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
+            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
             ps.setDate(3, dtCad);
             ps.setInt(4, entity.getId());
 
-            
             ps.execute();
 
             ps.close();
@@ -169,11 +167,10 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
             ps.setInt(1, entity.getUsuDel());
-            java.sql.Date dtDel = new java.sql.Date(entity.getDtDel().getTime());            
-            ps.setDate(2, dtDel);             
+            java.sql.Date dtDel = new java.sql.Date(entity.getDtDel().getTime());
+            ps.setDate(2, dtDel);
             ps.setInt(3, entity.getId());
 
-            
             ps.execute();
 
             ps.close();

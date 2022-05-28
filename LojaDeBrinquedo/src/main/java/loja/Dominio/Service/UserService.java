@@ -106,7 +106,7 @@ public class UserService implements CrudService<UserModel> {
     }
 
     @Override
-    public UserModel save(UserModel entity) {
+    public boolean save(UserModel entity) {
 
         try {
 
@@ -135,10 +135,9 @@ public class UserService implements CrudService<UserModel> {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-
-        return entity;
+        return true;
     }
 
     @Override

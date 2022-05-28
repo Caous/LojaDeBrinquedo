@@ -43,7 +43,7 @@ public class VendaService implements CrudService<VendaModel> {
                 VendaModel venda = new VendaModel();
 
                 venda.setId(rs.getInt("id"));
-               // venda.setIdProd(rs.getInt("id_produto"));
+                // venda.setIdProd(rs.getInt("id_produto"));
                 venda.setIdCli(rs.getInt("id_cliente"));
                 venda.setTipoPagamento(rs.getInt("id_tipo_pagamento"));
                 venda.setQtdePrd(rs.getInt("qtd_produto"));
@@ -66,7 +66,7 @@ public class VendaService implements CrudService<VendaModel> {
     }
 
     @Override
-    public VendaModel save(VendaModel entity) {
+    public boolean save(VendaModel entity) {
 
         try {
 
@@ -80,13 +80,12 @@ public class VendaService implements CrudService<VendaModel> {
             ps.setInt(3, entity.getTipoPagamento());
             ps.setInt(4, entity.getQtdePrd());
             //ps.setInt(5, entity.getValorPrd());
-           // ps.setInt(6, entity.getValorTotal());
+            // ps.setInt(6, entity.getValorTotal());
             ps.setInt(7, entity.getValorDesconto());
             ps.setInt(8, entity.getPctDesconto());
             ps.setInt(9, entity.getUsuInclus());
             java.sql.Date dtInclusao = new java.sql.Date(entity.getDtDel().getTime());
             ps.setDate(10, dtInclusao);
-            
 
             ps.execute();
 
@@ -95,9 +94,9 @@ public class VendaService implements CrudService<VendaModel> {
             Logger.getLogger(VendaService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-        return entity;
+        return true;
     }
 
     @Override
@@ -126,7 +125,7 @@ public class VendaService implements CrudService<VendaModel> {
             if (rs.first()) {
 
                 venda.setId(rs.getInt("id"));
-               // venda.setIdProd(rs.getInt("id_produto"));
+                // venda.setIdProd(rs.getInt("id_produto"));
                 venda.setIdCli(rs.getInt("id_cliente"));
                 venda.setTipoPagamento(rs.getInt("id_tipo_pagamento"));
                 venda.setQtdePrd(rs.getInt("qtd_produto"));
@@ -161,7 +160,7 @@ public class VendaService implements CrudService<VendaModel> {
             ps.setInt(3, entity.getTipoPagamento());
             ps.setInt(4, entity.getQtdePrd());
             //ps.setInt(5, entity.getValorPrd());
-           // ps.setInt(6, entity.getValorTotal());
+            // ps.setInt(6, entity.getValorTotal());
             ps.setInt(7, entity.getValorDesconto());
             ps.setInt(8, entity.getPctDesconto());
             ps.setInt(9, entity.getUsuInclus());

@@ -59,7 +59,7 @@ public class MenuService implements CrudService<MenuModel> {
     }
 
     @Override
-    public MenuModel save(MenuModel entity) {
+    public boolean save(MenuModel entity) {
 
         try {
 
@@ -81,15 +81,15 @@ public class MenuService implements CrudService<MenuModel> {
             Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
             String guts = ex.toString();
             System.out.println(ex);
-
+            return false;
         }
-        return entity;
+        return true;
 
     }
 
     @Override
     public void delete(int id) {
-         try {
+        try {
             String sql = "DELETE FROM tb_menu WHERE ID = " + id;
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
@@ -103,7 +103,7 @@ public class MenuService implements CrudService<MenuModel> {
 
     @Override
     public MenuModel findId(int id) {
-     
+
         MenuModel menu = new MenuModel();
         try {
             String sql = "SELECT * from tb_menu where ID = " + id;
@@ -133,7 +133,7 @@ public class MenuService implements CrudService<MenuModel> {
 
     @Override
     public boolean update(MenuModel entity) {
-       
+
         try {
 
             String sql = "UPDATE tb_menu SET WHERE (Id, nome, usu_inclusao, dt_inclusao, usu_exclusao, dt_exclusao)"
