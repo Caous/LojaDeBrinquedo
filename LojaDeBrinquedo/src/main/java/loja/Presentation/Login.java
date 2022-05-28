@@ -38,24 +38,23 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        jpnBg.setBackground(new java.awt.Color(79, 109, 234));
+        jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setPreferredSize(new java.awt.Dimension(1280, 720));
 
+        lblSistema.setBackground(new java.awt.Color(0, 0, 0));
         lblSistema.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        lblSistema.setForeground(new java.awt.Color(255, 255, 255));
         lblSistema.setText("BEM-VINDO AO SISTEMA HAPPY");
         lblSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblUsuPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblUsuPass.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuPass.setText("Entre com o usuário e senha no sistema");
 
-        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogin.setBackground(new java.awt.Color(61, 189, 61));
         btnLogin.setFont(new java.awt.Font("Rubik Light", 1, 12)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogin.setBorderPainted(false);
         btnLogin.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,12 +63,10 @@ public class Login extends javax.swing.JFrame {
         });
 
         lblUsu.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblUsu.setForeground(new java.awt.Color(255, 255, 255));
         lblUsu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsu.setText("E-mail");
 
         lblPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblPass.setForeground(new java.awt.Color(255, 255, 255));
         lblPass.setText("Senha");
 
         txtUsuario.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -103,10 +100,10 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(jpnBgLayout.createSequentialGroup()
                                 .addComponent(lblPass)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpnBgLayout.createSequentialGroup()
-                                .addGap(143, 143, 143)
-                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(488, 488, 488)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(526, Short.MAX_VALUE))
         );
         jpnBgLayout.setVerticalGroup(
@@ -124,9 +121,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPass)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(181, 181, 181))
+                .addGap(18, 18, 18)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(172, 172, 172))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,26 +141,26 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
+
         UserModel login = new UserModel();
         LoginController loginController = new LoginController();
-        
+
         try {
-            
+
             if (login.validString(txtUsuario.getText())) {
                 login.setEmail(txtUsuario.getText());
             }
-            
+
             if (login.validString(txtPass.getText())) {
                 login.setPassword(txtPass.getText());
             }
-            
-            if (loginController.validLogin(login)) {
-                Principal principal = new Principal();
+            login = loginController.validLogin(login);
+            if (login != null) {
+                Principal principal = new Principal(login);
                 principal.setVisible(true);
                 this.dispose();
             }
-            
+
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex.toString(), "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         }

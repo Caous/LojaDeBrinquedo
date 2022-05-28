@@ -24,6 +24,14 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
+    public Principal(UserModel user) {
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.userSystem = user;
+        lblUsuario.setText(user.getNome());
+    }
+    private UserModel userSystem;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +44,6 @@ public class Principal extends javax.swing.JFrame {
         jpnBg = new javax.swing.JPanel();
         jpnMenus = new javax.swing.JPanel();
         lblBemVindo = new java.awt.Label();
-        lblUsuario = new java.awt.Label();
         jpnHome = new javax.swing.JPanel();
         lblHome = new javax.swing.JLabel();
         jpnVenda = new javax.swing.JPanel();
@@ -53,6 +60,7 @@ public class Principal extends javax.swing.JFrame {
         lblConfiguracao = new javax.swing.JLabel();
         jpnUsuario = new javax.swing.JPanel();
         lblUsu = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
         jpnProdVendido = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -65,8 +73,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         lblFiltroData = new javax.swing.JLabel();
-        txtFiltroDataFim = new javax.swing.JTextField();
-        txtFiltroDataIni = new javax.swing.JTextField();
+        dtFiltroInicio = new com.toedter.calendar.JDateChooser();
+        dtFiltroFim = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -77,17 +85,13 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpnBg.setBackground(new java.awt.Color(79, 109, 234));
+        jpnBg.setBackground(new java.awt.Color(201, 232, 242));
 
         jpnMenus.setBackground(new java.awt.Color(64, 87, 184));
 
         lblBemVindo.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
         lblBemVindo.setText("Bem-vindo,");
-
-        lblUsuario.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setText("Usuário");
 
         jpnHome.setBackground(new java.awt.Color(79, 109, 234));
         jpnHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -208,17 +212,14 @@ public class Principal extends javax.swing.JFrame {
         lblUsu.setText("Usuario");
         jpnUsuario.add(lblUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
+        lblUsuario.setFont(new java.awt.Font("Rubik Light", 1, 12)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jpnMenusLayout = new javax.swing.GroupLayout(jpnMenus);
         jpnMenus.setLayout(jpnMenusLayout);
         jpnMenusLayout.setHorizontalGroup(
             jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpnMenusLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jpnVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpnMenusLayout.createSequentialGroup()
                 .addGroup(jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -228,7 +229,13 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jpnRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(jpnConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(jpnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
+            .addGroup(jpnMenusLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsuario))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnMenusLayout.setVerticalGroup(
             jpnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,8 +243,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(lblBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(lblUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jpnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,16 +263,12 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(87, 87, 87))
         );
 
-        jpnProdVendido.setBackground(new java.awt.Color(64, 87, 184));
-        jpnProdVendido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpnProdVendido.setPreferredSize(new java.awt.Dimension(269, 102));
 
         jLabel3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Produtos Vendidos");
 
         jLabel2.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("0");
 
         javax.swing.GroupLayout jpnProdVendidoLayout = new javax.swing.GroupLayout(jpnProdVendido);
@@ -275,7 +278,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpnProdVendidoLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnProdVendidoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -288,19 +291,15 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jpnTotalVendas.setBackground(new java.awt.Color(64, 87, 184));
-        jpnTotalVendas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpnTotalVendas.setPreferredSize(new java.awt.Dimension(269, 102));
 
         jLabel6.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Total de Vendas");
 
         jLabel7.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("R$ 0");
 
         javax.swing.GroupLayout jpnTotalVendasLayout = new javax.swing.GroupLayout(jpnTotalVendas);
@@ -310,7 +309,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpnTotalVendasLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTotalVendasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
@@ -323,19 +322,15 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jpnDescontos.setBackground(new java.awt.Color(64, 87, 184));
-        jpnDescontos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpnDescontos.setPreferredSize(new java.awt.Dimension(269, 102));
 
         jLabel8.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Descontos Aplicados");
 
         jLabel9.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("R$ 0");
 
         javax.swing.GroupLayout jpnDescontosLayout = new javax.swing.GroupLayout(jpnDescontos);
@@ -345,7 +340,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpnDescontosLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDescontosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
@@ -358,7 +353,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jTable1.setBackground(new java.awt.Color(64, 87, 184));
@@ -380,20 +375,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         lblFiltroData.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblFiltroData.setForeground(new java.awt.Color(255, 255, 255));
         lblFiltroData.setText("Filtro por data");
-
-        txtFiltroDataFim.setBackground(new java.awt.Color(64, 87, 184));
-        txtFiltroDataFim.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtFiltroDataFim.setForeground(new java.awt.Color(255, 255, 255));
-        txtFiltroDataFim.setText("18/04/2022");
-        txtFiltroDataFim.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        txtFiltroDataIni.setBackground(new java.awt.Color(64, 87, 184));
-        txtFiltroDataIni.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtFiltroDataIni.setForeground(new java.awt.Color(255, 255, 255));
-        txtFiltroDataIni.setText("01/01/2022");
-        txtFiltroDataIni.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
         jpnBg.setLayout(jpnBgLayout);
@@ -401,24 +383,22 @@ public class Principal extends javax.swing.JFrame {
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnBgLayout.createSequentialGroup()
                 .addComponent(jpnMenus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
-                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
                         .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFiltroData)
-                            .addGroup(jpnBgLayout.createSequentialGroup()
-                                .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpnBgLayout.createSequentialGroup()
-                                .addComponent(txtFiltroDataIni, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFiltroDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 100, Short.MAX_VALUE))
+                            .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jpnProdVendido, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                .addComponent(dtFiltroInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblFiltroData))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jpnTotalVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(dtFiltroFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addGap(0, 110, Short.MAX_VALUE))
         );
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,17 +407,20 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(lblFiltroData)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFiltroDataIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFiltroDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(dtFiltroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -457,25 +440,25 @@ public class Principal extends javax.swing.JFrame {
 
     private void jpnUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnUsuarioMouseClicked
         Usuario usu = new Usuario();
-        
+
         usu.setVisible(true);
     }//GEN-LAST:event_jpnUsuarioMouseClicked
 
     private void jpnRelatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnRelatorioMouseClicked
         Relatorio rel = new Relatorio();
-        
+
         rel.setVisible(true);
     }//GEN-LAST:event_jpnRelatorioMouseClicked
 
     private void jpnFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnFornecedorMouseClicked
         Fornecedor fornece = new Fornecedor();
-        
+
         fornece.setVisible(true);
     }//GEN-LAST:event_jpnFornecedorMouseClicked
 
     private void jpnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnProdutosMouseClicked
         Produto prod = new Produto();
-        
+
         prod.setVisible(true);
     }//GEN-LAST:event_jpnProdutosMouseClicked
 
@@ -484,7 +467,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseClicked
 
     private void jpnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnClientesMouseClicked
-        Cliente cli = new Cliente();
+        Cliente cli = new Cliente(this.userSystem);
         cli.setVisible(true);
     }//GEN-LAST:event_jpnClientesMouseClicked
 
@@ -530,6 +513,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser dtFiltroFim;
+    private com.toedter.calendar.JDateChooser dtFiltroInicio;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -560,9 +545,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblProdutos;
     private javax.swing.JLabel lblRelatorio;
     private javax.swing.JLabel lblUsu;
-    private java.awt.Label lblUsuario;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblVenda;
-    private javax.swing.JTextField txtFiltroDataFim;
-    private javax.swing.JTextField txtFiltroDataIni;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,15 +18,15 @@ public class LoginController {
 
     UserModel _login;
 
-    public boolean validLogin(UserModel login) {
-
+    public UserModel validLogin(UserModel login) {
+        
         try {
             UserService usuService = new UserService();
 
             List<UserModel> usus = usuService.findAll(login);
 
             if (usus != null && !usus.isEmpty() && usus.size() > 0) {
-                return true;
+                return usus.get(0);
             }
 
         } catch (ClassNotFoundException ex) {
@@ -35,6 +35,6 @@ public class LoginController {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return false;
+        return null;
     }
 }
