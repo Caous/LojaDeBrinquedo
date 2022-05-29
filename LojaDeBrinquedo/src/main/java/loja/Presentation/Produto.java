@@ -8,10 +8,15 @@ import java.text.ParseException;
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.ProdutoController;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import loja.Dominio.Model.ProdutoModel;
+import loja.Dominio.Model.UserModel;
 import loja.Dominio.Util.eAcaoTela;
 
 /**
@@ -25,9 +30,20 @@ public class Produto extends javax.swing.JFrame {
      */
     public Produto() {
         initComponents();
+        LoadTable();
         acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
     }
     
+    public Produto(UserModel user){
+        this.usuSystem = user;
+        initComponents();
+        LoadTable();
+        acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
+    }
+    
+    private UserModel usuSystem;
     private int acaoTela;
     private ProdutoModel prodm;
 
@@ -43,7 +59,7 @@ public class Produto extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jpnBg = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProdutos = new javax.swing.JTable();
         txtNome = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
@@ -61,46 +77,44 @@ public class Produto extends javax.swing.JFrame {
         txtDesconto = new javax.swing.JTextField();
         txtFornecedor = new javax.swing.JTextField();
         ckbExcluir = new javax.swing.JCheckBox();
+        btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnBg.setBackground(new java.awt.Color(79, 109, 234));
 
-        jTable1.setBackground(new java.awt.Color(64, 87, 184));
-        jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutos.setBackground(new java.awt.Color(64, 87, 184));
+        tblProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Bola de futebol", "10", "69,90", "Nike", "Nike", "5"},
-                {"Boneca", "5", "120,00", "Barbie", "Happy", "0"},
-                {"Nerf", "2", "50,00", "Nerf", "Disneylandia", "2"}
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nome", "Qtd", "Valor", "Marca", "Fornecedor", "Desconto"
+
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(64, 87, 184));
-        jTable1.setSelectionForeground(new java.awt.Color(64, 87, 184));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblProdutos.setGridColor(new java.awt.Color(64, 87, 184));
+        tblProdutos.setSelectionForeground(new java.awt.Color(64, 87, 184));
+        tblProdutos.setShowGrid(true);
+        jScrollPane1.setViewportView(tblProdutos);
 
         txtNome.setBackground(new java.awt.Color(79, 109, 234));
         txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNome.setForeground(new java.awt.Color(255, 255, 255));
-        txtNome.setText("Bola");
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtCategoria.setBackground(new java.awt.Color(79, 109, 234));
         txtCategoria.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        txtCategoria.setText("Futebol");
         txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtMarca.setBackground(new java.awt.Color(79, 109, 234));
         txtMarca.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtMarca.setForeground(new java.awt.Color(255, 255, 255));
-        txtMarca.setText("Nike");
         txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
@@ -122,25 +136,21 @@ public class Produto extends javax.swing.JFrame {
         txtFot.setBackground(new java.awt.Color(79, 109, 234));
         txtFot.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtFot.setForeground(new java.awt.Color(255, 255, 255));
-        txtFot.setText("N/A");
         txtFot.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Foto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtValidade.setBackground(new java.awt.Color(79, 109, 234));
         txtValidade.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtValidade.setForeground(new java.awt.Color(255, 255, 255));
-        txtValidade.setText("N/A");
         txtValidade.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Validade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtValor.setBackground(new java.awt.Color(79, 109, 234));
         txtValor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtValor.setForeground(new java.awt.Color(255, 255, 255));
-        txtValor.setText("69,90");
         txtValor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "R$", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtAvaliacao.setBackground(new java.awt.Color(79, 109, 234));
         txtAvaliacao.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtAvaliacao.setForeground(new java.awt.Color(255, 255, 255));
-        txtAvaliacao.setText("5");
         txtAvaliacao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avaliação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtaComentario.setBackground(new java.awt.Color(79, 109, 234));
@@ -152,7 +162,6 @@ public class Produto extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Rubik", 1, 14)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
         txtaComentario.setViewportView(jTextArea1);
 
         txtaDescrição.setBackground(new java.awt.Color(79, 109, 234));
@@ -163,31 +172,41 @@ public class Produto extends javax.swing.JFrame {
         jTextArea2.setFont(new java.awt.Font("Rubik", 1, 14)); // NOI18N
         jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea2.setRows(5);
-        jTextArea2.setText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
         txtaDescrição.setViewportView(jTextArea2);
 
         txtQtd.setBackground(new java.awt.Color(79, 109, 234));
         txtQtd.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtQtd.setForeground(new java.awt.Color(255, 255, 255));
-        txtQtd.setText("10");
         txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtDesconto.setBackground(new java.awt.Color(79, 109, 234));
         txtDesconto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtDesconto.setForeground(new java.awt.Color(255, 255, 255));
-        txtDesconto.setText("5");
         txtDesconto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Porcentagem %", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         txtFornecedor.setBackground(new java.awt.Color(79, 109, 234));
         txtFornecedor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtFornecedor.setForeground(new java.awt.Color(255, 255, 255));
-        txtFornecedor.setText("Nike");
         txtFornecedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
         ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
         ckbExcluir.setText("Excluir");
+
+        btnPesquisar.setBackground(new java.awt.Color(51, 153, 0));
+        btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setBorder(null);
+        btnPesquisar.setContentAreaFilled(false);
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPesquisar.setOpaque(true);
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
         jpnBg.setLayout(jpnBgLayout);
@@ -230,7 +249,9 @@ public class Produto extends javax.swing.JFrame {
                         .addComponent(txtaComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -265,8 +286,10 @@ public class Produto extends javax.swing.JFrame {
                     .addComponent(txtaDescrição, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtaComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -276,13 +299,13 @@ public class Produto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
+        GerenciarBotoes();
         if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
         if (acaoTela == eAcaoTela.ABRIR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor(); 
-        
+        }
         
         ProdutoController prodController = new ProdutoController();
 
@@ -292,75 +315,116 @@ public class Produto extends javax.swing.JFrame {
             prod = prodm;
         }
         
-            try {
-                PreencherProduto(prodm);
-            } catch (ParseException ex) {
-                Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        prod = PreencherProduto(prod);
         
+        boolean result = false;
         
-        switch (eAcaoTela.EDITAR.getValor()) {
+        switch (acaoTela) {
             case 1:
-                ProdutoController.save(prod);
-                break;
-            case 2:
-                ProdutoController.save(prod);
+                result = prodController.save(prod);
                 break;
             case 5:
-                ProdutoController.update(prod);
+                result = prodController.update(prod);
                 break;
             case 6:
-                ProdutoController.delete(prod);
+                Date dt = new Date();
+
+                prod.setDtDel(dt);
+
+                if (this.usuSystem == null) {
+                    prod.setUsuDel(1);
+                } else {
+                    prod.setUsuInclus(this.usuSystem.getId());
+                }
+
+                result = prodController.finishValidity(prod);
                 break;
         }
-        
+        if (result) {
+
+        }
+
         LimparCampos();
         LoadTable();
+           
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+
+        GerenciarBotoes();
+
+        ProdutoController prodControll = new ProdutoController();
+        ProdutoModel prod = new ProdutoModel();
 
         try {
             if (prod.validString(txtNome.getText())) {
                 prod.setNomeProduto(txtNome.getText());
             }
+
             if (prod.validString(txtCategoria.getText())) {
                 prod.setCategoria(txtCategoria.getText());
             }
+
             if (prod.validString(txtMarca.getText())) {
                 prod.setMarca(txtMarca.getText());
             }
-            if (prod.validString(txtFornecedor.getText())) {
+            
+            if (prod.validString(txtFornecedor.getText())){
                 prod.setIdFornecedor(Integer.parseInt(txtFornecedor.getText()));
             }
-            if (prod.validString(txtQtd.getText())) {
+            
+            if (prod.validString(txtQtd.getText())){
                 prod.setQtd(Integer.parseInt(txtQtd.getText()));
             }
-            if (prod.validString(txtValor.getText())) {
+            
+            if (prod.validString(txtValor.getText())){
                 prod.setValor(Integer.parseInt(txtValor.getText()));
             }
-            if (prod.validString(txtAvaliacao.getText())) {
+            
+            if (prod.validString(txtAvaliacao.getText())){
                 prod.setAvaliacao(Integer.parseInt(txtAvaliacao.getText()));
             }
+            
+
             if (prod.validString(txtValidade.getText())) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+                prod.setDtValidade(formatter1.parse(txtValidade.getText()));
+            }
+            
+            if (prod.validString(txtDesconto.getText())){
+                prod.setAvaliacao(Integer.parseInt(txtDesconto.getText()));
+            }
+            
+            if (prod.validString(txtFot.getText())) {
+                prod.setFoto(txtFot.getText());
+            }
+            
+            if (prod.validString(jTextArea2.getText())) {
+                prod.setDescricaoProduto(jTextArea2.getText());
+            }
+            
+            if (prod.validString(jTextArea1.getText())) {
+                prod.setComentario(jTextArea1.getText());
+            }
+            
 
-                //prod.setComentario(formatter1.parse(txtValidade.getText()));
-            }
-            if (prod.validString(txtDesconto.getText())) {
-                prod.setPorcentagemDesc(Double.parseDouble(txtDesconto.getText()));
-            }
-
-            if (ckbExcluir.isValid()) {
-                prodController.delete(prod);
-            } else {
-                prodController.save(prod);
-            }
         } catch (PropertiesValidator ex) {
-            Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        } catch (ParseException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnSalvarActionPerformed
 
-}
+        List<ProdutoModel> produtos = ProdutoController.findAll(prod);
+        LoadTableFilter(produtos);
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+
     
-    private void PreencherProduto(ProdutoModel prodm) throws ParseException {
+    private ProdutoModel PreencherProduto(ProdutoModel prodm) {
+        
+        if (prodm == null){
+            prodm = new ProdutoModel();
+        }
         
         try {
             if(prodm.validString(txtNome.getText())){
@@ -413,18 +477,71 @@ public class Produto extends javax.swing.JFrame {
             }
             
         } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        } catch (ParseException ex) {
             Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        return prodm;
     }
 
     private void LimparCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        txtNome.setText("");
+        txtCategoria.setText("");
+        txtMarca.setText("");
+        txtFornecedor.setText("");
+        txtQtd.setText("");
+        txtValor.setText("");
+        txtAvaliacao.setText("");
+        txtValidade.setText("");
+        txtDesconto.setText("");
+        txtFot.setText("");
+        jTextArea2.setText("");
+        jTextArea1.setText("");
+        
+        
     }
 
     private void LoadTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ProdutoController prodController = new ProdutoController();
+        ProdutoModel prodFiltro = new ProdutoModel();
+        List<ProdutoModel> produtos = prodController.findAll(prodFiltro);
+        
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        tmProdutos.addColumn("ID");
+        tmProdutos.addColumn("Nome");
+        tmProdutos.addColumn("Categoria");
+        tmProdutos.addColumn("Marca");
+        tmProdutos.addColumn("Fornecedor");
+        tmProdutos.addColumn("Quantidade");
+        tmProdutos.addColumn("Valor");
+        tmProdutos.addColumn("Avaliação");
+        tmProdutos.addColumn("Validade");
+        tmProdutos.addColumn("Descrição");
+        
+        tblProdutos.setModel(tmProdutos);
+        
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(40);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
+        
+        tmProdutos.setRowCount(0);
+        
+        for(ProdutoModel prodm : produtos){
+            tmProdutos.addRow(new String[] {String.valueOf(prodm.getId()),
+                prodm.getNomeProduto(), prodm.getCategoria(), prodm.getMarca(), String.valueOf(prodm.getIdFornecedor()),
+                String.valueOf(prodm.getQtd()),String.valueOf(prodm.getValor()), String.valueOf(prodm.getAvaliacao()),
+                String.valueOf(prodm.getDtValidade()),prodm.getDescricaoProduto()});
+        }
+        
     }
+    
         
         
     /**
@@ -464,15 +581,16 @@ public class Produto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ckbExcluir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel jpnBg;
     private javax.swing.JLabel lblProduto;
+    private javax.swing.JTable tblProdutos;
     private javax.swing.JTextField txtAvaliacao;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtDesconto;
@@ -486,6 +604,73 @@ public class Produto extends javax.swing.JFrame {
     private javax.swing.JScrollPane txtaComentario;
     private javax.swing.JScrollPane txtaDescrição;
     // End of variables declaration//GEN-END:variables
+
+    private void GerenciarBotoes() {
+        switch (acaoTela) {
+            case 1:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 2:
+                btnSalvar.setEnabled(true);
+                btnPesquisar.setEnabled(true);
+                break;
+            case 3:
+                btnPesquisar.setEnabled(true);
+                btnSalvar.setEnabled(false);
+                break;
+            case 4:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(false);
+                break;
+            case 5:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 6:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+        }
+    }
+
+
+
+    private void LoadTableFilter(List<ProdutoModel> produtos) {
+        
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        
+        tmProdutos.addColumn("ID");
+        tmProdutos.addColumn("Nome");
+        tmProdutos.addColumn("Categoria");
+        tmProdutos.addColumn("Marca");
+        tmProdutos.addColumn("Fornecedor");
+        tmProdutos.addColumn("Quantidade");
+        tmProdutos.addColumn("Valor");
+        tmProdutos.addColumn("Avaliação");
+        tmProdutos.addColumn("Descrição");
+        
+        tblProdutos.setModel(tmProdutos);
+        
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(40);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
+        
+        tmProdutos.setRowCount(0);
+        
+        for(ProdutoModel prod : produtos){
+            tmProdutos.addRow(new String[] {String.valueOf(prod.getId()), prod.getNomeProduto(),
+            prod.getCategoria(), prod.getMarca(), String.valueOf(prod.getIdFornecedor()), String.valueOf(prod.getQtd()),
+            String.valueOf(prod.getValor()), String.valueOf(prod.getAvaliacao()), prod.getDescricaoProduto()});
+        }
+        
+    }
 
 
 }

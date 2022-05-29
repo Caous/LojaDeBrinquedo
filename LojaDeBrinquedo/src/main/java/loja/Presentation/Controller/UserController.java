@@ -46,7 +46,7 @@ public class UserController {
         
         try {
             UserService user = new UserService();
-            user.findAll(entity);
+            users = user.findAll(entity);
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,19 +57,17 @@ public class UserController {
         return users;
     }
 
-    public static void save(UserModel userMod) {
+    public static boolean save(UserModel userMod) {
         
         try {
             UserService user = new UserService();
-            user.save(userMod);
+            return user.save(userMod);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-
+        }      
+        return false;
     }
 
     public static boolean UsuarioExite(UserModel userDto) {
@@ -79,7 +77,29 @@ public class UserController {
         return false;
     }
 
-    public void update(UserModel user) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean update(UserModel user) {
+        try {
+            UserService usu = new UserService();
+            usu.update(user);
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public boolean finishValidity(UserModel user) {
+        try {
+            UserService ususerice = new UserService();
+            ususerice.finishValidity(user);
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

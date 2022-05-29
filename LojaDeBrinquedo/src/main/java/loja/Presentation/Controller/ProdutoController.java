@@ -63,17 +63,18 @@ public class ProdutoController {
         return produtos;
     }
 
-    public static void save(ProdutoModel prodModel) {
+    public static boolean save(ProdutoModel prodModel) {
         
          try {
              ProdutoService prod = new ProdutoService();
-             prod.save(prodModel);
+             return prod.save(prodModel);
              
          } catch (ClassNotFoundException ex) {
              Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
          } catch (SQLException ex) {
              Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
          }
+         return false;
 
     }
     
@@ -89,5 +90,20 @@ public class ProdutoController {
          }
          
         return false;
+    }
+
+    public boolean finishValidity(ProdutoModel prod) {
+        
+         try {
+             ProdutoService prodserice = new ProdutoService();
+             prodserice.finishValidity(prod);
+             return true;
+             
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
+             Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return false;
     }
 }

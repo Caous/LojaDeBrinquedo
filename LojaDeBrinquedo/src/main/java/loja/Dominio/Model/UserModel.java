@@ -108,6 +108,7 @@ public class UserModel implements IPropertiesValidator<UserModel> {
     }
 
     public Date getDtCad() {
+        DtCad = new Date();
         return this.DtCad;
     }
 
@@ -118,6 +119,7 @@ public class UserModel implements IPropertiesValidator<UserModel> {
     }
 
     public Date getDtDel() {
+        DtDel = new Date();
         return this.DtDel;
     }
 

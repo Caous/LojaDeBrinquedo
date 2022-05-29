@@ -8,6 +8,7 @@ import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.UserController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +32,18 @@ public class Usuario extends javax.swing.JFrame {
         initComponents();
         LoadTable();
         acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
     }
     
+    public Usuario(UserModel user){
+        this.usuSystem = user;
+        initComponents();
+        LoadTable();
+        acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
+    }
+    
+    private UserModel usuSystem;
     private int acaoTela;
     private UserModel userm;
 
@@ -86,6 +97,11 @@ public class Usuario extends javax.swing.JFrame {
         tblUsuarios.setGridColor(new java.awt.Color(64, 87, 184));
         tblUsuarios.setSelectionForeground(new java.awt.Color(79, 109, 234));
         tblUsuarios.setShowGrid(true);
+        tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblUsuarios);
 
         jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 900, 240));
@@ -157,11 +173,6 @@ public class Usuario extends javax.swing.JFrame {
         cbxPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik", 1, 14))); // NOI18N
         cbxPerfil.setOpaque(false);
-        cbxPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxPerfilActionPerformed(evt);
-            }
-        });
         jpnBg.add(cbxPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, 50));
 
         ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
@@ -219,88 +230,61 @@ public class Usuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPerfilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxPerfilActionPerformed
-
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
+        GerenciarBotoes();
         if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
         if (acaoTela == eAcaoTela.ABRIR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
+        
+        UserController usuController = new UserController();
+        
         UserModel user = new UserModel();
-        UserController userControll = new UserController();
         
         if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
             user = userm;
         }
-
-        try {
-            PreencherCliente(userm);
-        } catch (ParseException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        switch (eAcaoTela.EDITAR.getValor()) {
+        
+        user = PreencherUsuarios(user);
+        
+        boolean result = false;
+        
+        switch (acaoTela) {
             case 1:
-                userControll.save(user);
-                break;
-            case 2:
-                userControll.save(user);
+                result = usuController.save(user);
                 break;
             case 5:
-                userControll.update(user);
+                result = usuController.update(user);
                 break;
             case 6:
-                userControll.delete(user);
+                Date dt = new Date();
+
+                user.setDtDel(dt);
+
+                if (this.usuSystem == null) {
+                    user.setUsuDel(1);
+                } else {
+                    user.setUsuInclus(this.usuSystem.getId());
+                }
+
+                result = usuController.finishValidity(user);
                 break;
         }
-
+        
+        if (result){
+            
+        }
         LimparCampos();
         LoadTable();
-
-        try {
-            if (user.validString(txtNome.getText())) {
-                user.setNome(txtNome.getText());
-            }
-
-            if (user.validString(txtEmail.getText())) {
-                user.setEmail(txtEmail.getText());
-            }
-
-            if (user.validString(txtPass.getPassword().toString())) {
-                user.setPassword(txtPass.getPassword().toString());
-            }
-
-            if (user.validString(txtCpf.getText())) {
-                user.setCPF(txtCpf.getText());
-            }
-
-            if (user.validString(txtDtNascimento.getText())) {
-                SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                user.setDtNasc(formatter1.parse(txtDtNascimento.getText().replace("/","-")));
-            }
-
-            if (ckbExcluir.isValid()) {
-                userControll.delete(user);
-            } else {
-                if (!userControll.UsuarioExite(user)) {
-                    userControll.save(user);
-
-                }
-            }
-
-        } catch (PropertiesValidator ex) {
-            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
-        } catch (ParseException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        
+        GerenciarBotoes();
+        
         UserController userControll = new UserController();
         UserModel user = new UserModel();
 
@@ -322,7 +306,7 @@ public class Usuario extends javax.swing.JFrame {
                 user.setDtNasc(formatter1.parse(txtDtNascimento.getText()));
             }
 
-            //user = userControll.Pesquisar(user);
+
 
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
@@ -333,6 +317,14 @@ public class Usuario extends javax.swing.JFrame {
         List<UserModel> users = UserController.findAll(user);
         LoadTableFilter(users);
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
+        if (ckbExcluir.isSelected()) {
+            acaoTela = eAcaoTela.EXCLUIR.getValor();
+        } else {
+            acaoTela = eAcaoTela.EDITAR.getValor();
+        }
+    }//GEN-LAST:event_tblUsuariosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -395,8 +387,9 @@ public class Usuario extends javax.swing.JFrame {
         DefaultTableModel tmUsers = new DefaultTableModel();
         tmUsers.addColumn("ID");
         tmUsers.addColumn("Nome");
-        tmUsers.addColumn("E-mail");
         tmUsers.addColumn("CPF");
+        tmUsers.addColumn("E-mail");
+        
         
         tblUsuarios.setModel(tmUsers);
  
@@ -409,7 +402,7 @@ public class Usuario extends javax.swing.JFrame {
         
         for (UserModel user : users) {
             tmUsers.addRow(new String[]{String.valueOf(user.getId()),
-                user.getNome(), user.getCPF(), user.getEmail(), "Ativo"});
+                user.getNome(), user.getCPF(), user.getEmail()});
         }
         
         
@@ -419,13 +412,14 @@ public class Usuario extends javax.swing.JFrame {
         
         UserController usersController = new UserController();
         UserModel userFiltro = new UserModel();
-        List<UserModel> users = UserController.findAll(userFiltro);
+        List<UserModel> users = usersController.findAll(userFiltro);
         
         DefaultTableModel tmUser = new DefaultTableModel();
         tmUser.addColumn("ID");
         tmUser.addColumn("Nome");
-        tmUser.addColumn("E-mail");
         tmUser.addColumn("CPF");
+        tmUser.addColumn("E-mail");
+        
         
         tblUsuarios.setModel(tmUser);
         
@@ -438,12 +432,16 @@ public class Usuario extends javax.swing.JFrame {
         
         for (UserModel userm : users){
             tmUser.addRow(new String[] {String.valueOf(userm.getId()),
-            userm.getNome(),userm.getEmail(),userm.getCPF()});
+            userm.getNome(),userm.getCPF(),userm.getEmail()});
         }
        
     }
 
-    private void PreencherCliente(UserModel userm) throws ParseException {
+    private UserModel PreencherUsuarios(UserModel userm) {
+        
+        if (userm == null){
+            userm = new UserModel();
+        }
         
         try {
             
@@ -465,7 +463,7 @@ public class Usuario extends javax.swing.JFrame {
             }
             
             if (userm.validString(txtCpf.getText())){
-                userm.setEmail(txtCpf.getText());
+                userm.setCPF(txtCpf.getText());
             }
             
             if (rbFem.isSelected()) {
@@ -478,8 +476,11 @@ public class Usuario extends javax.swing.JFrame {
             
                 
                 } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        } catch (ParseException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return userm;
     }
 
     private void LimparCampos() {
@@ -488,6 +489,38 @@ public class Usuario extends javax.swing.JFrame {
         txtPass.setText("");
         txtDtNascimento.setText("");
         txtCpf.setText("");
+        
+    }
+
+    private void GerenciarBotoes() {
+        
+        switch (acaoTela){
+            case 1:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 2:
+                btnSalvar.setEnabled(true);
+                btnPesquisar.setEnabled(true);
+                break;
+            case 3:
+                btnPesquisar.setEnabled(true);
+                btnSalvar.setEnabled(false);
+                break;
+            case 4:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(false);
+                break;
+            case 5:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 6:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+        
+        }
         
     }
 }
