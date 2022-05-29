@@ -515,7 +515,6 @@ public class Produto extends javax.swing.JFrame {
         tmProdutos.addColumn("Quantidade");
         tmProdutos.addColumn("Valor");
         tmProdutos.addColumn("Avaliação");
-        tmProdutos.addColumn("Validade");
         tmProdutos.addColumn("Descrição");
         
         tblProdutos.setModel(tmProdutos);
@@ -527,7 +526,6 @@ public class Produto extends javax.swing.JFrame {
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(40);
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(20);
-        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
         
