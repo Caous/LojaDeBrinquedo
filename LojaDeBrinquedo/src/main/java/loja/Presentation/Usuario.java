@@ -76,9 +76,8 @@ public class Usuario extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(994, 623));
 
-        jpnBg.setBackground(new java.awt.Color(79, 109, 234));
+        jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblUsuarios.setBackground(new java.awt.Color(64, 87, 184));
@@ -106,54 +105,42 @@ public class Usuario extends javax.swing.JFrame {
 
         jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 900, 240));
 
-        txtNome.setBackground(new java.awt.Color(79, 109, 234));
         txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNome.setForeground(new java.awt.Color(255, 255, 255));
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
         jpnBg.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
 
-        txtEmail.setBackground(new java.awt.Color(79, 109, 234));
         txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
-        txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
         jpnBg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, -1));
 
-        txtDtNascimento.setBackground(new java.awt.Color(79, 109, 234));
         txtDtNascimento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtDtNascimento.setForeground(new java.awt.Color(255, 255, 255));
-        txtDtNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtDtNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
         jpnBg.add(txtDtNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
 
-        txtCpf.setBackground(new java.awt.Color(79, 109, 234));
         txtCpf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtCpf.setForeground(new java.awt.Color(255, 255, 255));
-        txtCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
         jpnBg.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
 
-        txtPass.setBackground(new java.awt.Color(79, 109, 234));
         txtPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtPass.setForeground(new java.awt.Color(255, 255, 255));
-        txtPass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtPass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
         jpnBg.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
 
-        rbMasc.setBackground(new java.awt.Color(79, 109, 234));
+        rbMasc.setBackground(new java.awt.Color(201, 232, 242));
         rbMasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        rbMasc.setForeground(new java.awt.Color(255, 255, 255));
         rbMasc.setText("Masculino");
         jpnBg.add(rbMasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, -1, -1));
 
-        rbFem.setBackground(new java.awt.Color(79, 109, 234));
+        rbFem.setBackground(new java.awt.Color(201, 232, 242));
         rbFem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        rbFem.setForeground(new java.awt.Color(255, 255, 255));
         rbFem.setText("Feminino");
         jpnBg.add(rbFem, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
 
-        btnPesquisar.setBackground(new java.awt.Color(51, 153, 0));
+        btnPesquisar.setBackground(new java.awt.Color(51, 102, 255));
         btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
-        btnPesquisar.setContentAreaFilled(false);
         btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPesquisar.setOpaque(true);
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,20 +151,17 @@ public class Usuario extends javax.swing.JFrame {
         jpnBg.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 170, 50));
 
         lblControle.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblControle.setForeground(new java.awt.Color(255, 255, 255));
         lblControle.setText("Controle de usuários");
-        jpnBg.add(lblControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
+        jpnBg.add(lblControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        cbxPerfil.setBackground(new java.awt.Color(79, 109, 234));
         cbxPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         cbxPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik", 1, 14))); // NOI18N
-        cbxPerfil.setOpaque(false);
         jpnBg.add(cbxPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, 50));
 
-        ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
+        ckbExcluir.setBackground(new java.awt.Color(201, 232, 242));
         ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        ckbExcluir.setForeground(new java.awt.Color(204, 0, 0));
         ckbExcluir.setText("Excluir");
         jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
 
@@ -201,12 +185,11 @@ public class Usuario extends javax.swing.JFrame {
 
         jpnBg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 900, 150));
 
-        btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
+        btnSalvar.setBackground(new java.awt.Color(61, 189, 61));
         btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(null);
-        btnSalvar.setContentAreaFilled(false);
         btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvar.setOpaque(true);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {

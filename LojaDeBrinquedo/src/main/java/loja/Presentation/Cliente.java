@@ -178,8 +178,9 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
 
-        ckbExcluir.setBackground(new java.awt.Color(255, 255, 255));
+        ckbExcluir.setBackground(new java.awt.Color(201, 232, 242));
         ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluir.setForeground(new java.awt.Color(204, 0, 0));
         ckbExcluir.setText("Excluir");
         ckbExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
