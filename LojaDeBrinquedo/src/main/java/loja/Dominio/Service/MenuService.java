@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,17 +64,17 @@ public class MenuService implements CrudService<MenuModel> {
 
         try {
 
-            String sql = "INSERT INTO tb_menu (Id, nome, usu_inclusao, dt_inclusao)"
-                    + " values (?,?,?,?,?)";
+            String sql = "INSERT INTO tb_menu (nome, descricao, usu_inclusao, dt_inclusao)"
+                    + " values (?,?,?,?)";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            ps.setInt(1, entity.getId());
-            ps.setString(2, entity.getMenu());
-            ps.setString(3, entity.getDescMenu());
-            ps.setInt(4, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
-
+            ps.setString(1, entity.getMenu());
+            ps.setString(2, entity.getDescMenu());
+            ps.setInt(3, entity.getUsuInclus());
+            Date dt = new Date();
+            java.sql.Date dtCad = new java.sql.Date(dt.getTime());
+            ps.setDate(4, dtCad);
             ps.execute();
             ps.close();
 
@@ -136,16 +137,17 @@ public class MenuService implements CrudService<MenuModel> {
 
         try {
 
-            String sql = "UPDATE tb_menu SET WHERE (Id, nome, usu_inclusao, dt_inclusao, usu_exclusao, dt_exclusao)"
-                    + " values (?,?,?,?,?)";
+            String sql = "UPDATE tb_menu SET nome = ?, descricao = ?, usu_inclusao = ?, dt_inclusao = ?"
+                    + " where ID = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            ps.setInt(1, entity.getId());
-            ps.setString(2, entity.getMenu());
-            ps.setString(3, entity.getDescMenu());
-            ps.setInt(4, entity.getUsuInclus());
+            ps.setString(1, entity.getMenu());
+            ps.setString(2, entity.getDescMenu());
+            ps.setInt(3, entity.getUsuInclus());
             java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
+            ps.setDate(4, dtCad);
+            ps.setInt(5, entity.getId());
 
             ps.execute();
             ps.close();
@@ -162,7 +164,30 @@ public class MenuService implements CrudService<MenuModel> {
 
     @Override
     public boolean finishValidity(MenuModel entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+
+            String sql = "update tb_menu set usu_exclusao = ?, dt_exclusao = ? "
+                    + "  where id = ?";
+
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+
+            ps.setInt(1, entity.getUsuDel());
+            Date dt = new Date();
+            java.sql.Date dtDel = new java.sql.Date(dt.getTime());
+            ps.setDate(2, dtDel);
+            ps.setInt(3, entity.getId());
+
+            ps.execute();
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
+            String guts = ex.toString();
+            System.out.println(ex);
+            return false;
+        }
+        return true;
     }
 
 }

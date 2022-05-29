@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +36,7 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
 
         try {
 
-            String sql = "SELECT * FROM tb_cliente";
+            String sql = "SELECT * FROM tb_pagamento";
 
             PreparedStatement ps = this.conn.prepareStatement(sql,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
@@ -74,7 +75,8 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
 
             ps.setString(1, entity.getDescPagamento());
             ps.setInt(2, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
+            Date dt = new Date();
+            java.sql.Date dtCad = new java.sql.Date(dt.getTime());
             ps.setDate(3, dtCad);
 
             ps.execute();
@@ -133,7 +135,7 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
     public boolean update(TipoPagamentoModel entity) {
         try {
 
-            String sql = "update tb_cliente set tb_pagamento descricao = ? usu_inclusao = ? dt_inclusao = ?"
+            String sql = "update tb_pagamento set descricao = ?, usu_inclusao = ?, dt_inclusao = ?"
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
@@ -161,13 +163,14 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
     public boolean finishValidity(TipoPagamentoModel entity) {
         try {
 
-            String sql = "update tb_cliente set tb_pagamento usu_exclusao = ? dt_exclusao = ? "
+            String sql = "update tb_pagamento set usu_exclusao = ?, dt_exclusao = ? "
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
             ps.setInt(1, entity.getUsuDel());
-            java.sql.Date dtDel = new java.sql.Date(entity.getDtDel().getTime());
+            Date dt = new Date();
+            java.sql.Date dtDel = new java.sql.Date(dt.getTime());
             ps.setDate(2, dtDel);
             ps.setInt(3, entity.getId());
 
