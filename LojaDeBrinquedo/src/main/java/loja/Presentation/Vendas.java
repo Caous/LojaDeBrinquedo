@@ -104,12 +104,12 @@ public class Vendas extends javax.swing.JFrame {
         tblPane.setForeground(new java.awt.Color(255, 255, 255));
         tblPane.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
 
-        jpnCliente.setBackground(new java.awt.Color(241, 247, 249));
+        jpnCliente.setBackground(new java.awt.Color(201, 232, 242));
 
         lblCliente.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblCliente.setText("Controle de clientes");
 
-        rbtEmpresa.setBackground(new java.awt.Color(241, 247, 249));
+        rbtEmpresa.setBackground(new java.awt.Color(201, 232, 242));
         rbtEmpresa.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtEmpresa.setText("Empresa");
 
@@ -181,12 +181,12 @@ public class Vendas extends javax.swing.JFrame {
         lblPossuiCad.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         lblPossuiCad.setText("Posuí Cadastro ?");
 
-        ckbSim.setBackground(new java.awt.Color(241, 247, 249));
+        ckbSim.setBackground(new java.awt.Color(201, 232, 242));
         ckbSim.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
         ckbSim.setForeground(new java.awt.Color(0, 255, 0));
         ckbSim.setText("Sim");
 
-        ckbNao.setBackground(new java.awt.Color(241, 247, 249));
+        ckbNao.setBackground(new java.awt.Color(201, 232, 242));
         ckbNao.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N
         ckbNao.setForeground(new java.awt.Color(204, 0, 0));
         ckbNao.setText("Não");
@@ -194,7 +194,7 @@ public class Vendas extends javax.swing.JFrame {
         txtNome1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtNome1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        btnCliente.setBackground(new java.awt.Color(51, 204, 0));
+        btnCliente.setBackground(new java.awt.Color(61, 189, 61));
         btnCliente.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         btnCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnCliente.setText("Continuar");
@@ -567,7 +567,7 @@ public class Vendas extends javax.swing.JFrame {
             .addGroup(jpnTotalVendasLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel10)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jpnTotalVendasLayout.setVerticalGroup(
             jpnTotalVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -575,7 +575,7 @@ public class Vendas extends javax.swing.JFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel11)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jpnDescontos.setBackground(new java.awt.Color(255, 255, 255));
@@ -600,7 +600,7 @@ public class Vendas extends javax.swing.JFrame {
             .addGroup(jpnDescontosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jpnDescontosLayout.setVerticalGroup(
             jpnDescontosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,7 +608,7 @@ public class Vendas extends javax.swing.JFrame {
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel13)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         txtDesconto.setFont(new java.awt.Font("Rubik Light", 2, 14)); // NOI18N

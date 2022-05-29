@@ -82,7 +82,7 @@ public class Produto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpnBg.setBackground(new java.awt.Color(79, 109, 234));
+        jpnBg.setBackground(new java.awt.Color(201, 232, 242));
 
         tblProdutos.setBackground(new java.awt.Color(64, 87, 184));
         tblProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -102,27 +102,20 @@ public class Produto extends javax.swing.JFrame {
         tblProdutos.setShowGrid(true);
         jScrollPane1.setViewportView(tblProdutos);
 
-        txtNome.setBackground(new java.awt.Color(79, 109, 234));
         txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNome.setForeground(new java.awt.Color(255, 255, 255));
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtCategoria.setBackground(new java.awt.Color(79, 109, 234));
         txtCategoria.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtMarca.setBackground(new java.awt.Color(79, 109, 234));
         txtMarca.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtMarca.setForeground(new java.awt.Color(255, 255, 255));
-        txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        btnSalvar.setBackground(new java.awt.Color(64, 87, 184));
+        btnSalvar.setBackground(new java.awt.Color(61, 189, 61));
         btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvar.setContentAreaFilled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -133,25 +126,17 @@ public class Produto extends javax.swing.JFrame {
         lblProduto.setForeground(new java.awt.Color(255, 255, 255));
         lblProduto.setText("Controle de Produtos");
 
-        txtFot.setBackground(new java.awt.Color(79, 109, 234));
         txtFot.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtFot.setForeground(new java.awt.Color(255, 255, 255));
-        txtFot.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Foto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtFot.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Foto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtValidade.setBackground(new java.awt.Color(79, 109, 234));
         txtValidade.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtValidade.setForeground(new java.awt.Color(255, 255, 255));
-        txtValidade.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Validade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtValidade.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Validade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtValor.setBackground(new java.awt.Color(79, 109, 234));
         txtValor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtValor.setForeground(new java.awt.Color(255, 255, 255));
-        txtValor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "R$", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtValor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "R$", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtAvaliacao.setBackground(new java.awt.Color(79, 109, 234));
         txtAvaliacao.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtAvaliacao.setForeground(new java.awt.Color(255, 255, 255));
-        txtAvaliacao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avaliação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtAvaliacao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avaliação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtaComentario.setBackground(new java.awt.Color(79, 109, 234));
         txtaComentario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Comentário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -174,32 +159,25 @@ public class Produto extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         txtaDescrição.setViewportView(jTextArea2);
 
-        txtQtd.setBackground(new java.awt.Color(79, 109, 234));
         txtQtd.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtQtd.setForeground(new java.awt.Color(255, 255, 255));
-        txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtDesconto.setBackground(new java.awt.Color(79, 109, 234));
         txtDesconto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtDesconto.setForeground(new java.awt.Color(255, 255, 255));
-        txtDesconto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Porcentagem %", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtDesconto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Porcentagem %", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtFornecedor.setBackground(new java.awt.Color(79, 109, 234));
         txtFornecedor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtFornecedor.setForeground(new java.awt.Color(255, 255, 255));
-        txtFornecedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtFornecedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        ckbExcluir.setBackground(new java.awt.Color(79, 109, 234));
+        ckbExcluir.setBackground(new java.awt.Color(201, 232, 242));
         ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        ckbExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        ckbExcluir.setForeground(new java.awt.Color(204, 0, 0));
         ckbExcluir.setText("Excluir");
 
-        btnPesquisar.setBackground(new java.awt.Color(51, 153, 0));
+        btnPesquisar.setBackground(new java.awt.Color(51, 102, 255));
         btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
-        btnPesquisar.setContentAreaFilled(false);
         btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPesquisar.setOpaque(true);
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
