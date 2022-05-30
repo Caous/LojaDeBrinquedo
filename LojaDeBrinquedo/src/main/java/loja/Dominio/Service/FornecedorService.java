@@ -33,6 +33,43 @@ public class FornecedorService implements CrudService<FornecedorModel> {
         try {
 
             String sql = "SELECT * FROM tb_fornecedor";
+            String complemento = "";
+            
+            if (entity !=null){
+                
+                if (entity.getCnpj() != null && entity.getCnpj() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " cpfcpnj = '" + entity.getCnpj() + "'";
+                }
+                if (entity.getEmail() != null && entity.getEmail() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " email = '" + entity.getEmail() + "'";
+                }
+                if (entity.getNome() != null && entity.getNome() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " nome = '" + entity.getNome() + "'";
+                }
+                if (entity.getNomeFantasia() != null && entity.getNomeFantasia() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " nome_fantasia = " + entity.getNomeFantasia();
+                }
+            }
 
             PreparedStatement ps = this.conn.prepareStatement(sql,
                     ResultSet.TYPE_SCROLL_SENSITIVE,

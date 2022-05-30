@@ -4,7 +4,19 @@
  */
 package loja.Presentation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import loja.Dominio.Model.FornecedorModel;
+import loja.Dominio.Model.UserModel;
+import loja.Dominio.Util.PropertiesValidator;
+import loja.Dominio.Util.eAcaoTela;
+import loja.Presentation.Controller.FornecedorController;
 
 /**
  *
@@ -16,9 +28,15 @@ public class Fornecedor extends javax.swing.JFrame {
      * Creates new form Usuario
      */
     public Fornecedor() {
-         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        initComponents();
+        LoadTable();
+        acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
     }
+    
+    private UserModel usuSystem;
+    private int acaoTela;
+    private FornecedorModel forneced;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,9 +51,9 @@ public class Fornecedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblFornecedores = new javax.swing.JTable();
         btnSalvar = new javax.swing.JButton();
-        btnProcurar = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         txtNome = new javax.swing.JTextField();
         txtNomeFan = new javax.swing.JTextField();
@@ -43,8 +61,8 @@ public class Fornecedor extends javax.swing.JFrame {
         txtContResp = new javax.swing.JTextField();
         txtTel = new javax.swing.JTextField();
         txtIE = new javax.swing.JTextField();
-        txtIM1 = new javax.swing.JTextField();
         txtIM = new javax.swing.JTextField();
+        txtCNPJ = new javax.swing.JTextField();
         txtCel = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
         txtCEP = new javax.swing.JTextField();
@@ -60,21 +78,23 @@ public class Fornecedor extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel1.setText("Controle de Fornecedor");
 
-        jTable1.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblFornecedores.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        tblFornecedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Gustavo", "gustavo@happy.com.br", "000.000.000-00", "Dan"},
-                {"Erick", "erick@happy.com.br", "000.000.000-00", "Vitor"},
-                {"Fernando", "fernando@happy.com.br", "000.000.000-00", "N/A"}
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nome", "E-mail", "CPF/CNPJ", "Cont. Resp."
+
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(64, 87, 184));
-        jTable1.setSelectionForeground(new java.awt.Color(79, 109, 234));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblFornecedores.setGridColor(new java.awt.Color(64, 87, 184));
+        tblFornecedores.setSelectionForeground(new java.awt.Color(79, 109, 234));
+        tblFornecedores.setShowGrid(true);
+        jScrollPane1.setViewportView(tblFornecedores);
 
         btnSalvar.setBackground(new java.awt.Color(51, 102, 255));
         btnSalvar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -88,12 +108,17 @@ public class Fornecedor extends javax.swing.JFrame {
             }
         });
 
-        btnProcurar.setBackground(new java.awt.Color(51, 153, 0));
-        btnProcurar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnProcurar.setForeground(new java.awt.Color(255, 255, 255));
-        btnProcurar.setText("Procurar");
-        btnProcurar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnProcurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPesquisar.setBackground(new java.awt.Color(51, 153, 0));
+        btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setBackground(new java.awt.Color(241, 247, 249));
         jCheckBox1.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
@@ -123,13 +148,13 @@ public class Fornecedor extends javax.swing.JFrame {
         txtIE.setForeground(new java.awt.Color(255, 255, 255));
         txtIE.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
-        txtIM1.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        txtIM1.setForeground(new java.awt.Color(255, 255, 255));
-        txtIM1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
-
         txtIM.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         txtIM.setForeground(new java.awt.Color(255, 255, 255));
-        txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
+        txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
+
+        txtCNPJ.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        txtCNPJ.setForeground(new java.awt.Color(255, 255, 255));
+        txtCNPJ.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 2, 14))); // NOI18N
 
         txtCel.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         txtCel.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,7 +188,7 @@ public class Fornecedor extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(btnProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,9 +201,9 @@ public class Fornecedor extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(txtContResp, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(txtIM1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
                                 .addComponent(txtIE, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
@@ -217,8 +242,8 @@ public class Fornecedor extends javax.swing.JFrame {
                     .addComponent(txtContResp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
@@ -238,7 +263,7 @@ public class Fornecedor extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -248,9 +273,316 @@ public class Fornecedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        GerenciarBotoes();
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        
+        FornecedorController fornecedController = new FornecedorController();
+        FornecedorModel fornecedor = new FornecedorModel();
+        
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            fornecedor = forneced;
+        }
+        
+        fornecedor = PreencherFornecedor(fornecedor);
+        
+        boolean result = false;
+        
+        switch (acaoTela) {
+            case 1:
+                result = fornecedController.save(fornecedor);
+                break;
+            case 5:
+                result = fornecedController.update(fornecedor);
+                break;
+            case 6:
+                Date dt = new Date();
 
+                fornecedor.setDtDel(dt);
+
+                if (this.usuSystem == null) {
+                    fornecedor.setUsuDel(1);
+                } else {
+                    fornecedor.setUsuInclus(this.usuSystem.getId());
+                }
+
+                result = fornecedController.finishValidity(fornecedor);
+                break;
+        }
+
+        if (result) {
+
+        }
+
+        LimparCampos();
+        LoadTable();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        GerenciarBotoes();
+        
+        FornecedorController fornecedController = new FornecedorController();
+        FornecedorModel fornecedor = new FornecedorModel();
+        
+        try {
+            if (fornecedor.validString(txtNome.getText())){
+                fornecedor.setNome(txtNome.getText());
+            }
+            
+            if(fornecedor.validString(txtNomeFan.getText())){
+                fornecedor.setNomeFantasia(txtNomeFan.getText());
+            }
+            
+            if(fornecedor.validString(txtEmail.getText())){
+                fornecedor.setEmail(txtEmail.getText());
+            }
+            
+            if(fornecedor.validString(txtContResp.getText())){
+                fornecedor.setContatoResposavel(txtContResp.getText());
+            }
+            
+            if(fornecedor.validString(txtCNPJ.getText())){
+                fornecedor.setCnpj(txtCNPJ.getText());
+            }
+            
+            if(fornecedor.validString(txtIM.getText())){
+                fornecedor.setIM(Integer.parseInt(txtIM.getText()));
+            }
+            
+            if(fornecedor.validString(txtIE.getText())){
+                fornecedor.setEM(Integer.parseInt(txtIE.getText()));
+            }
+            
+            if(fornecedor.validString(txtTel.getText())){
+                fornecedor.setTelefone(txtTel.getText());
+            }
+            
+            if(fornecedor.validString(txtCel.getText())){
+                fornecedor.setCelular(txtCel.getText());
+            }
+            
+            if(fornecedor.validString(txtDtNasc.getText())){
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+                fornecedor.setDtNasc(formatter1.parse(txtDtNasc.getText().replace("/", "-")));
+            }
+            
+            if(fornecedor.validString(txtEndereco.getText())){
+                fornecedor.setEndereco(txtEndereco.getText());
+            }
+            
+            if(fornecedor.validString(txtMunicipio.getText())){
+                fornecedor.setMunicipio(txtMunicipio.getText());
+            }
+            
+            if(fornecedor.validString(txtCEP.getText())){
+                fornecedor.setCEP(txtCEP.getText());
+            }
+            
+            if(fornecedor.validString(txtEstado.getText())){
+                fornecedor.setEstado(txtEstado.getText());
+            }
+            
+        } catch (PropertiesValidator ex) {
+            Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        List<FornecedorModel> fornecedores = fornecedController.findAll(fornecedor);
+        LoadTableFilters(fornecedores);
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    
+    private void LoadTableFilters(List<FornecedorModel> fornecedores) {
+        
+        DefaultTableModel tmFornecedores = new DefaultTableModel();
+        tmFornecedores.addColumn("ID");
+        tmFornecedores.addColumn("Nome");
+        tmFornecedores.addColumn("Nome Fantasia");
+        tmFornecedores.addColumn("CNPJ");
+        tmFornecedores.addColumn("E-mail");
+        tmFornecedores.addColumn("IM");
+        tmFornecedores.addColumn("IE");
+        
+        tblFornecedores.setModel(tmFornecedores);
+        
+        tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
+
+        tmFornecedores.setRowCount(0);
+        
+        for (FornecedorModel forn : fornecedores) {
+            tmFornecedores.addRow(new String[]{String.valueOf(forn.getId()), forn.getNome(), forn.getNomeFantasia(),
+                forn.getCnpj(), forn.getEmail(), String.valueOf(forn.getIM()), String.valueOf(forn.getEM())});
+        }
+        
+    }
+    
+    
+    private void LoadTable() {
+        
+        FornecedorController fornecedController = new FornecedorController();
+        FornecedorModel fornecedFiltro = new FornecedorModel();
+        List<FornecedorModel> fornecedores = fornecedController.findAll(fornecedFiltro);
+        
+        DefaultTableModel tmFornecedores = new DefaultTableModel();
+        tmFornecedores.addColumn("ID");
+        tmFornecedores.addColumn("Nome");
+        tmFornecedores.addColumn("Nome Fantasia");
+        tmFornecedores.addColumn("CNPJ");
+        tmFornecedores.addColumn("E-mail");
+        tmFornecedores.addColumn("IM");
+        tmFornecedores.addColumn("IE");
+        
+        tblFornecedores.setModel(tmFornecedores);
+        
+        tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblFornecedores.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblFornecedores.getColumnModel().getColumn(0).setPreferredWidth(100);
+
+        tmFornecedores.setRowCount(0);
+        
+        for (FornecedorModel forn : fornecedores) {
+            tmFornecedores.addRow(new String[]{String.valueOf(forn.getId()), forn.getNome(), forn.getNomeFantasia(),
+                forn.getCnpj(), forn.getEmail(), String.valueOf(forn.getIM()), String.valueOf(forn.getEM())});
+        }
+        
+    }
+
+    private void GerenciarBotoes() {
+        switch (acaoTela) {
+            case 1:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 2:
+                btnSalvar.setEnabled(true);
+                btnPesquisar.setEnabled(true);
+                break;
+            case 3:
+                btnPesquisar.setEnabled(true);
+                btnSalvar.setEnabled(false);
+                break;
+            case 4:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(false);
+                break;
+            case 5:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 6:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+        }
+    }
+
+    private FornecedorModel PreencherFornecedor(FornecedorModel fornecedor) {
+        if (fornecedor == null){
+            fornecedor = new FornecedorModel();
+        }
+        
+        try {
+            if (fornecedor.validString(txtNome.getText())){
+                fornecedor.setNome(txtNome.getText());
+            }
+            
+            if(fornecedor.validString(txtNomeFan.getText())){
+                fornecedor.setNomeFantasia(txtNomeFan.getText());
+            }
+            
+            if(fornecedor.validString(txtEmail.getText())){
+                fornecedor.setEmail(txtEmail.getText());
+            }
+            
+            if(fornecedor.validString(txtContResp.getText())){
+                fornecedor.setContatoResposavel(txtContResp.getText());
+            }
+            
+            if(fornecedor.validString(txtCNPJ.getText())){
+                fornecedor.setCnpj(txtCNPJ.getText());
+            }
+            
+            if(fornecedor.validString(txtIM.getText())){
+                fornecedor.setIM(Integer.parseInt(txtIM.getText()));
+            }
+            
+            if(fornecedor.validString(txtIE.getText())){
+                fornecedor.setEM(Integer.parseInt(txtIE.getText()));
+            }
+            
+            if(fornecedor.validString(txtTel.getText())){
+                fornecedor.setTelefone(txtTel.getText());
+            }
+            
+            if(fornecedor.validString(txtCel.getText())){
+                fornecedor.setCelular(txtCel.getText());
+            }
+            
+            if(fornecedor.validString(txtDtNasc.getText())){
+                SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+                fornecedor.setDtNasc(formatter1.parse(txtDtNasc.getText().replace("/", "-")));
+            }
+            
+            if(fornecedor.validString(txtEndereco.getText())){
+                fornecedor.setEndereco(txtEndereco.getText());
+            }
+            
+            if(fornecedor.validString(txtMunicipio.getText())){
+                fornecedor.setMunicipio(txtMunicipio.getText());
+            }
+            
+            if(fornecedor.validString(txtCEP.getText())){
+                fornecedor.setCEP(txtCEP.getText());
+            }
+            
+            if(fornecedor.validString(txtEstado.getText())){
+                fornecedor.setEstado(txtEstado.getText());
+            }
+            
+        } catch (PropertiesValidator ex) {
+            Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return fornecedor;
+        
+    }
+
+    private void LimparCampos() {
+        txtNome.setText("");
+        txtNomeFan.setText("");
+        txtEmail.setText("");
+        txtContResp.setText("");
+        txtCNPJ.setText("");
+        txtIM.setText("");
+        txtIE.setText("");
+        txtTel.setText("");
+        txtCel.setText("");
+        txtDtNasc.setText("");
+        txtEndereco.setText("");
+        txtMunicipio.setText("");
+        txtCEP.setText("");
+        txtEstado.setText("");
+        
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -290,15 +622,16 @@ public class Fornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnProcurar;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblFornecedores;
     private javax.swing.JTextField txtCEP;
+    private javax.swing.JTextField txtCNPJ;
     private javax.swing.JTextField txtCel;
     private javax.swing.JTextField txtContResp;
     private javax.swing.JTextField txtDtNasc;
@@ -307,10 +640,13 @@ public class Fornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtIE;
     private javax.swing.JTextField txtIM;
-    private javax.swing.JTextField txtIM1;
     private javax.swing.JTextField txtMunicipio;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNomeFan;
     private javax.swing.JTextField txtTel;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 }

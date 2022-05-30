@@ -50,7 +50,7 @@
                           <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                           <Component id="btnSalvar" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="btnProcurar" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="btnPesquisar" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -65,9 +65,9 @@
                                   <Component id="txtContResp" min="-2" pref="210" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txtIM" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="txtCNPJ" min="-2" pref="210" max="-2" attributes="0"/>
                                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                  <Component id="txtIM1" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="txtIM" min="-2" pref="210" max="-2" attributes="0"/>
                                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                   <Component id="txtIE" min="-2" pref="210" max="-2" attributes="0"/>
                                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -117,8 +117,8 @@
                   </Group>
                   <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtCNPJ" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtIM" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtIM1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtIE" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTel" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -141,7 +141,7 @@
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnSalvar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="btnProcurar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnPesquisar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="57" max="32767" attributes="0"/>
               </Group>
@@ -164,34 +164,13 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="tblFornecedores">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="2"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="3">
-                    <Column editable="true" title="Nome" type="java.lang.Object">
-                      <Data value="Gustavo"/>
-                      <Data value="Erick"/>
-                      <Data value="Fernando"/>
-                    </Column>
-                    <Column editable="true" title="E-mail" type="java.lang.Object">
-                      <Data value="gustavo@happy.com.br"/>
-                      <Data value="erick@happy.com.br"/>
-                      <Data value="fernando@happy.com.br"/>
-                    </Column>
-                    <Column editable="true" title="CPF/CNPJ" type="java.lang.Object">
-                      <Data value="000.000.000-00"/>
-                      <Data value="000.000.000-00"/>
-                      <Data value="000.000.000-00"/>
-                    </Column>
-                    <Column editable="true" title="Cont. Resp." type="java.lang.Object">
-                      <Data value="Dan"/>
-                      <Data value="Vitor"/>
-                      <Data value="N/A"/>
-                    </Column>
-                  </Table>
+                  <Table columnCount="0" rowCount="5"/>
                 </Property>
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b8" green="57" red="40" type="rgb"/>
@@ -229,7 +208,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnProcurar">
+        <Component class="javax.swing.JButton" name="btnPesquisar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="99" red="33" type="rgb"/>
@@ -240,7 +219,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Procurar"/>
+            <Property name="text" type="java.lang.String" value="Pesquisar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
@@ -250,6 +229,9 @@
               <Color id="Default Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox1">
           <Properties>
@@ -364,7 +346,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtIM1">
+        <Component class="javax.swing.JTextField" name="txtIM">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="2"/>
@@ -381,7 +363,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtIM">
+        <Component class="javax.swing.JTextField" name="txtCNPJ">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="2"/>
