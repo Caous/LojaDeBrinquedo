@@ -4,6 +4,7 @@
  */
 package loja.Presentation;
 
+import java.util.Date;
 import javax.swing.JFrame;
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.LoginController;
@@ -29,6 +30,9 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.userSystem = user;
         lblUsuario.setText(user.getNome());
+        Date dt = new Date();
+        dtFiltroInicio.setDate(dt);
+        dtFiltroFim.setDate(dt);
     }
     private UserModel userSystem;
 
