@@ -5,6 +5,7 @@
 package loja.Presentation;
 
 import javax.swing.JFrame;
+import loja.Dominio.Model.UserModel;
 
 /**
  *
@@ -19,6 +20,14 @@ public class Relatorio extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
+
+    public Relatorio(UserModel user) {
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this._userSystem = user;
+    }
+
+    private UserModel _userSystem;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,51 +46,42 @@ public class Relatorio extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         lblProdutos = new javax.swing.JLabel();
-        btnPesquisar = new javax.swing.JButton();
         txtCategoria = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
         txtFornecedor1 = new javax.swing.JTextField();
         txtPorcentagem1 = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jpnProduto.setBackground(new java.awt.Color(79, 109, 234));
+        jpnProduto.setBackground(new java.awt.Color(201, 232, 242));
 
-        txtValorProduto.setBackground(new java.awt.Color(79, 109, 234));
+        txtValorProduto.setBackground(new java.awt.Color(201, 232, 242));
         txtValorProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtValorProduto.setForeground(new java.awt.Color(255, 255, 255));
-        txtValorProduto.setText("12/12/9999");
-        txtValorProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtValorProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtPorcentagem.setBackground(new java.awt.Color(79, 109, 234));
+        txtPorcentagem.setBackground(new java.awt.Color(201, 232, 242));
         txtPorcentagem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtPorcentagem.setForeground(new java.awt.Color(255, 255, 255));
-        txtPorcentagem.setText("0");
-        txtPorcentagem.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Porcentagem", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtPorcentagem.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Porcentagem", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtQtd.setBackground(new java.awt.Color(79, 109, 234));
+        txtQtd.setBackground(new java.awt.Color(201, 232, 242));
         txtQtd.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtQtd.setForeground(new java.awt.Color(255, 255, 255));
-        txtQtd.setText("0");
-        txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        txtNomeProduto.setBackground(new java.awt.Color(79, 109, 234));
+        txtNomeProduto.setBackground(new java.awt.Color(201, 232, 242));
         txtNomeProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNomeProduto.setForeground(new java.awt.Color(255, 255, 255));
-        txtNomeProduto.setText("Administrador");
-        txtNomeProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtNomeProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         jTable1.setBackground(new java.awt.Color(64, 87, 184));
         jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Bola de futebol", "10", "69,90", "Nike", "Nike", "5", "R$ 1.526,00"},
-                {"Boneca", "5", "120,00", "Barbie", "Happy", "0", "R$ 50,00"},
-                {"Nerf", "2", "50,00", "Nerf", "Disneylandia", "2", "R$ 5,00"}
+
             },
             new String [] {
-                "Nome", "Qtd", "Valor", "Marca", "Fornecedor", "Desconto", "Valor Total"
+
             }
         ));
         jTable1.setGridColor(new java.awt.Color(64, 87, 184));
@@ -90,40 +90,50 @@ public class Relatorio extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         lblProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblProdutos.setForeground(new java.awt.Color(255, 255, 255));
         lblProdutos.setText("Relatório");
 
-        btnPesquisar.setBackground(new java.awt.Color(51, 153, 0));
+        txtCategoria.setBackground(new java.awt.Color(201, 232, 242));
+        txtCategoria.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+
+        txtMarca.setBackground(new java.awt.Color(201, 232, 242));
+        txtMarca.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+
+        txtFornecedor1.setEditable(false);
+        txtFornecedor1.setBackground(new java.awt.Color(201, 232, 242));
+        txtFornecedor1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtFornecedor1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+
+        txtPorcentagem1.setBackground(new java.awt.Color(201, 232, 242));
+        txtPorcentagem1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtPorcentagem1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+
+        btnPesquisar.setBackground(new java.awt.Color(51, 102, 255));
         btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
-        btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPesquisar.setContentAreaFilled(false);
-        btnPesquisar.setOpaque(true);
+        btnPesquisar.setText("Procurar");
+        btnPesquisar.setBorder(null);
+        btnPesquisar.setBorderPainted(false);
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
-        txtCategoria.setBackground(new java.awt.Color(79, 109, 234));
-        txtCategoria.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        txtCategoria.setText("Futebol");
-        txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txtMarca.setBackground(new java.awt.Color(79, 109, 234));
-        txtMarca.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtMarca.setForeground(new java.awt.Color(255, 255, 255));
-        txtMarca.setText("Nike");
-        txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txtFornecedor1.setBackground(new java.awt.Color(79, 109, 234));
-        txtFornecedor1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtFornecedor1.setForeground(new java.awt.Color(255, 255, 255));
-        txtFornecedor1.setText("Nike");
-        txtFornecedor1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txtPorcentagem1.setBackground(new java.awt.Color(79, 109, 234));
-        txtPorcentagem1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtPorcentagem1.setForeground(new java.awt.Color(255, 255, 255));
-        txtPorcentagem1.setText("Erick");
-        txtPorcentagem1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        btnCancelar.setBackground(new java.awt.Color(255, 153, 0));
+        btnCancelar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(null);
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnProdutoLayout = new javax.swing.GroupLayout(jpnProduto);
         jpnProduto.setLayout(jpnProdutoLayout);
@@ -143,9 +153,6 @@ public class Relatorio extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(txtFornecedor1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpnProdutoLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(lblProdutos))
-                            .addGroup(jpnProdutoLayout.createSequentialGroup()
                                 .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,7 +160,11 @@ public class Relatorio extends javax.swing.JFrame {
                                 .addComponent(txtPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtPorcentagem1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblProdutos)
+                            .addGroup(jpnProdutoLayout.createSequentialGroup()
+                                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jpnProdutoLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1009, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -178,8 +189,10 @@ public class Relatorio extends javax.swing.JFrame {
                     .addComponent(txtPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPorcentagem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jpnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -201,6 +214,14 @@ public class Relatorio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,6 +260,7 @@ public class Relatorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

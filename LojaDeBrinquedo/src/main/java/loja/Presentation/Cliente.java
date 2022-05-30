@@ -88,7 +88,7 @@ public class Cliente extends javax.swing.JFrame {
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        rbtEmpresa.setBackground(new java.awt.Color(255, 255, 255));
+        rbtEmpresa.setBackground(new java.awt.Color(201, 232, 242));
         rbtEmpresa.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtEmpresa.setText("Empresa");
         rbtEmpresa.addActionListener(new java.awt.event.ActionListener() {
@@ -101,41 +101,34 @@ public class Cliente extends javax.swing.JFrame {
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtNomeFan.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNomeFan.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeFan.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtContResp.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtContResp.setForeground(new java.awt.Color(255, 255, 255));
         txtContResp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cont. Responsável", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtCPFCNPJ.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCPFCNPJ.setForeground(new java.awt.Color(255, 255, 255));
         txtCPFCNPJ.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtEM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEM.setForeground(new java.awt.Color(255, 255, 255));
         txtEM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtTel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtTel.setForeground(new java.awt.Color(255, 255, 255));
         txtTel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtCel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCel.setForeground(new java.awt.Color(255, 255, 255));
         txtCel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtDtNasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtDtNasc.setForeground(new java.awt.Color(255, 255, 255));
         txtDtNasc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        rbtMasc.setBackground(new java.awt.Color(255, 255, 255));
+        rbtMasc.setBackground(new java.awt.Color(201, 232, 242));
         rbtMasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtMasc.setText("Masculino");
 
-        rbtFem.setBackground(new java.awt.Color(255, 255, 255));
+        rbtFem.setBackground(new java.awt.Color(201, 232, 242));
         rbtFem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtFem.setText("Feminino");
 
@@ -211,7 +204,6 @@ public class Cliente extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblClientes);
 
         txtIM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtIM.setForeground(new java.awt.Color(255, 255, 255));
         txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         lblCtrlCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -258,9 +250,9 @@ public class Cliente extends javax.swing.JFrame {
                         .addComponent(txtContResp, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addComponent(txtCPFCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addGap(13, 13, 13)
                         .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEM, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -304,8 +296,9 @@ public class Cliente extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCPFCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

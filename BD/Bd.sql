@@ -144,11 +144,8 @@ CREATE TABLE tb_cliente (
  
   CREATE TABLE tb_venda (
 	id INT(10) NOT NULL AUTO_INCREMENT,
-	id_produto int(100) NOT NULL,
 	id_cliente int(100) NOT NULL,
 	id_tipo_pagamento int(100) NOT NULL,
-	qtd_produto int(100) NOT NULL,
-	vlr_produto int(100) NOT NULL,
 	vlr_total int(100) NOT NULL,
 	vlr_desconto int(100) NOT NULL,
 	pct_desconto int(100) NOT NULL,
@@ -157,10 +154,24 @@ CREATE TABLE tb_cliente (
 	usu_exclusao INT(10) NULL,
 	dt_exclusao TIMESTAMP NULL,	
 	CONSTRAINT pk_id_venda PRIMARY KEY (id),
-	CONSTRAINT fk_id_produto  FOREIGN KEY (id_produto) REFERENCES tb_produto(ID),
 	CONSTRAINT fk_id_cliente  FOREIGN KEY (id_cliente) REFERENCES tb_cliente(ID),
 	CONSTRAINT fk_id_tipo_pagamento  FOREIGN KEY (id_tipo_pagamento) REFERENCES tb_pagamento(ID)
  );
+ 
+  CREATE TABLE tb_item_venda(
+	id INT(10) NOT NULL AUTO_INCREMENT,
+	id_venda(10) NOT NULL,
+	id_produto int(100) NOT NULL,
+	usu_inclusao INT(10) NOT NULL,
+	qtd_produto int(100) NOT NULL,
+	vlr_produto int(100) NOT NULL,
+	dt_inclusao TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	usu_exclusao INT(10) NULL,
+	dt_exclusao TIMESTAMP NULL,	
+	CONSTRAINT pk_item_venda PRIMARY KEY (id)
+	CONSTRAINT fk_id_produto  FOREIGN KEY (id_produto) REFERENCES tb_produto(ID),
+	CONSTRAINT fk_id_venda  FOREIGN KEY (id_venda) REFERENCES tb_venda(ID)
+  );
  
  INSERT INTO tb_perfil (nome, descricao, usu_inclusao) values ("Admin", "Administrador TI", 1);
   

@@ -431,7 +431,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnHomeMouseClicked
 
     private void jpnVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnVendaMouseClicked
-        Venda venda = new Venda();
+        Venda venda = new Venda(this.userSystem);
         venda.setVisible(true);
 
     }//GEN-LAST:event_jpnVendaMouseClicked
@@ -443,20 +443,19 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnUsuarioMouseClicked
 
     private void jpnRelatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnRelatorioMouseClicked
-        Relatorio rel = new Relatorio();
+        Relatorio rel = new Relatorio(this.userSystem);
 
         rel.setVisible(true);
     }//GEN-LAST:event_jpnRelatorioMouseClicked
 
     private void jpnFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnFornecedorMouseClicked
-        Fornecedor fornece = new Fornecedor();
+        Fornecedor fornece = new Fornecedor(this.userSystem);
 
         fornece.setVisible(true);
     }//GEN-LAST:event_jpnFornecedorMouseClicked
 
     private void jpnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnProdutosMouseClicked
-        Produto prod = new Produto();
-
+        Produto prod = new Produto(this.userSystem);
         prod.setVisible(true);
     }//GEN-LAST:event_jpnProdutosMouseClicked
 
@@ -470,7 +469,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnClientesMouseClicked
 
     private void jpnConfiguracoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnConfiguracoesMouseClicked
-        Configuracao conf = new Configuracao();
+        Configuracao conf = new Configuracao(this.userSystem);
         conf.setVisible(true);
     }//GEN-LAST:event_jpnConfiguracoesMouseClicked
 

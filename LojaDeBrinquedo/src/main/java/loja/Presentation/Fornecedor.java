@@ -5,6 +5,7 @@
 package loja.Presentation;
 
 import javax.swing.JFrame;
+import loja.Dominio.Model.UserModel;
 
 /**
  *
@@ -16,9 +17,17 @@ public class Fornecedor extends javax.swing.JFrame {
      * Creates new form Usuario
      */
     public Fornecedor() {
-         initComponents();
+        initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
+
+    public Fornecedor(UserModel user) {
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this._user = user;
+    }
+
+    private UserModel _user;
 
     /**
      * This method is called from within the constructor to initialize the form.

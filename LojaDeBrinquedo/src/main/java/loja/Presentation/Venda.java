@@ -4,6 +4,8 @@
  */
 package loja.Presentation;
 
+import loja.Dominio.Model.UserModel;
+
 /**
  *
  * @author Gustavo Nascimento
@@ -16,6 +18,13 @@ public class Venda extends javax.swing.JFrame {
     public Venda() {
         initComponents();
     }
+
+    public Venda(UserModel usu) {
+        initComponents();
+        this.usuModel = usu;
+    }
+
+    private UserModel usuModel;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -711,7 +720,7 @@ public class Venda extends javax.swing.JFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
 
-       
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void rbtEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtEmpresaActionPerformed
@@ -719,7 +728,7 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtEmpresaActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-       
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
@@ -728,7 +737,7 @@ public class Venda extends javax.swing.JFrame {
 
     private void btnPesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisar1ActionPerformed
 
-      
+
     }//GEN-LAST:event_btnPesquisar1ActionPerformed
 
     private void btnSalvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar2ActionPerformed
