@@ -10,13 +10,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import loja.Dominio.Model.ClienteModel;
 import loja.Dominio.Model.ProdutoModel;
+import loja.Dominio.Model.TipoPagamentoModel;
 import loja.Dominio.Model.UserModel;
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Dominio.Util.eAcaoTela;
 import loja.Presentation.Controller.ClienteController;
 import loja.Presentation.Controller.ProdutoController;
+import loja.Presentation.Controller.TipoPagamentoController;
 
 /**
  *
@@ -29,24 +32,67 @@ public class Venda extends javax.swing.JFrame {
      */
     public Venda() {
         initComponents();
+        carregarPagamento();
     }
 
     public Venda(UserModel usu) {
         initComponents();
         this.usuModel = usu;
+        carregarPagamento();
     }
 
     private UserModel usuModel;
     private ClienteModel cliente;
     private List<ProdutoModel> produtos;
     private int acaoTela;
+    private ProdutoModel prodTemp;
 
     private void GerenciarBotoes() {
 
     }
 
-    private void LoadTableProduto(List<ProdutoModel> get) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void LoadTableProduto(List<ProdutoModel> entity) {
+
+        DefaultTableModel tmProduto = new DefaultTableModel();
+        tmProduto.addColumn("ID");
+        tmProduto.addColumn("Nome");
+        tmProduto.addColumn("Nome Fantasia");
+        tmProduto.addColumn("Empresa");
+        tmProduto.addColumn("Cpf/Cnjp");
+        tmProduto.addColumn("E-mail");
+        tmProduto.addColumn("Celular");
+        tmProduto.addColumn("Endereço");
+        tmProduto.addColumn("Ativo");
+
+        tblProdutos.setModel(tmProduto);
+
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(250);
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+
+        tmProduto.setRowCount(0);
+
+        for (ProdutoModel prod : entity) {
+            tmProduto.addRow(new String[]{String.valueOf(prod.getId()),
+                prod.getNomeProduto(), "Ativo"});
+        }
+    }
+
+    private void carregarPagamento() {
+        TipoPagamentoController pagamentoController = new TipoPagamentoController();
+        TipoPagamentoModel pagamentoFiltro = new TipoPagamentoModel();
+        List<TipoPagamentoModel> pagamento = pagamentoController.findAll(pagamentoFiltro);
+
+        for (int i = 0; i < pagamento.size(); i++) {
+            cbxPagamento.addItem(pagamento.get(i).getDescPagamento());
+        }
+
     }
 
     private void PreencherProduto(ProdutoModel prodm) {
@@ -68,9 +114,6 @@ public class Venda extends javax.swing.JFrame {
                 prodm.setMarca(txtMarca.getText());
             }
 
-            /*if(prodm.validString(txtFornecedor.getText())){
-               prodm.(txtFornecedor.getText());
-            }*/
             if (prodm.validInt(Integer.parseInt(txtQtd.getText()))) {
                 prodm.setQtd(Integer.parseInt(txtQtd.getText()));
             }
@@ -101,6 +144,7 @@ public class Venda extends javax.swing.JFrame {
     }
 
     private void CarregarProduto(ProdutoModel produto) {
+        prodTemp = produto;
         txtProduto.setText(produto.getNomeProduto());
         txtCategoria.setText(produto.getCategoria());
         txtMarca.setText(produto.getMarca());
@@ -121,6 +165,23 @@ public class Venda extends javax.swing.JFrame {
         txtValor.setText("");
         txtAvaliacao.setText("");
         txtDesconto.setText("");
+
+    }
+
+    private void LimparCamposCliente() {
+        txtNome.setText("");
+        txtNomeFan.setText("");
+        txtEmail.setText("");
+        txtContResp.setText("");
+        txtCPFCNPJ.setText("");
+        txtIM.setText("");
+        txtEM.setText("");
+        txtTel.setText("");
+        txtDtNasc.setText("");
+        txtEndereco.setText("");
+        txtCEP.setText("");
+        txtEstado.setText("");
+        txtMunicipio.setText("");
 
     }
 
@@ -156,7 +217,7 @@ public class Venda extends javax.swing.JFrame {
         rbtMasc = new javax.swing.JRadioButton();
         rbtFem = new javax.swing.JRadioButton();
         txtMunicipio = new javax.swing.JTextField();
-        btnCancelar1 = new javax.swing.JButton();
+        btnCancelarCliente = new javax.swing.JButton();
         jPanelProdutos = new javax.swing.JPanel();
         txtProduto = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
@@ -183,20 +244,20 @@ public class Venda extends javax.swing.JFrame {
         jpnDescontos = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btnSalvar2 = new javax.swing.JButton();
-        txtNome2 = new javax.swing.JTextField();
-        txtCPFCNPJ2 = new javax.swing.JTextField();
-        txtEmail1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtEndereco1 = new javax.swing.JTextField();
-        txtCEP1 = new javax.swing.JTextField();
-        txtEstado1 = new javax.swing.JTextField();
-        txtMunicipio1 = new javax.swing.JTextField();
-        txtEndereco2 = new javax.swing.JTextField();
-        ckbPerfil = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
+        btnSalvarCompra = new javax.swing.JButton();
+        txtNomeCliente = new javax.swing.JTextField();
+        txtCpfCnpjCliente = new javax.swing.JTextField();
+        txtEmailCliente = new javax.swing.JTextField();
+        lblConfirmacao = new javax.swing.JLabel();
+        txtEnderecoCliente = new javax.swing.JTextField();
+        txtCepCliente = new javax.swing.JTextField();
+        txtEstadoCliente = new javax.swing.JTextField();
+        txtMunicipioCliente = new javax.swing.JTextField();
+        cbxPagamento = new javax.swing.JComboBox<>();
+        lblPagamento = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblProdutos1 = new javax.swing.JTable();
+        tblProdutoFinal = new javax.swing.JTable();
+        txtTelCliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -215,7 +276,6 @@ public class Venda extends javax.swing.JFrame {
         });
 
         txtCPFCNPJ.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCPFCNPJ.setForeground(new java.awt.Color(255, 255, 255));
         txtCPFCNPJ.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         btnPesquisar.setBackground(new java.awt.Color(51, 102, 255));
@@ -231,7 +291,7 @@ public class Venda extends javax.swing.JFrame {
             }
         });
 
-        rbtEmpresa.setBackground(new java.awt.Color(255, 255, 255));
+        rbtEmpresa.setBackground(new java.awt.Color(201, 232, 242));
         rbtEmpresa.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtEmpresa.setText("Empresa");
         rbtEmpresa.addActionListener(new java.awt.event.ActionListener() {
@@ -244,38 +304,30 @@ public class Venda extends javax.swing.JFrame {
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtNomeFan.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNomeFan.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeFan.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtContResp.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtContResp.setForeground(new java.awt.Color(255, 255, 255));
         txtContResp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cont. Responsável", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtTel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtTel.setForeground(new java.awt.Color(255, 255, 255));
         txtTel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtEM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEM.setForeground(new java.awt.Color(255, 255, 255));
         txtEM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtIM.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtIM.setForeground(new java.awt.Color(255, 255, 255));
         txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtCPFCNPJ1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCPFCNPJ1.setForeground(new java.awt.Color(255, 255, 255));
         txtCPFCNPJ1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtCel.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCel.setForeground(new java.awt.Color(255, 255, 255));
         txtCel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtDtNasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtDtNasc.setForeground(new java.awt.Color(255, 255, 255));
         txtDtNasc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtEndereco.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -287,27 +339,27 @@ public class Venda extends javax.swing.JFrame {
         txtEstado.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtEstado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        rbtMasc.setBackground(new java.awt.Color(255, 255, 255));
+        rbtMasc.setBackground(new java.awt.Color(201, 232, 242));
         rbtMasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtMasc.setText("Masculino");
 
-        rbtFem.setBackground(new java.awt.Color(255, 255, 255));
+        rbtFem.setBackground(new java.awt.Color(201, 232, 242));
         rbtFem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbtFem.setText("Feminino");
 
         txtMunicipio.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         txtMunicipio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
-        btnCancelar1.setBackground(new java.awt.Color(255, 153, 0));
-        btnCancelar1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnCancelar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar1.setText("Cancelar");
-        btnCancelar1.setBorder(null);
-        btnCancelar1.setBorderPainted(false);
-        btnCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelarCliente.setBackground(new java.awt.Color(255, 153, 0));
+        btnCancelarCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarCliente.setText("Cancelar");
+        btnCancelarCliente.setBorder(null);
+        btnCancelarCliente.setBorderPainted(false);
+        btnCancelarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar1ActionPerformed(evt);
+                btnCancelarClienteActionPerformed(evt);
             }
         });
 
@@ -318,7 +370,7 @@ public class Venda extends javax.swing.JFrame {
             .addGroup(jPanelClienteLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtEmpresa)
                     .addGroup(jPanelClienteLayout.createSequentialGroup()
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,7 +453,7 @@ public class Venda extends javax.swing.JFrame {
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(138, Short.MAX_VALUE))
         );
 
@@ -668,59 +720,63 @@ public class Venda extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        btnSalvar2.setBackground(new java.awt.Color(61, 189, 61));
-        btnSalvar2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnSalvar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar2.setText("Concluír");
-        btnSalvar2.setBorder(null);
-        btnSalvar2.setBorderPainted(false);
-        btnSalvar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSalvar2.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvarCompra.setBackground(new java.awt.Color(61, 189, 61));
+        btnSalvarCompra.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvarCompra.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvarCompra.setText("Concluír");
+        btnSalvarCompra.setBorder(null);
+        btnSalvarCompra.setBorderPainted(false);
+        btnSalvarCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvar2ActionPerformed(evt);
+                btnSalvarCompraActionPerformed(evt);
             }
         });
 
-        txtNome2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNome2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtNomeCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtNomeCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtNomeCliente.setEnabled(false);
 
-        txtCPFCNPJ2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCPFCNPJ2.setForeground(new java.awt.Color(255, 255, 255));
-        txtCPFCNPJ2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
-        txtCPFCNPJ2.addActionListener(new java.awt.event.ActionListener() {
+        txtCpfCnpjCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCpfCnpjCliente.setForeground(new java.awt.Color(255, 255, 255));
+        txtCpfCnpjCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF/CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtCpfCnpjCliente.setEnabled(false);
+        txtCpfCnpjCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFCNPJ2ActionPerformed(evt);
+                txtCpfCnpjClienteActionPerformed(evt);
             }
         });
 
-        txtEmail1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEmail1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtEmailCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEmailCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtEmailCliente.setEnabled(false);
 
-        jLabel5.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        jLabel5.setText("Confirmação");
+        lblConfirmacao.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblConfirmacao.setText("Confirmação");
 
-        txtEndereco1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEndereco1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtEnderecoCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEnderecoCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtEnderecoCliente.setEnabled(false);
 
-        txtCEP1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCEP1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtCepCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtCepCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtCepCliente.setEnabled(false);
 
-        txtEstado1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEstado1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtEstadoCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtEstadoCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtEstadoCliente.setEnabled(false);
 
-        txtMunicipio1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtMunicipio1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtMunicipioCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtMunicipioCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Municipio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtMunicipioCliente.setEnabled(false);
 
-        txtEndereco2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEndereco2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        lblPagamento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblPagamento.setText("Pagamento");
 
-        jLabel10.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jLabel10.setText("Pagamento");
-
-        tblProdutos1.setBackground(new java.awt.Color(64, 87, 184));
-        tblProdutos1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        tblProdutos1.setForeground(new java.awt.Color(255, 255, 255));
-        tblProdutos1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutoFinal.setBackground(new java.awt.Color(64, 87, 184));
+        tblProdutoFinal.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblProdutoFinal.setForeground(new java.awt.Color(255, 255, 255));
+        tblProdutoFinal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -730,10 +786,15 @@ public class Venda extends javax.swing.JFrame {
 
             }
         ));
-        tblProdutos1.setGridColor(new java.awt.Color(64, 87, 184));
-        tblProdutos1.setSelectionForeground(new java.awt.Color(64, 87, 184));
-        tblProdutos1.setShowGrid(true);
-        jScrollPane2.setViewportView(tblProdutos1);
+        tblProdutoFinal.setGridColor(new java.awt.Color(64, 87, 184));
+        tblProdutoFinal.setSelectionForeground(new java.awt.Color(64, 87, 184));
+        tblProdutoFinal.setShowGrid(true);
+        jScrollPane2.setViewportView(tblProdutoFinal);
+
+        txtTelCliente.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtTelCliente.setForeground(new java.awt.Color(255, 255, 255));
+        txtTelCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        txtTelCliente.setEnabled(false);
 
         javax.swing.GroupLayout jPanelPagamentoLayout = new javax.swing.GroupLayout(jPanelPagamento);
         jPanelPagamento.setLayout(jPanelPagamentoLayout);
@@ -750,60 +811,57 @@ public class Venda extends javax.swing.JFrame {
             .addGroup(jPanelPagamentoLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPagamento)
+                    .addComponent(cbxPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(btnSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblConfirmacao)
+                    .addComponent(btnSalvarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelPagamentoLayout.createSequentialGroup()
-                        .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelPagamentoLayout.createSequentialGroup()
-                                .addComponent(txtEndereco2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ckbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelPagamentoLayout.createSequentialGroup()
-                                .addComponent(txtNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCPFCNPJ2))
+                                .addComponent(txtCpfCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelPagamentoLayout.createSequentialGroup()
-                                .addComponent(txtEndereco1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtCEP1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtEnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCepCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelPagamentoLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(txtEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEstadoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(txtMunicipio1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtMunicipioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelPagamentoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanelPagamentoLayout.setVerticalGroup(
             jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPagamentoLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel5)
+                .addComponent(lblConfirmacao)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCPFCNPJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCpfCnpjCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEndereco1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCEP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMunicipio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtEndereco2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelPagamentoLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ckbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                    .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCepCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstadoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMunicipioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(lblPagamento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbxPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanelPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpnProdVendido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpnDescontos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -811,7 +869,7 @@ public class Venda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(btnSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalvarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
 
@@ -838,6 +896,7 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_ckbClienteCadastradoActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+
         String cpfCnpj = txtCPFCNPJ.getText();
 
         if (ckbClienteCadastrado.isSelected()) {
@@ -849,7 +908,9 @@ public class Venda extends javax.swing.JFrame {
             cliFiltro.setCpfCnpj(cpfCnpj);
 
             List<ClienteModel> cli = cliController.findAll(cliFiltro);
+
             cliente = cli.get(0);
+
             txtNome.setText(cliente.getNome());
             txtNomeFan.setText(cliente.getNomeFantasia());
             txtEmail.setText(cliente.getEmail());
@@ -864,70 +925,6 @@ public class Venda extends javax.swing.JFrame {
             txtEstado.setText(cliente.getEstado());
             txtMunicipio.setText(cliente.getMunicipio());
 
-        } else {
-            try {
-                if (cliente.validString(txtNome.getText())) {
-                    cliente.setNome(txtNome.getText());
-                }
-
-                if (cliente.validString(txtEmail.getText())) {
-                    cliente.setEmail(txtEmail.getText());
-                }
-
-                if (cliente.validString(txtCPFCNPJ.getText())) {
-                    cliente.setCpfCnpj(txtCPFCNPJ.getText());
-                }
-
-                if (cliente.validString(txtTel.getText())) {
-                    cliente.setTelefone(txtTel.getText());
-                }
-                if (cliente.validString(txtCel.getText())) {
-                    cliente.setCelular(txtCel.getText());
-                }
-                if (rbtFem.isSelected()) {
-                    cliente.setSexo("Feminino");
-                }
-                if (rbtMasc.isSelected()) {
-                    cliente.setSexo("Masculino");
-                }
-                if (cliente.validString(txtEndereco.getText())) {
-                    cliente.setEndereco(txtEndereco.getText());
-                }
-                if (cliente.validString(txtCEP.getText())) {
-                    cliente.setCEP(txtCEP.getText());
-                }
-                if (cliente.validString(txtEstado.getText())) {
-                    cliente.setEstado(txtEstado.getText());
-                }
-                if (cliente.validString(txtMunicipio.getText())) {
-                    cliente.setMunicipio(txtMunicipio.getText());
-                }
-                if (cliente.validString(txtDtNasc.getText())) {
-                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                    cliente.setDtNasc(formatter1.parse(txtDtNasc.getText().replace("/", "-")));
-                }
-                if (rbtEmpresa.isSelected()) {
-                    cliente.setTipoCliente(1);
-
-                    if (cliente.validString(txtNomeFan.getText())) {
-                        cliente.setNomeFantasia(txtNomeFan.getText());
-                    }
-
-                    if (cliente.validString(txtEM.getText())) {
-                        cliente.setEM(txtEM.getText());
-                    }
-                    if (cliente.validString(txtIM.getText())) {
-                        cliente.setIM(txtIM.getText());
-                    }
-                    if (cliente.validString(txtContResp.getText())) {
-                        cliente.setContatoResposavel(txtContResp.getText());
-                    }
-                }
-            } catch (PropertiesValidator ex) {
-                JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
-            } catch (ParseException ex) {
-                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
@@ -937,17 +934,25 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtEmpresaActionPerformed
 
     private void btnRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverProdutoActionPerformed
+        if (tblProdutos.getSelectedRow() >= 0) {
 
+            acaoTela = eAcaoTela.EDITAR.getValor();
+            GerenciarBotoes();
+            int id = Integer.parseInt(tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0).toString());
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
+        }
 
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
-    private void btnSalvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar2ActionPerformed
+    private void btnSalvarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCompraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvar2ActionPerformed
+    }//GEN-LAST:event_btnSalvarCompraActionPerformed
 
-    private void txtCPFCNPJ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFCNPJ2ActionPerformed
+    private void txtCpfCnpjClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfCnpjClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFCNPJ2ActionPerformed
+    }//GEN-LAST:event_txtCpfCnpjClienteActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
 
@@ -1016,17 +1021,13 @@ public class Venda extends javax.swing.JFrame {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
 
-        ProdutoController prodController = new ProdutoController();
-
-        ProdutoModel prod = new ProdutoModel();
-
-        PreencherProduto(prod);
+        PreencherProduto(prodTemp);
         LoadTableProduto(produtos);
     }//GEN-LAST:event_btnAdicionarProdutoActionPerformed
 
-    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar1ActionPerformed
+    private void btnCancelarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClienteActionPerformed
+        LimparCamposCliente();
+    }//GEN-LAST:event_btnCancelarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1066,20 +1067,18 @@ public class Venda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Jtab;
     private javax.swing.JButton btnAdicionarProduto;
-    private javax.swing.JButton btnCancelar1;
+    private javax.swing.JButton btnCancelarCliente;
     private javax.swing.JButton btnCancelarProduto;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarProduto;
     private javax.swing.JButton btnRemoverProduto;
-    private javax.swing.JButton btnSalvar2;
+    private javax.swing.JButton btnSalvarCompra;
+    private javax.swing.JComboBox<String> cbxPagamento;
     private javax.swing.JCheckBox ckbClienteCadastrado;
-    private javax.swing.JComboBox<String> ckbPerfil;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1092,40 +1091,42 @@ public class Venda extends javax.swing.JFrame {
     private javax.swing.JPanel jpnDescontos;
     private javax.swing.JPanel jpnProdVendido;
     private javax.swing.JPanel jpnTotalVendas;
+    private javax.swing.JLabel lblConfirmacao;
+    private javax.swing.JLabel lblPagamento;
     private javax.swing.JRadioButton rbtEmpresa;
     private javax.swing.JRadioButton rbtFem;
     private javax.swing.JRadioButton rbtMasc;
+    private javax.swing.JTable tblProdutoFinal;
     private javax.swing.JTable tblProdutos;
-    private javax.swing.JTable tblProdutos1;
     private javax.swing.JTextField txtAvaliacao;
     private javax.swing.JTextField txtCEP;
-    private javax.swing.JTextField txtCEP1;
     private javax.swing.JTextField txtCPFCNPJ;
     private javax.swing.JTextField txtCPFCNPJ1;
-    private javax.swing.JTextField txtCPFCNPJ2;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCel;
+    private javax.swing.JTextField txtCepCliente;
     private javax.swing.JTextField txtContResp;
+    private javax.swing.JTextField txtCpfCnpjCliente;
     private javax.swing.JTextField txtDesconto;
     private javax.swing.JTextField txtDtNasc;
     private javax.swing.JTextField txtEM;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEmail1;
+    private javax.swing.JTextField txtEmailCliente;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtEndereco1;
-    private javax.swing.JTextField txtEndereco2;
+    private javax.swing.JTextField txtEnderecoCliente;
     private javax.swing.JTextField txtEstado;
-    private javax.swing.JTextField txtEstado1;
+    private javax.swing.JTextField txtEstadoCliente;
     private javax.swing.JTextField txtIM;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtMunicipio;
-    private javax.swing.JTextField txtMunicipio1;
+    private javax.swing.JTextField txtMunicipioCliente;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNome2;
+    private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeFan;
     private javax.swing.JTextField txtProduto;
     private javax.swing.JTextField txtQtd;
     private javax.swing.JTextField txtTel;
+    private javax.swing.JTextField txtTelCliente;
     private javax.swing.JTextField txtValidade;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
