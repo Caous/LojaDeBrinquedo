@@ -76,7 +76,7 @@ public class Principal extends javax.swing.JFrame {
         dtFiltroInicio = new com.toedter.calendar.JDateChooser();
         dtFiltroFim = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -416,11 +416,9 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -433,7 +431,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnHomeMouseClicked
 
     private void jpnVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnVendaMouseClicked
-        Vendas venda = new Vendas();
+        Venda venda = new Venda();
         venda.setVisible(true);
 
     }//GEN-LAST:event_jpnVendaMouseClicked

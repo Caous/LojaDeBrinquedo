@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -45,23 +45,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
-                          <Component id="lblProduto" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                          <Component id="txtNome" min="-2" pref="210" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtCategoria" min="-2" pref="210" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtMarca" min="-2" pref="210" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtFornecedor" min="-2" pref="210" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                           <Component id="txtQtd" min="-2" pref="210" max="-2" attributes="0"/>
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Component id="txtValor" min="-2" pref="210" max="-2" attributes="0"/>
@@ -71,7 +57,6 @@
                           <Component id="txtValidade" min="-2" pref="210" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                           <Component id="txtDesconto" min="-2" pref="210" max="-2" attributes="0"/>
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Component id="txtFot" min="-2" pref="210" max="-2" attributes="0"/>
@@ -79,20 +64,25 @@
                           <Component id="ckbExcluir" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                           <Component id="txtaDescrição" min="-2" pref="400" max="-2" attributes="0"/>
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Component id="txtaComentario" min="-2" pref="400" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                           <Component id="btnSalvar" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnPesquisar" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jScrollPane1" min="-2" pref="900" max="-2" attributes="0"/>
+                      <Component id="lblProduto" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="900" max="-2" attributes="0"/>
+                          <Component id="txtNome" min="-2" pref="210" max="-2" attributes="0"/>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="txtCategoria" min="-2" pref="210" max="-2" attributes="0"/>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="txtMarca" min="-2" pref="210" max="-2" attributes="0"/>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="txtFornecedor" min="-2" pref="210" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -102,9 +92,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="lblProduto" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtNome" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCategoria" min="-2" max="-2" attributes="0"/>
@@ -245,9 +235,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Rubik Light" size="14" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Controle de Produtos"/>
           </Properties>
         </Component>
@@ -331,7 +318,7 @@
             <Component class="javax.swing.JTextArea" name="jTextArea1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ea" green="6d" red="4f" type="rgb"/>
+                  <Color blue="f2" green="e8" red="c9" type="rgb"/>
                 </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -368,7 +355,7 @@
             <Component class="javax.swing.JTextArea" name="jTextArea2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ea" green="6d" red="4f" type="rgb"/>
+                  <Color blue="f2" green="e8" red="c9" type="rgb"/>
                 </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -378,6 +365,13 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder>
+                      <Font PropertyName="font" name="Rubik Light" size="14" style="1"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -456,7 +450,6 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
-            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>

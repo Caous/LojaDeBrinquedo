@@ -475,7 +475,7 @@ public class Configuracao extends javax.swing.JFrame {
         tblPagamento = new javax.swing.JTable();
         ckbExcluirPagamento = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTablePanel.setFont(new java.awt.Font("Rubik Light", 1, 12)); // NOI18N
 

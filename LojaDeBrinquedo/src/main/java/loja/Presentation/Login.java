@@ -37,7 +37,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setPreferredSize(new java.awt.Dimension(1280, 720));

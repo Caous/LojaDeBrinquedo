@@ -75,7 +75,7 @@ public class Usuario extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         btnSalvar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -142,7 +142,6 @@ public class Usuario extends javax.swing.JFrame {
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
         btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPesquisar.setOpaque(true);
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -191,7 +190,6 @@ public class Usuario extends javax.swing.JFrame {
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(null);
         btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvar.setOpaque(true);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
