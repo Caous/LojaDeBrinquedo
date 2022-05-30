@@ -4,17 +4,26 @@
  */
 package loja.Presentation;
 
-import loja.Dominio.Util.PropertiesValidator;
-import loja.Presentation.Controller.AcessoController;
-import loja.Presentation.Controller.MenuController;
-import loja.Presentation.Controller.PerfilController;
-import loja.Presentation.Controller.TipoPagamentoController;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import loja.Dominio.Model.MenuModel;
 import loja.Dominio.Model.PerfilModel;
 import loja.Dominio.Model.TipoAcessoModel;
 import loja.Dominio.Model.TipoPagamentoModel;
+import loja.Dominio.Model.UserModel;
+import loja.Dominio.Util.PropertiesValidator;
+import loja.Dominio.Util.eAcaoTela;
+import loja.Presentation.Controller.AcessoController;
+import loja.Presentation.Controller.MenuController;
+import loja.Presentation.Controller.PerfilController;
+import loja.Presentation.Controller.TipoPagamentoController;
 
 /**
  *
@@ -22,11 +31,388 @@ import loja.Dominio.Model.TipoPagamentoModel;
  */
 public class Configuracao extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Configuracao
-     */
     public Configuracao() {
         initComponents();
+        LoadTable();
+        acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
+        CarregarComboBox();
+    }
+
+    public Configuracao(UserModel user) {
+        this.usuSystem = user;
+        initComponents();
+        LoadTable();
+        acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
+        CarregarComboBox();
+    }
+
+    private UserModel usuSystem;
+    private int acaoTela;
+    private MenuModel _menu;
+    private PerfilModel _perfil;
+    private TipoPagamentoModel _pagamento;
+    private TipoAcessoModel acessoModel;
+
+    public void LoadTable() {
+
+        //Menu
+        MenuController menuController = new MenuController();
+        MenuModel menuFiltro = new MenuModel();
+        List<MenuModel> menus = menuController.findAll(menuFiltro);
+
+        DefaultTableModel tbMenus = new DefaultTableModel();
+
+        tbMenus.addColumn("ID");
+        tbMenus.addColumn("Nome");
+        tbMenus.addColumn("Descrição");
+        tbMenus.addColumn("Usu. Inclusão");
+        tbMenus.addColumn("Dt. Inclusão");
+
+        tblMenus.setModel(tbMenus);
+
+        tblMenus.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblMenus.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblMenus.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblMenus.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblMenus.getColumnModel().getColumn(0).setPreferredWidth(100);
+
+        tbMenus.setRowCount(0);
+
+        if (menus == null || menus.size() == 0) {
+            tbMenus.addRow(new String[]{String.valueOf("Sem Registro"),
+                "Sem Registro", "Sem Registro", "Sem Registro", "Sem Registro"});
+        }
+
+        for (MenuModel menu : menus) {
+            tbMenus.addRow(new String[]{String.valueOf(menu.getId()),
+                menu.getMenu(), menu.getDescMenu(), "Dt", "Dt"});
+        }
+
+        //Perfil
+        PerfilController perfilController = new PerfilController();
+        PerfilModel perfilFiltro = new PerfilModel();
+        List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
+
+        DefaultTableModel tbPerfil = new DefaultTableModel();
+
+        tbPerfil.addColumn("ID");
+        tbPerfil.addColumn("Nome");
+        tbPerfil.addColumn("Descrição");
+        tbPerfil.addColumn("Usu. Inclusão");
+        tbPerfil.addColumn("Dt. Inclusão");
+
+        tblPerfil.setModel(tbPerfil);
+
+        tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblPerfil.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblPerfil.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(100);
+
+        tbPerfil.setRowCount(0);
+
+        if (perfils == null || perfils.size() == 0) {
+            tbPerfil.addRow(new String[]{String.valueOf("Sem Registro"),
+                "Sem Registro", "Sem Registro", "Sem Registro", "Sem Registro"});
+        }
+
+        for (PerfilModel perfil : perfils) {
+            tbPerfil.addRow(new String[]{String.valueOf(perfil.getId()),
+                perfil.getPerfil(), perfil.getDescPerfil(), "Dt", "Dt"});
+        }
+
+        //Acesso
+        AcessoController acessoController = new AcessoController();
+        TipoAcessoModel acessoFiltro = new TipoAcessoModel();
+        List<TipoAcessoModel> acessos = acessoController.findAll(acessoFiltro);
+
+        DefaultTableModel tbAcesso = new DefaultTableModel();
+        tbAcesso.addColumn("ID");
+        tbAcesso.addColumn("Perfil");
+        tbAcesso.addColumn("Menu");
+        tbAcesso.addColumn("Usu. Inclusão");
+        tbAcesso.addColumn("Dt. Inclusão");
+
+        tblAcessos.setModel(tbAcesso);
+
+        tblAcessos.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblAcessos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblAcessos.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblAcessos.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblAcessos.getColumnModel().getColumn(0).setPreferredWidth(100);
+
+        tbAcesso.setRowCount(0);
+
+        if (acessos == null || acessos.size() == 0) {
+            tbAcesso.addRow(new String[]{String.valueOf("Sem Registro"),
+                "Sem Registro", "Sem Registro", "Sem Registro", "Sem Registro"});
+        }
+
+        for (TipoAcessoModel acesso : acessos) {
+            tbAcesso.addRow(new String[]{String.valueOf(acesso.getId()),
+                "", "", "Dt", "Dt"});
+        }
+
+        //Tipo Pagamento
+        TipoPagamentoController pagamentoController = new TipoPagamentoController();
+        TipoPagamentoModel pagamentoFiltro = new TipoPagamentoModel();
+        List<TipoPagamentoModel> pagamentos = pagamentoController.findAll(pagamentoFiltro);
+
+        DefaultTableModel tbPagamentos = new DefaultTableModel();
+        tbPagamentos.addColumn("ID");
+        tbPagamentos.addColumn("Desc. Pagamento");
+        tbPagamentos.addColumn("Usu. Inclusão");
+        tbPagamentos.addColumn("Dt. Inclusão");
+
+        tblPagamento.setModel(tbPagamentos);
+
+        tblPagamento.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblPagamento.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblPagamento.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblPagamento.getColumnModel().getColumn(1).setPreferredWidth(50);
+
+        tbPagamentos.setRowCount(0);
+
+        if (pagamentos == null || pagamentos.size() == 0) {
+            tbPagamentos.addRow(new String[]{String.valueOf("Sem Registro"),
+                "Sem Registro", "Sem Registro", "Sem Registro"});
+        }
+
+        for (TipoPagamentoModel pagamento : pagamentos) {
+            tbPagamentos.addRow(new String[]{String.valueOf(pagamento.getId()),
+                pagamento.getDescPagamento(), "Dt", "Dt"});
+        }
+
+    }
+
+    private void GerenciarBotoes() {
+        switch (acaoTela) {
+            case 1:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 2:
+                btnSalvar.setEnabled(true);
+                btnPesquisar.setEnabled(true);
+                break;
+            case 3:
+                btnPesquisar.setEnabled(true);
+                btnSalvar.setEnabled(false);
+                break;
+            case 4:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(false);
+                break;
+            case 5:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+            case 6:
+                btnPesquisar.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                break;
+        }
+
+    }
+
+    private void LimparCampos() {
+        txtMenu.setText("");
+        txaDescricao.setText("");
+        txtPerfil.setText("");
+        txaPerfil.setText("");
+        txaPagamento.setText("");
+        _menu = null;
+    }
+
+    private MenuModel preencherMenu(MenuModel entity) {
+
+        if (entity == null) {
+            entity = new MenuModel();
+        }
+
+        try {
+            if (entity.validString(txtMenu.getText())) {
+                entity.setMenu(txtMenu.getText());
+            }
+
+            if (entity.validString(txaDescricao.getText())) {
+                entity.setDescMenu(txaDescricao.getText());
+            }
+
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return entity;
+    }
+
+    public void recuperarMenu(int id) {
+
+        MenuController menuController = new MenuController();
+
+        _menu = menuController.findId(id);
+
+        txtMenu.setText(_menu.getMenu());
+        txaDescricao.setText(_menu.getDescMenu());
+
+    }
+
+    public void recuperarPerfil(int id) {
+
+        PerfilController perfilController = new PerfilController();
+
+        _perfil = perfilController.findId(id);
+
+        txtPerfil.setText(_perfil.getPerfil());
+        txaPerfil.setText(_perfil.getDescPerfil());
+
+    }
+
+    public void recuperarPagamento(int id) {
+
+        TipoPagamentoController pagamentoController = new TipoPagamentoController();
+
+        _pagamento = pagamentoController.findId(id);
+
+        txaPagamento.setText(_pagamento.getDescPagamento());
+
+    }
+
+    private PerfilModel preencherPerfil(PerfilModel entity) {
+
+        if (entity == null) {
+            entity = new PerfilModel();
+        }
+
+        try {
+            if (entity.validString(txtPerfil.getText())) {
+                entity.setPerfile(txtPerfil.getText());
+            }
+
+            if (entity.validString(txaPerfil.getText())) {
+                entity.setDescPerfil(txaPerfil.getText());
+            }
+
+            if (ckbExcluirPerfil.isSelected()) {
+
+                acaoTela = eAcaoTela.EXCLUIR.getValor();
+
+                if (this.usuSystem != null && entity.validInt(this.usuSystem.getId())) {
+                    entity.setUsuDel(this.usuSystem.getId());
+                }
+
+            }
+
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return entity;
+    }
+
+    private TipoPagamentoModel preencherPagamento(TipoPagamentoModel entity) {
+
+        if (entity == null) {
+            entity = new TipoPagamentoModel();
+        }
+
+        try {
+            if (entity.validString(txaPagamento.getText())) {
+                entity.setDescPagamento(txaPagamento.getText());
+            }
+
+            if (ckbExcluirPagamento.isSelected()) {
+                acaoTela = eAcaoTela.EXCLUIR.getValor();
+                if (this.usuSystem != null && entity.validInt(this.usuSystem.getId())) {
+                    entity.setUsuDel(this.usuSystem.getId());
+                }
+
+            }
+
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return entity;
+    }
+
+    private TipoAcessoModel preencherAcesso(TipoAcessoModel entity) {
+
+        if (entity == null) {
+            entity = new TipoAcessoModel();
+        }
+
+        try {
+            if (entity.validString(ckbMenu.getSelectedItem().toString())) {
+
+                String menu = ckbMenu.getSelectedItem().toString();
+
+                MenuController menuController = new MenuController();
+                MenuModel menuFiltro = new MenuModel();
+                menuFiltro.setMenu(menu);
+
+                List<MenuModel> menus = menuController.findAll(menuFiltro);
+
+                entity.setIdMenu(menus.get(0).getId());
+            }
+
+            if (entity.validString(ckbPerfil.getSelectedItem().toString())) {
+
+                String perfil = ckbMenu.getSelectedItem().toString();
+
+                PerfilController perfilController = new PerfilController();
+                PerfilModel perfilFiltro = new PerfilModel();
+                perfilFiltro.setPerfile(perfil);
+
+                List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
+
+                entity.setIdPerfil(perfils.get(0).getId());
+            }
+
+            if (ckbExcluirAcesso.isSelected()) {
+                acaoTela = eAcaoTela.EXCLUIR.getValor();
+                if (this.usuSystem != null && entity.validInt(this.usuSystem.getId())) {
+                    entity.setUsuDel(this.usuSystem.getId());
+                }
+
+            }
+
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return entity;
+    }
+
+    public void recuperarAcesso(int id) {
+
+        AcessoController acessoController = new AcessoController();
+
+        acessoModel = acessoController.findId(id);
+
+
+    }
+
+    private void CarregarComboBox() {
+
+        MenuController menuController = new MenuController();
+        MenuModel menuFiltro = new MenuModel();
+        List<MenuModel> menus = menuController.findAll(menuFiltro);
+
+        PerfilController perfilController = new PerfilController();
+        PerfilModel perfilFiltro = new PerfilModel();
+        List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
+
+        for (int i = 0; i < perfils.size(); i++) {
+            ckbPerfil.addItem(perfils.get(i).getPerfil());
+        }
+
+        for (int i = 0; i < menus.size(); i++) {
+            ckbMenu.addItem(menus.get(i).getMenu());
+        }
+
     }
 
     /**
@@ -38,679 +424,917 @@ public class Configuracao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tblPane = new javax.swing.JTabbedPane();
-        jpnMenu = new javax.swing.JPanel();
-        lblPagamento2 = new javax.swing.JLabel();
+        jTablePanel = new javax.swing.JTabbedPane();
+        jPanelMenu = new javax.swing.JPanel();
+        lblMenu = new javax.swing.JLabel();
         txtMenu = new javax.swing.JTextField();
-        btnCancelar3 = new javax.swing.JButton();
-        btnSalvarMenu = new javax.swing.JButton();
-        txtDescricaoMenu = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        btnPesquisarMenu = new javax.swing.JButton();
-        jpnTipoAcesso = new javax.swing.JPanel();
-        lblPagamento = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblMenus = new javax.swing.JTable();
+        txtDescricao = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txaDescricao = new javax.swing.JTextArea();
+        btnSalvar = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtNomeConf2 = new javax.swing.JTextField();
-        btnSalvarAcesso = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        txtNomeConf3 = new javax.swing.JTextField();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        btnPesquisarAcesso = new javax.swing.JButton();
-        jpnPagamento = new javax.swing.JPanel();
-        lblPagamento3 = new javax.swing.JLabel();
-        btnCancelar4 = new javax.swing.JButton();
-        btnSalvarPagamento = new javax.swing.JButton();
-        txtDescricaoPagamento = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        btnPesquisarPagamento = new javax.swing.JButton();
-        jpnPerfil = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        lblListaMenus = new javax.swing.JLabel();
+        ckbExcluir = new javax.swing.JCheckBox();
+        jPanelPerfil = new javax.swing.JPanel();
+        lblPerfil = new javax.swing.JLabel();
         txtPerfil = new javax.swing.JTextField();
-        lblPagamento1 = new javax.swing.JLabel();
-        btnCancelar1 = new javax.swing.JButton();
-        txtDescricaoPerfil = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        btnPesquisarPerfil = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        txtDescricao1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txaPerfil = new javax.swing.JTextArea();
+        lblListaMenus1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblPerfil = new javax.swing.JTable();
         btnSalvarPerfil = new javax.swing.JButton();
+        btnPesquisarPerfil = new javax.swing.JButton();
+        btnCancelarPerfil = new javax.swing.JButton();
+        ckbExcluirPerfil = new javax.swing.JCheckBox();
+        jPanelAcesso = new javax.swing.JPanel();
+        lblListaMenus2 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblAcessos = new javax.swing.JTable();
+        btnSalvarPerfil1 = new javax.swing.JButton();
+        btnPesquisarPerfil1 = new javax.swing.JButton();
+        btnCancelarPerfil1 = new javax.swing.JButton();
+        lblMenuAcesso = new javax.swing.JLabel();
+        lblPerfilAcesso = new javax.swing.JLabel();
+        ckbMenu = new javax.swing.JComboBox<>();
+        ckbPerfil = new javax.swing.JComboBox<>();
+        ckbExcluirAcesso = new javax.swing.JCheckBox();
+        jPanelTipoPagamento = new javax.swing.JPanel();
+        txtDescricao2 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txaPagamento = new javax.swing.JTextArea();
+        lblListaMenus3 = new javax.swing.JLabel();
+        btnSalvarPagamento = new javax.swing.JButton();
+        btnPesquisarPagamento = new javax.swing.JButton();
+        btnCancelarPagamento = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblPagamento = new javax.swing.JTable();
+        ckbExcluirPagamento = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tblPane.setBackground(new java.awt.Color(0, 0, 102));
-        tblPane.setForeground(new java.awt.Color(255, 255, 255));
+        jTablePanel.setFont(new java.awt.Font("Rubik Light", 1, 12)); // NOI18N
 
-        jpnMenu.setBackground(new java.awt.Color(241, 247, 249));
+        jPanelMenu.setBackground(new java.awt.Color(201, 232, 242));
 
-        lblPagamento2.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        lblPagamento2.setText("Menu:");
+        lblMenu.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblMenu.setText("Menu:");
 
-        txtMenu.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtMenu.setForeground(new java.awt.Color(255, 255, 255));
-        txtMenu.setText("ADM");
-        txtMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        txtMenu.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
 
-        btnCancelar3.setBackground(new java.awt.Color(255, 51, 0));
-        btnCancelar3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnCancelar3.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar3.setText("Cancelar");
-        btnCancelar3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCancelar3.setBorderPainted(false);
-        btnCancelar3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCancelar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar3ActionPerformed(evt);
-            }
-        });
-
-        btnSalvarMenu.setBackground(new java.awt.Color(61, 189, 61));
-        btnSalvarMenu.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnSalvarMenu.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvarMenu.setText("Salvar");
-        btnSalvarMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvarMenu.setBorderPainted(false);
-        btnSalvarMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarMenuActionPerformed(evt);
-            }
-        });
-
-        txtDescricaoMenu.setBackground(new java.awt.Color(0, 0, 0));
-        txtDescricaoMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 18))); // NOI18N
-
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea3.setRows(5);
-        txtDescricaoMenu.setViewportView(jTextArea3);
-
-        jTable6.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jTable6.setForeground(new java.awt.Color(255, 255, 255));
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tblMenus.setBackground(new java.awt.Color(64, 87, 184));
+        tblMenus.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblMenus.setForeground(new java.awt.Color(255, 255, 255));
+        tblMenus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"ADM", "Administrador do sistem", "True"},
-                {"Gerente", "Gerente geral", "False"},
-                {"Caixa", "Registrador de caixa", "True"}
+
             },
             new String [] {
-                "Nome", "Descrição", "Ativo"
+
             }
         ));
-        jTable6.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable6.setSelectionForeground(new java.awt.Color(64, 87, 184));
-        jTable6.setShowGrid(true);
-        jScrollPane6.setViewportView(jTable6);
+        tblMenus.setGridColor(new java.awt.Color(64, 87, 184));
+        tblMenus.setSelectionForeground(new java.awt.Color(79, 109, 234));
+        tblMenus.setShowGrid(true);
+        tblMenus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMenusMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblMenus);
 
-        jCheckBox4.setBackground(new java.awt.Color(241, 247, 249));
-        jCheckBox4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jCheckBox4.setForeground(new java.awt.Color(204, 0, 0));
-        jCheckBox4.setText("Excluir");
+        txtDescricao.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        txtDescricao.setText("Descrição:");
 
-        btnPesquisarMenu.setBackground(new java.awt.Color(51, 102, 255));
-        btnPesquisarMenu.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnPesquisarMenu.setForeground(new java.awt.Color(255, 255, 255));
-        btnPesquisarMenu.setText("Pesquisar");
-        btnPesquisarMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPesquisarMenu.setBorderPainted(false);
-        btnPesquisarMenu.addActionListener(new java.awt.event.ActionListener() {
+        txaDescricao.setColumns(20);
+        txaDescricao.setRows(5);
+        jScrollPane2.setViewportView(txaDescricao);
+
+        btnSalvar.setBackground(new java.awt.Color(61, 189, 61));
+        btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("Salvar");
+        btnSalvar.setBorder(null);
+        btnSalvar.setBorderPainted(false);
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarMenuActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jpnMenuLayout = new javax.swing.GroupLayout(jpnMenu);
-        jpnMenu.setLayout(jpnMenuLayout);
-        jpnMenuLayout.setHorizontalGroup(
-            jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnMenuLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(btnSalvarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancelar3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPesquisarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
-            .addGroup(jpnMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jCheckBox4)
-                        .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDescricaoMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnMenuLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(lblPagamento2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpnMenuLayout.setVerticalGroup(
-            jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnMenuLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPagamento2)
-                    .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(txtDescricaoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
-        );
+        btnPesquisar.setBackground(new java.awt.Color(51, 102, 255));
+        btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisar.setText("Procurar");
+        btnPesquisar.setBorder(null);
+        btnPesquisar.setBorderPainted(false);
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
-        tblPane.addTab("Menu", new javax.swing.ImageIcon(getClass().getResource("/Presentation/produtos.png")), jpnMenu); // NOI18N
-
-        jpnTipoAcesso.setBackground(new java.awt.Color(241, 247, 249));
-
-        lblPagamento.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        lblPagamento.setText("Acesso");
-
-        btnCancelar.setBackground(new java.awt.Color(255, 51, 0));
+        btnCancelar.setBackground(new java.awt.Color(255, 153, 0));
         btnCancelar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
-        btnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        txtNomeConf2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtNomeConf2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
-
-        btnSalvarAcesso.setBackground(new java.awt.Color(64, 87, 184));
-        btnSalvarAcesso.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnSalvarAcesso.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvarAcesso.setText("Salvar");
-        btnSalvarAcesso.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvarAcesso.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBorder(null);
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarAcessoActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        jTable4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
-        jTable4.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"ADM", "Configuração", "True"},
-                {"Gerente", "Relatório", "False"},
-                {"Caixa", "Registrador de caixa", "True"}
-            },
-            new String [] {
-                "Perfil", "Menu", "Ativo"
-            }
-        ));
-        jTable4.setGridColor(new java.awt.Color(64, 87, 184));
-        jTable4.setSelectionForeground(new java.awt.Color(64, 87, 184));
-        jTable4.setShowGrid(true);
-        jScrollPane4.setViewportView(jTable4);
+        lblListaMenus.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblListaMenus.setText("Lista de Menus");
 
-        txtNomeConf3.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        txtNomeConf3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 12))); // NOI18N
-
-        jCheckBox3.setBackground(new java.awt.Color(241, 247, 249));
-        jCheckBox3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jCheckBox3.setForeground(new java.awt.Color(204, 0, 0));
-        jCheckBox3.setText("Excluir");
-
-        btnPesquisarAcesso.setBackground(new java.awt.Color(51, 153, 0));
-        btnPesquisarAcesso.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnPesquisarAcesso.setForeground(new java.awt.Color(255, 255, 255));
-        btnPesquisarAcesso.setText("Pesquisar");
-        btnPesquisarAcesso.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPesquisarAcesso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarAcessoActionPerformed(evt);
+        ckbExcluir.setBackground(new java.awt.Color(201, 232, 242));
+        ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluir.setForeground(new java.awt.Color(153, 0, 0));
+        ckbExcluir.setText("Excluir");
+        ckbExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ckbExcluirMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jpnTipoAcessoLayout = new javax.swing.GroupLayout(jpnTipoAcesso);
-        jpnTipoAcesso.setLayout(jpnTipoAcessoLayout);
-        jpnTipoAcessoLayout.setHorizontalGroup(
-            jpnTipoAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jpnTipoAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
-                        .addComponent(btnSalvarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(btnPesquisarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
+        jPanelMenu.setLayout(jPanelMenuLayout);
+        jPanelMenuLayout.setHorizontalGroup(
+            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMenuLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ckbExcluir)
+                    .addComponent(lblListaMenus)
+                    .addGroup(jPanelMenuLayout.createSequentialGroup()
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
-                        .addComponent(txtNomeConf2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNomeConf3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTipoAcessoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jCheckBox3)
-                .addGap(19, 19, 19))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTipoAcessoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
-                .addGap(255, 255, 255)
-                .addComponent(lblPagamento)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane2)
+                        .addComponent(txtDescricao)
+                        .addComponent(jScrollPane1)
+                        .addGroup(jPanelMenuLayout.createSequentialGroup()
+                            .addComponent(lblMenu)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
-        jpnTipoAcessoLayout.setVerticalGroup(
-            jpnTipoAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTipoAcessoLayout.createSequentialGroup()
+        jPanelMenuLayout.setVerticalGroup(
+            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMenuLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMenu)
+                    .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(lblPagamento)
+                .addComponent(txtDescricao)
                 .addGap(18, 18, 18)
-                .addGroup(jpnTipoAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomeConf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomeConf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBox3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-                .addGroup(jpnTipoAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70))
-        );
-
-        tblPane.addTab("Acesso", jpnTipoAcesso);
-
-        jpnPagamento.setBackground(new java.awt.Color(241, 247, 249));
-
-        lblPagamento3.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        lblPagamento3.setText("Tipo Pagamento");
-
-        btnCancelar4.setBackground(new java.awt.Color(255, 51, 0));
-        btnCancelar4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnCancelar4.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar4.setText("Cancelar");
-        btnCancelar4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCancelar4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCancelar4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar4ActionPerformed(evt);
-            }
-        });
-
-        btnSalvarPagamento.setBackground(new java.awt.Color(51, 153, 0));
-        btnSalvarPagamento.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnSalvarPagamento.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvarPagamento.setText("Salvar");
-        btnSalvarPagamento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalvarPagamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarPagamentoActionPerformed(evt);
-            }
-        });
-
-        txtDescricaoPagamento.setBackground(new java.awt.Color(255, 255, 255));
-        txtDescricaoPagamento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 18))); // NOI18N
-
-        jTextArea4.setColumns(20);
-        jTextArea4.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        jTextArea4.setRows(5);
-        txtDescricaoPagamento.setViewportView(jTextArea4);
-
-        jTable7.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        jTable7.setForeground(new java.awt.Color(255, 255, 255));
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"ADM", "Administrador do sistem", "True"},
-                {"Gerente", "Gerente geral", "False"},
-                {"Caixa", "Registrador de caixa", "True"}
-            },
-            new String [] {
-                "Nome", "Descrição", "Ativo"
-            }
-        ));
-        jTable7.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable7.setSelectionForeground(new java.awt.Color(64, 87, 184));
-        jTable7.setShowGrid(true);
-        jScrollPane7.setViewportView(jTable7);
-
-        jCheckBox2.setBackground(new java.awt.Color(241, 247, 249));
-        jCheckBox2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(204, 0, 0));
-        jCheckBox2.setText("Excluir");
-
-        btnPesquisarPagamento.setBackground(new java.awt.Color(102, 102, 255));
-        btnPesquisarPagamento.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnPesquisarPagamento.setForeground(new java.awt.Color(255, 255, 255));
-        btnPesquisarPagamento.setText("Pesquisar");
-        btnPesquisarPagamento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPesquisarPagamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarPagamentoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpnPagamentoLayout = new javax.swing.GroupLayout(jpnPagamento);
-        jpnPagamento.setLayout(jpnPagamentoLayout);
-        jpnPagamentoLayout.setHorizontalGroup(
-            jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jCheckBox2)
-                            .addComponent(txtDescricaoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(btnSalvarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPesquisarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(lblPagamento3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jpnPagamentoLayout.setVerticalGroup(
-            jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnPagamentoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(lblPagamento3)
-                .addGap(18, 18, 18)
-                .addComponent(txtDescricaoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBox2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(jpnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67))
+                .addComponent(ckbExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(lblListaMenus)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29))
         );
 
-        tblPane.addTab("Tipo Pagamento", new javax.swing.ImageIcon(getClass().getResource("/Presentation/produtos.png")), jpnPagamento); // NOI18N
+        jTablePanel.addTab("Menu", jPanelMenu);
 
-        jpnPerfil.setBackground(new java.awt.Color(241, 247, 249));
+        jPanelPerfil.setBackground(new java.awt.Color(201, 232, 242));
 
-        jTable3.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        jTable3.setForeground(new java.awt.Color(255, 255, 255));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        lblPerfil.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblPerfil.setText("Perfil:");
+
+        txtPerfil.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+
+        txtDescricao1.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        txtDescricao1.setText("Descrição:");
+
+        txaPerfil.setColumns(20);
+        txaPerfil.setRows(5);
+        jScrollPane3.setViewportView(txaPerfil);
+
+        lblListaMenus1.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblListaMenus1.setText("Lista de Perfil:");
+
+        tblPerfil.setBackground(new java.awt.Color(64, 87, 184));
+        tblPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        tblPerfil.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"ADM", "Administrador do sistem", "True"},
-                {"Gerente", "Gerente geral", "False"},
-                {"Caixa", "Registrador de caixa", "True"}
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nome", "Descrição", "Ativo"
+
             }
         ));
-        jTable3.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable3.setShowGrid(true);
-        jScrollPane3.setViewportView(jTable3);
-
-        txtPerfil.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtPerfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        lblPagamento1.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        lblPagamento1.setText("PERFIL:");
-
-        btnCancelar1.setBackground(new java.awt.Color(180, 36, 36));
-        btnCancelar1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnCancelar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar1.setText("CANCELAR");
-        btnCancelar1.setAutoscrolls(true);
-        btnCancelar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-        btnCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar1ActionPerformed(evt);
+        tblPerfil.setGridColor(new java.awt.Color(64, 87, 184));
+        tblPerfil.setSelectionForeground(new java.awt.Color(79, 109, 234));
+        tblPerfil.setShowGrid(true);
+        tblPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPerfilMouseClicked(evt);
             }
         });
-
-        txtDescricaoPerfil.setBackground(new java.awt.Color(255, 255, 255));
-        txtDescricaoPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DESCRIÇÃO: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 18))); // NOI18N
-        txtDescricaoPerfil.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-        txtDescricaoPerfil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Rubik", 1, 14)); // NOI18N
-        jTextArea2.setRows(5);
-        txtDescricaoPerfil.setViewportView(jTextArea2);
-
-        btnPesquisarPerfil.setBackground(new java.awt.Color(51, 102, 255));
-        btnPesquisarPerfil.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnPesquisarPerfil.setForeground(new java.awt.Color(255, 255, 255));
-        btnPesquisarPerfil.setText("PESQUISAR");
-        btnPesquisarPerfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPesquisarPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarPerfilActionPerformed(evt);
-            }
-        });
-
-        jCheckBox1.setBackground(new java.awt.Color(241, 247, 249));
-        jCheckBox1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(204, 0, 0));
-        jCheckBox1.setText("Excluir");
+        jScrollPane4.setViewportView(tblPerfil);
 
         btnSalvarPerfil.setBackground(new java.awt.Color(61, 189, 61));
-        btnSalvarPerfil.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnSalvarPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         btnSalvarPerfil.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvarPerfil.setText("SALVAR");
-        btnSalvarPerfil.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 51), 1, true));
+        btnSalvarPerfil.setText("Salvar");
+        btnSalvarPerfil.setBorder(null);
+        btnSalvarPerfil.setBorderPainted(false);
+        btnSalvarPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalvarPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarPerfilActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jpnPerfilLayout = new javax.swing.GroupLayout(jpnPerfil);
-        jpnPerfil.setLayout(jpnPerfilLayout);
-        jpnPerfilLayout.setHorizontalGroup(
-            jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnPerfilLayout.createSequentialGroup()
-                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnPerfilLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblPagamento1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpnPerfilLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpnPerfilLayout.createSequentialGroup()
-                                .addComponent(btnSalvarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(btnPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpnPerfilLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jCheckBox1)
-                            .addComponent(txtDescricaoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(14, Short.MAX_VALUE))
+        btnPesquisarPerfil.setBackground(new java.awt.Color(51, 102, 255));
+        btnPesquisarPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisarPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisarPerfil.setText("Procurar");
+        btnPesquisarPerfil.setBorder(null);
+        btnPesquisarPerfil.setBorderPainted(false);
+        btnPesquisarPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisarPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarPerfilActionPerformed(evt);
+            }
+        });
+
+        btnCancelarPerfil.setBackground(new java.awt.Color(255, 153, 0));
+        btnCancelarPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelarPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarPerfil.setText("Cancelar");
+        btnCancelarPerfil.setBorder(null);
+        btnCancelarPerfil.setBorderPainted(false);
+        btnCancelarPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarPerfilActionPerformed(evt);
+            }
+        });
+
+        ckbExcluirPerfil.setBackground(new java.awt.Color(201, 232, 242));
+        ckbExcluirPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluirPerfil.setForeground(new java.awt.Color(153, 0, 0));
+        ckbExcluirPerfil.setText("Excluir");
+        ckbExcluirPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ckbExcluirPerfilMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelPerfilLayout = new javax.swing.GroupLayout(jPanelPerfil);
+        jPanelPerfil.setLayout(jPanelPerfilLayout);
+        jPanelPerfilLayout.setHorizontalGroup(
+            jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPerfilLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ckbExcluirPerfil)
+                    .addComponent(lblListaMenus1)
+                    .addGroup(jPanelPerfilLayout.createSequentialGroup()
+                        .addComponent(btnSalvarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCancelarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane3)
+                        .addComponent(txtDescricao1)
+                        .addComponent(jScrollPane4)
+                        .addGroup(jPanelPerfilLayout.createSequentialGroup()
+                            .addComponent(lblPerfil)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
-        jpnPerfilLayout.setVerticalGroup(
-            jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnPerfilLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPagamento1))
-                .addGap(30, 30, 30)
-                .addComponent(txtDescricaoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanelPerfilLayout.setVerticalGroup(
+            jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPerfilLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jpnPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGroup(jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPerfil)
+                    .addComponent(txtPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(txtDescricao1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ckbExcluirPerfil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(lblListaMenus1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancelarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29))
         );
 
-        tblPane.addTab("Perfil", jpnPerfil);
+        jTablePanel.addTab("Perfil", jPanelPerfil);
 
-        getContentPane().add(tblPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 630));
+        jPanelAcesso.setBackground(new java.awt.Color(201, 232, 242));
+
+        lblListaMenus2.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblListaMenus2.setText("Lista de Acessos:");
+
+        tblAcessos.setBackground(new java.awt.Color(64, 87, 184));
+        tblAcessos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblAcessos.setForeground(new java.awt.Color(255, 255, 255));
+        tblAcessos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblAcessos.setGridColor(new java.awt.Color(64, 87, 184));
+        tblAcessos.setSelectionForeground(new java.awt.Color(79, 109, 234));
+        tblAcessos.setShowGrid(true);
+        tblAcessos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAcessosMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tblAcessos);
+
+        btnSalvarPerfil1.setBackground(new java.awt.Color(61, 189, 61));
+        btnSalvarPerfil1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvarPerfil1.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvarPerfil1.setText("Salvar");
+        btnSalvarPerfil1.setBorder(null);
+        btnSalvarPerfil1.setBorderPainted(false);
+        btnSalvarPerfil1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvarPerfil1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarPerfil1ActionPerformed(evt);
+            }
+        });
+
+        btnPesquisarPerfil1.setBackground(new java.awt.Color(51, 102, 255));
+        btnPesquisarPerfil1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisarPerfil1.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisarPerfil1.setText("Procurar");
+        btnPesquisarPerfil1.setBorder(null);
+        btnPesquisarPerfil1.setBorderPainted(false);
+        btnPesquisarPerfil1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisarPerfil1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarPerfil1ActionPerformed(evt);
+            }
+        });
+
+        btnCancelarPerfil1.setBackground(new java.awt.Color(255, 153, 0));
+        btnCancelarPerfil1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelarPerfil1.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarPerfil1.setText("Cancelar");
+        btnCancelarPerfil1.setBorder(null);
+        btnCancelarPerfil1.setBorderPainted(false);
+        btnCancelarPerfil1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarPerfil1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarPerfil1ActionPerformed(evt);
+            }
+        });
+
+        lblMenuAcesso.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblMenuAcesso.setText("Menu");
+
+        lblPerfilAcesso.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblPerfilAcesso.setText("Perfil");
+
+        ckbExcluirAcesso.setBackground(new java.awt.Color(201, 232, 242));
+        ckbExcluirAcesso.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluirAcesso.setForeground(new java.awt.Color(153, 0, 0));
+        ckbExcluirAcesso.setText("Excluir");
+        ckbExcluirAcesso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ckbExcluirAcessoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelAcessoLayout = new javax.swing.GroupLayout(jPanelAcesso);
+        jPanelAcesso.setLayout(jPanelAcessoLayout);
+        jPanelAcessoLayout.setHorizontalGroup(
+            jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                        .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblListaMenus2)
+                            .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                                .addComponent(btnSalvarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPesquisarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnCancelarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
+                        .addGap(41, 41, 41))
+                    .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                        .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ckbExcluirAcesso)
+                            .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                                .addComponent(lblPerfilAcesso)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblMenuAcesso)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanelAcessoLayout.setVerticalGroup(
+            jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAcessoLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPerfilAcesso)
+                    .addComponent(lblMenuAcesso)
+                    .addComponent(ckbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(ckbExcluirAcesso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                .addComponent(lblListaMenus2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancelarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(53, 53, 53))
+        );
+
+        jTablePanel.addTab("Acesso", jPanelAcesso);
+
+        jPanelTipoPagamento.setBackground(new java.awt.Color(201, 232, 242));
+
+        txtDescricao2.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        txtDescricao2.setText("Descrição:");
+
+        txaPagamento.setColumns(20);
+        txaPagamento.setRows(5);
+        jScrollPane6.setViewportView(txaPagamento);
+
+        lblListaMenus3.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblListaMenus3.setText("Lista de Pagamentos");
+
+        btnSalvarPagamento.setBackground(new java.awt.Color(61, 189, 61));
+        btnSalvarPagamento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvarPagamento.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvarPagamento.setText("Salvar");
+        btnSalvarPagamento.setBorder(null);
+        btnSalvarPagamento.setBorderPainted(false);
+        btnSalvarPagamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvarPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarPagamentoActionPerformed(evt);
+            }
+        });
+
+        btnPesquisarPagamento.setBackground(new java.awt.Color(51, 102, 255));
+        btnPesquisarPagamento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisarPagamento.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisarPagamento.setText("Procurar");
+        btnPesquisarPagamento.setBorder(null);
+        btnPesquisarPagamento.setBorderPainted(false);
+        btnPesquisarPagamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisarPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarPagamentoActionPerformed(evt);
+            }
+        });
+
+        btnCancelarPagamento.setBackground(new java.awt.Color(255, 153, 0));
+        btnCancelarPagamento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelarPagamento.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarPagamento.setText("Cancelar");
+        btnCancelarPagamento.setBorder(null);
+        btnCancelarPagamento.setBorderPainted(false);
+        btnCancelarPagamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarPagamentoActionPerformed(evt);
+            }
+        });
+
+        tblPagamento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblPagamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPagamentoMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tblPagamento);
+
+        ckbExcluirPagamento.setBackground(new java.awt.Color(201, 232, 242));
+        ckbExcluirPagamento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluirPagamento.setForeground(new java.awt.Color(153, 0, 0));
+        ckbExcluirPagamento.setText("Excluir");
+
+        javax.swing.GroupLayout jPanelTipoPagamentoLayout = new javax.swing.GroupLayout(jPanelTipoPagamento);
+        jPanelTipoPagamento.setLayout(jPanelTipoPagamentoLayout);
+        jPanelTipoPagamentoLayout.setHorizontalGroup(
+            jPanelTipoPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTipoPagamentoLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanelTipoPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ckbExcluirPagamento)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(149, Short.MAX_VALUE))
+            .addGroup(jPanelTipoPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelTipoPagamentoLayout.createSequentialGroup()
+                    .addGap(38, 38, 38)
+                    .addGroup(jPanelTipoPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblListaMenus3)
+                        .addGroup(jPanelTipoPagamentoLayout.createSequentialGroup()
+                            .addComponent(btnSalvarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnPesquisarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(btnCancelarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtDescricao2))
+                    .addContainerGap(146, Short.MAX_VALUE)))
+        );
+        jPanelTipoPagamentoLayout.setVerticalGroup(
+            jPanelTipoPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTipoPagamentoLayout.createSequentialGroup()
+                .addContainerGap(234, Short.MAX_VALUE)
+                .addComponent(ckbExcluirPagamento)
+                .addGap(74, 74, 74)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(129, 129, 129))
+            .addGroup(jPanelTipoPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelTipoPagamentoLayout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addComponent(txtDescricao2)
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                    .addComponent(lblListaMenus3)
+                    .addGap(250, 250, 250)
+                    .addGroup(jPanelTipoPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnSalvarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelTipoPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPesquisarPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(56, 56, 56)))
+        );
+
+        jTablePanel.addTab("Tipo Pagamento", jPanelTipoPagamento);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTablePanel)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTablePanel)
+        );
+
+        jTablePanel.getAccessibleContext().setAccessibleName("Tipo Pagamento");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar3ActionPerformed
+    private void tblMenusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMenusMouseClicked
+        if (tblMenus.getSelectedRow() >= 0) {
 
-    private void btnSalvarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarMenuActionPerformed
-        MenuModel menu = new MenuModel();
+            acaoTela = eAcaoTela.EDITAR.getValor();
+            GerenciarBotoes();
+            int id = Integer.parseInt(tblMenus.getModel().getValueAt(tblMenus.getSelectedRow(), 0).toString());
 
-        try {
-            if (menu.validString(txtMenu.getText())) {
-                menu.setMenu(txtMenu.getText());
-            }
+            recuperarMenu(id);
 
-            //        if (menu.validString(txtDescricaoMenu)) {
-                //            menu.setMenu(txtMenu.getText());
-                //        }
-            MenuController menuController = new MenuController();
-
-            menuController.Salvar(menu);
-
-        } catch (PropertiesValidator ex) {
-            Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
         }
-    }//GEN-LAST:event_btnSalvarMenuActionPerformed
+    }//GEN-LAST:event_tblMenusMouseClicked
 
-    private void btnPesquisarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarMenuActionPerformed
-        MenuModel menu = new MenuModel();
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        GerenciarBotoes();
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
 
         MenuController menuController = new MenuController();
 
-        menuController.Pesquisar(menu);
-    }//GEN-LAST:event_btnPesquisarMenuActionPerformed
+        MenuModel menu = new MenuModel();
 
-    private void btnSalvarAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAcessoActionPerformed
-        TipoAcessoModel acesso = new TipoAcessoModel();
-        try {
-            if (acesso.validInt(Integer.getInteger(txtPerfil.getText()))) {
-                acesso.setIdPerfil(Integer.getInteger(txtMenu.getText()));
-            }
-
-            if (acesso.validInt(Integer.getInteger(txtMenu.getText()))) {
-                acesso.setIdMenu(Integer.getInteger(txtMenu.getText()));
-            }
-
-            //        if (menu.validString(txtDescricaoMenu)) {
-                //            menu.setMenu(txtMenu.getText());
-                //        }
-            AcessoController acessoController = new AcessoController();
-            acessoController.Salvar(acesso);
-
-        } catch (PropertiesValidator ex) {
-            Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            menu = this._menu;
         }
-    }//GEN-LAST:event_btnSalvarAcessoActionPerformed
 
-    private void btnPesquisarAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarAcessoActionPerformed
-        TipoAcessoModel acesso = new TipoAcessoModel();
+        menu = preencherMenu(menu);
+
+        boolean result = false;
+
+        switch (acaoTela) {
+            case 1:
+                result = menuController.save(menu);
+                break;
+            case 5:
+                result = menuController.update(menu);
+                break;
+            case 6:
+                if (this.usuSystem == null) {
+                    menu.setUsuDel(1);
+                }
+                result = menuController.finishValidity(menu);
+                break;
+        }
+
+        if (result) {
+            acaoTela = eAcaoTela.ABRIR.getValor();
+        }
+
+        LimparCampos();
+        LoadTable();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+
+
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void tblPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPerfilMouseClicked
+        if (tblPerfil.getSelectedRow() >= 0) {
+
+            acaoTela = eAcaoTela.EDITAR.getValor();
+            GerenciarBotoes();
+            int id = Integer.parseInt(tblPerfil.getModel().getValueAt(tblPerfil.getSelectedRow(), 0).toString());
+
+            recuperarPerfil(id);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
+        }
+    }//GEN-LAST:event_tblPerfilMouseClicked
+
+    private void btnSalvarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPerfilActionPerformed
+        GerenciarBotoes();
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+
+        PerfilController perfilController = new PerfilController();
+
+        PerfilModel perfil = new PerfilModel();
+
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            perfil = this._perfil;
+        }
+
+        perfil = preencherPerfil(perfil);
+
+        boolean result = false;
+
+        switch (acaoTela) {
+            case 1:
+                result = perfilController.save(perfil);
+                break;
+            case 5:
+                result = perfilController.update(perfil);
+                break;
+            case 6:
+                Date dt = new Date();
+
+                perfil.setDtDel(dt);
+
+                if (this.usuSystem == null) {
+                    perfil.setUsuDel(1);
+                } else {
+                    perfil.setUsuInclus(this.usuSystem.getId());
+                }
+
+                result = perfilController.finishValidity(perfil);
+                break;
+        }
+
+        if (result) {
+            acaoTela = eAcaoTela.ABRIR.getValor();
+        }
+
+        LimparCampos();
+        LoadTable();
+    }//GEN-LAST:event_btnSalvarPerfilActionPerformed
+
+    private void btnPesquisarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarPerfilActionPerformed
+
+    private void btnCancelarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarPerfilActionPerformed
+
+    private void tblAcessosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAcessosMouseClicked
+
+        if (tblAcessos.getSelectedRow() >= 0) {
+
+            acaoTela = eAcaoTela.EDITAR.getValor();
+            GerenciarBotoes();
+            int id = Integer.parseInt(tblAcessos.getModel().getValueAt(tblAcessos.getSelectedRow(), 0).toString());
+
+            recuperarAcesso(id);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
+        }
+
+    }//GEN-LAST:event_tblAcessosMouseClicked
+
+    private void btnSalvarPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPerfil1ActionPerformed
+
+        GerenciarBotoes();
+
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
 
         AcessoController acessoController = new AcessoController();
-        acessoController.Pesquisar(acesso);
-    }//GEN-LAST:event_btnPesquisarAcessoActionPerformed
 
-    private void btnCancelar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar4ActionPerformed
+        TipoAcessoModel acessoModel = new TipoAcessoModel();
+
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            acessoModel = this.acessoModel;
+        }
+
+        acessoModel = preencherAcesso(acessoModel);
+
+        boolean result = false;
+
+        switch (acaoTela) {
+            case 1:
+                result = acessoController.save(acessoModel);
+                break;
+            case 5:
+                result = acessoController.update(acessoModel);
+                break;
+            case 6:
+
+                if (this.usuSystem == null) {
+                    acessoModel.setUsuDel(1);
+                }
+
+                result = acessoController.finishValidity(acessoModel);
+                break;
+        }
+
+        if (result) {
+            acaoTela = eAcaoTela.ABRIR.getValor();
+        }
+
+        LimparCampos();
+        LoadTable();
+    }//GEN-LAST:event_btnSalvarPerfil1ActionPerformed
+
+    private void btnPesquisarPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPerfil1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar4ActionPerformed
+    }//GEN-LAST:event_btnPesquisarPerfil1ActionPerformed
+
+    private void btnCancelarPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPerfil1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarPerfil1ActionPerformed
 
     private void btnSalvarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPagamentoActionPerformed
+        GerenciarBotoes();
+        if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+        if (acaoTela == eAcaoTela.ABRIR.getValor()) {
+            acaoTela = eAcaoTela.SALVAR.getValor();
+        }
+
+        TipoPagamentoController pagamentoController = new TipoPagamentoController();
+
         TipoPagamentoModel tipoPagamento = new TipoPagamentoModel();
 
-        //        if (tipoPagamento.validString(txtDescricaoPagamento)) {
-            //            tipoPagamento.setDescPagamento(txtDescricaoPagamento);
-            //        }
+        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+            tipoPagamento = this._pagamento;
+        }
 
-        TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
+        tipoPagamento = preencherPagamento(tipoPagamento);
 
-        tipoPagamentoController.Salvar(tipoPagamento);
+        boolean result = false;
+
+        switch (acaoTela) {
+            case 1:
+                result = pagamentoController.save(tipoPagamento);
+                break;
+            case 5:
+                result = pagamentoController.update(tipoPagamento);
+                break;
+            case 6:
+
+                if (this.usuSystem == null) {
+                    tipoPagamento.setUsuDel(1);
+                }
+
+                result = pagamentoController.finishValidity(tipoPagamento);
+                break;
+        }
+
+        if (result) {
+            acaoTela = eAcaoTela.ABRIR.getValor();
+        }
+
+        LimparCampos();
+        LoadTable();
     }//GEN-LAST:event_btnSalvarPagamentoActionPerformed
 
     private void btnPesquisarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPagamentoActionPerformed
-        TipoPagamentoModel tipoPagamento = new TipoPagamentoModel();
-
-        TipoPagamentoController tipoPagamentoController = new TipoPagamentoController();
-
-        tipoPagamentoController.Pesquisar(tipoPagamento);
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisarPagamentoActionPerformed
 
-    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
+    private void btnCancelarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPagamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar1ActionPerformed
+    }//GEN-LAST:event_btnCancelarPagamentoActionPerformed
 
-    private void btnPesquisarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPerfilActionPerformed
-
-        try {
-            PerfilModel perfil = new PerfilModel();
-
-            if (perfil.validString(txtPerfil.getText())) {
-                perfil.setPerfile(txtPerfil.getText());
-            }
-            //            if (perfil.validString(txtDescricaoPerfil)) {
-                //              perfil.setPerfile(txtPerfil.getText());
-                //            }
-
-            PerfilController perfilController = new PerfilController();
-
-            perfilController.Pesquisar(perfil);
-
-        } catch (PropertiesValidator ex) {
-            Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+    private void ckbExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbExcluirMouseClicked
+        if (ckbExcluir.isSelected()) {
+            acaoTela = eAcaoTela.EXCLUIR.getValor();
+        } else {
+            acaoTela = eAcaoTela.EDITAR.getValor();
         }
+    }//GEN-LAST:event_ckbExcluirMouseClicked
 
-    }//GEN-LAST:event_btnPesquisarPerfilActionPerformed
+    private void ckbExcluirPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbExcluirPerfilMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckbExcluirPerfilMouseClicked
 
-    private void btnSalvarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPerfilActionPerformed
-        try {
-            PerfilModel perfil = new PerfilModel();
+    private void tblPagamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPagamentoMouseClicked
+        if (tblPagamento.getSelectedRow() >= 0) {
 
-            if (perfil.validString(txtPerfil.getText())) {
-                perfil.setPerfile(txtPerfil.getText());
-            }
-            //            if (perfil.validString(txtDescricaoPerfil)) {
-                //              perfil.setPerfile(txtPerfil.getText());
-                //            }
+            acaoTela = eAcaoTela.EDITAR.getValor();
+            GerenciarBotoes();
+            int id = Integer.parseInt(tblPagamento.getModel().getValueAt(tblPagamento.getSelectedRow(), 0).toString());
 
-            PerfilController perfilController = new PerfilController();
+            recuperarPagamento(id);
 
-            perfilController.Salvar(perfil);
-
-        } catch (PropertiesValidator ex) {
-            Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
         }
-    }//GEN-LAST:event_btnSalvarPerfilActionPerformed
+    }//GEN-LAST:event_tblPagamentoMouseClicked
+
+    private void ckbExcluirAcessoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbExcluirAcessoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckbExcluirAcessoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -749,47 +1373,54 @@ public class Configuracao extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCancelar1;
-    private javax.swing.JButton btnCancelar3;
-    private javax.swing.JButton btnCancelar4;
-    private javax.swing.JButton btnPesquisarAcesso;
-    private javax.swing.JButton btnPesquisarMenu;
+    private javax.swing.JButton btnCancelarPagamento;
+    private javax.swing.JButton btnCancelarPerfil;
+    private javax.swing.JButton btnCancelarPerfil1;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarPagamento;
     private javax.swing.JButton btnPesquisarPerfil;
-    private javax.swing.JButton btnSalvarAcesso;
-    private javax.swing.JButton btnSalvarMenu;
+    private javax.swing.JButton btnPesquisarPerfil1;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSalvarPagamento;
     private javax.swing.JButton btnSalvarPerfil;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JButton btnSalvarPerfil1;
+    private javax.swing.JCheckBox ckbExcluir;
+    private javax.swing.JCheckBox ckbExcluirAcesso;
+    private javax.swing.JCheckBox ckbExcluirPagamento;
+    private javax.swing.JCheckBox ckbExcluirPerfil;
+    private javax.swing.JComboBox<String> ckbMenu;
+    private javax.swing.JComboBox<String> ckbPerfil;
+    private javax.swing.JPanel jPanelAcesso;
+    private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel jPanelPerfil;
+    private javax.swing.JPanel jPanelTipoPagamento;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JPanel jpnMenu;
-    private javax.swing.JPanel jpnPagamento;
-    private javax.swing.JPanel jpnPerfil;
-    private javax.swing.JPanel jpnTipoAcesso;
-    private javax.swing.JLabel lblPagamento;
-    private javax.swing.JLabel lblPagamento1;
-    private javax.swing.JLabel lblPagamento2;
-    private javax.swing.JLabel lblPagamento3;
-    private javax.swing.JTabbedPane tblPane;
-    private javax.swing.JScrollPane txtDescricaoMenu;
-    private javax.swing.JScrollPane txtDescricaoPagamento;
-    private javax.swing.JScrollPane txtDescricaoPerfil;
+    private javax.swing.JTabbedPane jTablePanel;
+    private javax.swing.JLabel lblListaMenus;
+    private javax.swing.JLabel lblListaMenus1;
+    private javax.swing.JLabel lblListaMenus2;
+    private javax.swing.JLabel lblListaMenus3;
+    private javax.swing.JLabel lblMenu;
+    private javax.swing.JLabel lblMenuAcesso;
+    private javax.swing.JLabel lblPerfil;
+    private javax.swing.JLabel lblPerfilAcesso;
+    private javax.swing.JTable tblAcessos;
+    private javax.swing.JTable tblMenus;
+    private javax.swing.JTable tblPagamento;
+    private javax.swing.JTable tblPerfil;
+    private javax.swing.JTextArea txaDescricao;
+    private javax.swing.JTextArea txaPagamento;
+    private javax.swing.JTextArea txaPerfil;
+    private javax.swing.JLabel txtDescricao;
+    private javax.swing.JLabel txtDescricao1;
+    private javax.swing.JLabel txtDescricao2;
     private javax.swing.JTextField txtMenu;
-    private javax.swing.JTextField txtNomeConf2;
-    private javax.swing.JTextField txtNomeConf3;
     private javax.swing.JTextField txtPerfil;
     // End of variables declaration//GEN-END:variables
 }

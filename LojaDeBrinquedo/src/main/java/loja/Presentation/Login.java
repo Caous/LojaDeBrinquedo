@@ -37,7 +37,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -73,6 +73,8 @@ public class Login extends javax.swing.JFrame {
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        txtPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPass.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPassActionPerformed(evt);
@@ -109,7 +111,7 @@ public class Login extends javax.swing.JFrame {
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnBgLayout.createSequentialGroup()
-                .addContainerGap(313, Short.MAX_VALUE)
+                .addContainerGap(315, Short.MAX_VALUE)
                 .addComponent(lblSistema)
                 .addGap(18, 18, 18)
                 .addComponent(lblUsuPass)

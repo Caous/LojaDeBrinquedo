@@ -79,7 +79,7 @@ public class Produto extends javax.swing.JFrame {
         ckbExcluir = new javax.swing.JCheckBox();
         btnPesquisar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
@@ -123,7 +123,6 @@ public class Produto extends javax.swing.JFrame {
         });
 
         lblProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        lblProduto.setForeground(new java.awt.Color(255, 255, 255));
         lblProduto.setText("Controle de Produtos");
 
         txtFot.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -142,7 +141,7 @@ public class Produto extends javax.swing.JFrame {
         txtaComentario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Comentário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         txtaComentario.setToolTipText("");
 
-        jTextArea1.setBackground(new java.awt.Color(79, 109, 234));
+        jTextArea1.setBackground(new java.awt.Color(201, 232, 242));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Rubik", 1, 14)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,11 +151,12 @@ public class Produto extends javax.swing.JFrame {
         txtaDescrição.setBackground(new java.awt.Color(79, 109, 234));
         txtaDescrição.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jTextArea2.setBackground(new java.awt.Color(79, 109, 234));
+        jTextArea2.setBackground(new java.awt.Color(201, 232, 242));
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Rubik", 1, 14)); // NOI18N
         jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea2.setRows(5);
+        jTextArea2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
         txtaDescrição.setViewportView(jTextArea2);
 
         txtQtd.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -179,7 +179,6 @@ public class Produto extends javax.swing.JFrame {
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
         btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPesquisar.setOpaque(true);
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -191,21 +190,9 @@ public class Produto extends javax.swing.JFrame {
         jpnBgLayout.setHorizontalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnBgLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(lblProduto))
-                    .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,33 +201,37 @@ public class Produto extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(txtValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(txtFot, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(ckbExcluir))
                     .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addComponent(txtaDescrição, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(txtaComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProduto)
                     .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnBgLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(34, 34, 34)
                 .addComponent(lblProduto)
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

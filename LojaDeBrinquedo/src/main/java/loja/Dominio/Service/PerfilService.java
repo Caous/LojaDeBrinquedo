@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +77,8 @@ public class PerfilService implements CrudService<PerfilModel> {
             ps.setString(1, entity.getPerfil());
             ps.setString(2, entity.getDescPerfil());
             ps.setInt(3, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
+            Date dt = new Date();
+            java.sql.Date dtCad = new java.sql.Date(dt.getTime());
             ps.setDate(4, dtCad);
 
             ps.execute();

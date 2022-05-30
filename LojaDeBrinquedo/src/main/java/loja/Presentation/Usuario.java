@@ -16,8 +16,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import loja.Dominio.Model.ClienteModel;
+import loja.Dominio.Model.MenuModel;
+import loja.Dominio.Model.PerfilModel;
 import loja.Dominio.Model.UserModel;
 import loja.Dominio.Util.eAcaoTela;
+import loja.Presentation.Controller.MenuController;
+import loja.Presentation.Controller.PerfilController;
 
 /**
  *
@@ -33,16 +37,18 @@ public class Usuario extends javax.swing.JFrame {
         LoadTable();
         acaoTela = eAcaoTela.ABRIR.getValor();
         GerenciarBotoes();
+        CarregaComboBox();
     }
-    
-    public Usuario(UserModel user){
+
+    public Usuario(UserModel user) {
         this.usuSystem = user;
         initComponents();
         LoadTable();
         acaoTela = eAcaoTela.ABRIR.getValor();
         GerenciarBotoes();
+        CarregaComboBox();
     }
-    
+
     private UserModel usuSystem;
     private int acaoTela;
     private UserModel userm;
@@ -64,18 +70,20 @@ public class Usuario extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         txtDtNascimento = new javax.swing.JTextField();
         txtCpf = new javax.swing.JTextField();
-        txtPass = new javax.swing.JPasswordField();
         rbMasc = new javax.swing.JRadioButton();
         rbFem = new javax.swing.JRadioButton();
         btnPesquisar = new javax.swing.JButton();
         lblControle = new javax.swing.JLabel();
-        cbxPerfil = new javax.swing.JComboBox<>();
         ckbExcluir = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         btnSalvar = new javax.swing.JButton();
+        cbxPerfil = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,23 +126,18 @@ public class Usuario extends javax.swing.JFrame {
         jpnBg.add(txtDtNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
 
         txtCpf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCpf.setForeground(new java.awt.Color(255, 255, 255));
         txtCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
-        jpnBg.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, -1));
-
-        txtPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtPass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
-        jpnBg.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
+        jpnBg.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 210, -1));
 
         rbMasc.setBackground(new java.awt.Color(201, 232, 242));
         rbMasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbMasc.setText("Masculino");
-        jpnBg.add(rbMasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, -1, -1));
+        jpnBg.add(rbMasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
 
         rbFem.setBackground(new java.awt.Color(201, 232, 242));
         rbFem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         rbFem.setText("Feminino");
-        jpnBg.add(rbFem, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
+        jpnBg.add(rbFem, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
         btnPesquisar.setBackground(new java.awt.Color(51, 102, 255));
         btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -142,7 +145,6 @@ public class Usuario extends javax.swing.JFrame {
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
         btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPesquisar.setOpaque(true);
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -154,16 +156,11 @@ public class Usuario extends javax.swing.JFrame {
         lblControle.setText("Controle de usuários");
         jpnBg.add(lblControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        cbxPerfil.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        cbxPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik", 1, 14))); // NOI18N
-        jpnBg.add(cbxPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, 50));
-
         ckbExcluir.setBackground(new java.awt.Color(201, 232, 242));
         ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
         ckbExcluir.setForeground(new java.awt.Color(204, 0, 0));
         ckbExcluir.setText("Excluir");
-        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
+        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
 
         jTable2.setBackground(new java.awt.Color(64, 87, 184));
         jTable2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -191,13 +188,41 @@ public class Usuario extends javax.swing.JFrame {
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(null);
         btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvar.setOpaque(true);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
             }
         });
         jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 170, 50));
+
+        cbxPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxPerfilActionPerformed(evt);
+            }
+        });
+        jpnBg.add(cbxPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 210, 30));
+
+        jLabel1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        jLabel1.setText("Perfil:");
+        jpnBg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+
+        txtSenha.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
+        jpnBg.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
+
+        btnCancelar.setBackground(new java.awt.Color(255, 153, 0));
+        btnCancelar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(null);
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jpnBg.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 140, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,6 +238,18 @@ public class Usuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CarregaComboBox() {
+
+        PerfilController perfilController = new PerfilController();
+        PerfilModel perfilFiltro = new PerfilModel();
+        List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
+
+        for (int i = 0; i < perfils.size(); i++) {
+            cbxPerfil.addItem(perfils.get(i).getPerfil());
+        }
+
+    }
+
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         GerenciarBotoes();
         if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
@@ -221,19 +258,19 @@ public class Usuario extends javax.swing.JFrame {
         if (acaoTela == eAcaoTela.ABRIR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
-        
+
         UserController usuController = new UserController();
-        
+
         UserModel user = new UserModel();
-        
+
         if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
             user = userm;
         }
-        
+
         user = PreencherUsuarios(user);
-        
+
         boolean result = false;
-        
+
         switch (acaoTela) {
             case 1:
                 result = usuController.save(user);
@@ -255,19 +292,19 @@ public class Usuario extends javax.swing.JFrame {
                 result = usuController.finishValidity(user);
                 break;
         }
-        
-        if (result){
-            
+
+        if (result) {
+
         }
         LimparCampos();
         LoadTable();
-        
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        
+
         GerenciarBotoes();
-        
+
         UserController userControll = new UserController();
         UserModel user = new UserModel();
 
@@ -278,7 +315,7 @@ public class Usuario extends javax.swing.JFrame {
 
             if (user.validString(txtEmail.getText())) {
                 user.setEmail(txtEmail.getText());
-            }        
+            }
 
             if (user.validString(txtCpf.getText())) {
                 user.setCPF(txtCpf.getText());
@@ -289,25 +326,60 @@ public class Usuario extends javax.swing.JFrame {
                 user.setDtNasc(formatter1.parse(txtDtNascimento.getText()));
             }
 
-
-
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         } catch (ParseException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         List<UserModel> users = UserController.findAll(user);
         LoadTableFilter(users);
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
-        if (ckbExcluir.isSelected()) {
-            acaoTela = eAcaoTela.EXCLUIR.getValor();
-        } else {
+        if (tblUsuarios.getSelectedRow() >= 0) {
+
             acaoTela = eAcaoTela.EDITAR.getValor();
+            GerenciarBotoes();
+            int id = Integer.parseInt(tblUsuarios.getModel().getValueAt(tblUsuarios.getSelectedRow(), 0).toString());
+
+            if (ckbExcluir.isSelected()) {
+                acaoTela = eAcaoTela.EXCLUIR.getValor();
+            } else {
+                acaoTela = eAcaoTela.EDITAR.getValor();
+            }
+
+            CarregarCampos(id);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
         }
+
     }//GEN-LAST:event_tblUsuariosMouseClicked
+
+    public void CarregarCampos(int id) {
+
+        UserController userController = new UserController();
+
+        userm = userController.findId(id);
+
+        txtNome.setText(userm.getNome());
+        txtEmail.setText(userm.getEmail());
+        txtSenha.setText(userm.getPassword());
+        txtDtNascimento.setText(userm.getDtNasc().toString());
+        txtCpf.setText(userm.getCPF());
+
+    }
+
+    private void cbxPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxPerfilActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        LimparCampos();
+        acaoTela = eAcaoTela.ABRIR.getValor();
+        GerenciarBotoes();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,11 +417,13 @@ public class Usuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxPerfil;
     private javax.swing.JCheckBox ckbExcluir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
@@ -362,103 +436,116 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtDtNascimento;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JPasswordField txtPass;
+    private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 
     private void LoadTableFilter(List<UserModel> users) {
-        
+
         DefaultTableModel tmUsers = new DefaultTableModel();
         tmUsers.addColumn("ID");
         tmUsers.addColumn("Nome");
         tmUsers.addColumn("CPF");
         tmUsers.addColumn("E-mail");
-        
-        
+
         tblUsuarios.setModel(tmUsers);
- 
+
         tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(30);
         tblUsuarios.getColumnModel().getColumn(1).setPreferredWidth(100);
         tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(100);
         tblUsuarios.getColumnModel().getColumn(1).setPreferredWidth(50);
-        
+
         tmUsers.setRowCount(0);
-        
+
         for (UserModel user : users) {
             tmUsers.addRow(new String[]{String.valueOf(user.getId()),
                 user.getNome(), user.getCPF(), user.getEmail()});
         }
-        
-        
+
     }
 
     private void LoadTable() {
-        
+
         UserController usersController = new UserController();
         UserModel userFiltro = new UserModel();
         List<UserModel> users = usersController.findAll(userFiltro);
-        
+
         DefaultTableModel tmUser = new DefaultTableModel();
         tmUser.addColumn("ID");
         tmUser.addColumn("Nome");
         tmUser.addColumn("CPF");
         tmUser.addColumn("E-mail");
-        
-        
+
         tblUsuarios.setModel(tmUser);
-        
+
         tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblUsuarios.getColumnModel().getColumn(1).setPreferredWidth(100);
         tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(100);
         tblUsuarios.getColumnModel().getColumn(1).setPreferredWidth(50);
-        
+
         tmUser.setRowCount(0);
-        
-        for (UserModel userm : users){
-            tmUser.addRow(new String[] {String.valueOf(userm.getId()),
-            userm.getNome(),userm.getCPF(),userm.getEmail()});
+
+        for (UserModel userm : users) {
+            tmUser.addRow(new String[]{String.valueOf(userm.getId()),
+                userm.getNome(), userm.getCPF(), userm.getEmail()});
         }
-       
+
     }
 
     private UserModel PreencherUsuarios(UserModel userm) {
-        
-        if (userm == null){
+
+        if (userm == null) {
             userm = new UserModel();
         }
-        
+
         try {
-            
-            if (userm.validString(txtNome.getText())){
+
+            if (userm.validString(txtNome.getText())) {
                 userm.setNome(txtNome.getText());
             }
-            
-            if (userm.validString(txtEmail.getText())){
+
+            if (userm.validString(txtEmail.getText())) {
                 userm.setEmail(txtEmail.getText());
             }
-            
-            if (userm.validString(txtPass.getPassword().toString())){
-                userm.setPassword(txtPass.getPassword().toString());
+
+            if (userm.validString(txtSenha.getText())) {
+                userm.setPassword(txtSenha.getText());
             }
-            
+
             if (userm.validString(txtDtNascimento.getText())) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
                 userm.setDtNasc(formatter1.parse(txtDtNascimento.getText().replace("/", "-")));
             }
-            
-            if (userm.validString(txtCpf.getText())){
+
+            if (userm.validString(txtCpf.getText())) {
                 userm.setCPF(txtCpf.getText());
             }
-            
+
             if (rbFem.isSelected()) {
                 userm.setSexo("Feminino");
             }
             if (rbMasc.isSelected()) {
                 userm.setSexo("Masculino");
-            }            
-            
-            
-                
-                } catch (PropertiesValidator ex) {
+            }
+
+            if (userm.validString(cbxPerfil.getSelectedItem().toString())) {
+
+                PerfilController perfilController = new PerfilController();
+                PerfilModel perfilFiltro = new PerfilModel();
+                perfilFiltro.setPerfile(cbxPerfil.getSelectedItem().toString());
+
+                List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
+
+                userm.setIdPerfil(perfils.get(0).getId());
+            }
+
+            if (ckbExcluir.isSelected()) {
+                acaoTela = eAcaoTela.EXCLUIR.getValor();
+                if (this.usuSystem != null && userm.validInt(this.usuSystem.getId())) {
+                    userm.setUsuDel(this.usuSystem.getId());
+                }
+            }
+
+        } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         } catch (ParseException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -469,15 +556,15 @@ public class Usuario extends javax.swing.JFrame {
     private void LimparCampos() {
         txtNome.setText("");
         txtEmail.setText("");
-        txtPass.setText("");
+        txtSenha.setText("");
         txtDtNascimento.setText("");
         txtCpf.setText("");
-        
+
     }
 
     private void GerenciarBotoes() {
-        
-        switch (acaoTela){
+
+        switch (acaoTela) {
             case 1:
                 btnPesquisar.setEnabled(false);
                 btnSalvar.setEnabled(true);
@@ -502,8 +589,8 @@ public class Usuario extends javax.swing.JFrame {
                 btnPesquisar.setEnabled(false);
                 btnSalvar.setEnabled(true);
                 break;
-        
+
         }
-        
+
     }
 }

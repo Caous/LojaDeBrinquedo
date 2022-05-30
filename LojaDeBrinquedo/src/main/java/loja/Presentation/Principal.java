@@ -4,6 +4,7 @@
  */
 package loja.Presentation;
 
+import java.util.Date;
 import javax.swing.JFrame;
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Presentation.Controller.LoginController;
@@ -29,6 +30,9 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.userSystem = user;
         lblUsuario.setText(user.getNome());
+        Date dt = new Date();
+        dtFiltroInicio.setDate(dt);
+        dtFiltroFim.setDate(dt);
     }
     private UserModel userSystem;
 
@@ -76,7 +80,7 @@ public class Principal extends javax.swing.JFrame {
         dtFiltroInicio = new com.toedter.calendar.JDateChooser();
         dtFiltroFim = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -416,11 +420,9 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -433,7 +435,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnHomeMouseClicked
 
     private void jpnVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnVendaMouseClicked
-        Vendas venda = new Vendas();
+        Venda venda = new Venda(this.userSystem);
         venda.setVisible(true);
 
     }//GEN-LAST:event_jpnVendaMouseClicked
@@ -445,20 +447,19 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnUsuarioMouseClicked
 
     private void jpnRelatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnRelatorioMouseClicked
-        Relatorio rel = new Relatorio();
+        Relatorio rel = new Relatorio(this.userSystem);
 
         rel.setVisible(true);
     }//GEN-LAST:event_jpnRelatorioMouseClicked
 
     private void jpnFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnFornecedorMouseClicked
-        Fornecedor fornece = new Fornecedor();
+        Fornecedor fornece = new Fornecedor(this.userSystem);
 
         fornece.setVisible(true);
     }//GEN-LAST:event_jpnFornecedorMouseClicked
 
     private void jpnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnProdutosMouseClicked
-        Produto prod = new Produto();
-
+        Produto prod = new Produto(this.userSystem);
         prod.setVisible(true);
     }//GEN-LAST:event_jpnProdutosMouseClicked
 
@@ -472,7 +473,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnClientesMouseClicked
 
     private void jpnConfiguracoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnConfiguracoesMouseClicked
-        Configuracao conf = new Configuracao();
+        Configuracao conf = new Configuracao(this.userSystem);
         conf.setVisible(true);
     }//GEN-LAST:event_jpnConfiguracoesMouseClicked
 

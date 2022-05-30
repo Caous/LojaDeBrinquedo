@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +77,8 @@ public class TipoAcessoService implements CrudService<TipoAcessoModel> {
             ps.setInt(1, entity.getIdPerfil());
             ps.setInt(2, entity.getIdMenu());
             ps.setInt(3, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
+            Date dt = new Date();
+            java.sql.Date dtCad = new java.sql.Date(dt.getTime());
             ps.setDate(4, dtCad);
 
             ps.execute();
@@ -172,7 +174,8 @@ public class TipoAcessoService implements CrudService<TipoAcessoModel> {
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
             ps.setInt(1, entity.getUsuDel());
-            java.sql.Date dtDel = new java.sql.Date(entity.getDtDel().getTime());
+            Date dt = new Date();
+            java.sql.Date dtDel = new java.sql.Date(dt.getTime());
             ps.setDate(2, dtDel);
             ps.setInt(3, entity.getId());
 
