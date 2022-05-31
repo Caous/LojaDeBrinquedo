@@ -148,7 +148,7 @@ CREATE TABLE tb_cliente (
 	id_tipo_pagamento int(100) NOT NULL,
 	vlr_total DECIMAL(4,2)  NOT NULL,
 	vlr_desconto DECIMAL(4,2)  NOT NULL,
-	pct_desconto int(100) NOT NULL,
+	pct_desconto DECIMAL(4,2) NOT NULL,
 	usu_inclusao INT(10) NOT NULL,
 	dt_inclusao TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	usu_exclusao INT(10) NULL,
@@ -183,8 +183,10 @@ CREATE TABLE tb_cliente (
  
  INSERT INTO tb_cliente (tipo_pessoa, nome, cpfcpnj, email, usu_inclusao) values (1,'Gustavo','00011122233','teste@tes.com','05-04-2000');
  
- INSERT INTO tb_fornecedor (nome,	nome_fantasia, cpnj, email, cont_resp, dt_criacao, dt_nasc_cont, usu_inclusao) values ('Nike Futebol', 'Nike', '0542451','teste@teste.com','Gustavo', '05-04-2000', '05-04-2000', 1);
+ INSERT INTO tb_fornecedor (nome,	nome_fantasia, cpnj, email, cont_resp, dt_criacao, dt_nasc_cont, usu_inclusao) values ('Nike Futebol', 'Nike', '0542451','teste@teste.com','Gustavo', '2000-05-05', '2000-05-05', 1);
  
  INSERT INTO tb_acesso (id_perfil, id_menu,	usu_inclusao) values (1,1,1);
+ 
+ INSERT INTO tb_produto (id_fornecedor, nome, categoria, marca, qtd, valor, usu_inclusao) values (1,'Bola','Futebol','Nike', 10,20.00,1);
  
  

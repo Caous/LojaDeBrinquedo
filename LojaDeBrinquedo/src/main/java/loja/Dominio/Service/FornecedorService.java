@@ -67,7 +67,7 @@ public class FornecedorService implements CrudService<FornecedorModel> {
                     } else {
                         complemento = complemento + " AND ";
                     }
-                    complemento = complemento + " nome_fantasia = " + entity.getNomeFantasia();
+                    complemento = complemento + " nome_fantasia = '" + entity.getNomeFantasia() + "'";
                 }
             }
 

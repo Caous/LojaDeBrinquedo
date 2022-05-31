@@ -82,7 +82,7 @@ public class ClienteModel implements IPropertiesValidator<ClienteModel> {
     private String Estado;
 
     public void setEstado(String _Estado) {
-        this.CEP = _Estado;
+        this.Estado = _Estado;
     }
 
     public String getEstado() {
@@ -159,13 +159,13 @@ public class ClienteModel implements IPropertiesValidator<ClienteModel> {
         return this.DtNasc;
     }
 
-    private int EstadoCivil;
+    private String EstadoCivil;
 
-    public void setEstadoCivil(int _EstadoCivil) {
+    public void setEstadoCivil(String _EstadoCivil) {
         this.EstadoCivil = _EstadoCivil;
     }
 
-    public int getEstadoCivil() {
+    public String getEstadoCivil() {
         return this.EstadoCivil;
     }
 

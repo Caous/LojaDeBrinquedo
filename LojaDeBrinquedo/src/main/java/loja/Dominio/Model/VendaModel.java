@@ -85,29 +85,29 @@ public class VendaModel implements IPropertiesValidator<VendaModel> {
         return this.DtVenda;
     }
 
-    private int PctDesconto;
+    private double PctDesconto;
 
-    public void setPctDesconto(int _PctDesconto) {
+    public void setPctDesconto(double _PctDesconto) {
         this.PctDesconto = _PctDesconto;
     }
 
-    public int getPctDesconto() {
+    public double getPctDesconto() {
         return this.PctDesconto;
     }
-    
-     private int ValorDesconto;
 
-    public void setValorDesconto(int _ValorDesconto) {
+    private double ValorDesconto;
+
+    public void setValorDesconto(double _ValorDesconto) {
         this.ValorDesconto = _ValorDesconto;
     }
 
-    public int getValorDesconto() {
+    public double getValorDesconto() {
         return this.ValorDesconto;
     }
-    
+
     private double ValorTotal;
 
-    public void setValorTotal(int _ValorTotal) {
+    public void setValorTotal(double _ValorTotal) {
         this.ValorTotal = _ValorTotal;
     }
 

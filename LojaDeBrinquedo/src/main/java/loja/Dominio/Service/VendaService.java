@@ -33,7 +33,62 @@ public class VendaService implements CrudService<VendaModel> {
 
             String sql = "SELECT * FROM tb_venda";
 
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+            String complemento = "";
+            if (entity != null) {
+
+                if (entity.getIdCli() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " id_cliente = " + entity.getIdCli();
+                }
+                if (entity.getTipoPagamento() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " id_tipo_pagamento = " + entity.getTipoPagamento();
+                }
+                if (entity.getValorTotal() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " vlr_total = " + entity.getValorTotal();
+                }
+                if (entity.getValorDesconto() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " vlr_desconto = " + entity.getValorDesconto();
+                }
+                if (entity.getPctDesconto() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " pct_desconto = " + entity.getPctDesconto();
+                }
+                if (entity.getUsuInclus() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " usu_inclusao = " + entity.getUsuInclus();
+                }
+            }
+
+            complemento = complemento + " order by id desc";
+
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
@@ -43,14 +98,11 @@ public class VendaService implements CrudService<VendaModel> {
                 VendaModel venda = new VendaModel();
 
                 venda.setId(rs.getInt("id"));
-                // venda.setIdProd(rs.getInt("id_produto"));
                 venda.setIdCli(rs.getInt("id_cliente"));
                 venda.setTipoPagamento(rs.getInt("id_tipo_pagamento"));
-                venda.setQtdePrd(rs.getInt("qtd_produto"));
-                venda.setValorPrd(rs.getInt("vlr_produto"));
-                venda.setValorTotal(rs.getInt("vlr_total"));
-                venda.setPctDesconto(rs.getInt("vlr_desconto"));
-                venda.setValorDesconto(rs.getInt("pct_desconto"));
+                venda.setValorTotal(rs.getDouble("vlr_total"));
+                venda.setPctDesconto(rs.getDouble("vlr_desconto"));
+                venda.setValorDesconto(rs.getDouble("pct_desconto"));
                 venda.setIdUsuVend(rs.getInt("usu_inclusao"));
                 venda.setDtCad(rs.getDate("dt_inclusao"));
                 venda.setUsuDel(rs.getInt("usu_exclusao"));
@@ -79,9 +131,8 @@ public class VendaService implements CrudService<VendaModel> {
             ps.setInt(2, entity.getTipoPagamento());
             ps.setDouble(3, entity.getValorTotal());
             ps.setDouble(4, entity.getValorDesconto());
-            ps.setInt(5, entity.getPctDesconto());
+            ps.setDouble(5, entity.getPctDesconto());
             ps.setInt(6, entity.getUsuInclus());
-           
 
             ps.execute();
 
@@ -126,9 +177,9 @@ public class VendaService implements CrudService<VendaModel> {
                 venda.setTipoPagamento(rs.getInt("id_tipo_pagamento"));
                 venda.setQtdePrd(rs.getInt("qtd_produto"));
                 venda.setValorPrd(rs.getInt("vlr_produto"));
-                venda.setValorTotal(rs.getInt("vlr_total"));
-                venda.setPctDesconto(rs.getInt("vlr_desconto"));
-                venda.setValorDesconto(rs.getInt("pct_desconto"));
+                venda.setValorTotal(rs.getDouble("vlr_total"));
+                venda.setPctDesconto(rs.getDouble("vlr_desconto"));
+                venda.setValorDesconto(rs.getDouble("pct_desconto"));
                 venda.setIdUsuVend(rs.getInt("usu_inclusao"));
                 venda.setDtCad(rs.getDate("dt_inclusao"));
                 venda.setUsuDel(rs.getInt("usu_exclusao"));
@@ -157,8 +208,8 @@ public class VendaService implements CrudService<VendaModel> {
             ps.setInt(4, entity.getQtdePrd());
             //ps.setInt(5, entity.getValorPrd());
             // ps.setInt(6, entity.getValorTotal());
-            ps.setInt(7, entity.getValorDesconto());
-            ps.setInt(8, entity.getPctDesconto());
+            ps.setDouble(7, entity.getValorDesconto());
+            ps.setDouble(8, entity.getPctDesconto());
             ps.setInt(9, entity.getUsuInclus());
             java.sql.Date dtInclusao = new java.sql.Date(entity.getDtDel().getTime());
             ps.setDate(10, dtInclusao);

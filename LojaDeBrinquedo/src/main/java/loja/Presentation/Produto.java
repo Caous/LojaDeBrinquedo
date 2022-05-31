@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.html.parser.Entity;
 import loja.Dominio.Model.FornecedorModel;
 import loja.Dominio.Model.ProdutoModel;
 import loja.Dominio.Model.UserModel;
@@ -35,6 +36,7 @@ public class Produto extends javax.swing.JFrame {
         LoadTable();
         acaoTela = eAcaoTela.ABRIR.getValor();
         GerenciarBotoes();
+        CarregarComboBox();
     }
 
     public Produto(UserModel user) {
@@ -193,13 +195,6 @@ public class Produto extends javax.swing.JFrame {
             .addGroup(jpnBgLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ckbExcluir)
-                    .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,8 +222,17 @@ public class Produto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ckbExcluir)
+                            .addGroup(jpnBgLayout.createSequentialGroup()
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(350, Short.MAX_VALUE))
         );
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,16 +267,17 @@ public class Produto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 660));
+        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CarregarComboBox() {
@@ -290,7 +295,7 @@ public class Produto extends javax.swing.JFrame {
 
         FornecedorController fornecedorController = new FornecedorController();
         FornecedorModel fornecedor = new FornecedorModel();
-        fornecedor.setNome(entity);
+        fornecedor.setNomeFantasia(entity);
         List<FornecedorModel> fonecedores = fornecedorController.findAll(fornecedor);
         return fonecedores.get(0);
     }
@@ -306,43 +311,50 @@ public class Produto extends javax.swing.JFrame {
 
         ProdutoController prodController = new ProdutoController();
 
-        ProdutoModel prod = new ProdutoModel();
+        boolean valid = PreencherProduto(prodm);
 
-        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
-            prod = prodm;
+        if (valid) {
+
+            switch (acaoTela) {
+                case 1:
+                    if (prodController.save(prodm)) {
+                        JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve no cadastro do produto", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 5:
+                    if (prodController.update(prodm)) {
+                        JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve ao atualizar o Produto", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 6:
+                    Date dt = new Date();
+
+                    prodm.setDtDel(dt);
+
+                    if (this.usuSystem == null) {
+                        prodm.setUsuDel(1);
+                    } else {
+                        prodm.setUsuInclus(this.usuSystem.getId());
+                    }
+
+                    if (prodController.finishValidity(prodm)) {
+                        JOptionPane.showMessageDialog(null, "Produto deletado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Produto", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
+                    break;
+            }
+
+            LimparCampos();
+            LoadTable();
+            acaoTela = eAcaoTela.ABRIR.getValor();
+            GerenciarBotoes();
         }
-
-        prod = PreencherProduto(prod);
-
-        boolean result = false;
-
-        switch (acaoTela) {
-            case 1:
-                result = prodController.save(prod);
-                break;
-            case 5:
-                result = prodController.update(prod);
-                break;
-            case 6:
-                Date dt = new Date();
-
-                prod.setDtDel(dt);
-
-                if (this.usuSystem == null) {
-                    prod.setUsuDel(1);
-                } else {
-                    prod.setUsuInclus(this.usuSystem.getId());
-                }
-
-                result = prodController.finishValidity(prod);
-                break;
-        }
-        if (result) {
-
-        }
-
-        LimparCampos();
-        LoadTable();
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -419,64 +431,78 @@ public class Produto extends javax.swing.JFrame {
         GerenciarBotoes();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private ProdutoModel PreencherProduto(ProdutoModel prodm) {
+    private boolean PreencherProduto(ProdutoModel entity) {
 
-        if (prodm == null) {
-            prodm = new ProdutoModel();
+        if (entity == null) {
+            entity = new ProdutoModel();
         }
 
         try {
-            if (prodm.validString(txtNome.getText())) {
-                prodm.setNomeProduto(txtNome.getText());
+            if (entity.validString(txtNome.getText())) {
+                entity.setNomeProduto(txtNome.getText());
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Por favor preencher o nome ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
-            if (prodm.validString(txtCategoria.getText())) {
-                prodm.setCategoria(txtCategoria.getText());
-            }
+            if (entity.validString(txtCategoria.getText())) {
+                entity.setCategoria(txtCategoria.getText());
+            } else {
 
-            if (prodm.validString(txtMarca.getText())) {
-                prodm.setMarca(txtMarca.getText());
+                JOptionPane.showMessageDialog(null, "Por favor preencher a categoria ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
+            if (entity.validString(txtMarca.getText())) {
+                entity.setMarca(txtMarca.getText());
+            } else {
 
-            if (prodm.validString(cbxFornecedor.getSelectedItem().toString())) {
+                JOptionPane.showMessageDialog(null, "Por favor preencher a marca ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+            if (entity.validString(cbxFornecedor.getSelectedItem().toString())) {
                 FornecedorModel fornece = recuperarFornecedor(cbxFornecedor.getSelectedItem().toString());
-                prodm.setIdFornecedor(fornece.getId());
+                entity.setIdFornecedor(fornece.getId());
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Por favor preencher selecionar o fornecedor", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
-            /*if(prodm.validString(txtFornecedor.getText())){
-               prodm.(txtFornecedor.getText());
-            }*/
-            if (prodm.validInt(Integer.parseInt(txtQtd.getText()))) {
-                prodm.setQtd(Integer.parseInt(txtQtd.getText()));
+            if (entity.validInt(Integer.parseInt(txtQtd.getText()))) {
+                entity.setQtd(Integer.parseInt(txtQtd.getText()));
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Por favor preencher a qtd. de produto ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+            if (entity.validString(txtValor.getText())) {
+                entity.setValor(Double.parseDouble(txtValor.getText()));
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Por favor preencher o valor do produto ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
-            if (prodm.validString(txtValor.getText())) {
-                prodm.setValor(Double.parseDouble(txtValor.getText()));
+            if (entity.validString(txtAvaliacao.getText())) {
+                entity.setAvaliacao(Integer.parseInt(txtAvaliacao.getText()));
             }
 
-            if (prodm.validInt(Integer.parseInt(txtAvaliacao.getText()))) {
-                prodm.setAvaliacao(Integer.parseInt(txtAvaliacao.getText()));
-            }
-
-            if (prodm.validString(txtValidade.getText())) {
+            if (entity.validString(txtValidade.getText())) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                prodm.setDtValidade(formatter1.parse(txtValidade.getText().replace("/", "-")));
+                entity.setDtValidade(formatter1.parse(txtValidade.getText().replace("/", "-")));
             }
 
-            if (prodm.validInt(Integer.parseInt(txtDesconto.getText()))) {
-                prodm.setPorcentagemDesc(Integer.parseInt(txtDesconto.getText()));
+            if (entity.validString(txtDesconto.getText())) {
+                entity.setPorcentagemDesc(Double.parseDouble(txtDesconto.getText()));
             }
 
-            if (prodm.validString(txtFot.getText())) {
-                prodm.setFoto(txtFot.getText());
+            if (entity.validString(txtComentario.getText())) {
+                entity.setComentario(txtComentario.getText());
             }
 
-            if (prodm.validString(txtComentario.getText())) {
-                prodm.setComentario(txtComentario.getText());
-            }
-
-            if (prodm.validString(txtDescricao.getText())) {
-                prodm.setDescricaoProduto(txtDescricao.getText());
+            if (entity.validString(txtDescricao.getText())) {
+                entity.setDescricaoProduto(txtDescricao.getText());
             }
 
         } catch (PropertiesValidator ex) {
@@ -484,7 +510,8 @@ public class Produto extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return prodm;
+        this.prodm = entity;
+        return true;
     }
 
     private void LimparCampos() {

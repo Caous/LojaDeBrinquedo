@@ -73,6 +73,21 @@ public class ClienteService implements CrudService<ClienteModel> {
                     }
                     complemento = complemento + " nome_fantasia = " + entity.getNomeFantasia();
                 }
+                if (entity.getUsuDel() == -1) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NOT NULL";
+                } else {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NULL";
+                }
 
             }
 
@@ -99,7 +114,7 @@ public class ClienteService implements CrudService<ClienteModel> {
                 cli.setEmail(rs.getString("email"));
                 cli.setEndereco(rs.getString("endereco"));
                 cli.setEstado(rs.getString("estado"));
-                cli.setEstadoCivil(rs.getInt("est_civil"));
+                cli.setEstadoCivil(rs.getString("est_civil"));
                 cli.setMunicipio(rs.getString("municipio"));
                 cli.setNome(rs.getString("nome"));
                 cli.setNomeFantasia(rs.getString("nome_fantasia"));
@@ -139,7 +154,7 @@ public class ClienteService implements CrudService<ClienteModel> {
             ps.setString(10, entity.getCelular());
             ps.setString(11, entity.getEmail());
             ps.setString(12, entity.getContatoResposavel());
-            ps.setInt(13, entity.getEstadoCivil());
+            ps.setString(13, entity.getEstadoCivil());
             ps.setString(14, entity.getIM());
             ps.setString(15, entity.getEM());
             java.sql.Date dtNasc = new java.sql.Date(entity.getDtNasc().getTime());
@@ -201,7 +216,7 @@ public class ClienteService implements CrudService<ClienteModel> {
                 cli.setEmail(rs.getString("email"));
                 cli.setEndereco(rs.getString("endereco"));
                 cli.setEstado(rs.getString("estado"));
-                cli.setEstadoCivil(rs.getInt("est_civil"));
+                cli.setEstadoCivil(rs.getString("est_civil"));
                 cli.setMunicipio(rs.getString("municipio"));
                 cli.setNome(rs.getString("nome"));
                 cli.setNomeFantasia(rs.getString("nome_fantasia"));
@@ -240,7 +255,7 @@ public class ClienteService implements CrudService<ClienteModel> {
             ps.setString(10, entity.getCelular());
             ps.setString(11, entity.getEmail());
             ps.setString(12, entity.getContatoResposavel());
-            ps.setInt(13, entity.getEstadoCivil());
+            ps.setString(13, entity.getEstadoCivil());
             ps.setString(14, entity.getIM());
             ps.setString(15, entity.getEM());
             java.sql.Date dtNasc = new java.sql.Date(entity.getDtNasc().getTime());

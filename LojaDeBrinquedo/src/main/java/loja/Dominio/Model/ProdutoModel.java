@@ -227,7 +227,7 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
 
     @Override
     public boolean validInt(int value) throws PropertiesValidator {
-        if (value >= 0) {
+        if (value > 0) {
             return true;
         }
         return false;
@@ -235,7 +235,7 @@ public class ProdutoModel implements IPropertiesValidator<ProdutoModel> {
 
     @Override
     public boolean validDouble(double value) throws PropertiesValidator {
-        if (value >= 0) {
+        if (value > 0) {
             return true;
         }
         return false;

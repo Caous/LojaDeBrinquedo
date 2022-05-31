@@ -1101,6 +1101,7 @@ public class Configuracao extends javax.swing.JFrame {
         jTablePanel.getAccessibleContext().setAccessibleName("Tipo Pagamento");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblMenusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMenusMouseClicked

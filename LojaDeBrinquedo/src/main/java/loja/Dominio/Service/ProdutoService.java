@@ -103,8 +103,6 @@ public class ProdutoService implements CrudService<ProdutoModel> {
             ps.setString(7, entity.getDescricaoProduto());
             ps.setInt(8, entity.getAvaliacao());
             ps.setString(9, entity.getComentario());
-//            java.sql.Date dtVencimento = new java.sql.Date(entity.getDtValidade().getTime());
-//            ps.setDate(10, dtVencimento);
             ps.setDouble(10, entity.getPorcentagemDesc());
             ps.setInt(11, entity.getUsuInclus());
 
@@ -178,7 +176,7 @@ public class ProdutoService implements CrudService<ProdutoModel> {
     public boolean update(ProdutoModel entity) {
         try {
 
-            String sql = "update tb_produto set tb_cliente id_fornecedor = ?, nome = ?, categoria = ?, marca = ?, qtd = ?, valor = ?, descricao = ?, avaliacao = ?, comentario = ?, validade = ?, porcentagem_desc = ?, usu_inclusao = ?, dt_inclusao = ?"
+            String sql = "update tb_produto set id_fornecedor = ?, nome = ?, categoria = ?, marca = ?, qtd = ?, valor = ?, descricao = ?, avaliacao = ?, comentario = ?,  porcentagem_desc = ?"
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
@@ -192,13 +190,8 @@ public class ProdutoService implements CrudService<ProdutoModel> {
             ps.setString(7, entity.getDescricaoProduto());
             ps.setInt(8, entity.getAvaliacao());
             ps.setString(9, entity.getComentario());
-            java.sql.Date dtVencimento = new java.sql.Date(entity.getDtValidade().getTime());
-            ps.setDate(10, dtVencimento);
-            ps.setDouble(11, entity.getPorcentagemDesc());
-            ps.setInt(12, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
-            ps.setDate(13, dtCad);
-            ps.setInt(14, entity.getId());
+            ps.setDouble(10, entity.getPorcentagemDesc());
+            ps.setInt(11, entity.getId());
 
             ps.execute();
 

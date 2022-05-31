@@ -73,10 +73,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TblVendas = new javax.swing.JTable();
         lblFiltroData = new javax.swing.JLabel();
         dtFiltroInicio = new com.toedter.calendar.JDateChooser();
         dtFiltroFim = new com.toedter.calendar.JDateChooser();
+        btnPesquisarProduto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -361,11 +362,11 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jTable1.setBackground(new java.awt.Color(64, 87, 184));
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(64, 87, 184));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TblVendas.setBackground(new java.awt.Color(64, 87, 184));
+        TblVendas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TblVendas.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        TblVendas.setForeground(new java.awt.Color(64, 87, 184));
+        TblVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -373,11 +374,24 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        jTable1.setShowGrid(false);
-        jScrollPane1.setViewportView(jTable1);
+        TblVendas.setShowGrid(false);
+        jScrollPane1.setViewportView(TblVendas);
 
         lblFiltroData.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblFiltroData.setText("Filtro por data");
+
+        btnPesquisarProduto.setBackground(new java.awt.Color(51, 102, 255));
+        btnPesquisarProduto.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisarProduto.setForeground(new java.awt.Color(255, 255, 255));
+        btnPesquisarProduto.setText("Procurar");
+        btnPesquisarProduto.setBorder(null);
+        btnPesquisarProduto.setBorderPainted(false);
+        btnPesquisarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
         jpnBg.setLayout(jpnBgLayout);
@@ -385,24 +399,32 @@ public class Principal extends javax.swing.JFrame {
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnBgLayout.createSequentialGroup()
                 .addComponent(jpnMenus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dtFiltroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFiltroData))
-                        .addGap(18, 18, 18)
+                        .addGap(101, 101, 101)
                         .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpnBgLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dtFiltroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpnBgLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblFiltroData))
+                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpnBgLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 46, Short.MAX_VALUE))
+                            .addGroup(jpnBgLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(btnPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 102, Short.MAX_VALUE))
         );
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,16 +432,18 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpnBgLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(lblFiltroData)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dtFiltroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(dtFiltroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -477,6 +501,10 @@ public class Principal extends javax.swing.JFrame {
         conf.setVisible(true);
     }//GEN-LAST:event_jpnConfiguracoesMouseClicked
 
+    private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
+       
+    }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -514,6 +542,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TblVendas;
+    private javax.swing.JButton btnPesquisarProduto;
     private com.toedter.calendar.JDateChooser dtFiltroFim;
     private com.toedter.calendar.JDateChooser dtFiltroInicio;
     private javax.swing.JLabel jLabel2;
@@ -523,7 +553,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpnBg;
     private javax.swing.JPanel jpnClientes;
     private javax.swing.JPanel jpnConfiguracoes;
