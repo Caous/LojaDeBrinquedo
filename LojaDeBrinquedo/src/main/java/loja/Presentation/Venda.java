@@ -34,25 +34,25 @@ public class Venda extends javax.swing.JFrame {
         initComponents();
         carregarPagamento();
     }
-
+    
     public Venda(UserModel usu) {
         initComponents();
         this.usuModel = usu;
         carregarPagamento();
     }
-
+    
     private UserModel usuModel;
     private ClienteModel cliente;
     private List<ProdutoModel> produtos;
     private int acaoTela;
     private ProdutoModel prodTemp;
-
+    
     private void GerenciarBotoes() {
-
+        
     }
-
+    
     private void LoadTableProduto(List<ProdutoModel> entity) {
-
+        
         DefaultTableModel tmProduto = new DefaultTableModel();
         tmProduto.addColumn("ID");
         tmProduto.addColumn("Nome");
@@ -63,9 +63,9 @@ public class Venda extends javax.swing.JFrame {
         tmProduto.addColumn("Celular");
         tmProduto.addColumn("Endereço");
         tmProduto.addColumn("Ativo");
-
+        
         tblProdutos.setModel(tmProduto);
-
+        
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -75,66 +75,66 @@ public class Venda extends javax.swing.JFrame {
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(100);
         tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(250);
         tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
-
+        
         tmProduto.setRowCount(0);
-
+        
         for (ProdutoModel prod : entity) {
             tmProduto.addRow(new String[]{String.valueOf(prod.getId()),
                 prod.getNomeProduto(), "Ativo"});
         }
     }
-
+    
     private void carregarPagamento() {
         TipoPagamentoController pagamentoController = new TipoPagamentoController();
         TipoPagamentoModel pagamentoFiltro = new TipoPagamentoModel();
         List<TipoPagamentoModel> pagamento = pagamentoController.findAll(pagamentoFiltro);
-
+        
         for (int i = 0; i < pagamento.size(); i++) {
             cbxPagamento.addItem(pagamento.get(i).getDescPagamento());
         }
-
+        
     }
-
+    
     private void PreencherProduto(ProdutoModel prodm) {
-
+        
         if (prodm == null) {
             prodm = new ProdutoModel();
         }
-
+        
         try {
             if (prodm.validString(txtNome.getText())) {
                 prodm.setNomeProduto(txtNome.getText());
             }
-
+            
             if (prodm.validString(txtCategoria.getText())) {
                 prodm.setCategoria(txtCategoria.getText());
             }
-
+            
             if (prodm.validString(txtMarca.getText())) {
                 prodm.setMarca(txtMarca.getText());
             }
-
+            
             if (prodm.validInt(Integer.parseInt(txtQtd.getText()))) {
                 prodm.setQtd(Integer.parseInt(txtQtd.getText()));
             }
-
+            
             if (prodm.validInt(Integer.parseInt(txtValor.getText()))) {
                 prodm.setValor(Integer.parseInt(txtValor.getText()));
             }
-
+            
             if (prodm.validInt(Integer.parseInt(txtAvaliacao.getText()))) {
                 prodm.setAvaliacao(Integer.parseInt(txtAvaliacao.getText()));
             }
-
+            
             if (prodm.validString(txtValidade.getText())) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
                 prodm.setDtValidade(formatter1.parse(txtValidade.getText().replace("/", "-")));
             }
-
+            
             if (prodm.validInt(Integer.parseInt(txtDesconto.getText()))) {
                 prodm.setPorcentagemDesc(Integer.parseInt(txtDesconto.getText()));
             }
-
+            
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         } catch (ParseException ex) {
@@ -142,7 +142,7 @@ public class Venda extends javax.swing.JFrame {
         }
         produtos.add(prodm);
     }
-
+    
     private void CarregarProduto(ProdutoModel produto) {
         prodTemp = produto;
         txtProduto.setText(produto.getNomeProduto());
@@ -153,9 +153,9 @@ public class Venda extends javax.swing.JFrame {
         txtValor.setText(Double.toString(produto.getValor()));
         txtAvaliacao.setText(Integer.toString(produto.getAvaliacao()));
         txtDesconto.setText(Double.toString(produto.getPorcentagemDesc()));
-
+        
     }
-
+    
     private void LimparCamposProduto() {
         txtProduto.setText("");
         txtCategoria.setText("");
@@ -165,9 +165,9 @@ public class Venda extends javax.swing.JFrame {
         txtValor.setText("");
         txtAvaliacao.setText("");
         txtDesconto.setText("");
-
+        
     }
-
+    
     private void LimparCamposCliente() {
         txtNome.setText("");
         txtNomeFan.setText("");
@@ -182,7 +182,7 @@ public class Venda extends javax.swing.JFrame {
         txtCEP.setText("");
         txtEstado.setText("");
         txtMunicipio.setText("");
-
+        
     }
 
     /**
@@ -260,6 +260,12 @@ public class Venda extends javax.swing.JFrame {
         txtTelCliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        Jtab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JtabMouseClicked(evt);
+            }
+        });
 
         jPanelCliente.setBackground(new java.awt.Color(201, 232, 242));
 
@@ -896,21 +902,21 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_ckbClienteCadastradoActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-
+        
         String cpfCnpj = txtCPFCNPJ.getText();
-
+        
         if (ckbClienteCadastrado.isSelected()) {
-
+            
             ClienteController cliController = new ClienteController();
-
+            
             ClienteModel cliFiltro = new ClienteModel();
-
+            
             cliFiltro.setCpfCnpj(cpfCnpj);
-
+            
             List<ClienteModel> cli = cliController.findAll(cliFiltro);
-
+            
             cliente = cli.get(0);
-
+            
             txtNome.setText(cliente.getNome());
             txtNomeFan.setText(cliente.getNomeFantasia());
             txtEmail.setText(cliente.getEmail());
@@ -924,7 +930,7 @@ public class Venda extends javax.swing.JFrame {
             txtCEP.setText(cliente.getCEP());
             txtEstado.setText(cliente.getEstado());
             txtMunicipio.setText(cliente.getMunicipio());
-
+            
         }
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
@@ -935,11 +941,11 @@ public class Venda extends javax.swing.JFrame {
 
     private void btnRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverProdutoActionPerformed
         if (tblProdutos.getSelectedRow() >= 0) {
-
+            
             acaoTela = eAcaoTela.EDITAR.getValor();
             GerenciarBotoes();
             int id = Integer.parseInt(tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0).toString());
-
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
         }
@@ -955,52 +961,52 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCpfCnpjClienteActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
-
+        
         GerenciarBotoes();
-
+        
         ProdutoController prodControll = new ProdutoController();
         ProdutoModel prod = new ProdutoModel();
-
+        
         try {
             if (prod.validString(txtNome.getText())) {
                 prod.setNomeProduto(txtNome.getText());
             }
-
+            
             if (prod.validString(txtCategoria.getText())) {
                 prod.setCategoria(txtCategoria.getText());
             }
-
+            
             if (prod.validString(txtMarca.getText())) {
                 prod.setMarca(txtMarca.getText());
             }
-
+            
             if (prod.validString(txtQtd.getText())) {
                 prod.setQtd(Integer.parseInt(txtQtd.getText()));
             }
-
+            
             if (prod.validString(txtValor.getText())) {
                 prod.setValor(Integer.parseInt(txtValor.getText()));
             }
-
+            
             if (prod.validString(txtAvaliacao.getText())) {
                 prod.setAvaliacao(Integer.parseInt(txtAvaliacao.getText()));
             }
-
+            
             if (prod.validString(txtValidade.getText())) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
                 prod.setDtValidade(formatter1.parse(txtValidade.getText()));
             }
-
+            
             if (prod.validString(txtDesconto.getText())) {
                 prod.setAvaliacao(Integer.parseInt(txtDesconto.getText()));
             }
-
+            
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         } catch (ParseException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         List<ProdutoModel> produtos = ProdutoController.findAll(prod);
         CarregarProduto(produtos.get(0));
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
@@ -1020,7 +1026,7 @@ public class Venda extends javax.swing.JFrame {
         if (acaoTela == eAcaoTela.ABRIR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
-
+        
         PreencherProduto(prodTemp);
         LoadTableProduto(produtos);
     }//GEN-LAST:event_btnAdicionarProdutoActionPerformed
@@ -1028,6 +1034,17 @@ public class Venda extends javax.swing.JFrame {
     private void btnCancelarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClienteActionPerformed
         LimparCamposCliente();
     }//GEN-LAST:event_btnCancelarClienteActionPerformed
+
+    private void JtabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtabMouseClicked
+        txtNomeCliente.setText(this.cliente.getNome());
+        txtCpfCnpjCliente.setText(this.cliente.getCpfCnpj());
+        txtEmailCliente.setText(this.cliente.getEmail());
+        txtTelCliente.setText(this.cliente.getTelefone());
+        txtEnderecoCliente.setText(this.cliente.getEndereco());
+        txtCepCliente.setText(this.cliente.getCEP());
+        txtEstado.setText(this.cliente.getEstado());
+        txtMunicipioCliente.setText(this.cliente.getMunicipio());
+    }//GEN-LAST:event_JtabMouseClicked
 
     /**
      * @param args the command line arguments
