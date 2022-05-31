@@ -70,22 +70,18 @@ public class VendaService implements CrudService<VendaModel> {
 
         try {
 
-            String sql = "INSERT INTO tb_venda (id_produto, id_cliente, id_tipo_pagamento, qtd_produto, vlr_produto , vlr_total , vlr_desconto, pct_descont,usu_inclusao,dt_inclusao)"
-                    + " values (?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tb_venda (id_cliente, id_tipo_pagamento, vlr_total , vlr_desconto, pct_desconto,usu_inclusao)"
+                    + " values (?,?,?,?,?,?)";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            //ps.setInt(1, entity.getid);
-            ps.setInt(2, entity.getIdCli());
-            ps.setInt(3, entity.getTipoPagamento());
-            ps.setInt(4, entity.getQtdePrd());
-            //ps.setInt(5, entity.getValorPrd());
-            // ps.setInt(6, entity.getValorTotal());
-            ps.setInt(7, entity.getValorDesconto());
-            ps.setInt(8, entity.getPctDesconto());
-            ps.setInt(9, entity.getUsuInclus());
-            java.sql.Date dtInclusao = new java.sql.Date(entity.getDtDel().getTime());
-            ps.setDate(10, dtInclusao);
+            ps.setInt(1, entity.getIdCli());
+            ps.setInt(2, entity.getTipoPagamento());
+            ps.setDouble(3, entity.getValorTotal());
+            ps.setDouble(4, entity.getValorDesconto());
+            ps.setInt(5, entity.getPctDesconto());
+            ps.setInt(6, entity.getUsuInclus());
+           
 
             ps.execute();
 

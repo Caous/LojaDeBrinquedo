@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package loja.Presentation.Controller;
 
 import java.sql.SQLException;
@@ -9,35 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import loja.Dominio.Model.VendaModel;
-import loja.Dominio.Service.VendaService;
+import loja.Dominio.Model.ItemVendaModel;
+import loja.Dominio.Service.ItemVendaService;
 
-/**
- *
- * @author Gustavo Nascimento
- */
-public class VendasController {
+public class ItemVendaController {
 
-    public VendasController() {
+    public ItemVendaController() {
     }
 
-    public VendasController(VendaModel entity) {
+    public ItemVendaController(ItemVendaModel entity) {
         this._entity = entity;
     }
 
-    VendaModel _entity;
+    ItemVendaModel _entity;
 
-    public static void delete(VendaModel entity) {
+    public static void delete(ItemVendaModel entity) {
 
     }
 
-    public static VendaModel findId(int id) {
+    public static ItemVendaModel findId(int id) {
 
-        VendaModel vendaService = new VendaModel();
+        ItemVendaModel itemVenda = new ItemVendaModel();
 
         try {
-            VendaService vendaC = new VendaService();
-            vendaService = vendaC.findId(id);
+            ItemVendaService itemVendaC = new ItemVendaService();
+            itemVenda = itemVendaC.findId(id);
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ItemVendaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,16 +37,16 @@ public class VendasController {
             Logger.getLogger(ItemVendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return vendaService;
+        return itemVenda;
     }
 
-    public static List<VendaModel> findAll(VendaModel entity) {
+    public static List<ItemVendaModel> findAll(ItemVendaModel entity) {
 
-        List<VendaModel> vendas = new ArrayList<VendaModel>();
+        List<ItemVendaModel> itemVendas = new ArrayList<ItemVendaModel>();
 
         try {
-            VendaService vendaC = new VendaService();
-            vendas = vendaC.findAll(entity);
+            ItemVendaService itemVendaC = new ItemVendaService();
+            itemVendas = itemVendaC.findAll(entity);
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ItemVendaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,14 +54,14 @@ public class VendasController {
             Logger.getLogger(ItemVendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return vendas;
+        return itemVendas;
     }
 
-    public static boolean save(VendaModel entity) {
+    public static boolean save(ItemVendaModel entity) {
 
         try {
-            VendaService vendaC = new VendaService();
-            return vendaC.save(entity);
+            ItemVendaService itemVendaC = new ItemVendaService();
+            return itemVendaC.save(entity);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ItemVendaController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -78,10 +70,11 @@ public class VendasController {
         return false;
     }
 
-    public boolean update(VendaModel entity) {
+
+    public boolean update(ItemVendaModel entity) {
         try {
-            VendaService vendaC = new VendaService();
-            vendaC.update(entity);
+            ItemVendaService itemVendaC = new ItemVendaService();
+            itemVendaC.update(entity);
             return true;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ItemVendaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,10 +84,10 @@ public class VendasController {
         return false;
     }
 
-    public boolean finishValidity(VendaModel entity) {
+    public boolean finishValidity(ItemVendaModel entity) {
         try {
-            VendaService vendaC = new VendaService();
-            vendaC.finishValidity(entity);
+            ItemVendaService itemVendaC = new ItemVendaService();
+            itemVendaC.finishValidity(entity);
             return true;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ItemVendaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,5 +96,4 @@ public class VendasController {
         }
         return false;
     }
-
 }

@@ -6,20 +6,25 @@ package loja.Presentation;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import loja.Dominio.Model.ClienteModel;
+import loja.Dominio.Model.ItemVendaModel;
 import loja.Dominio.Model.ProdutoModel;
 import loja.Dominio.Model.TipoPagamentoModel;
 import loja.Dominio.Model.UserModel;
+import loja.Dominio.Model.VendaModel;
 import loja.Dominio.Util.PropertiesValidator;
 import loja.Dominio.Util.eAcaoTela;
 import loja.Presentation.Controller.ClienteController;
+import loja.Presentation.Controller.ItemVendaController;
 import loja.Presentation.Controller.ProdutoController;
 import loja.Presentation.Controller.TipoPagamentoController;
+import loja.Presentation.Controller.VendasController;
 
 /**
  *
@@ -118,8 +123,8 @@ public class Venda extends javax.swing.JFrame {
                 prodm.setQtd(Integer.parseInt(txtQtd.getText()));
             }
             
-            if (prodm.validInt(Integer.parseInt(txtValor.getText()))) {
-                prodm.setValor(Integer.parseInt(txtValor.getText()));
+            if (prodm.validDouble(Double.parseDouble(txtValor.getText()))) {
+                prodm.setValor(Double.parseDouble(txtValor.getText()));
             }
             
             if (prodm.validInt(Integer.parseInt(txtAvaliacao.getText()))) {
@@ -131,8 +136,8 @@ public class Venda extends javax.swing.JFrame {
                 prodm.setDtValidade(formatter1.parse(txtValidade.getText().replace("/", "-")));
             }
             
-            if (prodm.validInt(Integer.parseInt(txtDesconto.getText()))) {
-                prodm.setPorcentagemDesc(Integer.parseInt(txtDesconto.getText()));
+            if (prodm.validDouble(Double.parseDouble(txtDesconto.getText()))) {
+                prodm.setPorcentagemDesc(Double.parseDouble(txtDesconto.getText()));
             }
             
         } catch (PropertiesValidator ex) {
@@ -140,7 +145,12 @@ public class Venda extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        produtos.add(prodm);
+        if (produtos == null) {
+            produtos = new ArrayList<ProdutoModel>();
+            produtos.add(prodm);
+        } else {
+            produtos.add(prodm);
+        }
     }
     
     private void CarregarProduto(ProdutoModel produto) {
@@ -953,8 +963,51 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverProdutoActionPerformed
 
     private void btnSalvarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCompraActionPerformed
-        // TODO add your handling code here:
+        
+        if (cliente == null || produtos == null) {
+            JOptionPane.showMessageDialog(this, "Por favor verificar lista de produtos e informações do cliente");
+        }
+        
+        VendasController vendaC = new VendasController();
+        VendaModel venda = new VendaModel();
+        
+        venda.setIdCli(this.cliente.getId());
+        venda.setIdUsuVend(this.usuModel.getId());
+        TipoPagamentoModel tipoPagamento = recuperarTipoPagamento(cbxPagamento.getSelectedItem().toString());
+        venda.setTipoPagamento(tipoPagamento.getId());
+        venda.setPctDesconto(20);
+        venda.setValorDesconto(20);
+        venda.setValorTotal(20);
+        
+        vendaC.save(venda);
+        
+        ItemVendaController itemVendaC = new ItemVendaController();
+        List<ItemVendaModel> itensVendas = new ArrayList<ItemVendaModel>();
+        
+        for (ProdutoModel prod : produtos) {
+            ItemVendaModel itemVenda = new ItemVendaModel();
+            itemVenda.setIdVenda(1);
+            itemVenda.setIdProduto(prod.getId());
+            itemVenda.setqtdProduto(prod.getQtd());
+            itemVenda.setvlrProduto(prod.getValor());
+            itensVendas.add(itemVenda);
+        }
+        
+        for (ItemVendaModel item : itensVendas) {
+            itemVendaC.save(item);
+        }
+
     }//GEN-LAST:event_btnSalvarCompraActionPerformed
+    
+    private TipoPagamentoModel recuperarTipoPagamento(String entity) {
+        
+        TipoPagamentoController pagamentoC = new TipoPagamentoController();
+        TipoPagamentoModel tipoPagamento = new TipoPagamentoModel();
+        tipoPagamento.setDescPagamento(entity);
+        List<TipoPagamentoModel> pagamentos = pagamentoC.findAll(tipoPagamento);
+        return pagamentos.get(0);
+    }
+    
 
     private void txtCpfCnpjClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfCnpjClienteActionPerformed
         // TODO add your handling code here:
