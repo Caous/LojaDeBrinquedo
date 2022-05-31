@@ -161,6 +161,8 @@ public class Login extends javax.swing.JFrame {
                 Principal principal = new Principal(login);
                 principal.setVisible(true);
                 this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor verificar, usuário ou senha está errado", "Login falhou", JOptionPane.WARNING_MESSAGE);
             }
 
         } catch (PropertiesValidator ex) {

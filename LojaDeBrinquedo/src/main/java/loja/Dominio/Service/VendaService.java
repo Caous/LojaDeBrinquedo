@@ -150,7 +150,7 @@ public class VendaService implements CrudService<VendaModel> {
     public boolean update(VendaModel entity) {
         try {
 
-            String sql = "update tb_venda set tb_venda id_produto = ?, id_cliente = ?, id_tipo_pagamento = ? , qtd_produto = ?, vlr_produto = ?, vlr_total = ?, vlr_desconto = ?, pct_desconto = ?, usu_inclusao = ? , dt_inclusao = ?"
+            String sql = "update tb_venda set id_produto = ?, id_cliente = ?, id_tipo_pagamento = ? , qtd_produto = ?, vlr_produto = ?, vlr_total = ?, vlr_desconto = ?, pct_desconto = ?, usu_inclusao = ? , dt_inclusao = ?"
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);

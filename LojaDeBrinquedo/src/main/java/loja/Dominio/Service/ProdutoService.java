@@ -36,8 +36,20 @@ public class ProdutoService implements CrudService<ProdutoModel> {
         try {
 
             String sql = "SELECT * FROM tb_produto";
+            String complemento = "";
+            if (entity != null) {
 
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+                if (entity.getNomeProduto() != null && entity.getNomeProduto() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " nome = '" + entity.getNomeProduto() + "'";
+                }
+            }
+
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
@@ -77,8 +89,8 @@ public class ProdutoService implements CrudService<ProdutoModel> {
 
         try {
 
-            String sql = "INSERT INTO tb_produto (id_fornecedor, nome, categoria, marca, qtd, valor, descricao, avaliacao, comentario, validade, porcentagem_desc, usu_inclusao, dt_inclusao)"
-                    + " values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tb_produto (id_fornecedor, nome, categoria, marca, qtd, valor, descricao, avaliacao, comentario, porcentagem_desc, usu_inclusao)"
+                    + " values (?,?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
@@ -91,19 +103,16 @@ public class ProdutoService implements CrudService<ProdutoModel> {
             ps.setString(7, entity.getDescricaoProduto());
             ps.setInt(8, entity.getAvaliacao());
             ps.setString(9, entity.getComentario());
-            java.sql.Date dtVencimento = new java.sql.Date(entity.getDtValidade().getTime());
-            ps.setDate(10, dtVencimento);
-            ps.setDouble(11, entity.getPorcentagemDesc());
-            ps.setInt(12, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
-            ps.setDate(13, dtCad);
+//            java.sql.Date dtVencimento = new java.sql.Date(entity.getDtValidade().getTime());
+//            ps.setDate(10, dtVencimento);
+            ps.setDouble(10, entity.getPorcentagemDesc());
+            ps.setInt(11, entity.getUsuInclus());
 
             ps.execute();
 
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(ClienteService.class.getName()).log(Level.SEVERE, null, ex);
-            String guts = ex.toString();
             System.out.println(ex);
             return false;
         }

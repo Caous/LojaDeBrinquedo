@@ -107,15 +107,12 @@ public class Fornecedor extends javax.swing.JFrame {
         jCheckBox1.setText("Excluir");
 
         txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNome.setForeground(new java.awt.Color(255, 255, 255));
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtNomeFan.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNomeFan.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeFan.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome Fantasia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtEmail.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtContResp.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -126,19 +123,15 @@ public class Fornecedor extends javax.swing.JFrame {
         txtTel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefone", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 1, 14))); // NOI18N
 
         txtIE.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        txtIE.setForeground(new java.awt.Color(255, 255, 255));
         txtIE.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtIM.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        txtIM.setForeground(new java.awt.Color(255, 255, 255));
         txtIM.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "IM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtCNPJ.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        txtCNPJ.setForeground(new java.awt.Color(255, 255, 255));
         txtCNPJ.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CNPJ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtCel.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        txtCel.setForeground(new java.awt.Color(255, 255, 255));
         txtCel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Celular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtEndereco.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
@@ -148,7 +141,6 @@ public class Fornecedor extends javax.swing.JFrame {
         txtCEP.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CEP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtDtNasc.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
-        txtDtNasc.setForeground(new java.awt.Color(255, 255, 255));
         txtDtNasc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
 
         txtEstado.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N

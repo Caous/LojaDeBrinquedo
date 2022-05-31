@@ -148,7 +148,7 @@ public class Venda extends javax.swing.JFrame {
         txtProduto.setText(produto.getNomeProduto());
         txtCategoria.setText(produto.getCategoria());
         txtMarca.setText(produto.getMarca());
-        txtValidade.setText(produto.getDtValidade().toString());
+//        txtValidade.setText(produto.getDtValidade().toString());
         txtQtd.setText(Integer.toString(produto.getQtd()));
         txtValor.setText(Double.toString(produto.getValor()));
         txtAvaliacao.setText(Integer.toString(produto.getAvaliacao()));
@@ -968,8 +968,8 @@ public class Venda extends javax.swing.JFrame {
         ProdutoModel prod = new ProdutoModel();
         
         try {
-            if (prod.validString(txtNome.getText())) {
-                prod.setNomeProduto(txtNome.getText());
+            if (prod.validString(txtProduto.getText())) {
+                prod.setNomeProduto(txtProduto.getText());
             }
             
             if (prod.validString(txtCategoria.getText())) {

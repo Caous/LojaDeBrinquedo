@@ -34,9 +34,9 @@ public class FornecedorService implements CrudService<FornecedorModel> {
 
             String sql = "SELECT * FROM tb_fornecedor";
             String complemento = "";
-            
-            if (entity !=null){
-                
+
+            if (entity != null) {
+
                 if (entity.getCnpj() != null && entity.getCnpj() != "") {
                     if (complemento == "") {
                         complemento = complemento + " Where ";
@@ -71,7 +71,7 @@ public class FornecedorService implements CrudService<FornecedorModel> {
                 }
             }
 
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
@@ -87,8 +87,8 @@ public class FornecedorService implements CrudService<FornecedorModel> {
                 forn.setContatoResposavel(rs.getString("cont_resp"));
                 forn.setDtCad(rs.getDate("dt_inclusao"));
                 forn.setDtDel(rs.getDate("dt_exclusao"));
-                forn.setDtNasc(rs.getDate("dt_nasc"));
-                forn.setEM(rs.getInt("EM"));
+                forn.setDtNasc(rs.getDate("dt_nasc_cont"));
+                forn.setEM(rs.getInt("IE"));
                 forn.setIM(rs.getInt("IM"));
                 forn.setEmail(rs.getString("email"));
                 forn.setEndereco(rs.getString("endereco"));
@@ -115,41 +115,34 @@ public class FornecedorService implements CrudService<FornecedorModel> {
 
         try {
 
-            String sql = "INSERT INTO tb_fornecedor (dt_criacao, nome, nome_fantasia, cpnj, endereco, cep, estado, municipio, telefone, celular, email, cont_resp, dt_nasc_cont, IM, EM, dt_nasc, sexo, usu_inclusao, dt_inclusao)"
-                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tb_fornecedor (nome, nome_fantasia, cpnj, endereco, cep, estado, municipio, telefone, celular, email, cont_resp, dt_nasc_cont, IM, IE, dt_criacao, usu_inclusao)"
+                    + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
-            ps.setDate(1, dtCad);
-            ps.setString(2, entity.getNome());
-
-            ps.setString(3, entity.getNomeFantasia());
-            ps.setString(4, entity.getCnpj());
-            ps.setString(5, entity.getEndereco());
-            ps.setString(6, entity.getCEP());
-            ps.setString(7, entity.getEstado());
-            ps.setString(8, entity.getMunicipio());
-
-            ps.setString(9, entity.getTelefone());
-            ps.setString(10, entity.getCelular());
-            ps.setString(11, entity.getEmail());
-            ps.setString(12, entity.getContatoResposavel());
+            ps.setString(1, entity.getNome());
+            ps.setString(2, entity.getNomeFantasia());
+            ps.setString(3, entity.getCnpj());
+            ps.setString(4, entity.getEndereco());
+            ps.setString(5, entity.getCEP());
+            ps.setString(6, entity.getEstado());
+            ps.setString(7, entity.getMunicipio());
+            ps.setString(8, entity.getTelefone());
+            ps.setString(9, entity.getCelular());
+            ps.setString(10, entity.getEmail());
+            ps.setString(11, entity.getContatoResposavel());
             java.sql.Date dtNasc = new java.sql.Date(entity.getDtNasc().getTime());
-            ps.setDate(13, dtNasc);
-            ps.setInt(14, entity.getIM());
-            ps.setInt(15, entity.getEM());            
-            ps.setDate(16, dtNasc);
-            //ps.setInt(17, entity.getse());
-            ps.setInt(18, entity.getUsuInclus());
-            ps.setDate(19, dtCad);
+            ps.setDate(12, dtNasc);
+            ps.setInt(13, entity.getIM());
+            ps.setInt(14, entity.getEM());
+            ps.setDate(15, dtNasc);
+            ps.setInt(16, entity.getUsuInclus());
 
             ps.execute();
 
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(FornecedorService.class.getName()).log(Level.SEVERE, null, ex);
-            String guts = ex.toString();
             System.out.println(ex);
             return false;
         }
@@ -229,7 +222,7 @@ public class FornecedorService implements CrudService<FornecedorModel> {
             ps.setString(8, entity.getTelefone());
             ps.setString(9, entity.getCelular());
             ps.setString(10, entity.getEmail());
-            ps.setString(11, entity.getContatoResposavel());            
+            ps.setString(11, entity.getContatoResposavel());
             java.sql.Date dtNasc = new java.sql.Date(entity.getDtNasc().getTime());
             ps.setDate(12, dtNasc);
             ps.setInt(13, entity.getIM());
@@ -245,7 +238,6 @@ public class FornecedorService implements CrudService<FornecedorModel> {
 
         } catch (SQLException ex) {
             Logger.getLogger(FornecedorService.class.getName()).log(Level.SEVERE, null, ex);
-            String guts = ex.toString();
             System.out.println(ex);
             return false;
         }
@@ -272,7 +264,6 @@ public class FornecedorService implements CrudService<FornecedorModel> {
 
         } catch (SQLException ex) {
             Logger.getLogger(FornecedorService.class.getName()).log(Level.SEVERE, null, ex);
-            String guts = ex.toString();
             System.out.println(ex);
             return false;
         }
