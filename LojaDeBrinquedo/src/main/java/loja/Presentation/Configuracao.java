@@ -30,7 +30,7 @@ import loja.Presentation.Controller.TipoPagamentoController;
  * @author Gustavo Nascimento
  */
 public class Configuracao extends javax.swing.JFrame {
-
+    
     public Configuracao() {
         initComponents();
         LoadTable();
@@ -38,7 +38,7 @@ public class Configuracao extends javax.swing.JFrame {
         GerenciarBotoes();
         CarregarComboBox();
     }
-
+    
     public Configuracao(UserModel user) {
         this.usuSystem = user;
         initComponents();
@@ -47,44 +47,44 @@ public class Configuracao extends javax.swing.JFrame {
         GerenciarBotoes();
         CarregarComboBox();
     }
-
+    
     private UserModel usuSystem;
     private int acaoTela;
     private MenuModel _menu;
     private PerfilModel _perfil;
     private TipoPagamentoModel _pagamento;
-    private TipoAcessoModel acessoModel;
-
+    private TipoAcessoModel _acessoModel;
+    
     public void LoadTable() {
 
         //Menu
         MenuController menuController = new MenuController();
         MenuModel menuFiltro = new MenuModel();
         List<MenuModel> menus = menuController.findAll(menuFiltro);
-
+        
         DefaultTableModel tbMenus = new DefaultTableModel();
-
+        
         tbMenus.addColumn("ID");
         tbMenus.addColumn("Nome");
         tbMenus.addColumn("Descrição");
         tbMenus.addColumn("Usu. Inclusão");
         tbMenus.addColumn("Dt. Inclusão");
-
+        
         tblMenus.setModel(tbMenus);
-
+        
         tblMenus.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblMenus.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblMenus.getColumnModel().getColumn(0).setPreferredWidth(100);
         tblMenus.getColumnModel().getColumn(1).setPreferredWidth(50);
         tblMenus.getColumnModel().getColumn(0).setPreferredWidth(100);
-
+        
         tbMenus.setRowCount(0);
-
+        
         if (menus == null || menus.size() == 0) {
             tbMenus.addRow(new String[]{String.valueOf("Sem Registro"),
                 "Sem Registro", "Sem Registro", "Sem Registro", "Sem Registro"});
         }
-
+        
         for (MenuModel menu : menus) {
             tbMenus.addRow(new String[]{String.valueOf(menu.getId()),
                 menu.getMenu(), menu.getDescMenu(), "Dt", "Dt"});
@@ -94,30 +94,30 @@ public class Configuracao extends javax.swing.JFrame {
         PerfilController perfilController = new PerfilController();
         PerfilModel perfilFiltro = new PerfilModel();
         List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
-
+        
         DefaultTableModel tbPerfil = new DefaultTableModel();
-
+        
         tbPerfil.addColumn("ID");
         tbPerfil.addColumn("Nome");
         tbPerfil.addColumn("Descrição");
         tbPerfil.addColumn("Usu. Inclusão");
         tbPerfil.addColumn("Dt. Inclusão");
-
+        
         tblPerfil.setModel(tbPerfil);
-
+        
         tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblPerfil.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(100);
         tblPerfil.getColumnModel().getColumn(1).setPreferredWidth(50);
         tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(100);
-
+        
         tbPerfil.setRowCount(0);
-
+        
         if (perfils == null || perfils.size() == 0) {
             tbPerfil.addRow(new String[]{String.valueOf("Sem Registro"),
                 "Sem Registro", "Sem Registro", "Sem Registro", "Sem Registro"});
         }
-
+        
         for (PerfilModel perfil : perfils) {
             tbPerfil.addRow(new String[]{String.valueOf(perfil.getId()),
                 perfil.getPerfil(), perfil.getDescPerfil(), "Dt", "Dt"});
@@ -127,29 +127,29 @@ public class Configuracao extends javax.swing.JFrame {
         AcessoController acessoController = new AcessoController();
         TipoAcessoModel acessoFiltro = new TipoAcessoModel();
         List<TipoAcessoModel> acessos = acessoController.findAll(acessoFiltro);
-
+        
         DefaultTableModel tbAcesso = new DefaultTableModel();
         tbAcesso.addColumn("ID");
         tbAcesso.addColumn("Perfil");
         tbAcesso.addColumn("Menu");
         tbAcesso.addColumn("Usu. Inclusão");
         tbAcesso.addColumn("Dt. Inclusão");
-
+        
         tblAcessos.setModel(tbAcesso);
-
+        
         tblAcessos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblAcessos.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblAcessos.getColumnModel().getColumn(0).setPreferredWidth(100);
         tblAcessos.getColumnModel().getColumn(1).setPreferredWidth(50);
         tblAcessos.getColumnModel().getColumn(0).setPreferredWidth(100);
-
+        
         tbAcesso.setRowCount(0);
-
+        
         if (acessos == null || acessos.size() == 0) {
             tbAcesso.addRow(new String[]{String.valueOf("Sem Registro"),
                 "Sem Registro", "Sem Registro", "Sem Registro", "Sem Registro"});
         }
-
+        
         for (TipoAcessoModel acesso : acessos) {
             tbAcesso.addRow(new String[]{String.valueOf(acesso.getId()),
                 "", "", "Dt", "Dt"});
@@ -159,34 +159,34 @@ public class Configuracao extends javax.swing.JFrame {
         TipoPagamentoController pagamentoController = new TipoPagamentoController();
         TipoPagamentoModel pagamentoFiltro = new TipoPagamentoModel();
         List<TipoPagamentoModel> pagamentos = pagamentoController.findAll(pagamentoFiltro);
-
+        
         DefaultTableModel tbPagamentos = new DefaultTableModel();
         tbPagamentos.addColumn("ID");
         tbPagamentos.addColumn("Desc. Pagamento");
         tbPagamentos.addColumn("Usu. Inclusão");
         tbPagamentos.addColumn("Dt. Inclusão");
-
+        
         tblPagamento.setModel(tbPagamentos);
-
+        
         tblPagamento.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblPagamento.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblPagamento.getColumnModel().getColumn(0).setPreferredWidth(100);
         tblPagamento.getColumnModel().getColumn(1).setPreferredWidth(50);
-
+        
         tbPagamentos.setRowCount(0);
-
+        
         if (pagamentos == null || pagamentos.size() == 0) {
             tbPagamentos.addRow(new String[]{String.valueOf("Sem Registro"),
                 "Sem Registro", "Sem Registro", "Sem Registro"});
         }
-
+        
         for (TipoPagamentoModel pagamento : pagamentos) {
             tbPagamentos.addRow(new String[]{String.valueOf(pagamento.getId()),
                 pagamento.getDescPagamento(), "Dt", "Dt"});
         }
-
+        
     }
-
+    
     private void GerenciarBotoes() {
         switch (acaoTela) {
             case 1:
@@ -214,9 +214,9 @@ public class Configuracao extends javax.swing.JFrame {
                 btnSalvar.setEnabled(true);
                 break;
         }
-
+        
     }
-
+    
     private void LimparCampos() {
         txtMenu.setText("");
         txaDescricao.setText("");
@@ -225,194 +225,257 @@ public class Configuracao extends javax.swing.JFrame {
         txaPagamento.setText("");
         _menu = null;
     }
-
-    private MenuModel preencherMenu(MenuModel entity) {
-
+    
+    private boolean preencherMenu(MenuModel entity) {
+        
         if (entity == null) {
             entity = new MenuModel();
         }
-
+        
         try {
             if (entity.validString(txtMenu.getText())) {
                 entity.setMenu(txtMenu.getText());
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Por favor preencher o nome do menu ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
-
+            
             if (entity.validString(txaDescricao.getText())) {
                 entity.setDescMenu(txaDescricao.getText());
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Por favor preencher o a descrição do menu ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
-
+            
+            if (ckbExcluir.isSelected()) {
+                acaoTela = eAcaoTela.EXCLUIR.getValor();
+                if (this.usuSystem != null) {
+                    entity.setUsuDel(this.usuSystem.getId());
+                }
+            }
+            
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         }
-
-        return entity;
+        this._menu = entity;
+        return true;
     }
-
+    
     public void recuperarMenu(int id) {
-
+        
         MenuController menuController = new MenuController();
-
+        
         _menu = menuController.findId(id);
-
+        
         txtMenu.setText(_menu.getMenu());
         txaDescricao.setText(_menu.getDescMenu());
-
+        
     }
+    
+    public void LoadTableMenu(MenuModel menuFiltro) {
 
+        //Menu
+        MenuController menuController = new MenuController();
+        
+        List<MenuModel> menus = menuController.findAll(menuFiltro);
+        
+        DefaultTableModel tbMenus = new DefaultTableModel();
+        
+        tbMenus.addColumn("ID");
+        tbMenus.addColumn("Nome");
+        tbMenus.addColumn("Descrição");
+        tbMenus.addColumn("Usu. Inclusão");
+        tbMenus.addColumn("Dt. Inclusão");
+        
+        tblMenus.setModel(tbMenus);
+        
+        tblMenus.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblMenus.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblMenus.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblMenus.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblMenus.getColumnModel().getColumn(0).setPreferredWidth(100);
+        
+        tbMenus.setRowCount(0);
+        
+        if (menus == null || menus.size() == 0) {
+            tbMenus.addRow(new String[]{String.valueOf("Sem Registro"),
+                "Sem Registro", "Sem Registro", "Sem Registro", "Sem Registro"});
+        }
+        
+        for (MenuModel menu : menus) {
+            tbMenus.addRow(new String[]{String.valueOf(menu.getId()),
+                menu.getMenu(), menu.getDescMenu(), "Dt", "Dt"});
+        }
+    }
+    
     public void recuperarPerfil(int id) {
-
+        
         PerfilController perfilController = new PerfilController();
-
+        
         _perfil = perfilController.findId(id);
-
+        
         txtPerfil.setText(_perfil.getPerfil());
         txaPerfil.setText(_perfil.getDescPerfil());
-
+        
     }
-
+    
     public void recuperarPagamento(int id) {
-
+        
         TipoPagamentoController pagamentoController = new TipoPagamentoController();
-
+        
         _pagamento = pagamentoController.findId(id);
-
+        
         txaPagamento.setText(_pagamento.getDescPagamento());
-
+        
     }
-
-    private PerfilModel preencherPerfil(PerfilModel entity) {
-
+    
+    private boolean preencherPerfil(PerfilModel entity) {
+        
         if (entity == null) {
             entity = new PerfilModel();
         }
-
+        
         try {
             if (entity.validString(txtPerfil.getText())) {
                 entity.setPerfile(txtPerfil.getText());
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Por favor preencher o perfil do menu ou caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
-
+            
             if (entity.validString(txaPerfil.getText())) {
                 entity.setDescPerfil(txaPerfil.getText());
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Por favor preencher a descrição do perfil ou caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
-
+            
             if (ckbExcluirPerfil.isSelected()) {
-
+                
                 acaoTela = eAcaoTela.EXCLUIR.getValor();
-
+                
                 if (this.usuSystem != null && entity.validInt(this.usuSystem.getId())) {
                     entity.setUsuDel(this.usuSystem.getId());
                 }
-
+                
             }
-
+            
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         }
-
-        return entity;
+        this._perfil = entity;
+        return true;
     }
-
-    private TipoPagamentoModel preencherPagamento(TipoPagamentoModel entity) {
-
+    
+    private boolean preencherPagamento(TipoPagamentoModel entity) {
+        
         if (entity == null) {
             entity = new TipoPagamentoModel();
         }
-
+        
         try {
             if (entity.validString(txaPagamento.getText())) {
                 entity.setDescPagamento(txaPagamento.getText());
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Por favor preencher nome do pagamento ou caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
-
+            
             if (ckbExcluirPagamento.isSelected()) {
                 acaoTela = eAcaoTela.EXCLUIR.getValor();
                 if (this.usuSystem != null && entity.validInt(this.usuSystem.getId())) {
                     entity.setUsuDel(this.usuSystem.getId());
                 }
-
+                
             }
-
+            
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         }
-
-        return entity;
+        this._pagamento = entity;
+        return true;
     }
-
-    private TipoAcessoModel preencherAcesso(TipoAcessoModel entity) {
-
+    
+    private boolean preencherAcesso(TipoAcessoModel entity) {
+        
         if (entity == null) {
             entity = new TipoAcessoModel();
         }
-
+        
         try {
             if (entity.validString(ckbMenu.getSelectedItem().toString())) {
-
+                
                 String menu = ckbMenu.getSelectedItem().toString();
-
+                
                 MenuController menuController = new MenuController();
                 MenuModel menuFiltro = new MenuModel();
                 menuFiltro.setMenu(menu);
-
+                
                 List<MenuModel> menus = menuController.findAll(menuFiltro);
-
+                
                 entity.setIdMenu(menus.get(0).getId());
             }
-
+            
             if (entity.validString(ckbPerfil.getSelectedItem().toString())) {
-
+                
                 String perfil = ckbMenu.getSelectedItem().toString();
-
+                
                 PerfilController perfilController = new PerfilController();
                 PerfilModel perfilFiltro = new PerfilModel();
                 perfilFiltro.setPerfile(perfil);
-
+                
                 List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
-
+                
                 entity.setIdPerfil(perfils.get(0).getId());
             }
-
+            
             if (ckbExcluirAcesso.isSelected()) {
                 acaoTela = eAcaoTela.EXCLUIR.getValor();
                 if (this.usuSystem != null && entity.validInt(this.usuSystem.getId())) {
                     entity.setUsuDel(this.usuSystem.getId());
                 }
-
+                
             }
-
+            
         } catch (PropertiesValidator ex) {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         }
-
-        return entity;
+        
+        this._acessoModel = entity;
+        return true;
     }
-
+    
     public void recuperarAcesso(int id) {
-
+        
         AcessoController acessoController = new AcessoController();
-
-        acessoModel = acessoController.findId(id);
-
-
+        
+        _acessoModel = acessoController.findId(id);
+        
     }
-
+    
     private void CarregarComboBox() {
-
+        
         MenuController menuController = new MenuController();
         MenuModel menuFiltro = new MenuModel();
         List<MenuModel> menus = menuController.findAll(menuFiltro);
-
+        
         PerfilController perfilController = new PerfilController();
         PerfilModel perfilFiltro = new PerfilModel();
         List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
-
+        
         for (int i = 0; i < perfils.size(); i++) {
             ckbPerfil.addItem(perfils.get(i).getPerfil());
         }
-
+        
         for (int i = 0; i < menus.size(); i++) {
             ckbMenu.addItem(menus.get(i).getMenu());
         }
-
+        
     }
 
     /**
@@ -451,18 +514,6 @@ public class Configuracao extends javax.swing.JFrame {
         btnPesquisarPerfil = new javax.swing.JButton();
         btnCancelarPerfil = new javax.swing.JButton();
         ckbExcluirPerfil = new javax.swing.JCheckBox();
-        jPanelAcesso = new javax.swing.JPanel();
-        lblListaMenus2 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblAcessos = new javax.swing.JTable();
-        btnSalvarPerfil1 = new javax.swing.JButton();
-        btnPesquisarPerfil1 = new javax.swing.JButton();
-        btnCancelarPerfil1 = new javax.swing.JButton();
-        lblMenuAcesso = new javax.swing.JLabel();
-        lblPerfilAcesso = new javax.swing.JLabel();
-        ckbMenu = new javax.swing.JComboBox<>();
-        ckbPerfil = new javax.swing.JComboBox<>();
-        ckbExcluirAcesso = new javax.swing.JCheckBox();
         jPanelTipoPagamento = new javax.swing.JPanel();
         txtDescricao2 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -474,6 +525,18 @@ public class Configuracao extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         tblPagamento = new javax.swing.JTable();
         ckbExcluirPagamento = new javax.swing.JCheckBox();
+        jPanelAcesso = new javax.swing.JPanel();
+        lblListaMenus2 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblAcessos = new javax.swing.JTable();
+        btnSalvarAcesso = new javax.swing.JButton();
+        btnProcurarAcesso = new javax.swing.JButton();
+        btnCancelarAcesso = new javax.swing.JButton();
+        lblMenuAcesso = new javax.swing.JLabel();
+        lblPerfilAcesso = new javax.swing.JLabel();
+        ckbMenu = new javax.swing.JComboBox<>();
+        ckbPerfil = new javax.swing.JComboBox<>();
+        ckbExcluirAcesso = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -761,146 +824,6 @@ public class Configuracao extends javax.swing.JFrame {
 
         jTablePanel.addTab("Perfil", jPanelPerfil);
 
-        jPanelAcesso.setBackground(new java.awt.Color(201, 232, 242));
-
-        lblListaMenus2.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        lblListaMenus2.setText("Lista de Acessos:");
-
-        tblAcessos.setBackground(new java.awt.Color(64, 87, 184));
-        tblAcessos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        tblAcessos.setForeground(new java.awt.Color(255, 255, 255));
-        tblAcessos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        tblAcessos.setGridColor(new java.awt.Color(64, 87, 184));
-        tblAcessos.setSelectionForeground(new java.awt.Color(79, 109, 234));
-        tblAcessos.setShowGrid(true);
-        tblAcessos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblAcessosMouseClicked(evt);
-            }
-        });
-        jScrollPane5.setViewportView(tblAcessos);
-
-        btnSalvarPerfil1.setBackground(new java.awt.Color(61, 189, 61));
-        btnSalvarPerfil1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnSalvarPerfil1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvarPerfil1.setText("Salvar");
-        btnSalvarPerfil1.setBorder(null);
-        btnSalvarPerfil1.setBorderPainted(false);
-        btnSalvarPerfil1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSalvarPerfil1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarPerfil1ActionPerformed(evt);
-            }
-        });
-
-        btnPesquisarPerfil1.setBackground(new java.awt.Color(51, 102, 255));
-        btnPesquisarPerfil1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnPesquisarPerfil1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPesquisarPerfil1.setText("Procurar");
-        btnPesquisarPerfil1.setBorder(null);
-        btnPesquisarPerfil1.setBorderPainted(false);
-        btnPesquisarPerfil1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPesquisarPerfil1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarPerfil1ActionPerformed(evt);
-            }
-        });
-
-        btnCancelarPerfil1.setBackground(new java.awt.Color(255, 153, 0));
-        btnCancelarPerfil1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        btnCancelarPerfil1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelarPerfil1.setText("Cancelar");
-        btnCancelarPerfil1.setBorder(null);
-        btnCancelarPerfil1.setBorderPainted(false);
-        btnCancelarPerfil1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelarPerfil1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarPerfil1ActionPerformed(evt);
-            }
-        });
-
-        lblMenuAcesso.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        lblMenuAcesso.setText("Menu");
-
-        lblPerfilAcesso.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
-        lblPerfilAcesso.setText("Perfil");
-
-        ckbExcluirAcesso.setBackground(new java.awt.Color(201, 232, 242));
-        ckbExcluirAcesso.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        ckbExcluirAcesso.setForeground(new java.awt.Color(153, 0, 0));
-        ckbExcluirAcesso.setText("Excluir");
-        ckbExcluirAcesso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ckbExcluirAcessoMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelAcessoLayout = new javax.swing.GroupLayout(jPanelAcesso);
-        jPanelAcesso.setLayout(jPanelAcessoLayout);
-        jPanelAcessoLayout.setHorizontalGroup(
-            jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAcessoLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAcessoLayout.createSequentialGroup()
-                        .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblListaMenus2)
-                            .addGroup(jPanelAcessoLayout.createSequentialGroup()
-                                .addComponent(btnSalvarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnPesquisarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(btnCancelarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
-                        .addGap(41, 41, 41))
-                    .addGroup(jPanelAcessoLayout.createSequentialGroup()
-                        .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ckbExcluirAcesso)
-                            .addGroup(jPanelAcessoLayout.createSequentialGroup()
-                                .addComponent(lblPerfilAcesso)
-                                .addGap(18, 18, 18)
-                                .addComponent(ckbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblMenuAcesso)
-                                .addGap(18, 18, 18)
-                                .addComponent(ckbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        jPanelAcessoLayout.setVerticalGroup(
-            jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAcessoLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPerfilAcesso)
-                    .addComponent(lblMenuAcesso)
-                    .addComponent(ckbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ckbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(ckbExcluirAcesso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                .addComponent(lblListaMenus2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalvarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCancelarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPesquisarPerfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(53, 53, 53))
-        );
-
-        jTablePanel.addTab("Acesso", jPanelAcesso);
-
         jPanelTipoPagamento.setBackground(new java.awt.Color(201, 232, 242));
 
         txtDescricao2.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
@@ -1024,6 +947,146 @@ public class Configuracao extends javax.swing.JFrame {
 
         jTablePanel.addTab("Tipo Pagamento", jPanelTipoPagamento);
 
+        jPanelAcesso.setBackground(new java.awt.Color(201, 232, 242));
+
+        lblListaMenus2.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblListaMenus2.setText("Lista de Acessos:");
+
+        tblAcessos.setBackground(new java.awt.Color(64, 87, 184));
+        tblAcessos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblAcessos.setForeground(new java.awt.Color(255, 255, 255));
+        tblAcessos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblAcessos.setGridColor(new java.awt.Color(64, 87, 184));
+        tblAcessos.setSelectionForeground(new java.awt.Color(79, 109, 234));
+        tblAcessos.setShowGrid(true);
+        tblAcessos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAcessosMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tblAcessos);
+
+        btnSalvarAcesso.setBackground(new java.awt.Color(61, 189, 61));
+        btnSalvarAcesso.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvarAcesso.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvarAcesso.setText("Salvar");
+        btnSalvarAcesso.setBorder(null);
+        btnSalvarAcesso.setBorderPainted(false);
+        btnSalvarAcesso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvarAcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarAcessoActionPerformed(evt);
+            }
+        });
+
+        btnProcurarAcesso.setBackground(new java.awt.Color(51, 102, 255));
+        btnProcurarAcesso.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnProcurarAcesso.setForeground(new java.awt.Color(255, 255, 255));
+        btnProcurarAcesso.setText("Procurar");
+        btnProcurarAcesso.setBorder(null);
+        btnProcurarAcesso.setBorderPainted(false);
+        btnProcurarAcesso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProcurarAcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarAcessoActionPerformed(evt);
+            }
+        });
+
+        btnCancelarAcesso.setBackground(new java.awt.Color(255, 153, 0));
+        btnCancelarAcesso.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelarAcesso.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarAcesso.setText("Cancelar");
+        btnCancelarAcesso.setBorder(null);
+        btnCancelarAcesso.setBorderPainted(false);
+        btnCancelarAcesso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarAcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarAcessoActionPerformed(evt);
+            }
+        });
+
+        lblMenuAcesso.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblMenuAcesso.setText("Menu");
+
+        lblPerfilAcesso.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        lblPerfilAcesso.setText("Perfil");
+
+        ckbExcluirAcesso.setBackground(new java.awt.Color(201, 232, 242));
+        ckbExcluirAcesso.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluirAcesso.setForeground(new java.awt.Color(153, 0, 0));
+        ckbExcluirAcesso.setText("Excluir");
+        ckbExcluirAcesso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ckbExcluirAcessoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelAcessoLayout = new javax.swing.GroupLayout(jPanelAcesso);
+        jPanelAcesso.setLayout(jPanelAcessoLayout);
+        jPanelAcessoLayout.setHorizontalGroup(
+            jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                        .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblListaMenus2)
+                            .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                                .addComponent(btnSalvarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnProcurarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnCancelarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
+                        .addGap(41, 41, 41))
+                    .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                        .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ckbExcluirAcesso)
+                            .addGroup(jPanelAcessoLayout.createSequentialGroup()
+                                .addComponent(lblPerfilAcesso)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblMenuAcesso)
+                                .addGap(18, 18, 18)
+                                .addComponent(ckbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanelAcessoLayout.setVerticalGroup(
+            jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAcessoLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPerfilAcesso)
+                    .addComponent(lblMenuAcesso)
+                    .addComponent(ckbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(ckbExcluirAcesso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                .addComponent(lblListaMenus2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancelarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnProcurarAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(53, 53, 53))
+        );
+
+        jTablePanel.addTab("Acesso", jPanelAcesso);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1042,13 +1105,13 @@ public class Configuracao extends javax.swing.JFrame {
 
     private void tblMenusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMenusMouseClicked
         if (tblMenus.getSelectedRow() >= 0) {
-
+            
             acaoTela = eAcaoTela.EDITAR.getValor();
             GerenciarBotoes();
             int id = Integer.parseInt(tblMenus.getModel().getValueAt(tblMenus.getSelectedRow(), 0).toString());
-
+            
             recuperarMenu(id);
-
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
         }
@@ -1062,60 +1125,103 @@ public class Configuracao extends javax.swing.JFrame {
         if (acaoTela == eAcaoTela.ABRIR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
-
+        
         MenuController menuController = new MenuController();
-
-        MenuModel menu = new MenuModel();
-
-        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
-            menu = this._menu;
-        }
-
-        menu = preencherMenu(menu);
-
-        boolean result = false;
-
-        switch (acaoTela) {
-            case 1:
-                result = menuController.save(menu);
-                break;
-            case 5:
-                result = menuController.update(menu);
-                break;
-            case 6:
-                if (this.usuSystem == null) {
-                    menu.setUsuDel(1);
-                }
-                result = menuController.finishValidity(menu);
-                break;
-        }
-
-        if (result) {
+        
+        boolean valid = preencherMenu(this._menu);
+        
+        if (valid) {
+            
+            switch (acaoTela) {
+                case 1:
+                    if (menuController.save(this._menu)) {
+                        JOptionPane.showMessageDialog(null, "Menu cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Menu", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 5:
+                    if (menuController.update(this._menu)) {
+                        JOptionPane.showMessageDialog(null, "Menu atualizado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Menu", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 6:
+                    Date dt = new Date();
+                    
+                    this._menu.setDtDel(dt);
+                    
+                    if (this.usuSystem == null) {
+                        this._menu.setUsuDel(1);
+                    } else {
+                        this._menu.setUsuInclus(this.usuSystem.getId());
+                    }
+                    
+                    if (menuController.finishValidity(this._menu)) {
+                        JOptionPane.showMessageDialog(null, "Menu deletado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Menu", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                    break;
+            }
+            
+            LimparCampos();
+            LoadTable();
             acaoTela = eAcaoTela.ABRIR.getValor();
+            GerenciarBotoes();
         }
-
-        LimparCampos();
-        LoadTable();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-
+        
+        GerenciarBotoes();
+        
+        MenuController menuController = new MenuController();
+        
+        MenuModel entity = new MenuModel();
+        
+        try {
+            if (entity.validString(txtMenu.getText())) {
+                entity.setMenu(txtMenu.getText());
+            }
+            
+            if (entity.validString(txaDescricao.getText())) {
+                entity.setDescMenu(txaDescricao.getText());
+            }
+            if (ckbExcluir.isSelected()) {
+                entity.setUsuDel(-1);
+            }
+            
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        LoadTableMenu(entity);
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        LimparCamposMenu();
+        this._menu = null;
+        acaoTela = eAcaoTela.ABRIR.getValor();
     }//GEN-LAST:event_btnCancelarActionPerformed
+    
+    private void LimparCamposMenu() {
+        txtMenu.setText("");
+        txaDescricao.setText("");
+    }
 
     private void tblPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPerfilMouseClicked
         if (tblPerfil.getSelectedRow() >= 0) {
-
+            
             acaoTela = eAcaoTela.EDITAR.getValor();
             GerenciarBotoes();
             int id = Integer.parseInt(tblPerfil.getModel().getValueAt(tblPerfil.getSelectedRow(), 0).toString());
-
+            
             recuperarPerfil(id);
-
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
         }
@@ -1129,128 +1235,210 @@ public class Configuracao extends javax.swing.JFrame {
         if (acaoTela == eAcaoTela.ABRIR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
-
+        
         PerfilController perfilController = new PerfilController();
-
-        PerfilModel perfil = new PerfilModel();
-
-        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
-            perfil = this._perfil;
-        }
-
-        perfil = preencherPerfil(perfil);
-
-        boolean result = false;
-
-        switch (acaoTela) {
-            case 1:
-                result = perfilController.save(perfil);
-                break;
-            case 5:
-                result = perfilController.update(perfil);
-                break;
-            case 6:
-                Date dt = new Date();
-
-                perfil.setDtDel(dt);
-
-                if (this.usuSystem == null) {
-                    perfil.setUsuDel(1);
-                } else {
-                    perfil.setUsuInclus(this.usuSystem.getId());
-                }
-
-                result = perfilController.finishValidity(perfil);
-                break;
-        }
-
-        if (result) {
+        
+        boolean valid = preencherPerfil(this._perfil);
+        
+        if (valid) {
+            
+            switch (acaoTela) {
+                case 1:
+                    if (perfilController.save(this._perfil)) {
+                        JOptionPane.showMessageDialog(null, "Perfil cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 5:
+                    if (perfilController.update(this._perfil)) {
+                        JOptionPane.showMessageDialog(null, "Perfil atualizado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 6:
+                    Date dt = new Date();
+                    
+                    this._perfil.setDtDel(dt);
+                    
+                    if (this.usuSystem == null) {
+                        this._perfil.setUsuDel(1);
+                    } else {
+                        this._perfil.setUsuInclus(this.usuSystem.getId());
+                    }
+                    
+                    if (perfilController.finishValidity(this._perfil)) {
+                        JOptionPane.showMessageDialog(null, "Perfil deletado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                    break;
+            }
+            
+            LimparCampos();
+            LoadTable();
             acaoTela = eAcaoTela.ABRIR.getValor();
+            GerenciarBotoes();
         }
-
-        LimparCampos();
-        LoadTable();
     }//GEN-LAST:event_btnSalvarPerfilActionPerformed
 
     private void btnPesquisarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPerfilActionPerformed
-        // TODO add your handling code here:
+        
+        GerenciarBotoes();
+        
+        PerfilModel entity = new PerfilModel();
+        
+        try {
+            if (entity.validString(txtPerfil.getText())) {
+                entity.setPerfile(txtPerfil.getText());
+            }
+            
+            if (entity.validString(txaPerfil.getText())) {
+                entity.setDescPerfil(txaPerfil.getText());
+            }
+            if (ckbExcluir.isSelected()) {
+                entity.setUsuDel(-1);
+            }
+            
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        LoadTablePerfil(entity);
     }//GEN-LAST:event_btnPesquisarPerfilActionPerformed
+    
+    private void LoadTablePerfil(PerfilModel entity) {
+        
+        PerfilController perfilController = new PerfilController();
+        
+        List<PerfilModel> perfils = perfilController.findAll(entity);
+        
+        DefaultTableModel tbPerfil = new DefaultTableModel();
+        
+        tbPerfil.addColumn("ID");
+        tbPerfil.addColumn("Nome");
+        tbPerfil.addColumn("Descrição");
+        tbPerfil.addColumn("Usu. Inclusão");
+        tbPerfil.addColumn("Dt. Inclusão");
+        
+        tblPerfil.setModel(tbPerfil);
+        
+        tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblPerfil.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblPerfil.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblPerfil.getColumnModel().getColumn(0).setPreferredWidth(100);
+        
+        tbPerfil.setRowCount(0);
+        
+        if (perfils == null || perfils.size() == 0) {
+            tbPerfil.addRow(new String[]{String.valueOf("Sem Registro"),
+                "Sem Registro", "Sem Registro", "Sem Registro", "Sem Registro"});
+        }
+        
+        for (PerfilModel perfil : perfils) {
+            tbPerfil.addRow(new String[]{String.valueOf(perfil.getId()),
+                perfil.getPerfil(), perfil.getDescPerfil(), "Dt", "Dt"});
+        }
+        
+    }
 
     private void btnCancelarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPerfilActionPerformed
-        // TODO add your handling code here:
+        LimparCamposPerfil();
+        _perfil = null;
+        acaoTela = eAcaoTela.ABRIR.getValor();
     }//GEN-LAST:event_btnCancelarPerfilActionPerformed
-
+    
+    private void LimparCamposPerfil() {
+        txtPerfil.setText("");
+        txaPerfil.setText("");
+        
+    }
     private void tblAcessosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAcessosMouseClicked
-
+        
         if (tblAcessos.getSelectedRow() >= 0) {
-
+            
             acaoTela = eAcaoTela.EDITAR.getValor();
             GerenciarBotoes();
             int id = Integer.parseInt(tblAcessos.getModel().getValueAt(tblAcessos.getSelectedRow(), 0).toString());
-
+            
             recuperarAcesso(id);
-
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
         }
 
     }//GEN-LAST:event_tblAcessosMouseClicked
 
-    private void btnSalvarPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPerfil1ActionPerformed
-
+    private void btnSalvarAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAcessoActionPerformed
+        
         GerenciarBotoes();
-
+        
         if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
         if (acaoTela == eAcaoTela.ABRIR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
-
+        
         AcessoController acessoController = new AcessoController();
-
-        TipoAcessoModel acessoModel = new TipoAcessoModel();
-
-        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
-            acessoModel = this.acessoModel;
-        }
-
-        acessoModel = preencherAcesso(acessoModel);
-
-        boolean result = false;
-
-        switch (acaoTela) {
-            case 1:
-                result = acessoController.save(acessoModel);
-                break;
-            case 5:
-                result = acessoController.update(acessoModel);
-                break;
-            case 6:
-
-                if (this.usuSystem == null) {
-                    acessoModel.setUsuDel(1);
-                }
-
-                result = acessoController.finishValidity(acessoModel);
-                break;
-        }
-
-        if (result) {
+        
+        boolean valid = preencherAcesso(this._acessoModel);
+        
+        if (valid) {
+            
+            switch (acaoTela) {
+                case 1:
+                    if (acessoController.save(this._acessoModel)) {
+                        JOptionPane.showMessageDialog(null, "Perfil cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 5:
+//                    if (acessoController.update(this._acessoModel)) {
+//                        JOptionPane.showMessageDialog(null, "Perfil atualizado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+//                    }
+                    break;
+                case 6:
+                    Date dt = new Date();
+                    
+                    this._menu.setDtDel(dt);
+                    
+                    if (this.usuSystem == null) {
+                        this._menu.setUsuDel(1);
+                    } else {
+                        this._menu.setUsuInclus(this.usuSystem.getId());
+                    }
+                    
+                    if (acessoController.finishValidity(this._acessoModel)) {
+                        JOptionPane.showMessageDialog(null, "Perfil deletado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                    break;
+            }
+            
+            LimparCampos();
+            LoadTable();
             acaoTela = eAcaoTela.ABRIR.getValor();
+            GerenciarBotoes();
         }
+    }//GEN-LAST:event_btnSalvarAcessoActionPerformed
 
-        LimparCampos();
-        LoadTable();
-    }//GEN-LAST:event_btnSalvarPerfil1ActionPerformed
-
-    private void btnPesquisarPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPerfil1ActionPerformed
+    private void btnProcurarAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarAcessoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarPerfil1ActionPerformed
+    }//GEN-LAST:event_btnProcurarAcessoActionPerformed
 
-    private void btnCancelarPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPerfil1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarPerfil1ActionPerformed
+    private void btnCancelarAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAcessoActionPerformed
+        this._acessoModel = null;
+        acaoTela = eAcaoTela.ABRIR.getValor();
+    }//GEN-LAST:event_btnCancelarAcessoActionPerformed
 
     private void btnSalvarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPagamentoActionPerformed
         GerenciarBotoes();
@@ -1260,58 +1448,119 @@ public class Configuracao extends javax.swing.JFrame {
         if (acaoTela == eAcaoTela.ABRIR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
-
+        
         TipoPagamentoController pagamentoController = new TipoPagamentoController();
-
-        TipoPagamentoModel tipoPagamento = new TipoPagamentoModel();
-
-        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
-            tipoPagamento = this._pagamento;
-        }
-
-        tipoPagamento = preencherPagamento(tipoPagamento);
-
-        boolean result = false;
-
-        switch (acaoTela) {
-            case 1:
-                result = pagamentoController.save(tipoPagamento);
-                break;
-            case 5:
-                result = pagamentoController.update(tipoPagamento);
-                break;
-            case 6:
-
-                if (this.usuSystem == null) {
-                    tipoPagamento.setUsuDel(1);
-                }
-
-                result = pagamentoController.finishValidity(tipoPagamento);
-                break;
-        }
-
-        if (result) {
+        
+        boolean valid = preencherPagamento(this._pagamento);
+        
+        if (valid) {
+            
+            switch (acaoTela) {
+                case 1:
+                    if (pagamentoController.save(this._pagamento)) {
+                        JOptionPane.showMessageDialog(null, "Perfil cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 5:
+                    if (pagamentoController.update(this._pagamento)) {
+                        JOptionPane.showMessageDialog(null, "Perfil atualizado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 6:
+                    Date dt = new Date();
+                    
+                    this._pagamento.setDtDel(dt);
+                    
+                    if (this.usuSystem == null) {
+                        this._pagamento.setUsuDel(1);
+                    } else {
+                        this._pagamento.setUsuInclus(this.usuSystem.getId());
+                    }
+                    
+                    if (pagamentoController.finishValidity(this._pagamento)) {
+                        JOptionPane.showMessageDialog(null, "Perfil deletado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do Perfil", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                    break;
+            }
+            
+            LimparCampos();
+            LoadTable();
             acaoTela = eAcaoTela.ABRIR.getValor();
+            GerenciarBotoes();
         }
-
-        LimparCampos();
-        LoadTable();
     }//GEN-LAST:event_btnSalvarPagamentoActionPerformed
 
     private void btnPesquisarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPagamentoActionPerformed
-        // TODO add your handling code here:
+        
+        GerenciarBotoes();
+        
+        TipoPagamentoModel entity = new TipoPagamentoModel();
+        
+        try {
+            if (entity.validString(txaPagamento.getText())) {
+                entity.setDescPagamento(txaPagamento.getText());
+            }
+            
+            if (ckbExcluir.isSelected()) {
+                entity.setUsuDel(-1);
+            }
+            
+        } catch (PropertiesValidator ex) {
+            JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        LoadTablePagamento(entity);
+        
+
     }//GEN-LAST:event_btnPesquisarPagamentoActionPerformed
+    
+    private void LoadTablePagamento(TipoPagamentoModel entity) {
+        
+        TipoPagamentoController pagamentoController = new TipoPagamentoController();
+        List<TipoPagamentoModel> pagamentos = pagamentoController.findAll(entity);
+        
+        DefaultTableModel tbPagamentos = new DefaultTableModel();
+        tbPagamentos.addColumn("ID");
+        tbPagamentos.addColumn("Desc. Pagamento");
+        tbPagamentos.addColumn("Usu. Inclusão");
+        tbPagamentos.addColumn("Dt. Inclusão");
+        
+        tblPagamento.setModel(tbPagamentos);
+        
+        tblPagamento.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblPagamento.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblPagamento.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblPagamento.getColumnModel().getColumn(1).setPreferredWidth(50);
+        
+        tbPagamentos.setRowCount(0);
+        
+        if (pagamentos == null || pagamentos.size() == 0) {
+            tbPagamentos.addRow(new String[]{String.valueOf("Sem Registro"),
+                "Sem Registro", "Sem Registro", "Sem Registro"});
+        }
+        
+        for (TipoPagamentoModel pagamento : pagamentos) {
+            tbPagamentos.addRow(new String[]{String.valueOf(pagamento.getId()),
+                pagamento.getDescPagamento(), "Dt", "Dt"});
+        }
+    }
 
     private void btnCancelarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPagamentoActionPerformed
-        // TODO add your handling code here:
+        txaPagamento.setText("");
+        _pagamento = null;
+        acaoTela = eAcaoTela.ABRIR.getValor();
     }//GEN-LAST:event_btnCancelarPagamentoActionPerformed
 
     private void ckbExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbExcluirMouseClicked
-        if (ckbExcluir.isSelected()) {
-            acaoTela = eAcaoTela.EXCLUIR.getValor();
-        } else {
-            acaoTela = eAcaoTela.EDITAR.getValor();
-        }
+        
+
     }//GEN-LAST:event_ckbExcluirMouseClicked
 
     private void ckbExcluirPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbExcluirPerfilMouseClicked
@@ -1320,13 +1569,13 @@ public class Configuracao extends javax.swing.JFrame {
 
     private void tblPagamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPagamentoMouseClicked
         if (tblPagamento.getSelectedRow() >= 0) {
-
+            
             acaoTela = eAcaoTela.EDITAR.getValor();
             GerenciarBotoes();
             int id = Integer.parseInt(tblPagamento.getModel().getValueAt(tblPagamento.getSelectedRow(), 0).toString());
-
+            
             recuperarPagamento(id);
-
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
         }
@@ -1373,17 +1622,17 @@ public class Configuracao extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCancelarAcesso;
     private javax.swing.JButton btnCancelarPagamento;
     private javax.swing.JButton btnCancelarPerfil;
-    private javax.swing.JButton btnCancelarPerfil1;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnPesquisarPagamento;
     private javax.swing.JButton btnPesquisarPerfil;
-    private javax.swing.JButton btnPesquisarPerfil1;
+    private javax.swing.JButton btnProcurarAcesso;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvarAcesso;
     private javax.swing.JButton btnSalvarPagamento;
     private javax.swing.JButton btnSalvarPerfil;
-    private javax.swing.JButton btnSalvarPerfil1;
     private javax.swing.JCheckBox ckbExcluir;
     private javax.swing.JCheckBox ckbExcluirAcesso;
     private javax.swing.JCheckBox ckbExcluirPagamento;

@@ -33,8 +33,46 @@ public class MenuService implements CrudService<MenuModel> {
         try {
 
             String sql = "SELECT * FROM tb_menu";
+            String complemento = "";
 
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+            if (entity != null) {
+
+                if (entity.getMenu() != null && entity.getMenu() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " nome = '" + entity.getMenu() + "'";
+                }
+
+                if (entity.getDescMenu() != null && entity.getDescMenu() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " descricao = '" + entity.getDescMenu() + "'";
+                }
+
+                if (entity.getUsuDel() == -1) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NOT NULL";
+                } else {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NULL";
+                }
+            }
+
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 

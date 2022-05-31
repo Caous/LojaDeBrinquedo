@@ -37,8 +37,36 @@ public class TipoPagamentoService implements CrudService<TipoPagamentoModel> {
         try {
 
             String sql = "SELECT * FROM tb_pagamento";
+            String complemento = "";
 
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+            if (entity != null) {
+
+                if (entity.getDescPagamento() != null && entity.getDescPagamento() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " descricao = '" + entity.getDescPagamento() + "'";
+                }
+
+                if (entity.getUsuDel() == -1) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NOT NULL";
+                } else {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NULL";
+                }
+            }
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 

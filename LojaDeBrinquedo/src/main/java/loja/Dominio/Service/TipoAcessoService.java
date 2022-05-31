@@ -37,8 +37,45 @@ public class TipoAcessoService implements CrudService<TipoAcessoModel> {
         try {
 
             String sql = "SELECT * FROM tb_acesso";
+            String complemento = "";
 
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+            if (entity != null) {
+
+                if (entity.getIdMenu() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " id_menu = " + entity.getIdMenu();
+                }
+
+                if (entity.getIdPerfil() > 0) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " id_perfil = " + entity.getIdPerfil();
+                }
+
+                if (entity.getUsuDel() == -1) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NOT NULL";
+                } else {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NULL";
+                }
+            }
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 

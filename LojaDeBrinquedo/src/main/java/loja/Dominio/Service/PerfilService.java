@@ -37,8 +37,45 @@ public class PerfilService implements CrudService<PerfilModel> {
         try {
 
             String sql = "SELECT * FROM tb_perfil";
+            String complemento = "";
 
-            PreparedStatement ps = this.conn.prepareStatement(sql,
+            if (entity != null) {
+
+                if (entity.getPerfil() != null && entity.getPerfil() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " nome = '" + entity.getPerfil() + "'";
+                }
+
+                if (entity.getDescPerfil() != null && entity.getDescPerfil() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " descricao = '" + entity.getDescPerfil() + "'";
+                }
+
+                if (entity.getUsuDel() == -1) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NOT NULL";
+                } else {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NULL";
+                }
+            }
+            PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
@@ -141,16 +178,14 @@ public class PerfilService implements CrudService<PerfilModel> {
     public boolean update(PerfilModel entity) {
         try {
 
-            String sql = "update tb_perfil set nome = ?, descricao = ?, usu_inclusao = ?, dt_inclusao = ?"
+            String sql = "update tb_perfil set nome = ?, descricao = ?"
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
 
             ps.setString(1, entity.getPerfil());
             ps.setString(2, entity.getDescPerfil());
-            ps.setInt(3, entity.getUsuInclus());
-            java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
-            ps.setDate(4, dtCad);
+            ps.setInt(3, entity.getId());
 
             ps.execute();
 
