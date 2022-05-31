@@ -86,7 +86,6 @@ public class Usuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -288,12 +287,6 @@ public class Usuario extends javax.swing.JFrame {
 
         UserController usuController = new UserController();
 
-//        UserModel user = new UserModel();
-//
-//        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
-//            user = userm;
-//        }
-        //user = PreencherUsuarios(user);
         boolean valid = PreencherUsuarios(userm);
 
         if (valid) {
@@ -335,6 +328,8 @@ public class Usuario extends javax.swing.JFrame {
 
             LimparCampos();
             LoadTable();
+            acaoTela = eAcaoTela.ABRIR.getValor();
+            GerenciarBotoes();
         }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -445,7 +440,7 @@ public class Usuario extends javax.swing.JFrame {
         } else {
             txtEstadoCivil.setText("Não Encontrado");
         }
-        
+
         if (userm.getSexo() != null && userm.getSexo().equals("Masculino")) {
             rbMasc.setSelected(true);
         }
@@ -675,7 +670,7 @@ public class Usuario extends javax.swing.JFrame {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex, "Conversão errada", JOptionPane.WARNING_MESSAGE);
         }
-        
+
         this.userm = entity;
         return true;
     }

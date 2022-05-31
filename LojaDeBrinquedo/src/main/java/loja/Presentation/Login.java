@@ -146,22 +146,30 @@ public class Login extends javax.swing.JFrame {
         LoginController loginController = new LoginController();
 
         try {
-            String teste = txtPass.getText();
+            boolean campoValidados = false;
             if (login.validString(txtUsuario.getText())) {
                 login.setEmail(txtUsuario.getText());
+                campoValidados = true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor preencher o usuário", "Erro", JOptionPane.INFORMATION_MESSAGE);
             }
 
             if (login.validString(txtPass.getText())) {
                 login.setPassword(txtPass.getText());
-
-            }
-            login = loginController.validLogin(login);
-            if (login != null) {
-                Principal principal = new Principal(login);
-                principal.setVisible(true);
-                this.dispose();
+                campoValidados = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Por favor verificar, usuário ou senha está errado", "Login falhou", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Por favor preencher a senha", "Erro", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if (campoValidados) {
+                login = loginController.validLogin(login);
+
+                if (login != null) {
+                    Principal principal = new Principal(login);
+                    principal.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor verificar, usuário ou senha está errado", "Login falhou", JOptionPane.WARNING_MESSAGE);
+                }
             }
 
         } catch (PropertiesValidator ex) {

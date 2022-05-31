@@ -216,7 +216,7 @@ public class UserService implements CrudService<UserModel> {
     public boolean update(UserModel entity) {
         try {
 
-            String sql = "update tb_usuario set id_perfil = ?, nome = ?, cpf = ?, dt_nasc = ?, email = ?, pass = ?, sexo = ?, est_civil = ?, usu_inclusao = ?, dt_inclusao = ?, usu_exclusao = ?, dt_exclusao = ? "
+            String sql = "update tb_usuario set id_perfil = ?, nome = ?, cpf = ?, dt_nasc = ?, email = ?, pass = ?, sexo = ?, est_civil = ?, usu_inclusao = ?, dt_inclusao = ? "
                     + "  where id = ?";
 
             PreparedStatement ps = this.conn.prepareStatement(sql);
@@ -233,10 +233,7 @@ public class UserService implements CrudService<UserModel> {
             ps.setInt(9, entity.getUsuInclus());
             java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
             ps.setDate(10, dtCad);
-            ps.setInt(11, entity.getUsuDel());
-            java.sql.Date dtExclu = new java.sql.Date(entity.getDtDel().getTime());
-            ps.setDate(12, dtExclu);
-            ps.setInt(13, entity.getId());
+            ps.setInt(11, entity.getId());
 
             ps.execute();
 
