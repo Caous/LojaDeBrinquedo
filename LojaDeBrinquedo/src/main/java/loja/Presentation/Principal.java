@@ -22,12 +22,10 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public Principal(UserModel user) {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.userSystem = user;
         lblUsuario.setText(user.getNome());
         Date dt = new Date();
@@ -82,6 +80,8 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -93,7 +93,7 @@ public class Principal extends javax.swing.JFrame {
 
         jpnMenus.setBackground(new java.awt.Color(64, 87, 184));
 
-        lblBemVindo.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblBemVindo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
         lblBemVindo.setText("Bem-vindo,");
 
@@ -105,7 +105,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblHome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblHome.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblHome.setForeground(new java.awt.Color(255, 255, 255));
         lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHome.setText("Home");
@@ -120,7 +120,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnVenda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblVenda.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblVenda.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblVenda.setForeground(new java.awt.Color(255, 255, 255));
         lblVenda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblVenda.setText("Venda");
@@ -135,7 +135,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblClientes.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblClientes.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblClientes.setForeground(new java.awt.Color(255, 255, 255));
         lblClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblClientes.setText("Clientes");
@@ -150,7 +150,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnProdutos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblProdutos.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblProdutos.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblProdutos.setForeground(new java.awt.Color(255, 255, 255));
         lblProdutos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblProdutos.setText("Produtos");
@@ -165,7 +165,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnFornecedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFornecedor.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblFornecedor.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         lblFornecedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFornecedor.setText("Fornecedor");
@@ -180,7 +180,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnRelatorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblRelatorio.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblRelatorio.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblRelatorio.setForeground(new java.awt.Color(255, 255, 255));
         lblRelatorio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRelatorio.setText("Relatórios");
@@ -195,7 +195,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnConfiguracoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblConfiguracao.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblConfiguracao.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblConfiguracao.setForeground(new java.awt.Color(255, 255, 255));
         lblConfiguracao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblConfiguracao.setText("Configurações");
@@ -210,13 +210,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jpnUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblUsu.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblUsu.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblUsu.setForeground(new java.awt.Color(255, 255, 255));
         lblUsu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsu.setText("Usuario");
+        lblUsu.setText("Usuário");
         jpnUsuario.add(lblUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
-        lblUsuario.setFont(new java.awt.Font("Rubik Light", 1, 12)); // NOI18N
+        lblUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jpnMenusLayout = new javax.swing.GroupLayout(jpnMenus);
@@ -248,7 +248,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(jpnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,10 +269,10 @@ public class Principal extends javax.swing.JFrame {
 
         jpnProdVendido.setPreferredSize(new java.awt.Dimension(269, 102));
 
-        jLabel3.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel3.setText("Produtos Vendidos");
 
-        jLabel2.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel2.setText("0");
 
         javax.swing.GroupLayout jpnProdVendidoLayout = new javax.swing.GroupLayout(jpnProdVendido);
@@ -280,13 +280,14 @@ public class Principal extends javax.swing.JFrame {
         jpnProdVendidoLayout.setHorizontalGroup(
             jpnProdVendidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnProdVendidoLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel3)
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnProdVendidoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(72, 72, 72))
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jpnProdVendidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnProdVendidoLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnProdVendidoLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(23, 23, 23))))
         );
         jpnProdVendidoLayout.setVerticalGroup(
             jpnProdVendidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,15 +296,15 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jpnTotalVendas.setPreferredSize(new java.awt.Dimension(269, 102));
 
-        jLabel6.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel6.setText("Total de Vendas");
 
-        jLabel7.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel7.setText("R$ 0");
 
         javax.swing.GroupLayout jpnTotalVendasLayout = new javax.swing.GroupLayout(jpnTotalVendas);
@@ -311,13 +312,13 @@ public class Principal extends javax.swing.JFrame {
         jpnTotalVendasLayout.setHorizontalGroup(
             jpnTotalVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnTotalVendasLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel6)
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTotalVendasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(22, 22, 22))
+            .addGroup(jpnTotalVendasLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
                 .addComponent(jLabel7)
-                .addGap(50, 50, 50))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnTotalVendasLayout.setVerticalGroup(
             jpnTotalVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,15 +327,15 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jpnDescontos.setPreferredSize(new java.awt.Dimension(269, 102));
 
-        jLabel8.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel8.setText("Descontos Aplicados");
 
-        jLabel9.setFont(new java.awt.Font("Rubik Light", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel9.setText("R$ 0");
 
         javax.swing.GroupLayout jpnDescontosLayout = new javax.swing.GroupLayout(jpnDescontos);
@@ -342,13 +343,14 @@ public class Principal extends javax.swing.JFrame {
         jpnDescontosLayout.setHorizontalGroup(
             jpnDescontosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnDescontosLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel8)
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDescontosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(62, 62, 62))
+                .addGroup(jpnDescontosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDescontosLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDescontosLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(65, 65, 65))))
         );
         jpnDescontosLayout.setVerticalGroup(
             jpnDescontosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,28 +359,25 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTable1.setBackground(new java.awt.Color(64, 87, 184));
         jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jTable1.setForeground(new java.awt.Color(64, 87, 184));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Produto", "Valores", "Quantidade", "Vendedor"
+
             }
         ));
         jTable1.setShowGrid(false);
         jScrollPane1.setViewportView(jTable1);
 
-        lblFiltroData.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblFiltroData.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblFiltroData.setText("Filtro por data");
 
         javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
@@ -388,21 +387,23 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpnBgLayout.createSequentialGroup()
                 .addComponent(jpnMenus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101)
-                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jpnProdVendido, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                .addComponent(dtFiltroInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(dtFiltroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFiltroData))
                         .addGap(18, 18, 18)
-                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jpnTotalVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(dtFiltroFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addGap(0, 110, Short.MAX_VALUE))
+                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpnBgLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,22 +413,22 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblFiltroData)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addComponent(dtFiltroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dtFiltroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dtFiltroFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpnProdVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpnDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpnTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jpnBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnHomeMouseClicked
@@ -441,7 +442,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnVendaMouseClicked
 
     private void jpnUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnUsuarioMouseClicked
-        Usuario usu = new Usuario();
+        Usuario usu = new Usuario(this.userSystem);
 
         usu.setVisible(true);
     }//GEN-LAST:event_jpnUsuarioMouseClicked

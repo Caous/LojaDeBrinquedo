@@ -39,6 +39,15 @@ public class UserService implements CrudService<UserModel> {
             String complemento = "";
             if (entity != null) {
 
+                if (entity.getNome() != null && entity.getNome() != "") {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " nome = '" + entity.getNome() + "'";
+                }
+
                 if (entity.getCPF() != null && entity.getCPF() != "") {
                     if (complemento == "") {
                         complemento = complemento + " Where ";
@@ -72,6 +81,22 @@ public class UserService implements CrudService<UserModel> {
                     complemento = complemento + " id_perfil = " + entity.getIdPerfil();
                 }
 
+                if (entity.getUsuDel() == -1) {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NOT NULL";
+                } else {
+                    if (complemento == "") {
+                        complemento = complemento + " Where ";
+                    } else {
+                        complemento = complemento + " AND ";
+                    }
+                    complemento = complemento + " dt_exclusao IS NULL";
+                }
+
             }
 
             PreparedStatement ps = this.conn.prepareStatement(sql + complemento,
@@ -86,7 +111,7 @@ public class UserService implements CrudService<UserModel> {
                 usu.setDtCad(rs.getDate("dt_inclusao"));
                 usu.setDtDel(rs.getDate("dt_exclusao"));
                 usu.setDtNasc(rs.getDate("dt_nasc"));
-                usu.setEstadoCivil(rs.getInt("est_civil"));
+                usu.setEstadoCivil(rs.getString("est_civil"));
                 usu.setEmail(rs.getString("email"));
                 usu.setId(rs.getInt("id"));
                 usu.setIdPerfil(rs.getInt("id_perfil"));
@@ -123,7 +148,7 @@ public class UserService implements CrudService<UserModel> {
             ps.setString(5, entity.getEmail());
             ps.setString(6, entity.getPassword());
             ps.setString(7, entity.getSexo());
-            ps.setLong(8, entity.getEstadoCivil());
+            ps.setString(8, entity.getEstadoCivil());
             ps.setInt(9, entity.getUsuInclus());
             java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
             ps.setDate(10, dtCad);
@@ -169,7 +194,7 @@ public class UserService implements CrudService<UserModel> {
                 user.setDtCad(rs.getDate("dt_inclusao"));
                 user.setDtDel(rs.getDate("dt_exclusao"));
                 user.setDtNasc(rs.getDate("dt_nasc"));
-                user.setEstadoCivil(rs.getInt("est_civil"));
+                user.setEstadoCivil(rs.getString("est_civil"));
                 user.setEmail(rs.getString("email"));
                 user.setId(rs.getInt("id"));
                 user.setIdPerfil(rs.getInt("id_perfil"));
@@ -204,7 +229,7 @@ public class UserService implements CrudService<UserModel> {
             ps.setString(5, entity.getEmail());
             ps.setString(6, entity.getPassword());
             ps.setString(7, entity.getSexo());
-            ps.setLong(8, entity.getEstadoCivil());
+            ps.setString(8, entity.getEstadoCivil());
             ps.setInt(9, entity.getUsuInclus());
             java.sql.Date dtCad = new java.sql.Date(entity.getDtCad().getTime());
             ps.setDate(10, dtCad);

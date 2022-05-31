@@ -51,13 +51,13 @@ public class UserModel implements IPropertiesValidator<UserModel> {
         return this.DtNasc;
     }
 
-    private int EstadoCivil;
+    private String EstadoCivil;
 
-    public void setEstadoCivil(int _EstadoCivil) {
+    public void setEstadoCivil(String _EstadoCivil) {
         this.EstadoCivil = _EstadoCivil;
     }
 
-    public int getEstadoCivil() {
+    public String getEstadoCivil() {
         return this.EstadoCivil;
     }
 

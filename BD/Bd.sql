@@ -45,7 +45,7 @@ CREATE TABLE tb_usuario (
 	email VARCHAR(200) NOT NULL,
 	pass VARCHAR(200) NOT NULL, 
 	sexo VARCHAR(20) NULL, 
-	est_civil int(10) NULL,
+	est_civil VARCHAR(50) NULL,
 	usu_inclusao INT(10) NOT NULL,
 	dt_inclusao TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	usu_exclusao INT(10) NULL,
@@ -69,7 +69,7 @@ CREATE TABLE tb_cliente (
 	celular VARCHAR(14) NULL,
 	email VARCHAR(200) NOT NULL,
 	cont_resp VARCHAR(100) NULL,
-	est_civil int(10) NULL,
+	est_civil VARCHAR(50) NULL,
 	IM VARCHAR(100) NULL,
 	EM VARCHAR(100) NULL,
 	dt_nasc TIMESTAMP NULL,	
@@ -174,8 +174,17 @@ CREATE TABLE tb_cliente (
   );
  
  INSERT INTO tb_perfil (nome, descricao, usu_inclusao) values ("Admin", "Administrador TI", 1);
-  
-  
+ 
  INSERT INTO tb_usuario (id_perfil,	nome, cpf, dt_nasc,	email, pass, sexo, est_civil,usu_inclusao) values (1,'Administrador TI','00000000000',  STR_TO_DATE('22-05-2022', '%d-%m-%Y'), 'admin@admin.com', '123456', 'N/A', 1, 1 );
+ 
+ INSERT INTO tb_menu (nome,	descricao,usu_inclusao) values ("Login","Tela de login",1);
+  
+ INSERT INTO tb_pagamento (descricao,usu_inclusao) values ('Cartão de crédito', 1);
+ 
+ INSERT INTO tb_cliente (tipo_pessoa, nome, cpfcpnj, email, usu_inclusao) values (1,'Gustavo','00011122233','teste@tes.com','05-04-2000');
+ 
+ INSERT INTO tb_fornecedor (nome,	nome_fantasia, cpnj, email, cont_resp, dt_criacao, dt_nasc_cont, usu_inclusao) values ('Nike Futebol', 'Nike', '0542451','teste@teste.com','Gustavo', '05-04-2000', '05-04-2000', 1);
+ 
+ INSERT INTO tb_acesso (id_perfil, id_menu,	usu_inclusao) values (1,1,1);
  
  

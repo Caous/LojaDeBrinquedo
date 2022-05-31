@@ -68,8 +68,6 @@ public class Usuario extends javax.swing.JFrame {
         tblUsuarios = new javax.swing.JTable();
         txtNome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        txtDtNascimento = new javax.swing.JTextField();
-        txtCpf = new javax.swing.JTextField();
         rbMasc = new javax.swing.JRadioButton();
         rbFem = new javax.swing.JRadioButton();
         btnPesquisar = new javax.swing.JButton();
@@ -80,16 +78,21 @@ public class Usuario extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         cbxPerfil = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
+        txtSenha = new javax.swing.JPasswordField();
+        txtCpf = new javax.swing.JFormattedTextField();
+        txtDtNascimento = new javax.swing.JFormattedTextField();
+        txtEstadoCivil = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
         jpnBg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblUsuarios.setBackground(new java.awt.Color(64, 87, 184));
-        tblUsuarios.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        tblUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tblUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,34 +116,36 @@ public class Usuario extends javax.swing.JFrame {
 
         jpnBg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 900, 240));
 
-        txtNome.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
-        jpnBg.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
+        txtNome.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 1, 14))); // NOI18N
+        jpnBg.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, 60));
 
-        txtEmail.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
-        jpnBg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, -1));
-
-        txtDtNascimento.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtDtNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
-        jpnBg.add(txtDtNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, -1));
-
-        txtCpf.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
-        jpnBg.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 210, -1));
+        txtEmail.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        txtEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 1, 14))); // NOI18N
+        jpnBg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, 60));
 
         rbMasc.setBackground(new java.awt.Color(201, 232, 242));
-        rbMasc.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        rbMasc.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         rbMasc.setText("Masculino");
-        jpnBg.add(rbMasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
+        rbMasc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbMascMouseClicked(evt);
+            }
+        });
+        jpnBg.add(rbMasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
 
         rbFem.setBackground(new java.awt.Color(201, 232, 242));
-        rbFem.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        rbFem.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         rbFem.setText("Feminino");
-        jpnBg.add(rbFem, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
+        rbFem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbFemMouseClicked(evt);
+            }
+        });
+        jpnBg.add(rbFem, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, -1));
 
         btnPesquisar.setBackground(new java.awt.Color(51, 102, 255));
-        btnPesquisar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnPesquisar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
@@ -152,15 +157,15 @@ public class Usuario extends javax.swing.JFrame {
         });
         jpnBg.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 170, 50));
 
-        lblControle.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblControle.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblControle.setText("Controle de usuários");
         jpnBg.add(lblControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         ckbExcluir.setBackground(new java.awt.Color(201, 232, 242));
-        ckbExcluir.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        ckbExcluir.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         ckbExcluir.setForeground(new java.awt.Color(204, 0, 0));
         ckbExcluir.setText("Excluir");
-        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
+        jpnBg.add(ckbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 150, -1, -1));
 
         jTable2.setBackground(new java.awt.Color(64, 87, 184));
         jTable2.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
@@ -183,7 +188,7 @@ public class Usuario extends javax.swing.JFrame {
         jpnBg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 900, 150));
 
         btnSalvar.setBackground(new java.awt.Color(61, 189, 61));
-        btnSalvar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnSalvar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(null);
@@ -195,6 +200,7 @@ public class Usuario extends javax.swing.JFrame {
         });
         jpnBg.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 170, 50));
 
+        cbxPerfil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         cbxPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxPerfilActionPerformed(evt);
@@ -202,16 +208,12 @@ public class Usuario extends javax.swing.JFrame {
         });
         jpnBg.add(cbxPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 210, 30));
 
-        jLabel1.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel1.setText("Perfil:");
         jpnBg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
-        txtSenha.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
-        txtSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Rubik Light", 1, 14))); // NOI18N
-        jpnBg.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
-
         btnCancelar.setBackground(new java.awt.Color(255, 153, 0));
-        btnCancelar.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
@@ -224,18 +226,42 @@ public class Usuario extends javax.swing.JFrame {
         });
         jpnBg.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 140, 50));
 
+        txtSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jpnBg.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 200, 60));
+
+        txtCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 1, 12))); // NOI18N
+        try {
+            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jpnBg.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 210, 60));
+
+        txtDtNascimento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dt. Nascimento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 1, 14))); // NOI18N
+        try {
+            txtDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jpnBg.add(txtDtNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 210, 60));
+
+        txtEstadoCivil.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        txtEstadoCivil.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado Civil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 1, 14))); // NOI18N
+        jpnBg.add(txtEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 210, 60));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+            .addComponent(jpnBg, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CarregaComboBox() {
@@ -252,6 +278,7 @@ public class Usuario extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         GerenciarBotoes();
+
         if (acaoTela == eAcaoTela.VISUALIZAR.getValor()) {
             acaoTela = eAcaoTela.SALVAR.getValor();
         }
@@ -261,43 +288,54 @@ public class Usuario extends javax.swing.JFrame {
 
         UserController usuController = new UserController();
 
-        UserModel user = new UserModel();
+//        UserModel user = new UserModel();
+//
+//        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
+//            user = userm;
+//        }
+        //user = PreencherUsuarios(user);
+        boolean valid = PreencherUsuarios(userm);
 
-        if (acaoTela == eAcaoTela.EDITAR.getValor() || acaoTela == eAcaoTela.EXCLUIR.getValor()) {
-            user = userm;
+        if (valid) {
+
+            switch (acaoTela) {
+                case 1:
+                    if (usuController.save(userm)) {
+                        JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do usuário", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 5:
+                    if (usuController.update(userm)) {
+                        JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do usuário", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+                case 6:
+                    Date dt = new Date();
+
+                    userm.setDtDel(dt);
+
+                    if (this.usuSystem == null) {
+                        userm.setUsuDel(1);
+                    } else {
+                        userm.setUsuInclus(this.usuSystem.getId());
+                    }
+
+                    if (usuController.finishValidity(userm)) {
+                        JOptionPane.showMessageDialog(null, "Usuário deletado com sucesso", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Houve um erro na exclusão do usuário", "Erro", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
+                    break;
+            }
+
+            LimparCampos();
+            LoadTable();
         }
-
-        user = PreencherUsuarios(user);
-
-        boolean result = false;
-
-        switch (acaoTela) {
-            case 1:
-                result = usuController.save(user);
-                break;
-            case 5:
-                result = usuController.update(user);
-                break;
-            case 6:
-                Date dt = new Date();
-
-                user.setDtDel(dt);
-
-                if (this.usuSystem == null) {
-                    user.setUsuDel(1);
-                } else {
-                    user.setUsuInclus(this.usuSystem.getId());
-                }
-
-                result = usuController.finishValidity(user);
-                break;
-        }
-
-        if (result) {
-
-        }
-        LimparCampos();
-        LoadTable();
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -317,13 +355,20 @@ public class Usuario extends javax.swing.JFrame {
                 user.setEmail(txtEmail.getText());
             }
 
-            if (user.validString(txtCpf.getText())) {
-                user.setCPF(txtCpf.getText());
+            if (user.validString(txtCpf.getText().replaceAll("\\p{Punct}", ""))) {
+                user.setCPF(txtCpf.getText().replaceAll("\\p{Punct}", ""));
             }
 
-            if (user.validString(txtDtNascimento.getText())) {
+            if (user.validString(txtDtNascimento.getText().replaceAll("\\p{Punct}", ""))) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                user.setDtNasc(formatter1.parse(txtDtNascimento.getText()));
+                user.setDtNasc(formatter1.parse(txtDtNascimento.getText().replaceAll("\\p{Punct}", "")));
+            }
+
+            if (user.validString(txtEstadoCivil.getText())) {
+                user.setEmail(txtEstadoCivil.getText());
+            }
+            if (ckbExcluir.isSelected()) {
+                user.setUsuDel(-1);
             }
 
         } catch (PropertiesValidator ex) {
@@ -352,7 +397,7 @@ public class Usuario extends javax.swing.JFrame {
             CarregarCampos(id);
 
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma categoria para editar!");
+            JOptionPane.showMessageDialog(this, "Selecione um usuário para editar!");
         }
 
     }//GEN-LAST:event_tblUsuariosMouseClicked
@@ -363,11 +408,54 @@ public class Usuario extends javax.swing.JFrame {
 
         userm = userController.findId(id);
 
-        txtNome.setText(userm.getNome());
-        txtEmail.setText(userm.getEmail());
-        txtSenha.setText(userm.getPassword());
-        txtDtNascimento.setText(userm.getDtNasc().toString());
-        txtCpf.setText(userm.getCPF());
+        if (userm.getNome() != null) {
+            txtNome.setText(userm.getNome());
+        } else {
+            txtNome.setText("Não Encontrado");
+        }
+
+        if (userm.getEmail() != null) {
+            txtEmail.setText(userm.getEmail());
+        } else {
+            txtEmail.setText("Não Encontrado");
+        }
+
+        if (userm.getPassword() != null) {
+            txtSenha.setText(userm.getPassword());
+        } else {
+            txtSenha.setText("Não Encontrado");
+        }
+
+        SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+
+        if (userm.getDtNasc() != null) {
+            txtDtNascimento.setText(formatter1.format(userm.getDtNasc()).toString());
+        } else {
+            txtDtNascimento.setText("00000000");
+        }
+
+        if (userm.getCPF() != null) {
+            txtCpf.setText(userm.getCPF());
+        } else {
+            txtCpf.setText("Não Encontrado");
+        }
+
+        if (userm.getEstadoCivil() != null) {
+            txtEstadoCivil.setText(userm.getEstadoCivil());
+        } else {
+            txtEstadoCivil.setText("Não Encontrado");
+        }
+        
+        if (userm.getSexo() != null && userm.getSexo().equals("Masculino")) {
+            rbMasc.setSelected(true);
+        }
+        if (userm.getSexo() != null && userm.getSexo().equals("Feminino")) {
+            rbMasc.setSelected(true);
+        }
+        if (userm.getSexo() == null || userm.getSexo().equals("N/A")) {
+            rbMasc.setSelected(false);
+            rbFem.setSelected(false);
+        }
 
     }
 
@@ -380,6 +468,18 @@ public class Usuario extends javax.swing.JFrame {
         acaoTela = eAcaoTela.ABRIR.getValor();
         GerenciarBotoes();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void rbMascMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbMascMouseClicked
+
+        rbFem.setSelected(false);
+
+    }//GEN-LAST:event_rbMascMouseClicked
+
+    private void rbFemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbFemMouseClicked
+
+        rbMasc.setSelected(false);
+
+    }//GEN-LAST:event_rbFemMouseClicked
 
     /**
      * @param args the command line arguments
@@ -432,11 +532,12 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbFem;
     private javax.swing.JRadioButton rbMasc;
     private javax.swing.JTable tblUsuarios;
-    private javax.swing.JTextField txtCpf;
-    private javax.swing.JTextField txtDtNascimento;
+    private javax.swing.JFormattedTextField txtCpf;
+    private javax.swing.JFormattedTextField txtDtNascimento;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEstadoCivil;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 
     private void LoadTableFilter(List<UserModel> users) {
@@ -491,43 +592,63 @@ public class Usuario extends javax.swing.JFrame {
 
     }
 
-    private UserModel PreencherUsuarios(UserModel userm) {
+    private boolean PreencherUsuarios(UserModel entity) {
 
-        if (userm == null) {
-            userm = new UserModel();
+        if (entity == null) {
+            entity = new UserModel();
         }
 
         try {
 
-            if (userm.validString(txtNome.getText())) {
-                userm.setNome(txtNome.getText());
+            if (entity.validString(txtNome.getText())) {
+                entity.setNome(txtNome.getText());
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Por favor preencher o nome ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
-            if (userm.validString(txtEmail.getText())) {
-                userm.setEmail(txtEmail.getText());
+            if (entity.validString(txtEmail.getText())) {
+                entity.setEmail(txtEmail.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor preencher o E-mail ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
-            if (userm.validString(txtSenha.getText())) {
-                userm.setPassword(txtSenha.getText());
+            if (entity.validString(txtSenha.getText())) {
+                entity.setPassword(txtSenha.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor preencher a senha ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
-            if (userm.validString(txtDtNascimento.getText())) {
+            if (entity.validString(txtDtNascimento.getText().replaceAll("\\p{Punct}", ""))) {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
-                userm.setDtNasc(formatter1.parse(txtDtNascimento.getText().replace("/", "-")));
+                entity.setDtNasc(formatter1.parse(txtDtNascimento.getText().replace("/", "-")));
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor preencher a Data de Nascimento ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
-            if (userm.validString(txtCpf.getText())) {
-                userm.setCPF(txtCpf.getText());
+            if (entity.validString(txtCpf.getText().replaceAll("\\p{Punct}", ""))) {
+                entity.setCPF(txtCpf.getText().replaceAll("\\p{Punct}", ""));
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor preencher o CPF ou com caracteres mínimos", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
             if (rbFem.isSelected()) {
-                userm.setSexo("Feminino");
+                entity.setSexo("Feminino");
             }
             if (rbMasc.isSelected()) {
-                userm.setSexo("Masculino");
+                entity.setSexo("Masculino");
             }
 
-            if (userm.validString(cbxPerfil.getSelectedItem().toString())) {
+            if (entity.validString(txtEstadoCivil.getText())) {
+                entity.setEstadoCivil(txtEstadoCivil.getText());
+            }
+
+            if (entity.validString(cbxPerfil.getSelectedItem().toString())) {
 
                 PerfilController perfilController = new PerfilController();
                 PerfilModel perfilFiltro = new PerfilModel();
@@ -535,13 +656,16 @@ public class Usuario extends javax.swing.JFrame {
 
                 List<PerfilModel> perfils = perfilController.findAll(perfilFiltro);
 
-                userm.setIdPerfil(perfils.get(0).getId());
+                entity.setIdPerfil(perfils.get(0).getId());
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor Selecionar um Perfil", "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
+                return false;
             }
 
             if (ckbExcluir.isSelected()) {
                 acaoTela = eAcaoTela.EXCLUIR.getValor();
                 if (this.usuSystem != null && userm.validInt(this.usuSystem.getId())) {
-                    userm.setUsuDel(this.usuSystem.getId());
+                    entity.setUsuDel(this.usuSystem.getId());
                 }
             }
 
@@ -549,8 +673,11 @@ public class Usuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex, "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         } catch (ParseException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex, "Conversão errada", JOptionPane.WARNING_MESSAGE);
         }
-        return userm;
+        
+        this.userm = entity;
+        return true;
     }
 
     private void LimparCampos() {
@@ -558,7 +685,10 @@ public class Usuario extends javax.swing.JFrame {
         txtEmail.setText("");
         txtSenha.setText("");
         txtDtNascimento.setText("");
+        txtEstadoCivil.setText("");
         txtCpf.setText("");
+        rbFem.setSelected(false);
+        rbMasc.setSelected(false);
 
     }
 

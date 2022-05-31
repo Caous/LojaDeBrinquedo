@@ -13,7 +13,6 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -33,13 +32,15 @@ public class Login extends javax.swing.JFrame {
         lblUsu = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtPass = new javax.swing.JTextField();
+        txtPass = new javax.swing.JPasswordField();
 
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
 
         jpnBg.setBackground(new java.awt.Color(201, 232, 242));
+        jpnBg.setMaximumSize(new java.awt.Dimension(1280, 720));
         jpnBg.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         lblSistema.setBackground(new java.awt.Color(0, 0, 0));
@@ -47,11 +48,11 @@ public class Login extends javax.swing.JFrame {
         lblSistema.setText("BEM-VINDO AO SISTEMA HAPPY");
         lblSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        lblUsuPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblUsuPass.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblUsuPass.setText("Entre com o usuário e senha no sistema");
 
         btnLogin.setBackground(new java.awt.Color(61, 189, 61));
-        btnLogin.setFont(new java.awt.Font("Rubik Light", 1, 12)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLogin.setBorderPainted(false);
@@ -62,24 +63,20 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        lblUsu.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblUsu.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblUsu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsu.setText("E-mail");
 
-        lblPass.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        lblPass.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lblPass.setText("Senha");
 
-        txtUsuario.setFont(new java.awt.Font("Rubik Light", 1, 14)); // NOI18N
+        txtUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        txtPass.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         txtPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPass.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpnBgLayout = new javax.swing.GroupLayout(jpnBg);
         jpnBg.setLayout(jpnBgLayout);
@@ -88,11 +85,8 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jpnBgLayout.createSequentialGroup()
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnBgLayout.createSequentialGroup()
-                        .addGap(459, 459, 459)
-                        .addComponent(lblSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpnBgLayout.createSequentialGroup()
                         .addGap(422, 422, 422)
-                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lblUsuPass)
                                 .addGroup(jpnBgLayout.createSequentialGroup()
@@ -102,25 +96,28 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(jpnBgLayout.createSequentialGroup()
                                 .addComponent(lblPass)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtPass))))
                     .addGroup(jpnBgLayout.createSequentialGroup()
                         .addGap(488, 488, 488)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(526, Short.MAX_VALUE))
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnBgLayout.createSequentialGroup()
+                        .addGap(467, 467, 467)
+                        .addComponent(lblSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(518, Short.MAX_VALUE))
         );
         jpnBgLayout.setVerticalGroup(
             jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnBgLayout.createSequentialGroup()
-                .addContainerGap(315, Short.MAX_VALUE)
+                .addContainerGap(314, Short.MAX_VALUE)
                 .addComponent(lblSistema)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblUsuPass)
                 .addGap(47, 47, 47)
                 .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUsu))
-                .addGap(18, 18, 18)
-                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(jpnBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPass)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -140,6 +137,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -148,13 +146,14 @@ public class Login extends javax.swing.JFrame {
         LoginController loginController = new LoginController();
 
         try {
-
+            String teste = txtPass.getText();
             if (login.validString(txtUsuario.getText())) {
                 login.setEmail(txtUsuario.getText());
             }
 
             if (login.validString(txtPass.getText())) {
                 login.setPassword(txtPass.getText());
+
             }
             login = loginController.validLogin(login);
             if (login != null) {
@@ -169,10 +168,6 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.toString(), "Campos Obrigatórios", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,7 +212,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblSistema;
     private javax.swing.JLabel lblUsu;
     private javax.swing.JLabel lblUsuPass;
-    private javax.swing.JTextField txtPass;
+    private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
