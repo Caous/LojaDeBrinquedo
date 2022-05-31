@@ -1,7 +1,7 @@
 package loja.Dominio.Model;
 
 import java.util.Date;
-import loja.Dominio.Service.UserService;
+import loja.Dominio.DAO.UserService;
 import loja.Dominio.Util.IPropertiesValidator;
 import loja.Dominio.Util.PropertiesValidator;
 
