@@ -22,9 +22,9 @@ public class FornecedorController {
     }
 
     public FornecedorController(FornecedorModel fornecedor) {
-        this._fornecedor = fornecedor;
+        this.forneced = fornecedor;
     }
-    private FornecedorModel _fornecedor;
+    private FornecedorModel forneced;
     
     public static void delete(FornecedorModel produto) {
 
@@ -53,14 +53,40 @@ public class FornecedorController {
     }
 
     public static boolean save(FornecedorModel fornecedor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            FornecedorService forneced = new FornecedorService();
+            return forneced.save(fornecedor);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;        
     }
 
     public boolean update(FornecedorModel fornecedor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            FornecedorService forneced = new FornecedorService();
+            forneced.update(fornecedor);
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     public boolean finishValidity(FornecedorModel fornecedor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            FornecedorService fornecedserive = new FornecedorService();
+            fornecedserive.finishValidity(fornecedor);
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }
